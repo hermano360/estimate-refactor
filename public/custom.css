@@ -1,0 +1,25 @@
+.tableEntry {
+	font-size: 10px;
+	line-height: 1;
+}
+table tbody td, table tbody th {
+	padding:0 5px 0 5px;
+}
+input[type=text].quantityInput {
+	height: 2rem;
+	text-align: center;
+	font-size: 10px;
+	margin-bottom: 10px
+}
+.estimate-page-heading {
+	background-color: #13788e;
+	color: white;
+	width: 100%;
+	text-align: center;
+	border: black 1px solid;
+}
+.scope-of-work-text {
+	font-size: 1em;
+	line-height: 1.125em;
+	min-height: 5em;
+}
