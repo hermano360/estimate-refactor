@@ -1,7 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var products = require('./api/products.js');
-var twilioText = require('./api/twilioText.js');
 var pdf = require('html-pdf');
 
 //Create out app
@@ -49,7 +47,7 @@ app.post('/pdfTest', function(req,res,next){
   let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let dateString = `${today.getDate()}-${monthNames[today.getMonth()]}-${today.getFullYear()}`;
 
-  var options = { format: 'Letter',  
+  var options = { format: 'Letter',
 
   "header": {
     "height": "1.5in",
@@ -87,8 +85,8 @@ app.post('/pdfTest', function(req,res,next){
   "contents": {
     // first: '1',
     // 2: '2', // Any page number is working. 1-based index
-    // 3: '3', 
-    // 4: '4', 
+    // 3: '3',
+    // 4: '4',
     default: `<div>
                 <div style="border-top: 1px solid black; width:20%;margin-left: 5%;float:left; margin-top:50px;">Customers Initials</div>
                 <div style="border-top: 1px solid black; width:20%; margin-left: 30%; float:left; margin-top:50px">Date</div>

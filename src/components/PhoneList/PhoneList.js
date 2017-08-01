@@ -40,6 +40,7 @@ class PhoneList extends Component {
                     <th>Last Name</th>
                     <th>Phone Number</th>
                     <th>Fax Number</th>
+                    <th>Email</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -89,7 +90,9 @@ class PhoneList extends Component {
                     <td>1</td>
                     <td>Mark</td>
                     <td>Otto</td>
-                    <td>@mdo</td>
+                    <td>7655436533</td>
+                    <td>7655436533</td>
+                    <td>hermano360@gmail.com</td>
                   </tr>
                   <tr>
                     <td>1</td>

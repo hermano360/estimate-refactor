@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {Row,Input,Icon,Col,Table,Autocomplete,Button} from 'react-materialize'
 
 // import TableElement from './TableElement'
-import ProductAccess from '../../../api/ProductAccess'
-import testProductAccess from '../../../api/testProductAccess'
-import templateConfig from '../../../api/templateConfig'
+// import ProductAccess from '../../../api/ProductAccess'
+// import testProductAccess from '../../../api/testProductAccess'
+// import templateConfig from '../../../api/templateConfig'
 
 class NewEstimateRev extends Component {
 	constructor(){

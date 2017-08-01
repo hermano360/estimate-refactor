@@ -11,8 +11,7 @@ class Main extends Component {
    constructor(){
     super()
     this.state = {
-      //page:'StartPage'
-      page:'Estimate'
+      page:'StartPage'
     }
     this.handleProductsClick=this.handleProductsClick.bind(this);
     this.handlePhoneListClick=this.handlePhoneListClick.bind(this);
