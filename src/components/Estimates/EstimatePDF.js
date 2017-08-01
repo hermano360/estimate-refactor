@@ -13,13 +13,13 @@ class EstimatePDF extends Component {
    constructor(){
     super()
     this.state = {
+      emailSent:false
     }
   }
   componentDidMount(){
   	let html = $('#printThisBitch')[0].outerHTML;
-
-  	console.log(html)
   	var requestUrl = `/pdfTest`;
+    let that = this;
 	  axios({
 	    method: 'post',
 	    url: requestUrl,
@@ -27,7 +27,25 @@ class EstimatePDF extends Component {
 	        html
 	      }
 	    }).then(function(res){
-	          console.log('successful')
+	          console.log('successful',res);
+            axios({
+              method:'post',
+              url:`/pdfEmail`,
+            data: {
+              dirPath: res.data.filename,
+              name: `${that.props.customerFirstName} ${that.props.customerLastName}`
+            }})
+            .then(function (response) {
+              console.log(response);
+              that.setState({
+                emailSent:true
+              })
+
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
 	        }).catch(function (error) {
 	          console.log('not successful')
 	    		console.log(error);
@@ -36,6 +54,21 @@ class EstimatePDF extends Component {
 
 
   render(){
+    let that = this;
+    const emailStatus =()=>{
+      if(that.state.emailSent){
+        return (
+          <div>
+          <div>Estimate sent to hermano360@gmail.com, robertLeon@probuilders.com</div>
+          <Button onClick={that.props.handleEstimateStartOver}>Start Over?</Button>
+        </div>
+        )
+      } else {
+        return (
+          <div>Email sending in progress</div>
+        )
+      }
+    }
     return (
       <div>
         <div style={{display:'none'}}>
@@ -45,8 +78,7 @@ class EstimatePDF extends Component {
             <QuoteSummary/>
           </div>
         </div>
-        <div>Estimate sent to hermano360@gmail.com, robertLeon@probuilders.com</div>
-        <Button>Start Over?</Button>
+        {emailStatus()}
       </div>
       )
   }

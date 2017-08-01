@@ -91,7 +91,6 @@ class Specifications extends Component {
                     }
             })
           } else {
-            debugger
             return (
                         <div style={{color:'white','width':'100%','minHeight':'100px'}}>.</div>
                       )

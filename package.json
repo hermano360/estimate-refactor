@@ -20,6 +20,7 @@
     "i": "^0.3.5",
     "material-ui": "^0.18.1",
     "mongodb": "^2.2.26",
+    "nodemailer": "^4.0.1",
     "querystring": "^0.2.0",
     "react": "^15.4.0",
     "react-bootstrap": "^0.31.1",

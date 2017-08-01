@@ -51960,14 +51960,7 @@
 	    }
 	  }, {
 	    key: 'generateEstimatePDF',
-	    value: function generateEstimatePDF() {
-	      if (this.state.generateEstimate) {
-	        this.setState({
-	          generateEstimate: false
-	        });
-	        return _react2.default.createElement(_EstimatePDF2.default, this.state);
-	      }
-	    }
+	    value: function generateEstimatePDF() {}
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -51987,505 +51980,523 @@
 	          return _react2.default.createElement(_ShoppingCartItem2.default, _extends({ key: shoppingCartItem.keyCode + shoppingCartItem.template }, shoppingCartItem, { onQuantityChange: _this2.handleQuantityChange, onItemDelete: _this2.handleItemDelete }));
 	        });
 	      };
-	      return _react2.default.createElement(
-	        _reactBootstrap.Grid,
-	        { fluid: true },
-	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
+	      if (this.state.generateEstimate) {
+	        return _react2.default.createElement(_EstimatePDF2.default, _extends({}, this.state, { handleEstimateStartOver: function handleEstimateStartOver() {
+	            _this2.setState({
+	              salesman: '',
+	              customerFirstName: '',
+	              customerLastName: '',
+	              email: '',
+	              quoteNumber: '',
+	              projectDescription: '',
+	              address: '',
+	              city: '',
+	              state: '',
+	              zipcode: '',
+	              specification: '',
+	              phone: '',
+	              fax: '',
+	              date: todaysDate(),
+	              shoppingCart: [],
+	              generateEstimate: false
+	            });
+	          } }));
+	      } else {
+	        return _react2.default.createElement(
+	          _reactBootstrap.Grid,
+	          { fluid: true },
 	          _react2.default.createElement(
-	            _reactBootstrap.Col,
+	            _reactBootstrap.Row,
 	            null,
-	            'Pro Builders Express Estimator WorkSheet'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 4 },
 	            _react2.default.createElement(
-	              _reactBootstrap.Row,
+	              _reactBootstrap.Col,
 	              null,
+	              'Pro Builders Express Estimator WorkSheet'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Row,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { sm: 4 },
 	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning' },
+	                _reactBootstrap.Row,
+	                null,
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Quote No'
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Quote No'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 8 },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'next # in database' })
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 8 },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'next # in database' })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formControlsSelect' },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formControlsSelect' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Salesperson'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 8 },
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Salesperson'
+	                    )
+	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.FormControl,
-	                    { componentClass: 'select', placeholder: 'select', onChange: function onChange(e) {
-	                        _this2.setState({ salesman: e.target.value });
-	                      } },
+	                    _reactBootstrap.Col,
+	                    { sm: 8 },
 	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'select' },
-	                      'select'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'Gary Banks' },
-	                      'Banks, Gary'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'John Chavez' },
-	                      'Chavez, John'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'Arnold Corona' },
-	                      'Corona, Arnold'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'John Gutierrez' },
-	                      'Gutierrez, John'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'Bob Leon' },
-	                      'Leon, Bob'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'Ricardo Rivera' },
-	                      'Rivera, Ricardo'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'Mike Rogers' },
-	                      'Rogers, Mike'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'Cameron Sterling' },
-	                      'Sterling, Cameron'
+	                      _reactBootstrap.FormControl,
+	                      { componentClass: 'select', placeholder: 'select', onChange: function onChange(e) {
+	                          _this2.setState({ salesman: e.target.value });
+	                        } },
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'select' },
+	                        'select'
+	                      ),
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'Gary Banks' },
+	                        'Banks, Gary'
+	                      ),
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'John Chavez' },
+	                        'Chavez, John'
+	                      ),
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'Arnold Corona' },
+	                        'Corona, Arnold'
+	                      ),
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'John Gutierrez' },
+	                        'Gutierrez, John'
+	                      ),
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'Bob Leon' },
+	                        'Leon, Bob'
+	                      ),
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'Ricardo Rivera' },
+	                        'Rivera, Ricardo'
+	                      ),
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'Mike Rogers' },
+	                        'Rogers, Mike'
+	                      ),
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'Cameron Sterling' },
+	                        'Sterling, Cameron'
+	                      )
 	                    )
 	                  )
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning' },
+	                ),
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Start Date'
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Start Date'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 8 },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', defaultValue: todaysDate(), onChange: function onChange(e) {
+	                        _this2.setState({ date: e.target.value });
+	                      } })
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 8 },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', defaultValue: todaysDate(), onChange: function onChange(e) {
-	                      _this2.setState({ date: e.target.value });
-	                    } })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning', onChange: function onChange(e) {
-	                    _this2.setState({ projectDescription: e.target.value });
-	                  } },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Project Desc.'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 8 },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Description', onChange: function onChange(e) {
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formValidationWarning1', validationState: 'warning', onChange: function onChange(e) {
 	                      _this2.setState({ projectDescription: e.target.value });
-	                    } })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formControlsSelect' },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
+	                    } },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Template'
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Project Desc.'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 8 },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Description', onChange: function onChange(e) {
+	                        _this2.setState({ projectDescription: e.target.value });
+	                      } })
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 8 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formControlsSelect' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.FormControl,
-	                    { componentClass: 'select', onChange: function onChange(e) {
-	                        _this2.handleTemplateSelect(e.target.value);
-	                      } },
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
 	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'select' },
-	                      'select'
-	                    ),
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Template'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 8 },
 	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'Demolition' },
-	                      'Demolition'
-	                    ),
-	                    _react2.default.createElement(
-	                      'option',
-	                      { value: 'Foundation/Footings' },
-	                      'Foundation/Footings'
+	                      _reactBootstrap.FormControl,
+	                      { componentClass: 'select', onChange: function onChange(e) {
+	                          _this2.handleTemplateSelect(e.target.value);
+	                        } },
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'select' },
+	                        'select'
+	                      ),
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'Demolition' },
+	                        'Demolition'
+	                      ),
+	                      _react2.default.createElement(
+	                        'option',
+	                        { value: 'Foundation/Footings' },
+	                        'Foundation/Footings'
+	                      )
 	                    )
 	                  )
 	                )
 	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 4 },
+	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.Row,
-	              null,
+	              _reactBootstrap.Col,
+	              { sm: 4 },
 	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning' },
+	                _reactBootstrap.Row,
+	                null,
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Name'
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Name'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 4, style: formCellEntryStyle },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'First', onChange: function onChange(e) {
+	                        _this2.setState({ customerFirstName: e.target.value });
+	                      } })
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 4, style: formCellEntryStyle },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Last', onChange: function onChange(e) {
+	                        _this2.setState({ customerLastName: e.target.value });
+	                      } })
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'First', onChange: function onChange(e) {
-	                      _this2.setState({ customerFirstName: e.target.value });
-	                    } })
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Last', onChange: function onChange(e) {
-	                      _this2.setState({ customerLastName: e.target.value });
-	                    } })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning' },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Address'
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Address'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 8, style: formCellEntryStyle },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '123 Main Street', onChange: function onChange(e) {
+	                        _this2.setState({ address: e.target.value });
+	                      } })
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 8, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '123 Main Street', onChange: function onChange(e) {
-	                      _this2.setState({ address: e.target.value });
-	                    } })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning' },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'City'
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'City'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 3, style: formCellEntryStyle },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'City', onChange: function onChange(e) {
+	                        _this2.setState({ city: e.target.value });
+	                      } })
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 2, style: formCellEntryStyle },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'CA', onChange: function onChange(e) {
+	                        _this2.setState({ state: e.target.value });
+	                      } })
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 3, style: formCellEntryStyle },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'ZIP', onChange: function onChange(e) {
+	                        _this2.setState({ zipcode: e.target.value });
+	                      } })
 	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 3, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'City', onChange: function onChange(e) {
-	                      _this2.setState({ city: e.target.value });
-	                    } })
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 2, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'CA', onChange: function onChange(e) {
-	                      _this2.setState({ state: e.target.value });
-	                    } })
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 3, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'ZIP', onChange: function onChange(e) {
-	                      _this2.setState({ zipcode: e.target.value });
-	                    } })
 	                )
 	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 4 },
+	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.Row,
-	              null,
+	              _reactBootstrap.Col,
+	              { sm: 4 },
 	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning' },
+	                _reactBootstrap.Row,
+	                null,
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Email'
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Email'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
+	                        _this2.setState({ email: e.target.value });
+	                      } },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'customer@email.com' })
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                      _this2.setState({ email: e.target.value });
-	                    } },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'customer@email.com' })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning' },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Phone'
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Phone'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
+	                        _this2.setState({ phone: e.target.value });
+	                      } },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234' })
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                      _this2.setState({ phone: e.target.value });
-	                    } },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234' })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning' },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 4 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Fax'
+	                    _reactBootstrap.Col,
+	                    { sm: 4 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Fax'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
+	                        _this2.setState({ fax: e.target.value });
+	                      } },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-1234-123' })
 	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                      _this2.setState({ fax: e.target.value });
-	                    } },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-1234-123' })
 	                )
 	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 8 },
+	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.Row,
-	              null,
+	              _reactBootstrap.Col,
+	              { sm: 8 },
 	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formControlsTextarea' },
+	                _reactBootstrap.Row,
+	                null,
 	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 2 },
+	                  _reactBootstrap.FormGroup,
+	                  { controlId: 'formControlsTextarea' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Specification'
+	                    _reactBootstrap.Col,
+	                    { sm: 2 },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.ControlLabel,
+	                      null,
+	                      'Specification'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 10, style: formCellEntryStyle },
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '2', onChange: function onChange(e) {
+	                        _this2.setState({ specification: e.target.value });
+	                      } })
 	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 10, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '2', onChange: function onChange(e) {
-	                      _this2.setState({ specification: e.target.value });
-	                    } })
 	                )
 	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 12 },
+	            ),
 	            _react2.default.createElement(
-	              'div',
-	              { style: { height: "50vh", overflow: 'scroll' } },
+	              _reactBootstrap.Col,
+	              { sm: 12 },
+	              _react2.default.createElement(
+	                'div',
+	                { style: { height: "50vh", overflow: 'scroll' } },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Table,
+	                  { striped: true, bordered: true, condensed: true, hover: true },
+	                  _react2.default.createElement(
+	                    'thead',
+	                    null,
+	                    _react2.default.createElement(
+	                      'tr',
+	                      null,
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Product'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Amt'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Unit'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Description'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Material'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Labor'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'E'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'X'
+	                      )
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'tbody',
+	                    null,
+	                    shoppingCart()
+	                  )
+	                )
+	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.Table,
 	                { striped: true, bordered: true, condensed: true, hover: true },
 	                _react2.default.createElement(
-	                  'thead',
+	                  'tbody',
 	                  null,
 	                  _react2.default.createElement(
 	                    'tr',
 	                    null,
 	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Product'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Amt'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Unit'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Description'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Material'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Labor'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'E'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'X'
+	                      'td',
+	                      { colSpan: '8', onClick: function onClick() {
+	                          console.log("add custom item");
+	                        } },
+	                      'Add Item'
 	                    )
 	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'tbody',
-	                  null,
-	                  shoppingCart()
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Table,
-	              { striped: true, bordered: true, condensed: true, hover: true },
-	              _react2.default.createElement(
-	                'tbody',
-	                null,
-	                _react2.default.createElement(
-	                  'tr',
-	                  null,
-	                  _react2.default.createElement(
-	                    'td',
-	                    { colSpan: '8', onClick: function onClick() {
-	                        console.log("add custom item");
-	                      } },
-	                    'Add Item'
-	                  )
 	                )
 	              )
 	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
+	          ),
 	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 12 },
+	            _reactBootstrap.Row,
+	            null,
 	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: this.props.backToMainPage },
-	              'Back'
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: function onClick() {
-	                  _this2.setState({ generateEstimate: true });
-	                } },
-	              'Generate Estimate'
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: function onClick() {
-	                  console.log("Product Preview");
-	                } },
-	              'Product Preview'
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: function onClick() {
-	                  console.log("Shopping List");
-	                } },
-	              'Shopping List'
+	              _reactBootstrap.Col,
+	              { sm: 12 },
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { onClick: this.props.backToMainPage },
+	                'Back'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { onClick: function onClick() {
+	                    _this2.setState({ generateEstimate: true });
+	                  } },
+	                'Generate Estimate'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { onClick: function onClick() {
+	                    console.log("Product Preview");
+	                  } },
+	                'Product Preview'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { onClick: function onClick() {
+	                    console.log("Shopping List");
+	                  } },
+	                'Shopping List'
+	              )
 	            )
 	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
-	          this.generateEstimatePDF()
-	        )
-	      );
+	        );
+	      }
 	    }
 	  }]);
 	
@@ -52665,7 +52676,9 @@
 	
 	    var _this = _possibleConstructorReturn(this, (EstimatePDF.__proto__ || Object.getPrototypeOf(EstimatePDF)).call(this));
 	
-	    _this.state = {};
+	    _this.state = {
+	      emailSent: false
+	    };
 	    return _this;
 	  }
 	
@@ -52673,9 +52686,8 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var html = $('#printThisBitch')[0].outerHTML;
-	
-	      console.log(html);
 	      var requestUrl = '/pdfTest';
+	      var that = this;
 	      axios({
 	        method: 'post',
 	        url: requestUrl,
@@ -52683,7 +52695,21 @@
 	          html: html
 	        }
 	      }).then(function (res) {
-	        console.log('successful');
+	        console.log('successful', res);
+	        axios({
+	          method: 'post',
+	          url: '/pdfEmail',
+	          data: {
+	            dirPath: res.data.filename,
+	            name: that.props.customerFirstName + ' ' + that.props.customerLastName
+	          } }).then(function (response) {
+	          console.log(response);
+	          that.setState({
+	            emailSent: true
+	          });
+	        }).catch(function (error) {
+	          console.log(error);
+	        });
 	      }).catch(function (error) {
 	        console.log('not successful');
 	        console.log(error);
@@ -52692,6 +52718,31 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var that = this;
+	      var emailStatus = function emailStatus() {
+	        if (that.state.emailSent) {
+	          return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              'Estimate sent to hermano360@gmail.com, robertLeon@probuilders.com'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: that.props.handleEstimateStartOver },
+	              'Start Over?'
+	            )
+	          );
+	        } else {
+	          return _react2.default.createElement(
+	            'div',
+	            null,
+	            'Email sending in progress'
+	          );
+	        }
+	      };
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -52706,16 +52757,7 @@
 	            _react2.default.createElement(_QuoteSummary2.default, null)
 	          )
 	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          'Estimate sent to hermano360@gmail.com, robertLeon@probuilders.com'
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Button,
-	          null,
-	          'Start Over?'
-	        )
+	        emailStatus()
 	      );
 	    }
 	  }]);
@@ -53096,7 +53138,6 @@
 	            }
 	          });
 	        } else {
-	          debugger;
 	          return _react2.default.createElement(
 	            'div',
 	            { style: { color: 'white', 'width': '100%', 'minHeight': '100px' } },
