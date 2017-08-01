@@ -12,12 +12,14 @@ module.exports ={
     'slab51/2'
 	],
 
-	all: ["DMCSLB4",
-  		"DMDRW",
-  		"DMSTCO",
-  		"dmwdwalla",
-      'foot24x12',
-      'pump',
-      'slab3',
-      'slab51/2']
+	all: [
+		"DMCSLB4",
+		"DMDRW",
+		"DMSTCO",
+		"dmwdwalla",
+    'foot24x12',
+    'pump',
+    'slab3',
+    'slab51/2'
+	]
 }

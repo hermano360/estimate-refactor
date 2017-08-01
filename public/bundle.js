@@ -51872,25 +51872,38 @@
 	      fax: '',
 	      date: todaysDate(),
 	      shoppingCart: [],
-	      generateEstimate: false
+	      generateEstimate: false,
+	      total: 0
 	    };
 	    _this.handleTemplateSelect = _this.handleTemplateSelect.bind(_this);
 	    _this.handleItemDelete = _this.handleItemDelete.bind(_this);
 	    _this.handleQuantityChange = _this.handleQuantityChange.bind(_this);
-	    _this.generateEstimatePDF = _this.generateEstimatePDF.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(Estimate, [{
+	    key: 'recalculateTotal',
+	    value: function recalculateTotal(cart) {
+	      console.log(cart);
+	      var total = 0;
+	      cart.forEach(function (item) {
+	        total += (item.Labor + item.Material) * item.quantity;
+	      });
+	
+	      return total;
+	    }
+	  }, {
 	    key: 'handleQuantityChange',
 	    value: function handleQuantityChange(keycode, template, quantity) {
-	
 	      var currentShoppingCart = this.state.shoppingCart;
 	      var updatedShoppingCart = currentShoppingCart.map(function (cartItem) {
 	        if (cartItem.keyCode === keycode && cartItem.template === template) {
 	          var newCartItem = {};
 	          for (var prop in cartItem) {
 	            newCartItem[prop] = cartItem[prop];
+	          }
+	          if (isNaN(quantity)) {
+	            quantity = 0;
 	          }
 	          newCartItem.quantity = quantity;
 	          return newCartItem;
@@ -51899,7 +51912,8 @@
 	        }
 	      });
 	      this.setState({
-	        shoppingCart: updatedShoppingCart
+	        shoppingCart: updatedShoppingCart,
+	        total: this.recalculateTotal(updatedShoppingCart)
 	      });
 	    }
 	  }, {
@@ -51914,7 +51928,8 @@
 	        }
 	      });
 	      this.setState({
-	        shoppingCart: updatedShoppingCart
+	        shoppingCart: updatedShoppingCart,
+	        total: this.recalculateTotal(updatedShoppingCart)
 	      });
 	    }
 	  }, {
@@ -51954,13 +51969,11 @@
 	          }
 	        });
 	        this.setState({
-	          shoppingCart: [].concat(_toConsumableArray(currentShoppingCart), newShoppingCart)
+	          shoppingCart: [].concat(_toConsumableArray(currentShoppingCart), newShoppingCart),
+	          total: this.recalculateTotal([].concat(_toConsumableArray(currentShoppingCart), newShoppingCart))
 	        });
 	      }
 	    }
-	  }, {
-	    key: 'generateEstimatePDF',
-	    value: function generateEstimatePDF() {}
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -51980,6 +51993,7 @@
 	          return _react2.default.createElement(_ShoppingCartItem2.default, _extends({ key: shoppingCartItem.keyCode + shoppingCartItem.template }, shoppingCartItem, { onQuantityChange: _this2.handleQuantityChange, onItemDelete: _this2.handleItemDelete }));
 	        });
 	      };
+	      var innerTextCellStyle = { padding: '0' };
 	      if (this.state.generateEstimate) {
 	        return _react2.default.createElement(_EstimatePDF2.default, _extends({}, this.state, { handleEstimateStartOver: function handleEstimateStartOver() {
 	            _this2.setState({
@@ -51998,7 +52012,8 @@
 	              fax: '',
 	              date: todaysDate(),
 	              shoppingCart: [],
-	              generateEstimate: false
+	              generateEstimate: false,
+	              total: 0
 	            });
 	          } }));
 	      } else {
@@ -52038,7 +52053,7 @@
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
 	                    { sm: 8 },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'next # in database' })
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'next # in database', style: innerTextCellStyle })
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -52126,7 +52141,7 @@
 	                    { sm: 8 },
 	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', defaultValue: todaysDate(), onChange: function onChange(e) {
 	                        _this2.setState({ date: e.target.value });
-	                      } })
+	                      }, style: innerTextCellStyle })
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -52148,7 +52163,7 @@
 	                    { sm: 8 },
 	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Description', onChange: function onChange(e) {
 	                        _this2.setState({ projectDescription: e.target.value });
-	                      } })
+	                      }, style: innerTextCellStyle })
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -52214,14 +52229,14 @@
 	                    { sm: 4, style: formCellEntryStyle },
 	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'First', onChange: function onChange(e) {
 	                        _this2.setState({ customerFirstName: e.target.value });
-	                      } })
+	                      }, style: innerTextCellStyle })
 	                  ),
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
 	                    { sm: 4, style: formCellEntryStyle },
 	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Last', onChange: function onChange(e) {
 	                        _this2.setState({ customerLastName: e.target.value });
-	                      } })
+	                      }, style: innerTextCellStyle })
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -52241,7 +52256,7 @@
 	                    { sm: 8, style: formCellEntryStyle },
 	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '123 Main Street', onChange: function onChange(e) {
 	                        _this2.setState({ address: e.target.value });
-	                      } })
+	                      }, style: innerTextCellStyle })
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -52261,21 +52276,21 @@
 	                    { sm: 3, style: formCellEntryStyle },
 	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'City', onChange: function onChange(e) {
 	                        _this2.setState({ city: e.target.value });
-	                      } })
+	                      }, style: innerTextCellStyle })
 	                  ),
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
 	                    { sm: 2, style: formCellEntryStyle },
 	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'CA', onChange: function onChange(e) {
 	                        _this2.setState({ state: e.target.value });
-	                      } })
+	                      }, style: innerTextCellStyle })
 	                  ),
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
 	                    { sm: 3, style: formCellEntryStyle },
 	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'ZIP', onChange: function onChange(e) {
 	                        _this2.setState({ zipcode: e.target.value });
-	                      } })
+	                      }, style: innerTextCellStyle })
 	                  )
 	                )
 	              )
@@ -52303,7 +52318,7 @@
 	                    { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
 	                        _this2.setState({ email: e.target.value });
 	                      } },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'customer@email.com' })
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'customer@email.com', style: innerTextCellStyle })
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -52323,7 +52338,7 @@
 	                    { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
 	                        _this2.setState({ phone: e.target.value });
 	                      } },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234' })
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234', style: innerTextCellStyle })
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -52343,7 +52358,7 @@
 	                    { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
 	                        _this2.setState({ fax: e.target.value });
 	                      } },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-1234-123' })
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234', style: innerTextCellStyle })
 	                  )
 	                )
 	              )
@@ -52369,9 +52384,9 @@
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
 	                    { sm: 10, style: formCellEntryStyle },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '2', onChange: function onChange(e) {
+	                    _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '3', onChange: function onChange(e) {
 	                        _this2.setState({ specification: e.target.value });
-	                      } })
+	                      }, style: innerTextCellStyle })
 	                  )
 	                )
 	              )
@@ -52451,7 +52466,7 @@
 	                    null,
 	                    _react2.default.createElement(
 	                      'td',
-	                      { colSpan: '8', onClick: function onClick() {
+	                      { colSpan: '7', onClick: function onClick() {
 	                          console.log("add custom item");
 	                        } },
 	                      'Add Item'
@@ -52492,6 +52507,12 @@
 	                    console.log("Shopping List");
 	                  } },
 	                'Shopping List'
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                'Grand Total with Tax : $',
+	                parseFloat(this.state.total).toFixed(2)
 	              )
 	            )
 	          )
@@ -54825,10 +54846,10 @@
 	"use strict";
 	
 	module.exports = {
-	  Demolition: ["DMCSLB4", "DMDRW", "DMSTCO", "dmwdwalla"],
-	  "Foundation/Footings": ['foot24x12', 'pump', 'slab3', 'slab51/2'],
+		Demolition: ["DMCSLB4", "DMDRW", "DMSTCO", "dmwdwalla"],
+		"Foundation/Footings": ['foot24x12', 'pump', 'slab3', 'slab51/2'],
 	
-	  all: ["DMCSLB4", "DMDRW", "DMSTCO", "dmwdwalla", 'foot24x12', 'pump', 'slab3', 'slab51/2']
+		all: ["DMCSLB4", "DMDRW", "DMSTCO", "dmwdwalla", 'foot24x12', 'pump', 'slab3', 'slab51/2']
 	};
 
 /***/ }),

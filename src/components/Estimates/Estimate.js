@@ -29,15 +29,24 @@ class Estimate extends Component {
       fax:'',
       date:todaysDate(),
       shoppingCart:[],
-      generateEstimate: false
+      generateEstimate: false,
+      total:0
     }
     this.handleTemplateSelect = this.handleTemplateSelect.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
-    this.generateEstimatePDF = this.generateEstimatePDF.bind(this)
+  }
+
+  recalculateTotal(cart){
+    console.log(cart);
+    let total = 0;
+    cart.forEach((item)=>{
+      total += (item.Labor + item.Material)*item.quantity;
+    })
+
+    return total;
   }
   handleQuantityChange(keycode, template,quantity){
-
     let currentShoppingCart = this.state.shoppingCart;
     let updatedShoppingCart = currentShoppingCart.map((cartItem)=>{
       if(cartItem.keyCode === keycode && cartItem.template === template){
@@ -45,14 +54,18 @@ class Estimate extends Component {
         for (let prop in cartItem){
           newCartItem[prop] = cartItem[prop];
         }
+        if(isNaN(quantity)) {
+          quantity = 0;
+        }
         newCartItem.quantity = quantity;
         return newCartItem
       } else {
         return cartItem
       }
-    })
+    });
     this.setState({
-      shoppingCart: updatedShoppingCart
+      shoppingCart: updatedShoppingCart,
+      total: this.recalculateTotal(updatedShoppingCart)
     })
   }
   handleItemDelete(keycode, template){
@@ -65,7 +78,8 @@ class Estimate extends Component {
       }
     })
     this.setState({
-      shoppingCart: updatedShoppingCart
+      shoppingCart: updatedShoppingCart,
+      total: this.recalculateTotal(updatedShoppingCart)
     })
   }
 
@@ -107,13 +121,13 @@ class Estimate extends Component {
         shoppingCart: [
           ...currentShoppingCart,
           ...newShoppingCart
-        ]
+        ],
+        total: this.recalculateTotal([
+          ...currentShoppingCart,
+          ...newShoppingCart
+        ])
       })
     }
-  }
-
-  generateEstimatePDF(){
-
   }
 
 
@@ -133,6 +147,7 @@ class Estimate extends Component {
         )
       })
     }
+    let innerTextCellStyle={padding:'0'};
     if(this.state.generateEstimate){
       return (
         <EstimatePDF {...this.state} handleEstimateStartOver={()=>{this.setState({
@@ -151,7 +166,8 @@ class Estimate extends Component {
           fax:'',
           date:todaysDate(),
           shoppingCart:[],
-          generateEstimate: false
+          generateEstimate: false,
+          total:0
         })}}/>
       )
     } else {
@@ -170,7 +186,7 @@ class Estimate extends Component {
                     <ControlLabel>Quote No</ControlLabel>
                   </Col>
                   <Col sm={8}>
-                    <FormControl type="text" placeholder="next # in database"/>
+                    <FormControl type="text" placeholder="next # in database" style={innerTextCellStyle}/>
                   </Col>
                 </FormGroup>
 
@@ -197,7 +213,7 @@ class Estimate extends Component {
                     <ControlLabel>Start Date</ControlLabel>
                   </Col>
                   <Col sm={8}>
-                    <FormControl type="text" defaultValue={todaysDate()} onChange={(e)=>{this.setState({date: e.target.value})}}/>
+                    <FormControl type="text" defaultValue={todaysDate()} onChange={(e)=>{this.setState({date: e.target.value})}} style={innerTextCellStyle}/>
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formValidationWarning1" validationState="warning" onChange={(e)=>{this.setState({projectDescription: e.target.value})}}>
@@ -205,7 +221,7 @@ class Estimate extends Component {
                     <ControlLabel>Project Desc.</ControlLabel>
                   </Col>
                   <Col sm={8}>
-                    <FormControl type="text" placeholder="Description" onChange={(e)=>{this.setState({projectDescription: e.target.value})}}/>
+                    <FormControl type="text" placeholder="Description" onChange={(e)=>{this.setState({projectDescription: e.target.value})}} style={innerTextCellStyle}/>
                   </Col>
                 </FormGroup>
 
@@ -231,10 +247,10 @@ class Estimate extends Component {
                     <ControlLabel>Name</ControlLabel>
                   </Col>
                   <Col sm={4} style={formCellEntryStyle}>
-                    <FormControl type="text" placeholder="First" onChange={(e)=>{this.setState({customerFirstName: e.target.value})}}/>
+                    <FormControl type="text" placeholder="First" onChange={(e)=>{this.setState({customerFirstName: e.target.value})}} style={innerTextCellStyle}/>
                   </Col>
                   <Col sm={4} style={formCellEntryStyle}>
-                    <FormControl type="text" placeholder="Last" onChange={(e)=>{this.setState({customerLastName: e.target.value})}}/>
+                    <FormControl type="text" placeholder="Last" onChange={(e)=>{this.setState({customerLastName: e.target.value})}} style={innerTextCellStyle}/>
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formValidationWarning1" validationState="warning">
@@ -242,7 +258,7 @@ class Estimate extends Component {
                     <ControlLabel>Address</ControlLabel>
                   </Col>
                   <Col sm={8} style={formCellEntryStyle}>
-                    <FormControl type="text" placeholder="123 Main Street" onChange={(e)=>{this.setState({address: e.target.value})}}/>
+                    <FormControl type="text" placeholder="123 Main Street" onChange={(e)=>{this.setState({address: e.target.value})}} style={innerTextCellStyle}/>
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formValidationWarning1" validationState="warning">
@@ -250,13 +266,13 @@ class Estimate extends Component {
                     <ControlLabel>City</ControlLabel>
                   </Col>
                   <Col sm={3} style={formCellEntryStyle}>
-                    <FormControl type="text" placeholder="City" onChange={(e)=>{this.setState({city: e.target.value})}}/>
+                    <FormControl type="text" placeholder="City" onChange={(e)=>{this.setState({city: e.target.value})}} style={innerTextCellStyle}/>
                   </Col>
                   <Col sm={2} style={formCellEntryStyle}>
-                    <FormControl type="text" placeholder="CA" onChange={(e)=>{this.setState({state: e.target.value})}}/>
+                    <FormControl type="text" placeholder="CA" onChange={(e)=>{this.setState({state: e.target.value})}} style={innerTextCellStyle}/>
                   </Col>
                   <Col sm={3} style={formCellEntryStyle}>
-                    <FormControl type="text" placeholder="ZIP" onChange={(e)=>{this.setState({zipcode: e.target.value})}}/>
+                    <FormControl type="text" placeholder="ZIP" onChange={(e)=>{this.setState({zipcode: e.target.value})}} style={innerTextCellStyle}/>
                   </Col>
                 </FormGroup>
 
@@ -270,7 +286,7 @@ class Estimate extends Component {
                     <ControlLabel>Email</ControlLabel>
                   </Col>
                   <Col sm={8} style={formCellEntryStyle} onChange={(e)=>{this.setState({email: e.target.value})}}>
-                    <FormControl type="text" placeholder="customer@email.com"/>
+                    <FormControl type="text" placeholder="customer@email.com" style={innerTextCellStyle}/>
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formValidationWarning1" validationState="warning">
@@ -278,7 +294,7 @@ class Estimate extends Component {
                     <ControlLabel>Phone</ControlLabel>
                   </Col>
                   <Col sm={8} style={formCellEntryStyle}  onChange={(e)=>{this.setState({phone: e.target.value})}}>
-                    <FormControl type="text" placeholder="555-123-1234"/>
+                    <FormControl type="text" placeholder="555-123-1234" style={innerTextCellStyle}/>
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formValidationWarning1" validationState="warning">
@@ -286,7 +302,7 @@ class Estimate extends Component {
                     <ControlLabel>Fax</ControlLabel>
                   </Col>
                   <Col sm={8} style={formCellEntryStyle} onChange={(e)=>{this.setState({fax: e.target.value})}}>
-                    <FormControl type="text"  placeholder="555-1234-123"/>
+                    <FormControl type="text"  placeholder="555-123-1234" style={innerTextCellStyle}/>
                   </Col>
                 </FormGroup>
               </Row>
@@ -298,7 +314,7 @@ class Estimate extends Component {
                     <ControlLabel>Specification</ControlLabel>
                   </Col>
                   <Col sm={10} style={formCellEntryStyle}>
-                    <FormControl componentClass="textarea" placeholder="Specification" rows="2" onChange={(e)=>{this.setState({specification: e.target.value})}}/>
+                    <FormControl componentClass="textarea" placeholder="Specification" rows="3" onChange={(e)=>{this.setState({specification: e.target.value})}} style={innerTextCellStyle}/>
                   </Col>
                </FormGroup>
               </Row>
@@ -326,7 +342,7 @@ class Estimate extends Component {
               <Table striped bordered condensed hover>
                 <tbody>
                   <tr>
-                    <td colSpan="8" onClick={()=>{console.log("add custom item")}}>Add Item</td>
+                    <td colSpan="7" onClick={()=>{console.log("add custom item")}}>Add Item</td>
                   </tr>
                 </tbody>
 
@@ -339,6 +355,7 @@ class Estimate extends Component {
               <Button onClick={()=>{this.setState({generateEstimate: true})}}>Generate Estimate</Button>
               <Button onClick={()=>{console.log("Product Preview")}}>Product Preview</Button>
               <Button onClick={()=>{console.log("Shopping List")}}>Shopping List</Button>
+              <div>Grand Total with Tax : ${parseFloat(this.state.total).toFixed(2)}</div>
             </Col>
           </Row>
         </Grid>
