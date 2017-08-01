@@ -23,3 +23,7 @@ input[type=text].quantityInput {
 	line-height: 1.125em;
 	min-height: 5em;
 }
+
+.intro-boxes {
+	margin-top: 20%;
+}
