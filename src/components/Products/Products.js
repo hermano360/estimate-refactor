@@ -1,23 +1,28 @@
 import React, {Component} from 'react'
 import { Button, Row, Col, Grid, FormControl, ControlLabel, FormGroup, Form, Image, Clearfix} from 'react-bootstrap';
-
+import productDetails from '../../../api/productDetails'
+import productKeyCodes from '../../../api/productKeyCodes'
 
 class Products extends Component {
 
    constructor(){
     super()
     this.state = {
+      count:0,
+      productList:[]
     }
+  }
+  componentWillMount(){
+    let newKeyCodes = productKeyCodes.getSample(0);
+    let newProductList = productDetails.getBatchProducts(newKeyCodes);
+    this.setState({productList: newProductList})
   }
   render(){
 
-    return (
-      <Grid fluid={true}>
-        <Row>
-          <Col>
-            Pro Builders Express Material List
-          </Col>
-        </Row>
+    const updateProductSheet = () =>{
+      let {count, productList} = this.state;
+      let specifiedProduct = productList[count];
+      return (
         <Row>
           <Col sm={7} className="center-block" >
             <Row>
@@ -26,9 +31,10 @@ class Products extends Component {
                     <ControlLabel>Product Group</ControlLabel>
                   </Col>
                   <Col sm={9}>
-                    <FormControl componentClass="select" placeholder="select">
+                    <FormControl componentClass="select" placeholder="select" value={specifiedProduct.productGroup}>
                       <option value="select">select</option>
-                      <option value="other">Drywall</option>
+                      <option value="Foundation/Footings">Foundation/Footings</option>
+                      <option value="Demolition">Demolition</option>
                     </FormControl>
                   </Col>
                 </FormGroup>
@@ -38,9 +44,12 @@ class Products extends Component {
                     <ControlLabel>Supplier</ControlLabel>
                   </Col>
                   <Col sm={9}>
-                    <FormControl componentClass="select" placeholder="select">
-                      <option value="select">select</option>
-                      <option value="other">HomeDepot</option>
+                    <FormControl componentClass="select" placeholder="" value={specifiedProduct.supplier}>
+                      <option value="">select</option>
+                      <option value="Home Depot">Home Depot</option>
+                      <option value="Furguson">Furguson</option>
+                      <option value="Harbor Freight">Harbor Freight</option>
+                      <option value="N/A">N/A</option>
                     </FormControl>
                   </Col>
                 </FormGroup>
@@ -49,7 +58,7 @@ class Products extends Component {
                     <ControlLabel>Key Code</ControlLabel>
                   </Col>
                   <Col sm={9}>
-                    <FormControl type="text" />
+                    <FormControl type="text" value={specifiedProduct.keyCode}/>
                   </Col>
                 </FormGroup>
 
@@ -61,21 +70,13 @@ class Products extends Component {
                     <FormControl type="text" />
                   </Col>
                 </FormGroup>
-                <FormGroup controlId="formValidationWarning1" validationState="warning">
-                  <Col sm={3}>
-                    <ControlLabel>Key Code</ControlLabel>
-                  </Col>
-                  <Col sm={9}>
-                    <FormControl type="text" />
-                  </Col>
-                </FormGroup>
 
                 <FormGroup controlId="formControlsTextarea">
                   <Col sm={3}>
                     <ControlLabel>Specification</ControlLabel>
                   </Col>
                   <Col sm={9}>
-                    <FormControl componentClass="textarea" placeholder="textarea" rows="4"/>
+                    <FormControl componentClass="textarea" placeholder="textarea" rows="4" value={specifiedProduct.Description}/>
                   </Col>
                </FormGroup>
                <FormGroup controlId="formControlsTextarea">
@@ -83,7 +84,7 @@ class Products extends Component {
                    <ControlLabel>Picture</ControlLabel>
                  </Col>
                  <Col sm={9}>
-                   <Image src="http://cdn.homeadvisor.com/files/eid/8700000/8707399/2395760.jpg?modifyDateTime=1391029484000" responsive={true} />
+                   <Image src={specifiedProduct.picture} responsive={true} />
                  </Col>
               </FormGroup>
             </Row>
@@ -94,7 +95,7 @@ class Products extends Component {
                 <ControlLabel>Labor Cost</ControlLabel>
               </Col>
               <Col sm={8}>
-                <FormControl type="text" />
+                <FormControl type="text" value={specifiedProduct.Labor}/>
               </Col>
             </FormGroup>
             <FormGroup controlId="formValidationWarning1" validationState="warning">
@@ -102,7 +103,7 @@ class Products extends Component {
                 <ControlLabel>SKU#</ControlLabel>
               </Col>
               <Col sm={8}>
-                <FormControl type="text" />
+                <FormControl type="text" value={specifiedProduct.SKU} />
               </Col>
             </FormGroup>
             <FormGroup controlId="formValidationWarning1" validationState="warning">
@@ -126,7 +127,7 @@ class Products extends Component {
                 <ControlLabel>Updated</ControlLabel>
               </Col>
               <Col sm={8}>
-                <FormControl type="text" />
+                <FormControl type="text" value={specifiedProduct.updated}/>
               </Col>
             </FormGroup>
             <FormGroup controlId="formValidationWarning1" validationState="warning">
@@ -134,7 +135,7 @@ class Products extends Component {
                 <ControlLabel>UOM</ControlLabel>
               </Col>
               <Col sm={8}>
-                <FormControl type="text" />
+                <FormControl type="text" value={specifiedProduct.UOM}/>
               </Col>
             </FormGroup>
             <FormGroup controlId="formValidationWarning1" validationState="warning">
@@ -142,7 +143,7 @@ class Products extends Component {
                 <ControlLabel>Material Cost</ControlLabel>
               </Col>
               <Col sm={8}>
-                <FormControl type="text" />
+                <FormControl type="text" value={specifiedProduct.Material}/>
               </Col>
             </FormGroup>
             <Clearfix visibleSmBlock></Clearfix>
@@ -156,8 +157,25 @@ class Products extends Component {
             </FormGroup>
           </Col>
         </Row>
+      )
+    }
+    return (
+      <Grid fluid={true}>
+        <Row>
+          <Col>
+            Pro Builders Express Material List
+          </Col>
+        </Row>
+        {updateProductSheet()}
         <Row>
           <Button onClick={this.props.backToMainPage}>Back</Button>
+        </Row>
+        <Row>
+          <Button onClick={()=>{this.setState({count: 0})}}> {"|<"}</Button>
+          <Button onClick={()=>{if(this.state.count > 0) {this.setState({count: this.state.count-1})} }}> {"<"}</Button>
+          <Button> {this.state.count + 1} </Button>
+          <Button onClick={()=>{if(this.state.count < 8){this.setState({count: this.state.count+1})}}}>{">"}</Button>
+          <Button>{">|"}</Button>
         </Row>
       </Grid>
       )

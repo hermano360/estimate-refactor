@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 
 module.exports = {
-  sendEmail: function(pathToPdf,name,cb){
+  sendEmail: function(pathToPdf,name,email,cb){
     console.log('send email');
     let transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -15,7 +15,7 @@ module.exports = {
 
     console.log('SMTP Configured');
     let message = {
-      to:`${name} <hermano360@gmail.com>`,
+      to:`${name} <hermano360@gmail.com>,${email}`,
       subject:`Probuilders Estimate`,
       text:``,
       html:`<p>Hello</p>

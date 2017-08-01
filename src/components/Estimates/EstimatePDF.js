@@ -33,7 +33,8 @@ class EstimatePDF extends Component {
               url:`/pdfEmail`,
             data: {
               dirPath: res.data.filename,
-              name: `${that.props.customerFirstName} ${that.props.customerLastName}`
+              name: `${that.props.customerFirstName} ${that.props.customerLastName}`,
+              email:that.props.email
             }})
             .then(function (response) {
               console.log(response);

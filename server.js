@@ -119,7 +119,7 @@ app.post('/pdfTest', function(req,res,next){
 )
 
 app.post('/pdfEmail', function(req,res,next){
-  sendMail.sendEmail(req.body.dirPath,req.body.name,function(message){
+  sendMail.sendEmail(req.body.dirPath,req.body.name,req.body.email,function(message){
     res.json(message);
   })
 })
