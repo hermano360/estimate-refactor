@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Button, Row, Col, Grid, FormControl, ControlLabel, FormGroup, Form, Image, Clearfix, Table, Glyphicon, Panel} from 'react-bootstrap';
+import { Button, Row, Col, Grid, FormControl, ControlLabel, FormGroup, Form, Image, Clearfix, Table, Glyphicon, Panel, Modal, ButtonGroup} from 'react-bootstrap';
 import ShoppingCartItem from './ShoppingCartItem'
 import EstimatePDF from './EstimatePDF'
 import ProductPreview from './ProductPreview'
@@ -31,7 +31,9 @@ class Estimate extends Component {
       date:todaysDate(),
       shoppingCart:[],
       estimateStatus:'main',
-      total:0
+      total:0,
+      modal:false,
+      count:0
     }
     this.handleTemplateSelect = this.handleTemplateSelect.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this);
@@ -365,10 +367,82 @@ class Estimate extends Component {
           </Row>
           <Row>
             <Col sm={8}>
-              <Button onClick={this.props.backToMainPage} style={bottomButtonStyle}>Back</Button>
-              <Button onClick={()=>{this.setState({estimateStatus: 'pdf'})}} style={bottomButtonStyle}>Generate Estimate</Button>
-              <Button onClick={()=>{if(this.state.shoppingCart.length>0){this.setState({estimateStatus: 'productPreview'})}}} style={bottomButtonStyle}>Product Preview</Button>
-              <Button onClick={()=>{console.log("Shopping List")}} style={bottomButtonStyle}>Shopping List</Button>
+              <Row>
+                <Col sm={12} style={{textAlign:'center'}}>
+                  <Button onClick={this.props.backToMainPage} style={bottomButtonStyle}>Back</Button>
+                  <Button onClick={()=>{this.setState({estimateStatus: 'pdf'})}} style={bottomButtonStyle}>Generate Estimate</Button>
+                  <Button onClick={()=>{if(this.state.shoppingCart.length>0){this.setState({estimateStatus: 'productPreview'})}}} style={bottomButtonStyle}>Products</Button>
+                  <Button onClick={()=>{console.log("Shopping List")}} style={bottomButtonStyle}>Shopping List</Button>
+                  <Button onClick={()=>{this.setState({modal:true})}} style={bottomButtonStyle}>Cost</Button>
+                  <Modal show={this.state.modal} onHide={()=>{this.setState({modal:false})}}>
+                    <Modal.Header closeButton>
+                      <Modal.Title style={{textAlign:'center'}} >Cost Preview</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <div style={{height:"40%", overflow:'scroll'}}>
+                        <Table striped bordered condensed hover>
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Material</th>
+                              <th>Labor</th>
+                              <th>Days</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Subtotal</td>
+                              <td>$6,541.01</td>
+                              <td>$8,113.80</td>
+                              <td>38.72496</td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td>$327.05</td>
+                              <td>$8,925.18</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td>$6,868.06</td>
+                              <td>$17,038.98</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>Tax</td>
+                              <td>$566.62</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>Total</td>
+                              <td>$7,434.68</td>
+                              <td>$17,038.98</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>Grand Total</td>
+                              <td>$24,473.66</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                      </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button onClick={()=>{this.setState({modal:false})}}>Close</Button>
+                    </Modal.Footer>
+                  </Modal>
+                </Col>
+                <Col sm={12} style={{textAlign:'center', marginTop:'5px'}}>
+                    <Button onClick={()=>{this.setState({count: 0})}}> {"|<"}</Button>
+                    <Button onClick={()=>{if(this.state.count > 0) {this.setState({count: this.state.count-1})} }}> {"<"}</Button>
+                    <Button> {this.state.count + 1} </Button>
+                    <Button onClick={()=>{if(this.state.count < 100){this.setState({count: this.state.count+1})}}}>{">"}</Button>
+                    <Button onClick={()=>{this.setState({count: 100-1})}}>{">|"}</Button>
+                </Col>
+              </Row>
             </Col>
             <Col sm={4}>
               <Panel>

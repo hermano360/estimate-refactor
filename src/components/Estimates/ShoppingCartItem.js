@@ -29,8 +29,8 @@ class ShoppingCartItem extends Component {
         </td>
         <td>{UOM}</td>
         <td>{Description}</td>
-        <td>{Material}</td>
-        <td>{Labor}</td>
+        <td>${(Material*quantity).toFixed(2)}</td>
+        <td>${(Labor*quantity).toFixed(2)}</td>
         <td><Glyphicon glyph="pencil" /></td>
         <td onClick={(e)=>{this.props.onItemDelete(keyCode,template)}}><Glyphicon glyph="remove" /></td>
       </tr>

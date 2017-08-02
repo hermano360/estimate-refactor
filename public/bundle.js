@@ -60,9 +60,9 @@
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
-	var _reactRouterDom = __webpack_require__(526);
+	var _reactRouterDom = __webpack_require__(527);
 	
-	var _reactTapEventPlugin = __webpack_require__(562);
+	var _reactTapEventPlugin = __webpack_require__(563);
 	
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 	
@@ -48199,8 +48199,8 @@
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
 	    Description: "Demolition of Non-Reinforced Concrete Slab Up to 4\" Thick and Dumping of Debris",
-	    Material: 100,
-	    Labor: 100,
+	    Material: 0,
+	    Labor: 1.75,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
@@ -48212,8 +48212,8 @@
 	    supplier: 'Harbor Freight',
 	    UOM: 'sqft',
 	    Description: "Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris",
-	    Material: 100,
-	    Labor: 100,
+	    Material: 0,
+	    Labor: .65,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
@@ -48225,8 +48225,8 @@
 	    supplier: 'Furguson',
 	    UOM: 'sqft',
 	    Description: "Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris",
-	    Material: 100,
-	    Labor: 100,
+	    Material: 0,
+	    Labor: 1.1,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
@@ -48238,8 +48238,8 @@
 	    supplier: 'Harbor Freight',
 	    UOM: 'sqft',
 	    Description: "Demolition of Existing Wood Gramed Wall Assembly, Removal of Existing Electrical Romex Wire, Stud Walls, Sill Plate Cut All Foundation Bolts As Necessay Demolition of existing kitchen ceiling",
-	    Material: 100,
-	    Labor: 100,
+	    Material: 0,
+	    Labor: 2,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
@@ -48251,8 +48251,8 @@
 	    supplier: 'N/A',
 	    UOM: 'ft',
 	    Description: "Excavate and Finish a 24\" x 12\" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade \"Contractor Not Responsible For Removal of Excavated Dirt from Job Site.\" Includes upgrade 12\" footing to 24\" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. \"Contractor Not Responsible For Removal of Excavated Dirt from Job Site.\"",
-	    Material: 100,
-	    Labor: 100,
+	    Material: 5.14,
+	    Labor: 6.3,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
@@ -48264,8 +48264,8 @@
 	    supplier: 'Harbor Freight',
 	    UOM: 'pump',
 	    Description: "Supply Labor and Equipment For A Concrete Pump To Remote Location for Pumping Of Concrete as Required",
-	    Material: 100,
-	    Labor: 100,
+	    Material: 0,
+	    Labor: 165,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
@@ -48277,8 +48277,8 @@
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
 	    Description: "Pour A 3\" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, and Forms. \"Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process\" \"Contractor Not Responsible For Removal of Excavated Dirt from Job Site.\"",
-	    Material: 100,
-	    Labor: 100,
+	    Material: 3.5,
+	    Labor: 1,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
@@ -48290,8 +48290,8 @@
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
 	    Description: "Pour A 5 1/2\" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, Wire Mesh, Forms, and Vapor Barrier. \"Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process\" \"Contractor Not Responsible For Removal of Excavated Dirt from Job Site.\"",
-	    Material: 100,
-	    Labor: 100,
+	    Material: 5,
+	    Labor: 1,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
@@ -48791,7 +48791,7 @@
 	
 	var _EstimatePDF2 = _interopRequireDefault(_EstimatePDF);
 	
-	var _ProductPreview = __webpack_require__(568);
+	var _ProductPreview = __webpack_require__(526);
 	
 	var _ProductPreview2 = _interopRequireDefault(_ProductPreview);
 	
@@ -48843,7 +48843,9 @@
 	      date: todaysDate(),
 	      shoppingCart: [],
 	      estimateStatus: 'main',
-	      total: 0
+	      total: 0,
+	      modal: false,
+	      count: 0
 	    };
 	    _this.handleTemplateSelect = _this.handleTemplateSelect.bind(_this);
 	    _this.handleItemDelete = _this.handleItemDelete.bind(_this);
@@ -49467,32 +49469,266 @@
 	                _reactBootstrap.Col,
 	                { sm: 8 },
 	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { onClick: this.props.backToMainPage, style: bottomButtonStyle },
-	                  'Back'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { onClick: function onClick() {
-	                      _this2.setState({ estimateStatus: 'pdf' });
-	                    }, style: bottomButtonStyle },
-	                  'Generate Estimate'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { onClick: function onClick() {
-	                      if (_this2.state.shoppingCart.length > 0) {
-	                        _this2.setState({ estimateStatus: 'productPreview' });
-	                      }
-	                    }, style: bottomButtonStyle },
-	                  'Product Preview'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { onClick: function onClick() {
-	                      console.log("Shopping List");
-	                    }, style: bottomButtonStyle },
-	                  'Shopping List'
+	                  _reactBootstrap.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 12, style: { textAlign: 'center' } },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      { onClick: this.props.backToMainPage, style: bottomButtonStyle },
+	                      'Back'
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      { onClick: function onClick() {
+	                          _this2.setState({ estimateStatus: 'pdf' });
+	                        }, style: bottomButtonStyle },
+	                      'Generate Estimate'
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      { onClick: function onClick() {
+	                          if (_this2.state.shoppingCart.length > 0) {
+	                            _this2.setState({ estimateStatus: 'productPreview' });
+	                          }
+	                        }, style: bottomButtonStyle },
+	                      'Products'
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      { onClick: function onClick() {
+	                          console.log("Shopping List");
+	                        }, style: bottomButtonStyle },
+	                      'Shopping List'
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      { onClick: function onClick() {
+	                          _this2.setState({ modal: true });
+	                        }, style: bottomButtonStyle },
+	                      'Cost'
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Modal,
+	                      { show: this.state.modal, onHide: function onHide() {
+	                          _this2.setState({ modal: false });
+	                        } },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.Modal.Header,
+	                        { closeButton: true },
+	                        _react2.default.createElement(
+	                          _reactBootstrap.Modal.Title,
+	                          { style: { textAlign: 'center' } },
+	                          'Cost Preview'
+	                        )
+	                      ),
+	                      _react2.default.createElement(
+	                        _reactBootstrap.Modal.Body,
+	                        null,
+	                        _react2.default.createElement(
+	                          'div',
+	                          { style: { height: "40%", overflow: 'scroll' } },
+	                          _react2.default.createElement(
+	                            _reactBootstrap.Table,
+	                            { striped: true, bordered: true, condensed: true, hover: true },
+	                            _react2.default.createElement(
+	                              'thead',
+	                              null,
+	                              _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement('th', null),
+	                                _react2.default.createElement(
+	                                  'th',
+	                                  null,
+	                                  'Material'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'th',
+	                                  null,
+	                                  'Labor'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'th',
+	                                  null,
+	                                  'Days'
+	                                )
+	                              )
+	                            ),
+	                            _react2.default.createElement(
+	                              'tbody',
+	                              null,
+	                              _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  'Subtotal'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '$6,541.01'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '$8,113.80'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '38.72496'
+	                                )
+	                              ),
+	                              _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement('td', null),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '$327.05'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '$8,925.18'
+	                                ),
+	                                _react2.default.createElement('td', null)
+	                              ),
+	                              _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement('td', null),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '$6,868.06'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '$17,038.98'
+	                                ),
+	                                _react2.default.createElement('td', null)
+	                              ),
+	                              _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  'Tax'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '$566.62'
+	                                ),
+	                                _react2.default.createElement('td', null),
+	                                _react2.default.createElement('td', null)
+	                              ),
+	                              _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  'Total'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '$7,434.68'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '$17,038.98'
+	                                ),
+	                                _react2.default.createElement('td', null)
+	                              ),
+	                              _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  'Grand Total'
+	                                ),
+	                                _react2.default.createElement(
+	                                  'td',
+	                                  null,
+	                                  '$24,473.66'
+	                                ),
+	                                _react2.default.createElement('td', null),
+	                                _react2.default.createElement('td', null)
+	                              )
+	                            )
+	                          )
+	                        )
+	                      ),
+	                      _react2.default.createElement(
+	                        _reactBootstrap.Modal.Footer,
+	                        null,
+	                        _react2.default.createElement(
+	                          _reactBootstrap.Button,
+	                          { onClick: function onClick() {
+	                              _this2.setState({ modal: false });
+	                            } },
+	                          'Close'
+	                        )
+	                      )
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { sm: 12, style: { textAlign: 'center', marginTop: '5px' } },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      { onClick: function onClick() {
+	                          _this2.setState({ count: 0 });
+	                        } },
+	                      ' ',
+	                      "|<"
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      { onClick: function onClick() {
+	                          if (_this2.state.count > 0) {
+	                            _this2.setState({ count: _this2.state.count - 1 });
+	                          }
+	                        } },
+	                      ' ',
+	                      "<"
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      null,
+	                      ' ',
+	                      this.state.count + 1,
+	                      ' '
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      { onClick: function onClick() {
+	                          if (_this2.state.count < 100) {
+	                            _this2.setState({ count: _this2.state.count + 1 });
+	                          }
+	                        } },
+	                      ">"
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      { onClick: function onClick() {
+	                          _this2.setState({ count: 100 - 1 });
+	                        } },
+	                      ">|"
+	                    )
+	                  )
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -49619,12 +49855,14 @@
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          Material
+	          '$',
+	          (Material * quantity).toFixed(2)
 	        ),
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          Labor
+	          '$',
+	          (Labor * quantity).toFixed(2)
 	        ),
 	        _react2.default.createElement(
 	          'td',
@@ -51758,58 +51996,317 @@
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(186);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ProductPreview = function (_Component) {
+	  _inherits(ProductPreview, _Component);
+	
+	  function ProductPreview() {
+	    _classCallCheck(this, ProductPreview);
+	
+	    var _this = _possibleConstructorReturn(this, (ProductPreview.__proto__ || Object.getPrototypeOf(ProductPreview)).call(this));
+	
+	    _this.state = {
+	      count: 0
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(ProductPreview, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var shoppingCart = this.props.shoppingCart;
+	
+	      var specifiedProduct = shoppingCart[this.state.count];
+	      return _react2.default.createElement(
+	        _reactBootstrap.Grid,
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Row,
+	          { style: { textAlign: 'center', marginTop: '20vh' } },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 12 },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Shopping List Preview'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Row,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'QuoteNo'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: this.props.quoteNumber, style: { textAlign: 'center' } })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'SkuNo'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.SKU, style: { textAlign: 'center' } })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'Material Cost'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.Material, style: { textAlign: 'center' } })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'Unit'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.UOM, style: { textAlign: 'center' } })
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.FormGroup,
+	              { controlId: 'formValidationWarning1', validationState: null },
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { sm: 12 },
+	                _react2.default.createElement(
+	                  _reactBootstrap.ControlLabel,
+	                  null,
+	                  'Picture'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { sm: 12 },
+	                _react2.default.createElement(_reactBootstrap.Image, { src: specifiedProduct.picture, responsive: true })
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Row,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formControlsTextarea' },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'Specification'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '12', value: specifiedProduct.Description, style: { textAlign: 'center' } })
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Row,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 12, style: { textAlign: 'center', verticalAlign: 'middle', marginTop: '20px' } },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.setState({ count: 0 });
+	                } },
+	              ' ',
+	              "|<"
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  if (_this2.state.count > 0) {
+	                    _this2.setState({ count: _this2.state.count - 1 });
+	                  }
+	                } },
+	              ' ',
+	              "<"
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              null,
+	              ' ',
+	              this.state.count + 1,
+	              ' '
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  if (_this2.state.count < _this2.props.shoppingCart.length) {
+	                    _this2.setState({ count: _this2.state.count + 1 });
+	                  }
+	                } },
+	              ">"
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.setState({ count: _this2.props.shoppingCart.length - 1 });
+	                } },
+	              ">|"
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 12, style: { textAlign: 'center', verticalAlign: 'middle' } },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: this.props.handleEstimateStartOver },
+	              'Back'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return ProductPreview;
+	}(_react.Component);
+	
+	exports.default = ProductPreview;
+
+/***/ }),
+/* 527 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	exports.__esModule = true;
 	exports.withRouter = exports.matchPath = exports.Switch = exports.StaticRouter = exports.Router = exports.Route = exports.Redirect = exports.Prompt = exports.NavLink = exports.MemoryRouter = exports.Link = exports.HashRouter = exports.BrowserRouter = undefined;
 	
-	var _BrowserRouter2 = __webpack_require__(527);
+	var _BrowserRouter2 = __webpack_require__(528);
 	
 	var _BrowserRouter3 = _interopRequireDefault(_BrowserRouter2);
 	
-	var _HashRouter2 = __webpack_require__(549);
+	var _HashRouter2 = __webpack_require__(550);
 	
 	var _HashRouter3 = _interopRequireDefault(_HashRouter2);
 	
-	var _Link2 = __webpack_require__(551);
+	var _Link2 = __webpack_require__(552);
 	
 	var _Link3 = _interopRequireDefault(_Link2);
 	
-	var _MemoryRouter2 = __webpack_require__(552);
+	var _MemoryRouter2 = __webpack_require__(553);
 	
 	var _MemoryRouter3 = _interopRequireDefault(_MemoryRouter2);
 	
-	var _NavLink2 = __webpack_require__(553);
+	var _NavLink2 = __webpack_require__(554);
 	
 	var _NavLink3 = _interopRequireDefault(_NavLink2);
 	
-	var _Prompt2 = __webpack_require__(554);
+	var _Prompt2 = __webpack_require__(555);
 	
 	var _Prompt3 = _interopRequireDefault(_Prompt2);
 	
-	var _Redirect2 = __webpack_require__(555);
+	var _Redirect2 = __webpack_require__(556);
 	
 	var _Redirect3 = _interopRequireDefault(_Redirect2);
 	
-	var _Route2 = __webpack_require__(556);
+	var _Route2 = __webpack_require__(557);
 	
 	var _Route3 = _interopRequireDefault(_Route2);
 	
-	var _Router2 = __webpack_require__(557);
+	var _Router2 = __webpack_require__(558);
 	
 	var _Router3 = _interopRequireDefault(_Router2);
 	
-	var _StaticRouter2 = __webpack_require__(558);
+	var _StaticRouter2 = __webpack_require__(559);
 	
 	var _StaticRouter3 = _interopRequireDefault(_StaticRouter2);
 	
-	var _Switch2 = __webpack_require__(559);
+	var _Switch2 = __webpack_require__(560);
 	
 	var _Switch3 = _interopRequireDefault(_Switch2);
 	
-	var _matchPath2 = __webpack_require__(560);
+	var _matchPath2 = __webpack_require__(561);
 	
 	var _matchPath3 = _interopRequireDefault(_matchPath2);
 	
-	var _withRouter2 = __webpack_require__(561);
+	var _withRouter2 = __webpack_require__(562);
 	
 	var _withRouter3 = _interopRequireDefault(_withRouter2);
 	
@@ -51830,7 +52327,7 @@
 	exports.withRouter = _withRouter3.default;
 
 /***/ }),
-/* 527 */
+/* 528 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51845,11 +52342,11 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _createBrowserHistory = __webpack_require__(528);
+	var _createBrowserHistory = __webpack_require__(529);
 	
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -51894,7 +52391,7 @@
 	exports.default = BrowserRouter;
 
 /***/ }),
-/* 528 */
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51913,15 +52410,15 @@
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _LocationUtils = __webpack_require__(529);
+	var _LocationUtils = __webpack_require__(530);
 	
-	var _PathUtils = __webpack_require__(532);
+	var _PathUtils = __webpack_require__(533);
 	
-	var _createTransitionManager = __webpack_require__(533);
+	var _createTransitionManager = __webpack_require__(534);
 	
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 	
-	var _DOMUtils = __webpack_require__(534);
+	var _DOMUtils = __webpack_require__(535);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -52206,7 +52703,7 @@
 	exports.default = createBrowserHistory;
 
 /***/ }),
-/* 529 */
+/* 530 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52216,15 +52713,15 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _resolvePathname = __webpack_require__(530);
+	var _resolvePathname = __webpack_require__(531);
 	
 	var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 	
-	var _valueEqual = __webpack_require__(531);
+	var _valueEqual = __webpack_require__(532);
 	
 	var _valueEqual2 = _interopRequireDefault(_valueEqual);
 	
-	var _PathUtils = __webpack_require__(532);
+	var _PathUtils = __webpack_require__(533);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -52289,7 +52786,7 @@
 	};
 
 /***/ }),
-/* 530 */
+/* 531 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52364,7 +52861,7 @@
 	module.exports = resolvePathname;
 
 /***/ }),
-/* 531 */
+/* 532 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52409,7 +52906,7 @@
 	exports.default = valueEqual;
 
 /***/ }),
-/* 532 */
+/* 533 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52475,7 +52972,7 @@
 	};
 
 /***/ }),
-/* 533 */
+/* 534 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52565,7 +53062,7 @@
 	exports.default = createTransitionManager;
 
 /***/ }),
-/* 534 */
+/* 535 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52625,7 +53122,7 @@
 	};
 
 /***/ }),
-/* 535 */
+/* 536 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52633,39 +53130,39 @@
 	exports.__esModule = true;
 	exports.withRouter = exports.matchPath = exports.Switch = exports.StaticRouter = exports.Router = exports.Route = exports.Redirect = exports.Prompt = exports.MemoryRouter = undefined;
 	
-	var _MemoryRouter2 = __webpack_require__(536);
+	var _MemoryRouter2 = __webpack_require__(537);
 	
 	var _MemoryRouter3 = _interopRequireDefault(_MemoryRouter2);
 	
-	var _Prompt2 = __webpack_require__(539);
+	var _Prompt2 = __webpack_require__(540);
 	
 	var _Prompt3 = _interopRequireDefault(_Prompt2);
 	
-	var _Redirect2 = __webpack_require__(540);
+	var _Redirect2 = __webpack_require__(541);
 	
 	var _Redirect3 = _interopRequireDefault(_Redirect2);
 	
-	var _Route2 = __webpack_require__(541);
+	var _Route2 = __webpack_require__(542);
 	
 	var _Route3 = _interopRequireDefault(_Route2);
 	
-	var _Router2 = __webpack_require__(538);
+	var _Router2 = __webpack_require__(539);
 	
 	var _Router3 = _interopRequireDefault(_Router2);
 	
-	var _StaticRouter2 = __webpack_require__(545);
+	var _StaticRouter2 = __webpack_require__(546);
 	
 	var _StaticRouter3 = _interopRequireDefault(_StaticRouter2);
 	
-	var _Switch2 = __webpack_require__(546);
+	var _Switch2 = __webpack_require__(547);
 	
 	var _Switch3 = _interopRequireDefault(_Switch2);
 	
-	var _matchPath2 = __webpack_require__(542);
+	var _matchPath2 = __webpack_require__(543);
 	
 	var _matchPath3 = _interopRequireDefault(_matchPath2);
 	
-	var _withRouter2 = __webpack_require__(547);
+	var _withRouter2 = __webpack_require__(548);
 	
 	var _withRouter3 = _interopRequireDefault(_withRouter2);
 	
@@ -52682,7 +53179,7 @@
 	exports.withRouter = _withRouter3.default;
 
 /***/ }),
-/* 536 */
+/* 537 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52697,11 +53194,11 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _createMemoryHistory = __webpack_require__(537);
+	var _createMemoryHistory = __webpack_require__(538);
 	
 	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
 	
-	var _Router = __webpack_require__(538);
+	var _Router = __webpack_require__(539);
 	
 	var _Router2 = _interopRequireDefault(_Router);
 	
@@ -52748,7 +53245,7 @@
 	exports.default = MemoryRouter;
 
 /***/ }),
-/* 537 */
+/* 538 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52763,11 +53260,11 @@
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _PathUtils = __webpack_require__(532);
+	var _PathUtils = __webpack_require__(533);
 	
-	var _LocationUtils = __webpack_require__(529);
+	var _LocationUtils = __webpack_require__(530);
 	
-	var _createTransitionManager = __webpack_require__(533);
+	var _createTransitionManager = __webpack_require__(534);
 	
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 	
@@ -52923,7 +53420,7 @@
 	exports.default = createMemoryHistory;
 
 /***/ }),
-/* 538 */
+/* 539 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53047,7 +53544,7 @@
 	exports.default = Router;
 
 /***/ }),
-/* 539 */
+/* 540 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53136,7 +53633,7 @@
 	exports.default = Prompt;
 
 /***/ }),
-/* 540 */
+/* 541 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53225,7 +53722,7 @@
 	exports.default = Redirect;
 
 /***/ }),
-/* 541 */
+/* 542 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53246,7 +53743,7 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _matchPath = __webpack_require__(542);
+	var _matchPath = __webpack_require__(543);
 	
 	var _matchPath2 = _interopRequireDefault(_matchPath);
 	
@@ -53375,14 +53872,14 @@
 	exports.default = Route;
 
 /***/ }),
-/* 542 */
+/* 543 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _pathToRegexp = __webpack_require__(543);
+	var _pathToRegexp = __webpack_require__(544);
 	
 	var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
 	
@@ -53455,10 +53952,10 @@
 	exports.default = matchPath;
 
 /***/ }),
-/* 543 */
+/* 544 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var isarray = __webpack_require__(544)
+	var isarray = __webpack_require__(545)
 	
 	/**
 	 * Expose `pathToRegexp`.
@@ -53887,7 +54384,7 @@
 
 
 /***/ }),
-/* 544 */
+/* 545 */
 /***/ (function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -53896,7 +54393,7 @@
 
 
 /***/ }),
-/* 545 */
+/* 546 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53917,9 +54414,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _PathUtils = __webpack_require__(532);
+	var _PathUtils = __webpack_require__(533);
 	
-	var _Router = __webpack_require__(538);
+	var _Router = __webpack_require__(539);
 	
 	var _Router2 = _interopRequireDefault(_Router);
 	
@@ -54078,7 +54575,7 @@
 	exports.default = StaticRouter;
 
 /***/ }),
-/* 546 */
+/* 547 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54097,7 +54594,7 @@
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _matchPath = __webpack_require__(542);
+	var _matchPath = __webpack_require__(543);
 	
 	var _matchPath2 = _interopRequireDefault(_matchPath);
 	
@@ -54170,7 +54667,7 @@
 	exports.default = Switch;
 
 /***/ }),
-/* 547 */
+/* 548 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54187,11 +54684,11 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _hoistNonReactStatics = __webpack_require__(548);
+	var _hoistNonReactStatics = __webpack_require__(549);
 	
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 	
-	var _Route = __webpack_require__(541);
+	var _Route = __webpack_require__(542);
 	
 	var _Route2 = _interopRequireDefault(_Route);
 	
@@ -54224,7 +54721,7 @@
 	exports.default = withRouter;
 
 /***/ }),
-/* 548 */
+/* 549 */
 /***/ (function(module, exports) {
 
 	/**
@@ -54280,7 +54777,7 @@
 
 
 /***/ }),
-/* 549 */
+/* 550 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54295,11 +54792,11 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _createHashHistory = __webpack_require__(550);
+	var _createHashHistory = __webpack_require__(551);
 	
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -54343,7 +54840,7 @@
 	exports.default = HashRouter;
 
 /***/ }),
-/* 550 */
+/* 551 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54360,15 +54857,15 @@
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _LocationUtils = __webpack_require__(529);
+	var _LocationUtils = __webpack_require__(530);
 	
-	var _PathUtils = __webpack_require__(532);
+	var _PathUtils = __webpack_require__(533);
 	
-	var _createTransitionManager = __webpack_require__(533);
+	var _createTransitionManager = __webpack_require__(534);
 	
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 	
-	var _DOMUtils = __webpack_require__(534);
+	var _DOMUtils = __webpack_require__(535);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -54672,7 +55169,7 @@
 	exports.default = createHashHistory;
 
 /***/ }),
-/* 551 */
+/* 552 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54779,14 +55276,14 @@
 	exports.default = Link;
 
 /***/ }),
-/* 552 */
+/* 553 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
 	
 	Object.defineProperty(exports, 'default', {
 	  enumerable: true,
@@ -54796,7 +55293,7 @@
 	});
 
 /***/ }),
-/* 553 */
+/* 554 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54815,9 +55312,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
 	
-	var _Link = __webpack_require__(551);
+	var _Link = __webpack_require__(552);
 	
 	var _Link2 = _interopRequireDefault(_Link);
 	
@@ -54881,23 +55378,6 @@
 	exports.default = NavLink;
 
 /***/ }),
-/* 554 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	
-	var _reactRouter = __webpack_require__(535);
-	
-	Object.defineProperty(exports, 'default', {
-	  enumerable: true,
-	  get: function get() {
-	    return _reactRouter.Prompt;
-	  }
-	});
-
-/***/ }),
 /* 555 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54905,12 +55385,12 @@
 	
 	exports.__esModule = true;
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
 	
 	Object.defineProperty(exports, 'default', {
 	  enumerable: true,
 	  get: function get() {
-	    return _reactRouter.Redirect;
+	    return _reactRouter.Prompt;
 	  }
 	});
 
@@ -54922,12 +55402,12 @@
 	
 	exports.__esModule = true;
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
 	
 	Object.defineProperty(exports, 'default', {
 	  enumerable: true,
 	  get: function get() {
-	    return _reactRouter.Route;
+	    return _reactRouter.Redirect;
 	  }
 	});
 
@@ -54939,12 +55419,12 @@
 	
 	exports.__esModule = true;
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
 	
 	Object.defineProperty(exports, 'default', {
 	  enumerable: true,
 	  get: function get() {
-	    return _reactRouter.Router;
+	    return _reactRouter.Route;
 	  }
 	});
 
@@ -54956,12 +55436,12 @@
 	
 	exports.__esModule = true;
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
 	
 	Object.defineProperty(exports, 'default', {
 	  enumerable: true,
 	  get: function get() {
-	    return _reactRouter.StaticRouter;
+	    return _reactRouter.Router;
 	  }
 	});
 
@@ -54973,12 +55453,12 @@
 	
 	exports.__esModule = true;
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
 	
 	Object.defineProperty(exports, 'default', {
 	  enumerable: true,
 	  get: function get() {
-	    return _reactRouter.Switch;
+	    return _reactRouter.StaticRouter;
 	  }
 	});
 
@@ -54990,12 +55470,12 @@
 	
 	exports.__esModule = true;
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
 	
 	Object.defineProperty(exports, 'default', {
 	  enumerable: true,
 	  get: function get() {
-	    return _reactRouter.matchPath;
+	    return _reactRouter.Switch;
 	  }
 	});
 
@@ -55007,7 +55487,24 @@
 	
 	exports.__esModule = true;
 	
-	var _reactRouter = __webpack_require__(535);
+	var _reactRouter = __webpack_require__(536);
+	
+	Object.defineProperty(exports, 'default', {
+	  enumerable: true,
+	  get: function get() {
+	    return _reactRouter.matchPath;
+	  }
+	});
+
+/***/ }),
+/* 562 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	
+	var _reactRouter = __webpack_require__(536);
 	
 	Object.defineProperty(exports, 'default', {
 	  enumerable: true,
@@ -55017,11 +55514,11 @@
 	});
 
 /***/ }),
-/* 562 */
+/* 563 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(12);
-	var defaultClickRejectionStrategy = __webpack_require__(563);
+	var defaultClickRejectionStrategy = __webpack_require__(564);
 	
 	var alreadyInjected = false;
 	
@@ -55043,14 +55540,14 @@
 	  alreadyInjected = true;
 	
 	  __webpack_require__(47).injection.injectEventPluginsByName({
-	    'TapEventPlugin':       __webpack_require__(564)(shouldRejectClick)
+	    'TapEventPlugin':       __webpack_require__(565)(shouldRejectClick)
 	  });
 	};
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 563 */
+/* 564 */
 /***/ (function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -55061,7 +55558,7 @@
 
 
 /***/ }),
-/* 564 */
+/* 565 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -55085,14 +55582,14 @@
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(565);
+	var EventConstants = __webpack_require__(566);
 	var EventPluginUtils = __webpack_require__(49);
 	var EventPropagators = __webpack_require__(46);
 	var SyntheticUIEvent = __webpack_require__(81);
-	var TouchEventUtils = __webpack_require__(566);
+	var TouchEventUtils = __webpack_require__(567);
 	var ViewportMetrics = __webpack_require__(82);
 	
-	var keyOf = __webpack_require__(567);
+	var keyOf = __webpack_require__(568);
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
 	var isStartish = EventPluginUtils.isStartish;
@@ -55238,7 +55735,7 @@
 
 
 /***/ }),
-/* 565 */
+/* 566 */
 /***/ (function(module, exports) {
 
 	/**
@@ -55334,7 +55831,7 @@
 	module.exports = EventConstants;
 
 /***/ }),
-/* 566 */
+/* 567 */
 /***/ (function(module, exports) {
 
 	/**
@@ -55382,7 +55879,7 @@
 
 
 /***/ }),
-/* 567 */
+/* 568 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -55419,265 +55916,6 @@
 	};
 	
 	module.exports = keyOf;
-
-/***/ }),
-/* 568 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactBootstrap = __webpack_require__(186);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ProductPreview = function (_Component) {
-	  _inherits(ProductPreview, _Component);
-	
-	  function ProductPreview() {
-	    _classCallCheck(this, ProductPreview);
-	
-	    var _this = _possibleConstructorReturn(this, (ProductPreview.__proto__ || Object.getPrototypeOf(ProductPreview)).call(this));
-	
-	    _this.state = {
-	      count: 0
-	    };
-	    return _this;
-	  }
-	
-	  _createClass(ProductPreview, [{
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-	
-	      var shoppingCart = this.props.shoppingCart;
-	
-	      var specifiedProduct = shoppingCart[this.state.count];
-	      return _react2.default.createElement(
-	        _reactBootstrap.Grid,
-	        null,
-	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          { style: { textAlign: 'center', marginTop: '20vh' } },
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 12 },
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              'Shopping List Preview'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 4 },
-	            _react2.default.createElement(
-	              _reactBootstrap.Row,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: null },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 12 },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'QuoteNo'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 12 },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: this.props.quoteNumber, style: { textAlign: 'center' } })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: null },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 12 },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'SkuNo'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 12 },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.SKU, style: { textAlign: 'center' } })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: null },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 12 },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Material Cost'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 12 },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.Material, style: { textAlign: 'center' } })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: null },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 12 },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Unit'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 12 },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.UOM, style: { textAlign: 'center' } })
-	                )
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 4 },
-	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: null },
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 12 },
-	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Picture'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 12 },
-	                _react2.default.createElement(_reactBootstrap.Image, { src: specifiedProduct.picture, responsive: true })
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 4 },
-	            _react2.default.createElement(
-	              _reactBootstrap.Row,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formControlsTextarea' },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 12 },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.ControlLabel,
-	                    null,
-	                    'Specification'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { sm: 12 },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '12', value: specifiedProduct.Description, style: { textAlign: 'center' } })
-	                )
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 12, style: { textAlign: 'center', verticalAlign: 'middle', marginTop: '20px' } },
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: function onClick() {
-	                  _this2.setState({ count: 0 });
-	                } },
-	              ' ',
-	              "|<"
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: function onClick() {
-	                  if (_this2.state.count > 0) {
-	                    _this2.setState({ count: _this2.state.count - 1 });
-	                  }
-	                } },
-	              ' ',
-	              "<"
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              null,
-	              ' ',
-	              this.state.count + 1,
-	              ' '
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: function onClick() {
-	                  if (_this2.state.count < _this2.props.shoppingCart.length) {
-	                    _this2.setState({ count: _this2.state.count + 1 });
-	                  }
-	                } },
-	              ">"
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: function onClick() {
-	                  _this2.setState({ count: _this2.props.shoppingCart.length - 1 });
-	                } },
-	              ">|"
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 12, style: { textAlign: 'center', verticalAlign: 'middle' } },
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: this.props.handleEstimateStartOver },
-	              'Back'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return ProductPreview;
-	}(_react.Component);
-	
-	exports.default = ProductPreview;
 
 /***/ })
 /******/ ]);
