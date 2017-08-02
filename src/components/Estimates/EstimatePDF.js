@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
-import { Button, Row, Col, Grid, FormControl, ControlLabel, FormGroup, Form, Image, Clearfix, Table} from 'react-bootstrap';
+import { Button, Row, Col, Grid} from 'react-bootstrap';
 import CustomerInfo from './PDF/CustomerInfo'
-// import EstimateHeader from './PDF/EstimateHeader'
 import QuoteSummary from './PDF/QuoteSummary'
-// import ScopeOfWork from './PDF/ScopeOfWork'
 import Specifications from './PDF/Specifications'
 var axios = require('axios');
 
@@ -13,7 +11,8 @@ class EstimatePDF extends Component {
    constructor(){
     super()
     this.state = {
-      emailSent:false
+      emailSent:false,
+      percentageLoaded:0
     }
   }
   componentDidMount(){
@@ -59,14 +58,27 @@ class EstimatePDF extends Component {
     const emailStatus =()=>{
       if(that.state.emailSent){
         return (
-          <div>
-          <div>Estimate sent to hermano360@gmail.com, robertLeon@probuilders.com</div>
+        <div style={{textAlign:'center', verticalAlign:'middle', marginTop:'30vh'}}>
+          <h4>Estimate sent to:</h4>
+          <h4> hermano360@gmail.com {that.props.email}</h4>
           <Button onClick={that.props.handleEstimateStartOver}>Start Over?</Button>
         </div>
         )
       } else {
         return (
-          <div>Email sending in progress</div>
+          <Grid>
+            <Row>
+              <Col xs={2} xsOffset={5}>
+                <div className="loader"></div>
+              </Col>
+
+              <Col xs={12}>
+                <div style={{textAlign:'center', verticalAlign:'middle'}}>
+                  <h4>Email Being Sent</h4>
+                </div>
+              </Col>
+            </Row>
+          </Grid>
         )
       }
     }
@@ -76,7 +88,7 @@ class EstimatePDF extends Component {
           <div id="printThisBitch">
             <CustomerInfo {...this.props}/>
             <Specifications shoppingCart={this.props.shoppingCart}/>
-            <QuoteSummary/>
+            <QuoteSummary total={this.props.total}/>
           </div>
         </div>
         {emailStatus()}

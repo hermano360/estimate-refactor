@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Button, Row, Col, Table, Grid} from 'react-bootstrap';
+import { Button, Row, Col, Table, Grid, ButtonGroup} from 'react-bootstrap';
 
 
 class PhoneList extends Component {
@@ -18,10 +18,10 @@ class PhoneList extends Component {
     }
   render(){
     let phoneListStyle= {
-      height: '90vh',
+      height: '70vh',
       overflow: 'scroll'
     }
-    let navButtonStyle = {padding:'3px', lineHeight:'1', width:'25px'};
+    let navButtonStyle = {padding:'5px',border:'1px black solid'};
     const generateListing = (companyName,firstName,lastName, phoneNumber, faxNumber, email, first)=>{
       let id="";
       if(first){
@@ -42,11 +42,13 @@ class PhoneList extends Component {
     return (
 
       <Grid>
-        <Row>
-          Customer Phone List
+        <Row style={{textAlign:'center', marginTop:'20px'}}>
+            <Col sm={12}>
+              <h4>Customer Phone List</h4>
+            </Col>
         </Row>
         <Row>
-          <Col xs={11}>
+          <Col xs={12}>
             <div style={phoneListStyle}>
               <Table striped bordered condensed hover>
                 <thead>
@@ -141,11 +143,11 @@ class PhoneList extends Component {
                 </tbody>
               </Table>
             </div>
-
-          </Col>
-          <Col xs={1}>
-            <div style={phoneListStyle}>
-              <div>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12} style={{textAlign:'center', marginTop:'20px'}}>
+              <ButtonGroup>
                 <Button style={navButtonStyle} onClick={()=>{window.location.href='#a'}}>A</Button>
                 <Button style={navButtonStyle} onClick={()=>{window.location.href='#b'}}>B</Button>
                 <Button style={navButtonStyle} onClick={()=>{window.location.href='#c'}}>C</Button>
@@ -157,7 +159,7 @@ class PhoneList extends Component {
                 <Button style={navButtonStyle}>I</Button>
                 <Button style={navButtonStyle}>J</Button>
                 <Button style={navButtonStyle}>K</Button>
-                <Button style={navButtonStyle}>K</Button>
+                <Button style={navButtonStyle}>L</Button>
                 <Button style={navButtonStyle}>M</Button>
                 <Button style={navButtonStyle}>N</Button>
                 <Button style={navButtonStyle}>O</Button>
@@ -172,15 +174,16 @@ class PhoneList extends Component {
                 <Button style={navButtonStyle}>X</Button>
                 <Button style={navButtonStyle}>Y</Button>
                 <Button style={navButtonStyle}>Z</Button>
+              </ButtonGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12}>
+              <div style={{textAlign:'center', marginTop:'20px'}}>
+                <Button onClick={this.backToMainPage}>Back</Button>
               </div>
-
-            </div>
-
-          </Col>
-        </Row>
-        <Row>
-          <Button onClick={this.backToMainPage}>Back</Button>
-        </Row>
+            </Col>
+          </Row>
       </Grid>
 
       )

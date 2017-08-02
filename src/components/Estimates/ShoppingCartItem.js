@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Glyphicon} from 'react-bootstrap';
 
 class ShoppingCartItem extends Component {
 
@@ -30,8 +31,8 @@ class ShoppingCartItem extends Component {
         <td>{Description}</td>
         <td>{Material}</td>
         <td>{Labor}</td>
-        <td>e</td>
-        <td onClick={(e)=>{this.props.onItemDelete(keyCode,template)}}>x</td>
+        <td><Glyphicon glyph="pencil" /></td>
+        <td onClick={(e)=>{this.props.onItemDelete(keyCode,template)}}><Glyphicon glyph="remove" /></td>
       </tr>
       )
   }

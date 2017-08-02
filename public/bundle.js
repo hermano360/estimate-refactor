@@ -47881,7 +47881,7 @@
 	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning' },
+	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { sm: 3 },
@@ -47899,7 +47899,7 @@
 	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.FormGroup,
-	                { controlId: 'formValidationWarning1', validationState: 'warning' },
+	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { sm: 3 },
@@ -47930,7 +47930,7 @@
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { sm: 9 },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'textarea', rows: '4', value: specifiedProduct.Description })
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'textarea', rows: '7', value: specifiedProduct.Description })
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -47958,7 +47958,7 @@
 	            { sm: 5 },
 	            _react2.default.createElement(
 	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: 'warning' },
+	              { controlId: 'formValidationWarning1', validationState: null },
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 4 },
@@ -47971,12 +47971,12 @@
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 8 },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.Labor })
+	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: '$' + specifiedProduct.Labor.toFixed(2) })
 	              )
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: 'warning' },
+	              { controlId: 'formValidationWarning1', validationState: null },
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 4 },
@@ -47994,7 +47994,7 @@
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: 'warning' },
+	              { controlId: 'formValidationWarning1', validationState: null },
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 4 },
@@ -48012,7 +48012,7 @@
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: 'warning' },
+	              { controlId: 'formValidationWarning1', validationState: null },
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 4 },
@@ -48030,7 +48030,7 @@
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: 'warning' },
+	              { controlId: 'formValidationWarning1', validationState: null },
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 4 },
@@ -48043,12 +48043,12 @@
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 8 },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.updated })
+	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: new Date(specifiedProduct.updated).getMonth() + 1 + '/' + new Date(specifiedProduct.updated).getDate() + '/' + new Date(specifiedProduct.updated).getFullYear() })
 	              )
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: 'warning' },
+	              { controlId: 'formValidationWarning1', validationState: null },
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 4 },
@@ -48066,7 +48066,7 @@
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: 'warning' },
+	              { controlId: 'formValidationWarning1', validationState: null },
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 4 },
@@ -48079,13 +48079,13 @@
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 8 },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.Material })
+	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: '$' + specifiedProduct.Material.toFixed(2) })
 	              )
 	            ),
 	            _react2.default.createElement(_reactBootstrap.Clearfix, { visibleSmBlock: true }),
 	            _react2.default.createElement(
 	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: 'warning' },
+	              { controlId: 'formValidationWarning1', validationState: null },
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { sm: 4 },
@@ -48109,11 +48109,15 @@
 	        { fluid: true },
 	        _react2.default.createElement(
 	          _reactBootstrap.Row,
-	          null,
+	          { style: { textAlign: 'center', marginTop: '20px' } },
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            null,
-	            'Pro Builders Express Material List'
+	            { sm: 12 },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Product Inventory'
+	            )
 	          )
 	        ),
 	        updateProductSheet(),
@@ -48121,52 +48125,56 @@
 	          _reactBootstrap.Row,
 	          null,
 	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { onClick: this.props.backToMainPage },
-	            'Back'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { onClick: function onClick() {
-	                _this2.setState({ count: 0 });
-	              } },
-	            ' ',
-	            "|<"
+	            _reactBootstrap.Col,
+	            { sm: 12, style: { textAlign: 'center', verticalAlign: 'middle', marginTop: '20px' } },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.setState({ count: 0 });
+	                } },
+	              ' ',
+	              "|<"
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  if (_this2.state.count > 0) {
+	                    _this2.setState({ count: _this2.state.count - 1 });
+	                  }
+	                } },
+	              ' ',
+	              "<"
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              null,
+	              ' ',
+	              this.state.count + 1,
+	              ' '
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  if (_this2.state.count < 8) {
+	                    _this2.setState({ count: _this2.state.count + 1 });
+	                  }
+	                } },
+	              ">"
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              null,
+	              ">|"
+	            )
 	          ),
 	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { onClick: function onClick() {
-	                if (_this2.state.count > 0) {
-	                  _this2.setState({ count: _this2.state.count - 1 });
-	                }
-	              } },
-	            ' ',
-	            "<"
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            null,
-	            ' ',
-	            this.state.count + 1,
-	            ' '
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { onClick: function onClick() {
-	                if (_this2.state.count < 8) {
-	                  _this2.setState({ count: _this2.state.count + 1 });
-	                }
-	              } },
-	            ">"
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            null,
-	            ">|"
+	            _reactBootstrap.Col,
+	            { sm: 12, style: { textAlign: 'center', verticalAlign: 'middle' } },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: this.props.backToMainPage },
+	              'Back'
+	            )
 	          )
 	        )
 	      );
@@ -48376,10 +48384,10 @@
 	    key: 'render',
 	    value: function render() {
 	      var phoneListStyle = {
-	        height: '90vh',
+	        height: '70vh',
 	        overflow: 'scroll'
 	      };
-	      var navButtonStyle = { padding: '3px', lineHeight: '1', width: '25px' };
+	      var navButtonStyle = { padding: '5px', border: '1px black solid' };
 	      var generateListing = function generateListing(companyName, firstName, lastName, phoneNumber, faxNumber, email, first) {
 	        var id = "";
 	        if (first) {
@@ -48425,15 +48433,23 @@
 	        null,
 	        _react2.default.createElement(
 	          _reactBootstrap.Row,
-	          null,
-	          'Customer Phone List'
+	          { style: { textAlign: 'center', marginTop: '20px' } },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 12 },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Customer Phone List'
+	            )
+	          )
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.Row,
 	          null,
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            { xs: 11 },
+	            { xs: 12 },
 	            _react2.default.createElement(
 	              'div',
 	              { style: phoneListStyle },
@@ -48561,162 +48577,162 @@
 	                )
 	              )
 	            )
-	          ),
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Row,
+	          null,
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            { xs: 1 },
+	            { sm: 12, style: { textAlign: 'center', marginTop: '20px' } },
 	            _react2.default.createElement(
-	              'div',
-	              { style: phoneListStyle },
+	              _reactBootstrap.ButtonGroup,
+	              null,
 	              _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle, onClick: function onClick() {
-	                      window.location.href = '#a';
-	                    } },
-	                  'A'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle, onClick: function onClick() {
-	                      window.location.href = '#b';
-	                    } },
-	                  'B'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle, onClick: function onClick() {
-	                      window.location.href = '#c';
-	                    } },
-	                  'C'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle, onClick: function onClick() {
-	                      window.location.href = '#d';
-	                    } },
-	                  'D'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle, onClick: function onClick() {
-	                      window.location.href = '#e';
-	                    } },
-	                  'E'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle, onClick: function onClick() {
-	                      window.location.href = '#f';
-	                    } },
-	                  'F'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle, onClick: function onClick() {
-	                      window.location.href = '#g';
-	                    } },
-	                  'G'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle, onClick: function onClick() {
-	                      window.location.href = '#h';
-	                    } },
-	                  'H'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'I'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'J'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'K'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'K'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'M'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'N'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'O'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'P'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'Q'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'R'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'S'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'T'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'U'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'V'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'W'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'X'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'Y'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { style: navButtonStyle },
-	                  'Z'
-	                )
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle, onClick: function onClick() {
+	                    window.location.href = '#a';
+	                  } },
+	                'A'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle, onClick: function onClick() {
+	                    window.location.href = '#b';
+	                  } },
+	                'B'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle, onClick: function onClick() {
+	                    window.location.href = '#c';
+	                  } },
+	                'C'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle, onClick: function onClick() {
+	                    window.location.href = '#d';
+	                  } },
+	                'D'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle, onClick: function onClick() {
+	                    window.location.href = '#e';
+	                  } },
+	                'E'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle, onClick: function onClick() {
+	                    window.location.href = '#f';
+	                  } },
+	                'F'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle, onClick: function onClick() {
+	                    window.location.href = '#g';
+	                  } },
+	                'G'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle, onClick: function onClick() {
+	                    window.location.href = '#h';
+	                  } },
+	                'H'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'I'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'J'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'K'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'L'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'M'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'N'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'O'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'P'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'Q'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'R'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'S'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'T'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'U'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'V'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'W'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'X'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'Y'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { style: navButtonStyle },
+	                'Z'
 	              )
 	            )
 	          )
@@ -48725,9 +48741,17 @@
 	          _reactBootstrap.Row,
 	          null,
 	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { onClick: this.backToMainPage },
-	            'Back'
+	            _reactBootstrap.Col,
+	            { sm: 12 },
+	            _react2.default.createElement(
+	              'div',
+	              { style: { textAlign: 'center', marginTop: '20px' } },
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { onClick: this.backToMainPage },
+	                'Back'
+	              )
+	            )
 	          )
 	        )
 	      );
@@ -48767,6 +48791,10 @@
 	
 	var _EstimatePDF2 = _interopRequireDefault(_EstimatePDF);
 	
+	var _ProductPreview = __webpack_require__(568);
+	
+	var _ProductPreview2 = _interopRequireDefault(_ProductPreview);
+	
 	var _productDetails = __webpack_require__(491);
 	
 	var _productDetails2 = _interopRequireDefault(_productDetails);
@@ -48803,7 +48831,7 @@
 	      customerFirstName: '',
 	      customerLastName: '',
 	      email: '',
-	      quoteNumber: '',
+	      quoteNumber: Math.floor(Math.random() * 200),
 	      projectDescription: '',
 	      address: '',
 	      city: '',
@@ -48814,7 +48842,7 @@
 	      fax: '',
 	      date: todaysDate(),
 	      shoppingCart: [],
-	      generateEstimate: false,
+	      estimateStatus: 'main',
 	      total: 0
 	    };
 	    _this.handleTemplateSelect = _this.handleTemplateSelect.bind(_this);
@@ -48922,7 +48950,8 @@
 	      var _this2 = this;
 	
 	      var formCellEntryStyle = {
-	        paddingLeft: 0
+	        paddingLeft: 0,
+	        color: 'black'
 	      };
 	      var todaysDate = function todaysDate() {
 	        var today = new Date();
@@ -48935,530 +48964,559 @@
 	          return _react2.default.createElement(_ShoppingCartItem2.default, _extends({ key: shoppingCartItem.keyCode + shoppingCartItem.template }, shoppingCartItem, { onQuantityChange: _this2.handleQuantityChange, onItemDelete: _this2.handleItemDelete }));
 	        });
 	      };
-	      var innerTextCellStyle = { padding: '0' };
-	      if (this.state.generateEstimate) {
-	        return _react2.default.createElement(_EstimatePDF2.default, _extends({}, this.state, { handleEstimateStartOver: function handleEstimateStartOver() {
-	            _this2.setState({
-	              salesman: '',
-	              customerFirstName: '',
-	              customerLastName: '',
-	              email: '',
-	              quoteNumber: '',
-	              projectDescription: '',
-	              address: '',
-	              city: '',
-	              state: '',
-	              zipcode: '',
-	              specification: '',
-	              phone: '',
-	              fax: '',
-	              date: todaysDate(),
-	              shoppingCart: [],
-	              generateEstimate: false,
-	              total: 0
-	            });
-	          } }));
-	      } else {
-	        return _react2.default.createElement(
-	          _reactBootstrap.Grid,
-	          { fluid: true },
-	          _react2.default.createElement(
-	            _reactBootstrap.Row,
-	            null,
+	      var defaultState = {
+	        salesman: '',
+	        customerFirstName: '',
+	        customerLastName: '',
+	        email: '',
+	        projectDescription: '',
+	        address: '',
+	        city: '',
+	        state: '',
+	        zipcode: '',
+	        specification: '',
+	        phone: '',
+	        fax: '',
+	        date: todaysDate(),
+	        shoppingCart: [],
+	        estimateStatus: 'main',
+	        total: 0
+	      };
+	      var bottomButtonStyle = {
+	        marginLeft: '5px',
+	        marginRight: '5px',
+	        verticalAlign: 'middle'
+	      };
+	      var innerTextCellStyle = { padding: '0', color: 'black' };
+	      switch (this.state.estimateStatus) {
+	        case 'pdf':
+	          return _react2.default.createElement(_EstimatePDF2.default, _extends({}, this.state, { handleEstimateStartOver: function handleEstimateStartOver() {
+	              _this2.setState(defaultState);
+	            } }));
+	          break;
+	        case 'main':
+	          return _react2.default.createElement(
+	            _reactBootstrap.Grid,
+	            { fluid: true },
 	            _react2.default.createElement(
-	              _reactBootstrap.Col,
+	              _reactBootstrap.Row,
 	              null,
-	              'Pro Builders Express Estimator WorkSheet'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Row,
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.Col,
-	              { sm: 4 },
 	              _react2.default.createElement(
-	                _reactBootstrap.Row,
-	                null,
+	                _reactBootstrap.Col,
+	                { sm: 12, style: { textAlign: 'center', margin: '10px auto 20px auto' } },
 	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
+	                  'h3',
+	                  null,
+	                  'Pro Builders Express Estimator WorkSheet'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Row,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { sm: 4 },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Row,
+	                  null,
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formValidationWarning1', validationState: 'null' },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Quote No'
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Quote No'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 8 },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', defaultValue: this.state.quoteNumber, style: innerTextCellStyle })
 	                    )
 	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 8 },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'next # in database', style: innerTextCellStyle })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formControlsSelect' },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formControlsSelect' },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Salesperson'
-	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 8 },
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Salesperson'
+	                      )
+	                    ),
 	                    _react2.default.createElement(
-	                      _reactBootstrap.FormControl,
-	                      { componentClass: 'select', placeholder: 'select', onChange: function onChange(e) {
-	                          _this2.setState({ salesman: e.target.value });
-	                        } },
+	                      _reactBootstrap.Col,
+	                      { sm: 8 },
 	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'select' },
-	                        'select'
-	                      ),
-	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'Gary Banks' },
-	                        'Banks, Gary'
-	                      ),
-	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'John Chavez' },
-	                        'Chavez, John'
-	                      ),
-	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'Arnold Corona' },
-	                        'Corona, Arnold'
-	                      ),
-	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'John Gutierrez' },
-	                        'Gutierrez, John'
-	                      ),
-	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'Bob Leon' },
-	                        'Leon, Bob'
-	                      ),
-	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'Ricardo Rivera' },
-	                        'Rivera, Ricardo'
-	                      ),
-	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'Mike Rogers' },
-	                        'Rogers, Mike'
-	                      ),
-	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'Cameron Sterling' },
-	                        'Sterling, Cameron'
+	                        _reactBootstrap.FormControl,
+	                        { componentClass: 'select', placeholder: 'select', onChange: function onChange(e) {
+	                            _this2.setState({ salesman: e.target.value });
+	                          }, style: innerTextCellStyle },
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'select' },
+	                          'Salesperson'
+	                        ),
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'Gary Banks' },
+	                          'Banks, Gary'
+	                        ),
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'John Chavez' },
+	                          'Chavez, John'
+	                        ),
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'Arnold Corona' },
+	                          'Corona, Arnold'
+	                        ),
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'John Gutierrez' },
+	                          'Gutierrez, John'
+	                        ),
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'Bob Leon' },
+	                          'Leon, Bob'
+	                        ),
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'Ricardo Rivera' },
+	                          'Rivera, Ricardo'
+	                        ),
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'Mike Rogers' },
+	                          'Rogers, Mike'
+	                        ),
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'Cameron Sterling' },
+	                          'Sterling, Cameron'
+	                        )
 	                      )
 	                    )
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
+	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formValidationWarning1', validationState: 'null' },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Start Date'
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Start Date'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 8 },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', defaultValue: todaysDate(), onChange: function onChange(e) {
+	                          _this2.setState({ date: e.target.value });
+	                        }, style: innerTextCellStyle })
 	                    )
 	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 8 },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', defaultValue: todaysDate(), onChange: function onChange(e) {
-	                        _this2.setState({ date: e.target.value });
-	                      }, style: innerTextCellStyle })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formValidationWarning1', validationState: 'warning', onChange: function onChange(e) {
-	                      _this2.setState({ projectDescription: e.target.value });
-	                    } },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
-	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Project Desc.'
-	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 8 },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Description', onChange: function onChange(e) {
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formValidationWarning1', validationState: 'null', onChange: function onChange(e) {
 	                        _this2.setState({ projectDescription: e.target.value });
-	                      }, style: innerTextCellStyle })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formControlsSelect' },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
+	                      } },
+	                    _react2.default.createElement(_reactBootstrap.Clearfix, { visibleSmBlock: true }),
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Template'
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Project Desc.'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 8 },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Description', onChange: function onChange(e) {
+	                          _this2.setState({ projectDescription: e.target.value });
+	                        }, style: innerTextCellStyle })
 	                    )
 	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 8 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formControlsSelect' },
+	                    _react2.default.createElement(_reactBootstrap.Clearfix, { visibleSmBlock: true }),
 	                    _react2.default.createElement(
-	                      _reactBootstrap.FormControl,
-	                      { componentClass: 'select', onChange: function onChange(e) {
-	                          _this2.handleTemplateSelect(e.target.value);
-	                        } },
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
 	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'select' },
-	                        'select'
-	                      ),
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Template'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 8 },
 	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'Demolition' },
-	                        'Demolition'
-	                      ),
-	                      _react2.default.createElement(
-	                        'option',
-	                        { value: 'Foundation/Footings' },
-	                        'Foundation/Footings'
+	                        _reactBootstrap.FormControl,
+	                        { componentClass: 'select', onChange: function onChange(e) {
+	                            _this2.handleTemplateSelect(e.target.value);
+	                          }, style: innerTextCellStyle },
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'select' },
+	                          'select'
+	                        ),
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'Demolition' },
+	                          'Demolition'
+	                        ),
+	                        _react2.default.createElement(
+	                          'option',
+	                          { value: 'Foundation/Footings' },
+	                          'Foundation/Footings'
+	                        )
 	                      )
 	                    )
 	                  )
 	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Col,
-	              { sm: 4 },
+	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.Row,
-	                null,
+	                _reactBootstrap.Col,
+	                { sm: 4 },
 	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
+	                  _reactBootstrap.Row,
+	                  null,
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formValidationWarning1', validationState: 'null' },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Name'
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Name'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 4, style: formCellEntryStyle },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'First', onChange: function onChange(e) {
+	                          _this2.setState({ customerFirstName: e.target.value });
+	                        }, style: innerTextCellStyle })
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 4, style: formCellEntryStyle },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Last', onChange: function onChange(e) {
+	                          _this2.setState({ customerLastName: e.target.value });
+	                        }, style: innerTextCellStyle })
 	                    )
 	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4, style: formCellEntryStyle },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'First', onChange: function onChange(e) {
-	                        _this2.setState({ customerFirstName: e.target.value });
-	                      }, style: innerTextCellStyle })
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4, style: formCellEntryStyle },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Last', onChange: function onChange(e) {
-	                        _this2.setState({ customerLastName: e.target.value });
-	                      }, style: innerTextCellStyle })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formValidationWarning1', validationState: 'null' },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Address'
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Address'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 8, style: formCellEntryStyle },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '123 Main Street', onChange: function onChange(e) {
+	                          _this2.setState({ address: e.target.value });
+	                        }, style: innerTextCellStyle })
 	                    )
 	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 8, style: formCellEntryStyle },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '123 Main Street', onChange: function onChange(e) {
-	                        _this2.setState({ address: e.target.value });
-	                      }, style: innerTextCellStyle })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formValidationWarning1', validationState: 'null' },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'City'
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'City'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 3, style: formCellEntryStyle },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'City', onChange: function onChange(e) {
+	                          _this2.setState({ city: e.target.value });
+	                        }, style: innerTextCellStyle })
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 2, style: formCellEntryStyle },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'CA', onChange: function onChange(e) {
+	                          _this2.setState({ state: e.target.value });
+	                        }, style: innerTextCellStyle })
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 3, style: formCellEntryStyle },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'ZIP', onChange: function onChange(e) {
+	                          _this2.setState({ zipcode: e.target.value });
+	                        }, style: innerTextCellStyle })
 	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 3, style: formCellEntryStyle },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'City', onChange: function onChange(e) {
-	                        _this2.setState({ city: e.target.value });
-	                      }, style: innerTextCellStyle })
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 2, style: formCellEntryStyle },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'CA', onChange: function onChange(e) {
-	                        _this2.setState({ state: e.target.value });
-	                      }, style: innerTextCellStyle })
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 3, style: formCellEntryStyle },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'ZIP', onChange: function onChange(e) {
-	                        _this2.setState({ zipcode: e.target.value });
-	                      }, style: innerTextCellStyle })
 	                  )
 	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Col,
-	              { sm: 4 },
+	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.Row,
-	                null,
+	                _reactBootstrap.Col,
+	                { sm: 4 },
 	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
+	                  _reactBootstrap.Row,
+	                  null,
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formValidationWarning1', validationState: 'null' },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Email'
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Email'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
+	                          _this2.setState({ email: e.target.value });
+	                        } },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'customer@email.com', style: innerTextCellStyle })
 	                    )
 	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                        _this2.setState({ email: e.target.value });
-	                      } },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'customer@email.com', style: innerTextCellStyle })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formValidationWarning1', validationState: 'null' },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Phone'
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Phone'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
+	                          _this2.setState({ phone: e.target.value });
+	                        } },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234', style: innerTextCellStyle })
 	                    )
 	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                        _this2.setState({ phone: e.target.value });
-	                      } },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234', style: innerTextCellStyle })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formValidationWarning1', validationState: 'warning' },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 4 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formValidationWarning1', validationState: 'null' },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Fax'
+	                      _reactBootstrap.Col,
+	                      { sm: 4 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Fax'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
+	                          _this2.setState({ fax: e.target.value });
+	                        } },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234', style: innerTextCellStyle })
 	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                        _this2.setState({ fax: e.target.value });
-	                      } },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234', style: innerTextCellStyle })
 	                  )
 	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Col,
-	              { sm: 8 },
+	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.Row,
-	                null,
+	                _reactBootstrap.Col,
+	                { sm: 8 },
 	                _react2.default.createElement(
-	                  _reactBootstrap.FormGroup,
-	                  { controlId: 'formControlsTextarea' },
+	                  _reactBootstrap.Row,
+	                  null,
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 2 },
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'formControlsTextarea' },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.ControlLabel,
-	                      null,
-	                      'Specification'
+	                      _reactBootstrap.Col,
+	                      { sm: 2 },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Specification'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { sm: 10, style: formCellEntryStyle },
+	                      _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '3', onChange: function onChange(e) {
+	                          _this2.setState({ specification: e.target.value });
+	                        }, style: innerTextCellStyle })
 	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { sm: 10, style: formCellEntryStyle },
-	                    _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '3', onChange: function onChange(e) {
-	                        _this2.setState({ specification: e.target.value });
-	                      }, style: innerTextCellStyle })
 	                  )
 	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Col,
-	              { sm: 12 },
+	              ),
 	              _react2.default.createElement(
-	                'div',
-	                { style: { height: "50vh", overflow: 'scroll' } },
+	                _reactBootstrap.Col,
+	                { sm: 12 },
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: { height: "40vh", overflow: 'scroll' } },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Table,
+	                    { striped: true, bordered: true, condensed: true, hover: true },
+	                    _react2.default.createElement(
+	                      'thead',
+	                      null,
+	                      _react2.default.createElement(
+	                        'tr',
+	                        null,
+	                        _react2.default.createElement(
+	                          'th',
+	                          null,
+	                          'Product'
+	                        ),
+	                        _react2.default.createElement(
+	                          'th',
+	                          null,
+	                          'Amt'
+	                        ),
+	                        _react2.default.createElement(
+	                          'th',
+	                          null,
+	                          'Unit'
+	                        ),
+	                        _react2.default.createElement(
+	                          'th',
+	                          null,
+	                          'Description'
+	                        ),
+	                        _react2.default.createElement(
+	                          'th',
+	                          null,
+	                          'Material'
+	                        ),
+	                        _react2.default.createElement(
+	                          'th',
+	                          null,
+	                          'Labor'
+	                        ),
+	                        _react2.default.createElement(
+	                          'th',
+	                          null,
+	                          _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'pencil' })
+	                        ),
+	                        _react2.default.createElement(
+	                          'th',
+	                          null,
+	                          _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
+	                        )
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      'tbody',
+	                      null,
+	                      shoppingCart()
+	                    )
+	                  )
+	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Table,
 	                  { striped: true, bordered: true, condensed: true, hover: true },
 	                  _react2.default.createElement(
-	                    'thead',
+	                    'tbody',
 	                    null,
 	                    _react2.default.createElement(
 	                      'tr',
 	                      null,
 	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'Product'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'Amt'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'Unit'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'Description'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'Material'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'Labor'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'E'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'X'
+	                        'td',
+	                        { colSpan: '7', onClick: function onClick() {
+	                            console.log("add custom item");
+	                          }, style: { textAlign: 'center' } },
+	                        'Add Item'
 	                      )
 	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    'tbody',
-	                    null,
-	                    shoppingCart()
 	                  )
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Row,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { sm: 8 },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: this.props.backToMainPage, style: bottomButtonStyle },
+	                  'Back'
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: function onClick() {
+	                      _this2.setState({ estimateStatus: 'pdf' });
+	                    }, style: bottomButtonStyle },
+	                  'Generate Estimate'
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: function onClick() {
+	                      if (_this2.state.shoppingCart.length > 0) {
+	                        _this2.setState({ estimateStatus: 'productPreview' });
+	                      }
+	                    }, style: bottomButtonStyle },
+	                  'Product Preview'
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: function onClick() {
+	                      console.log("Shopping List");
+	                    }, style: bottomButtonStyle },
+	                  'Shopping List'
 	                )
 	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.Table,
-	                { striped: true, bordered: true, condensed: true, hover: true },
+	                _reactBootstrap.Col,
+	                { sm: 4 },
 	                _react2.default.createElement(
-	                  'tbody',
+	                  _reactBootstrap.Panel,
 	                  null,
 	                  _react2.default.createElement(
-	                    'tr',
+	                    'h5',
 	                    null,
-	                    _react2.default.createElement(
-	                      'td',
-	                      { colSpan: '7', onClick: function onClick() {
-	                          console.log("add custom item");
-	                        } },
-	                      'Add Item'
-	                    )
+	                    'Grand Total with Tax : $',
+	                    parseFloat(this.state.total).toFixed(2)
 	                  )
 	                )
 	              )
 	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Row,
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.Col,
-	              { sm: 12 },
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: this.props.backToMainPage },
-	                'Back'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    _this2.setState({ generateEstimate: true });
-	                  } },
-	                'Generate Estimate'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    console.log("Product Preview");
-	                  } },
-	                'Product Preview'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    console.log("Shopping List");
-	                  } },
-	                'Shopping List'
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                null,
-	                'Grand Total with Tax : $',
-	                parseFloat(this.state.total).toFixed(2)
-	              )
-	            )
-	          )
-	        );
+	          );
+	          break;
+	        case 'productPreview':
+	          return _react2.default.createElement(_ProductPreview2.default, { quoteNumber: this.state.quoteNumber, shoppingCart: this.state.shoppingCart, handleEstimateStartOver: function handleEstimateStartOver() {
+	              _this2.setState({ estimateStatus: 'main' });
+	            } });
+	          break;
 	      }
 	    }
 	  }]);
@@ -49472,7 +49530,7 @@
 /* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -49483,6 +49541,8 @@
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(186);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -49506,19 +49566,19 @@
 	  }
 	
 	  _createClass(ShoppingCartItem, [{
-	    key: "componentDidMount",
+	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      console.log(this.props);
 	    }
 	  }, {
-	    key: "onQuantityChange",
+	    key: 'onQuantityChange',
 	    value: function onQuantityChange(keycode, template, quantity) {
 	      if (parseFloat(quantity) !== NaN) {
 	        this.props.onQuantityChange(keycode, template, parseFloat(quantity));
 	      }
 	    }
 	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
 	
@@ -49532,51 +49592,51 @@
 	          template = _props.template;
 	
 	      return _react2.default.createElement(
-	        "tr",
+	        'tr',
 	        null,
 	        _react2.default.createElement(
-	          "td",
+	          'td',
 	          null,
 	          keyCode
 	        ),
 	        _react2.default.createElement(
-	          "td",
+	          'td',
 	          null,
-	          _react2.default.createElement("input", { type: "text", defaultValue: quantity, onChange: function onChange(e) {
+	          _react2.default.createElement('input', { type: 'text', defaultValue: quantity, onChange: function onChange(e) {
 	              _this2.onQuantityChange(keyCode, template, e.target.value);
 	            } })
 	        ),
 	        _react2.default.createElement(
-	          "td",
+	          'td',
 	          null,
 	          UOM
 	        ),
 	        _react2.default.createElement(
-	          "td",
+	          'td',
 	          null,
 	          Description
 	        ),
 	        _react2.default.createElement(
-	          "td",
+	          'td',
 	          null,
 	          Material
 	        ),
 	        _react2.default.createElement(
-	          "td",
+	          'td',
 	          null,
 	          Labor
 	        ),
 	        _react2.default.createElement(
-	          "td",
+	          'td',
 	          null,
-	          "e"
+	          _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'pencil' })
 	        ),
 	        _react2.default.createElement(
-	          "td",
+	          'td',
 	          { onClick: function onClick(e) {
 	              _this2.props.onItemDelete(keyCode, template);
 	            } },
-	          "x"
+	          _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
 	        )
 	      );
 	    }
@@ -49624,10 +49684,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import EstimateHeader from './PDF/EstimateHeader'
-	
-	// import ScopeOfWork from './PDF/ScopeOfWork'
-	
 	
 	var axios = __webpack_require__(500);
 	
@@ -49640,7 +49696,8 @@
 	    var _this = _possibleConstructorReturn(this, (EstimatePDF.__proto__ || Object.getPrototypeOf(EstimatePDF)).call(this));
 	
 	    _this.state = {
-	      emailSent: false
+	      emailSent: false,
+	      percentageLoaded: 0
 	    };
 	    return _this;
 	  }
@@ -49687,11 +49744,17 @@
 	        if (that.state.emailSent) {
 	          return _react2.default.createElement(
 	            'div',
-	            null,
+	            { style: { textAlign: 'center', verticalAlign: 'middle', marginTop: '30vh' } },
 	            _react2.default.createElement(
-	              'div',
+	              'h4',
 	              null,
-	              'Estimate sent to hermano360@gmail.com, robertLeon@probuilders.com'
+	              'Estimate sent to:'
+	            ),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              ' hermano360@gmail.com ',
+	              that.props.email
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
@@ -49701,9 +49764,30 @@
 	          );
 	        } else {
 	          return _react2.default.createElement(
-	            'div',
+	            _reactBootstrap.Grid,
 	            null,
-	            'Email sending in progress'
+	            _react2.default.createElement(
+	              _reactBootstrap.Row,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { xs: 2, xsOffset: 5 },
+	                _react2.default.createElement('div', { className: 'loader' })
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { xs: 12 },
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: { textAlign: 'center', verticalAlign: 'middle' } },
+	                  _react2.default.createElement(
+	                    'h4',
+	                    null,
+	                    'Email Being Sent'
+	                  )
+	                )
+	              )
+	            )
 	          );
 	        }
 	      };
@@ -49718,7 +49802,7 @@
 	            { id: 'printThisBitch' },
 	            _react2.default.createElement(_CustomerInfo2.default, this.props),
 	            _react2.default.createElement(_Specifications2.default, { shoppingCart: this.props.shoppingCart }),
-	            _react2.default.createElement(_QuoteSummary2.default, null)
+	            _react2.default.createElement(_QuoteSummary2.default, { total: this.props.total })
 	          )
 	        ),
 	        emailStatus()
@@ -49798,7 +49882,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('img', { src: 'http://cdn.homeadvisor.com/files/eid/8700000/8707399/2395760.jpg?modifyDateTime=1391029484000', style: { width: '100px', height: '100px', 'marginLeft': '5%', 'marginRight': '20px', 'float': 'left' } }),
+	        _react2.default.createElement('img', { src: 'http://cdn.homeadvisor.com/files/eid/8700000/8707399/2395760.jpg?modifyDateTime=1391029484000', style: { width: '75px', height: '75px', 'marginLeft': '5%', 'marginRight': '20px', 'float': 'left' } }),
 	        _react2.default.createElement(
 	          'div',
 	          { style: { fontWeight: 'bold', fontSize: '10px', float: "left", height: '100px', width: '50px', 'marginRight': '15px' } },
@@ -49840,7 +49924,6 @@
 	          projectDescription
 	        ),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('p', { style: { 'minHeight': '1px', width: '100%', float: 'left' } }),
 	        _react2.default.createElement(
 	          'div',
 	          { style: { float: 'left', 'marginLeft': '5%', 'backgroundColor': '#13788e', color: 'white', width: '90%', 'textAlign': 'center', borderBottom: 'black 1px solid', borderTop: 'black 1px solid', height: '15px' } },
@@ -49918,7 +50001,8 @@
 	        _react2.default.createElement(
 	          'div',
 	          { style: _defineProperty({ float: 'left', 'marginLeft': '5%', 'fontSize': '10px', 'textAlign': 'center', 'width': '90%', 'minHeight': '30px', 'marginTop': '30px' }, 'fontSize', '15px') },
-	          'Grand Total With Tax: $132,442.50'
+	          'Grand Total With Tax: $',
+	          this.props.total
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -55335,6 +55419,265 @@
 	};
 	
 	module.exports = keyOf;
+
+/***/ }),
+/* 568 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(186);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ProductPreview = function (_Component) {
+	  _inherits(ProductPreview, _Component);
+	
+	  function ProductPreview() {
+	    _classCallCheck(this, ProductPreview);
+	
+	    var _this = _possibleConstructorReturn(this, (ProductPreview.__proto__ || Object.getPrototypeOf(ProductPreview)).call(this));
+	
+	    _this.state = {
+	      count: 0
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(ProductPreview, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var shoppingCart = this.props.shoppingCart;
+	
+	      var specifiedProduct = shoppingCart[this.state.count];
+	      return _react2.default.createElement(
+	        _reactBootstrap.Grid,
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Row,
+	          { style: { textAlign: 'center', marginTop: '20vh' } },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 12 },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Shopping List Preview'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Row,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'QuoteNo'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: this.props.quoteNumber, style: { textAlign: 'center' } })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'SkuNo'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.SKU, style: { textAlign: 'center' } })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'Material Cost'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.Material, style: { textAlign: 'center' } })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'Unit'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: specifiedProduct.UOM, style: { textAlign: 'center' } })
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.FormGroup,
+	              { controlId: 'formValidationWarning1', validationState: null },
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { sm: 12 },
+	                _react2.default.createElement(
+	                  _reactBootstrap.ControlLabel,
+	                  null,
+	                  'Picture'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { sm: 12 },
+	                _react2.default.createElement(_reactBootstrap.Image, { src: specifiedProduct.picture, responsive: true })
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Row,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formControlsTextarea' },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'Specification'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12 },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '12', value: specifiedProduct.Description, style: { textAlign: 'center' } })
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Row,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 12, style: { textAlign: 'center', verticalAlign: 'middle', marginTop: '20px' } },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.setState({ count: 0 });
+	                } },
+	              ' ',
+	              "|<"
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  if (_this2.state.count > 0) {
+	                    _this2.setState({ count: _this2.state.count - 1 });
+	                  }
+	                } },
+	              ' ',
+	              "<"
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              null,
+	              ' ',
+	              this.state.count + 1,
+	              ' '
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  if (_this2.state.count < _this2.props.shoppingCart.length) {
+	                    _this2.setState({ count: _this2.state.count + 1 });
+	                  }
+	                } },
+	              ">"
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.setState({ count: _this2.props.shoppingCart.length - 1 });
+	                } },
+	              ">|"
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 12, style: { textAlign: 'center', verticalAlign: 'middle' } },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: this.props.handleEstimateStartOver },
+	              'Back'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return ProductPreview;
+	}(_react.Component);
+	
+	exports.default = ProductPreview;
 
 /***/ })
 /******/ ]);

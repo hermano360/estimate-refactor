@@ -23,7 +23,7 @@ class QuoteSummary extends Component {
            cannot be responsible for changes in Work or Price due to County, State, or Federal Building Requirements that were not
            Specified nor Based on Approved Plans.
          </div>
-         <div style={{float: 'left','marginLeft':'5%','fontSize':'10px','textAlign':'center','width':'90%','minHeight':'30px', 'marginTop': '30px','fontSize':'15px'}}>Grand Total With Tax: $132,442.50</div>
+         <div style={{float: 'left','marginLeft':'5%','fontSize':'10px','textAlign':'center','width':'90%','minHeight':'30px', 'marginTop': '30px','fontSize':'15px'}}>Grand Total With Tax: ${this.props.total}</div>
          <div>
            <div style={{borderTop: '1px solid black', width:'25%',marginLeft:'5%',float:'left', marginTop:'50px','fontSize':'10px'}}>Customer Signature</div>
            <div style={{borderTop: '1px solid black', width:'10%',marginLeft:'5%',float:'left', marginTop:'50px','fontSize':'10px'}}>Date</div>
