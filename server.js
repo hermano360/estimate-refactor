@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var pdf = require('html-pdf');
 var sendMail = require('./api/sendMail');
+var wordDoc = require('./api/wordDoc');
 
 //Create out app
 
@@ -43,7 +44,14 @@ app.post('/modelNos', function(req,res,next){
   })
 })
 
+app.post('/wordTest', function(req,res,next){
+  console.log('generate word.')
+  wordDoc.generateWord();
+  res.json('server response');
+})
+
 app.post('/pdfTest', function(req,res,next){
+  console.log('why is this still being sent????');
   let today = new Date();
   let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let dateString = `${today.getDate()}-${monthNames[today.getMonth()]}-${today.getFullYear()}`;

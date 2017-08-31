@@ -6,6 +6,7 @@ import Specifications from './PDF/Specifications'
 var axios = require('axios');
 
 
+
 class EstimatePDF extends Component {
 
    constructor(){
@@ -17,39 +18,56 @@ class EstimatePDF extends Component {
   }
   componentDidMount(){
   	let html = $('#printThisBitch')[0].outerHTML;
-  	var requestUrl = `/pdfTest`;
-    let that = this;
-	  axios({
-	    method: 'post',
-	    url: requestUrl,
-	      data: {
-	        html
-	      }
-	    }).then(function(res){
-	          console.log('successful',res);
-            axios({
-              method:'post',
-              url:`/pdfEmail`,
-            data: {
-              dirPath: res.data.filename,
-              name: `${that.props.customerFirstName} ${that.props.customerLastName}`,
-              email:that.props.email
-            }})
-            .then(function (response) {
-              console.log(response);
-              that.setState({
-                emailSent:true
-              })
-
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-
-	        }).catch(function (error) {
-	          console.log('not successful')
-	    		console.log(error);
-	  		})
+    let requestUrl = '/wordTest';
+    const that = this;
+    axios({
+      method: 'post',
+      url: requestUrl,
+      data: {
+        payload:"hello"
+      }
+    }).then(function(res){
+      that.setState({
+        emailSent:true
+      })
+      console.log("successful dude", res);
+    }).catch(function (error) {
+      console.log('not successful');
+      console.log(error);
+	  })
+  	// var requestUrl = `/pdfTest`;
+    // let that = this;
+	  // axios({
+	  //   method: 'post',
+	  //   url: requestUrl,
+	  //     data: {
+	  //       html
+	  //     }
+	  //   }).then(function(res){
+	  //         console.log('successful',res);
+    //         axios({
+    //           method:'post',
+    //           url:`/pdfEmail`,
+    //         data: {
+    //           dirPath: res.data.filename,
+    //           name: `${that.props.customerFirstName} ${that.props.customerLastName}`,
+    //           email:that.props.email
+    //         }})
+    //         .then(function (response) {
+    //           console.log(response);
+              // that.setState({
+              //   emailSent:true
+              // })
+    //
+    //         })
+    //         .catch(function (error) {
+    //           console.log(error);
+    //         });
+    //
+	  //       }).catch(function (error) {
+	  //         console.log('not successful')
+	  //   		console.log(error);
+	  // 		})
   }
 
 

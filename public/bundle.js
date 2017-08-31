@@ -49944,35 +49944,56 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var html = $('#printThisBitch')[0].outerHTML;
-	      var requestUrl = '/pdfTest';
+	      var requestUrl = '/wordTest';
 	      var that = this;
 	      axios({
 	        method: 'post',
 	        url: requestUrl,
 	        data: {
-	          html: html
+	          payload: "hello"
 	        }
 	      }).then(function (res) {
-	        console.log('successful', res);
-	        axios({
-	          method: 'post',
-	          url: '/pdfEmail',
-	          data: {
-	            dirPath: res.data.filename,
-	            name: that.props.customerFirstName + ' ' + that.props.customerLastName,
-	            email: that.props.email
-	          } }).then(function (response) {
-	          console.log(response);
-	          that.setState({
-	            emailSent: true
-	          });
-	        }).catch(function (error) {
-	          console.log(error);
+	        that.setState({
+	          emailSent: true
 	        });
+	        console.log("successful dude", res);
 	      }).catch(function (error) {
 	        console.log('not successful');
 	        console.log(error);
 	      });
+	      // var requestUrl = `/pdfTest`;
+	      // let that = this;
+	      // axios({
+	      //   method: 'post',
+	      //   url: requestUrl,
+	      //     data: {
+	      //       html
+	      //     }
+	      //   }).then(function(res){
+	      //         console.log('successful',res);
+	      //         axios({
+	      //           method:'post',
+	      //           url:`/pdfEmail`,
+	      //         data: {
+	      //           dirPath: res.data.filename,
+	      //           name: `${that.props.customerFirstName} ${that.props.customerLastName}`,
+	      //           email:that.props.email
+	      //         }})
+	      //         .then(function (response) {
+	      //           console.log(response);
+	      // that.setState({
+	      //   emailSent:true
+	      // })
+	      //
+	      //         })
+	      //         .catch(function (error) {
+	      //           console.log(error);
+	      //         });
+	      //
+	      //       }).catch(function (error) {
+	      //         console.log('not successful')
+	      //   		console.log(error);
+	      // 		})
 	    }
 	  }, {
 	    key: 'render',
