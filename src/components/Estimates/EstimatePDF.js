@@ -5,8 +5,6 @@ import QuoteSummary from './PDF/QuoteSummary'
 import Specifications from './PDF/Specifications'
 var axios = require('axios');
 
-
-
 class EstimatePDF extends Component {
 
    constructor(){
