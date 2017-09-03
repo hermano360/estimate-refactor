@@ -29,7 +29,7 @@ class Estimate extends Component {
     let {dispatch} = this.props
     // if the template selected isnt the default option
     if (template !== 'select') {
-      dispatch(actions.selectTemplate(template));
+      dispatch(actions.selectTemplate(template))
     }
   }
 
@@ -81,7 +81,7 @@ class Estimate extends Component {
     // possible form item generator for later. seems to be too many one-off cases
     const formFieldGenerator = (labelSize, labelName, fields) => {
       let fieldsGenerator = (itemFields) => {
-        return itemFields.map((formItem)=>{
+        return itemFields.map((formItem) => {
           return (
             <Col sm={formItem.size} style={formItem.cellStyle}>
               <FormControl type='text' placeholder={formItem.placeholder} onChange={formItem.onChangeFunction} style={formItem.innerStyle} />
@@ -130,7 +130,7 @@ class Estimate extends Component {
                       <ControlLabel>Salesperson</ControlLabel>
                     </Col>
                     <Col sm={8}>
-                      <FormControl componentClass='select' placeholder='select' onChange={(e) => dispatch(actions.updateCustomerInfo('salesman', e.target.value)) } style={innerTextCellStyle} >
+                      <FormControl componentClass='select' placeholder='select' onChange={(e) => dispatch(actions.updateCustomerInfo('salesman', e.target.value))} style={innerTextCellStyle} >
                         <option value='select'>Salesperson</option>
                         <option value='Gary Banks'>Banks, Gary</option>
                         <option value='John Chavez'>Chavez, John</option>
@@ -168,7 +168,7 @@ class Estimate extends Component {
                     </Col>
                     <Col sm={8}>
                       <FormControl componentClass='select' onChange={(e) => { this.handleTemplateSelect(e.target.value) }} style={innerTextCellStyle}>
-                        <option value='select' onClick={()=>{ console.log('Selected select')}}>Select</option>
+                        <option value='select' onClick={() => { console.log('Selected select') }}>Select</option>
                         <option value='Demolition'>Demolition</option>
                         <option value='Foundation/Footings'>Foundation/Footings</option>
                       </FormControl>

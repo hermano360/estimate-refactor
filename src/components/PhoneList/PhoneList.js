@@ -4,10 +4,6 @@ var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
 
 class PhoneList extends Component {
-  constructor () {
-    super()
-  }
-
   render () {
     const {dispatch} = this.props
     let phoneListStyle = {

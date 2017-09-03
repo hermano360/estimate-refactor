@@ -1,5 +1,4 @@
-var superagent = require('superagent');
-
+var superagent = require('superagent')
 
 export var changePage = (page) => {
   return {

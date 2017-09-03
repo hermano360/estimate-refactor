@@ -6,14 +6,13 @@ import Estimate from './Estimates/Estimate'
 var {connect} = require('react-redux')
 
 class Main extends Component {
-
   render () {
     const {page} = this.props
     switch (page) {
       case 'StartPage':
         return (
           <StartPage />
-          )
+        )
       case 'Products':
         return (
           <Products />

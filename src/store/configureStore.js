@@ -6,12 +6,12 @@ export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
     page: PageReducer,
     shoppingCart: ShoppingCartReducer,
-    customerInformation : CustomerReducer
+    customerInformation: CustomerReducer
   })
   initialState = {
     page: 'StartPage',
     shoppingCart: [],
-    customerInformation : {
+    customerInformation: {
       salesman: '',
       customerFirstName: '',
       customerLastName: '',
@@ -24,7 +24,7 @@ export var configure = (initialState = {}) => {
       zipcode: '',
       specification: '',
       phone: '',
-      fax: '',
+      fax: ''
       // date: todaysDate()
     }
   }

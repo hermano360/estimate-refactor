@@ -4,10 +4,9 @@ var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
 
 class ShoppingCartItem extends Component {
-
   onQuantityChange (keyCode, template, quantity) {
     const {dispatch} = this.props
-    if (/^[0-9\.]*$/.test(quantity)) {
+    if (/^[0-9.]*$/.test(quantity)) {
       dispatch(actions.changeCartItemQuantity(keyCode, template, quantity))
     } else {
       dispatch(actions.changeCartItemQuantity(keyCode, template, 0))

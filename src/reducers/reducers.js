@@ -29,9 +29,9 @@ export const ShoppingCartReducer = (state = [], action) => {
       })
     case 'CHANGE_CART_ITEM_QUANTITY':
       return state.map((cartItem) => {
-        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template){
+        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
           let quantity = action.quantity
-          if(action.quantity = ''){
+          if (action.quantity === '') {
             quantity = 0
           }
           return {
@@ -46,10 +46,10 @@ export const ShoppingCartReducer = (state = [], action) => {
       let keyCodes = productKeyCodes[action.template]
       let templateItems = productDetails.getBatchProducts(keyCodes)
       let newItems = templateItems.filter((templateItem) => {
-        let result = true;
+        let result = true
         state.forEach((currentItem) => {
           if (currentItem.keyCode === templateItem.keyCode && currentItem.template === action.template) {
-            result = false;
+            result = false
           }
         })
         return result
@@ -87,7 +87,7 @@ export const CustomerReducer = (state = {}, action) => {
     case 'UPDATE_CUSTOMER_INFO':
       return {
         ...state,
-        [action.attribute] : action.value
+        [action.attribute]: action.value
       }
     case 'RESET_CUSTOMER_INFO':
       return {
@@ -103,7 +103,7 @@ export const CustomerReducer = (state = {}, action) => {
         zipcode: '',
         specification: '',
         phone: '',
-        fax: '',
+        fax: ''
         // date: todaysDate()
       }
     default:
