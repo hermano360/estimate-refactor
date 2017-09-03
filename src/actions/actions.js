@@ -30,9 +30,32 @@ export var deleteShoppingCartItem = (keyCode, template) => {
   }
 }
 
-export var recalculateTotal = (shoppingCart) => {
+export var changeCartItemQuantity = (keyCode, template, quantity) => {
   return {
-    type: 'RECALCULATE_TOTAL',
-    shoppingCart
+    type: 'CHANGE_CART_ITEM_QUANTITY',
+    keyCode,
+    template,
+    quantity
+  }
+}
+
+export var updateCustomerInfo = (attribute, value) => {
+  return {
+    type: 'UPDATE_CUSTOMER_INFO',
+    attribute,
+    value
+  }
+}
+
+export var resetCustomerInfo = () => {
+  return {
+    type: 'RESET_CUSTOMER_INFO'
+  }
+}
+
+export var selectTemplate = (template) => {
+  return {
+    type: 'SELECT_TEMPLATE',
+    template
   }
 }

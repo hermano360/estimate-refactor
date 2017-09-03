@@ -4,21 +4,19 @@ var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
 
 class ShoppingCartItem extends Component {
-  constructor () {
-    super()
-    this.onQuantityChange = this.onQuantityChange.bind(this)
-  }
-  componentDidMount () {
-    console.log(this.props)
-  }
-  onQuantityChange (keycode, template, quantity) {
-    if (typeof parseFloat(quantity) === 'number') {
-      this.props.onQuantityChange(keycode, template, parseFloat(quantity))
+
+  onQuantityChange (keyCode, template, quantity) {
+    const {dispatch} = this.props
+    if (/^[0-9\.]*$/.test(quantity)) {
+      dispatch(actions.changeCartItemQuantity(keyCode, template, quantity))
+    } else {
+      dispatch(actions.changeCartItemQuantity(keyCode, template, 0))
     }
   }
 
   render () {
-    let {Labor, Material, UOM, Description, keyCode, quantity, template} = this.props
+    let {Labor, Material, UOM, Description, keyCode, quantity, template, dispatch} = this.props
+
     return (
       <tr>
         <td>{keyCode}</td>
@@ -30,16 +28,10 @@ class ShoppingCartItem extends Component {
         <td>${(Material * quantity).toFixed(2)}</td>
         <td>${(Labor * quantity).toFixed(2)}</td>
         <td><Glyphicon glyph='pencil' /></td>
-        <td onClick={(e) => { this.props.onItemDelete(keyCode, template) }}><Glyphicon glyph='remove' /></td>
+        <td onClick={() => { dispatch(actions.deleteShoppingCartItem(keyCode, template)) }}><Glyphicon glyph='remove' /></td>
       </tr>
     )
   }
 }
 
-export default connect(
-  (state) => {
-    return{
-      shoppingCart: state.shoppingCart
-    }
-  }
-)(ShoppingCartItem)
+export default connect()(ShoppingCartItem)

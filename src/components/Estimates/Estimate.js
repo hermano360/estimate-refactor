@@ -3,8 +3,7 @@ import {Button, Row, Col, Grid, FormControl, ControlLabel, FormGroup, Clearfix, 
 import ShoppingCartItem from './ShoppingCartItem'
 import EstimatePDF from './EstimatePDF'
 import ProductPreview from './ProductPreview'
-import productDetails from '../../../api/productDetails'
-import productKeyCodes from '../../../api/productKeyCodes'
+
 var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
 
@@ -16,118 +15,31 @@ class Estimate extends Component {
     }
     super()
     this.state = {
-      salesman: '',
-      customerFirstName: '',
-      customerLastName: '',
-      email: '',
       quoteNumber: Math.floor(Math.random() * 200),
-      projectDescription: '',
-      address: '',
-      city: '',
-      state: '',
-      zipcode: '',
-      specification: '',
-      phone: '',
-      fax: '',
       date: todaysDate(),
       estimateStatus: 'main',
-      total: 0,
       modal: false,
       count: 0
     }
     this.handleTemplateSelect = this.handleTemplateSelect.bind(this)
-    this.handleItemDelete = this.handleItemDelete.bind(this)
-    this.handleQuantityChange = this.handleQuantityChange.bind(this)
-  }
-
-  handleQuantityChange (keyCode, template, quantity) {
-    const {shoppingCart, dispatch} = this.props
-    let currentShoppingCart = shoppingCart
-    let updatedShoppingCart = currentShoppingCart.map((cartItem) => {
-      if (cartItem.keyCode === keyCode && cartItem.template === template) {
-        let newCartItem = {}
-        for (let prop in cartItem) {
-          newCartItem[prop] = cartItem[prop]
-        }
-        if (isNaN(quantity)) {
-          quantity = 0
-        }
-        newCartItem.quantity = quantity
-        return newCartItem
-      } else {
-        return cartItem
-      }
-    })
-    dispatch(actions.updateShoppingCart(updatedShoppingCart))
-    dispatch(actions.recalculateTotal(updatedShoppingCart))
-  }
-  handleItemDelete (keyCode, template) {
-    const {shoppingCart, dispatch} = this.props
-    let currentShoppingCart = shoppingCart
-    let updatedShoppingCart = currentShoppingCart.filter((cartItem) => {
-      if (cartItem.keyCode === keyCode && cartItem.template === template) {
-        return false
-      } else {
-        return true
-      }
-    })
-    console.log(this.props)
-    // dispatch(actions.updateShoppingCart(updatedShoppingCart))
-    dispatch(actions.deleteShoppingCartItem(keyCode, template));
-    this.setState({
-      total: this.recalculateTotal(updatedShoppingCart)
-    })
   }
 
   handleTemplateSelect (template) {
-    let {dispatch, shoppingCart} = this.props
+    console.log(template)
+    let {dispatch} = this.props
     // if the template selected isnt the default option
     if (template !== 'select') {
-      // obtain all of the keyCodes for a given template
-      let keyCodes = productKeyCodes[template]
-      // get the item details for all of the keycodes from a given template
-      let templateItems = productDetails.getBatchProducts(keyCodes)
-      // get the current shopping cart for comparisions
-      let currentShoppingCart = shoppingCart
-      // used to put in new items after validation
-      let newShoppingCart = []
-      // go through each template item to see if it should be added to cart
-      templateItems.forEach((newItem) => {
-        // assume item will be added at first
-        let addToCart = true
-        // start going through the current shopping cart
-        currentShoppingCart.forEach((cartItem) => {
-          // as long as there the keycode and template arent both present, item is considered valid
-          // the reason is that you can add items a la cart, without template
-          if (newItem.keyCode === cartItem.keyCode && template === cartItem.template) {
-            addToCart = false
-          }
-        })
-        // adding item to cart if it is indeed valid
-        if (addToCart) {
-          let itemToAdd = {}
-          for (var prop in newItem) {
-            itemToAdd[prop] = newItem[prop]
-          }
-          itemToAdd.quantity = 0
-          itemToAdd.template = template
-          newShoppingCart.push(itemToAdd)
-        }
-      })
-
-      dispatch(actions.updateShoppingCart([
-        ...currentShoppingCart,
-        ...newShoppingCart
-      ]))
-      dispatch(actions.recalculateTotal([
-        ...currentShoppingCart,
-        ...newShoppingCart
-      ]))
+      dispatch(actions.selectTemplate(template));
     }
   }
 
   render () {
-    const {dispatch, shoppingCart} = this.props
+    const {dispatch, shoppingCart, customerInformation} = this.props
+    let total = 0
+    shoppingCart.forEach((item) => {
+      total += (item.Labor + item.Material) * item.quantity
+    })
+
     let formCellEntryStyle = {
       paddingLeft: 0,
       color: 'black'
@@ -139,7 +51,7 @@ class Estimate extends Component {
     let shoppingCartFunction = () => {
       return shoppingCart.map((shoppingCartItem) => {
         return (
-          <ShoppingCartItem key={shoppingCartItem.keyCode + shoppingCartItem.template} {...shoppingCartItem} onQuantityChange={this.handleQuantityChange} onItemDelete={this.handleItemDelete} />
+          <ShoppingCartItem key={shoppingCartItem.keyCode + shoppingCartItem.template} {...shoppingCartItem} />
         )
       })
     }
@@ -157,8 +69,7 @@ class Estimate extends Component {
       phone: '',
       fax: '',
       date: todaysDate(),
-      estimateStatus: 'main',
-      total: 0
+      estimateStatus: 'main'
     }
     let bottomButtonStyle = {
       marginLeft: '5px',
@@ -166,6 +77,28 @@ class Estimate extends Component {
       verticalAlign: 'middle'
     }
     let innerTextCellStyle = {padding: '0', color: 'black'}
+
+    // possible form item generator for later. seems to be too many one-off cases
+    const formFieldGenerator = (labelSize, labelName, fields) => {
+      let fieldsGenerator = (itemFields) => {
+        return itemFields.map((formItem)=>{
+          return (
+            <Col sm={formItem.size} style={formItem.cellStyle}>
+              <FormControl type='text' placeholder={formItem.placeholder} onChange={formItem.onChangeFunction} style={formItem.innerStyle} />
+            </Col>
+          )
+        })
+      }
+      return (
+        <FormGroup controlId='formValidationWarning1' validationState='null'>
+          <Col sm={labelSize}>
+            <ControlLabel>{labelName}</ControlLabel>
+          </Col>
+          {fieldsGenerator(fields)}
+        </FormGroup>
+      )
+    }
+
     switch (this.state.estimateStatus) {
       case 'pdf':
         return (
@@ -197,7 +130,7 @@ class Estimate extends Component {
                       <ControlLabel>Salesperson</ControlLabel>
                     </Col>
                     <Col sm={8}>
-                      <FormControl componentClass='select' placeholder='select' onChange={(e) => { this.setState({salesman: e.target.value}) }} style={innerTextCellStyle} >
+                      <FormControl componentClass='select' placeholder='select' onChange={(e) => dispatch(actions.updateCustomerInfo('salesman', e.target.value)) } style={innerTextCellStyle} >
                         <option value='select'>Salesperson</option>
                         <option value='Gary Banks'>Banks, Gary</option>
                         <option value='John Chavez'>Chavez, John</option>
@@ -215,17 +148,16 @@ class Estimate extends Component {
                       <ControlLabel>Start Date</ControlLabel>
                     </Col>
                     <Col sm={8}>
-                      <FormControl type='text' defaultValue={todaysDate()} onChange={(e) => { this.setState({date: e.target.value}) }} style={innerTextCellStyle} />
+                      <FormControl type='text' defaultValue={todaysDate()} onChange={(e) => { dispatch(actions.updateCustomerInfo('date', e.target.value)) }} style={innerTextCellStyle} />
                     </Col>
                   </FormGroup>
-                  <FormGroup controlId='formValidationWarning1' validationState='null' onChange={(e) => { this.setState({projectDescription: e.target.value}) }}>
+                  <FormGroup controlId='formValidationWarning1' validationState='null'>
                     <Clearfix visibleSmBlock />
                     <Col sm={4}>
                       <ControlLabel>Project Desc.</ControlLabel>
                     </Col>
-
                     <Col sm={8}>
-                      <FormControl type='text' placeholder='Description' onChange={(e) => { this.setState({projectDescription: e.target.value}) }} style={innerTextCellStyle} />
+                      <FormControl type='text' placeholder='Description' onChange={(e) => { dispatch(actions.updateCustomerInfo('projectDescription', e.target.value)) }} style={innerTextCellStyle} />
                     </Col>
                   </FormGroup>
 
@@ -236,7 +168,7 @@ class Estimate extends Component {
                     </Col>
                     <Col sm={8}>
                       <FormControl componentClass='select' onChange={(e) => { this.handleTemplateSelect(e.target.value) }} style={innerTextCellStyle}>
-                        <option value='select'>select</option>
+                        <option value='select' onClick={()=>{ console.log('Selected select')}}>Select</option>
                         <option value='Demolition'>Demolition</option>
                         <option value='Foundation/Footings'>Foundation/Footings</option>
                       </FormControl>
@@ -252,10 +184,10 @@ class Estimate extends Component {
                       <ControlLabel>Name</ControlLabel>
                     </Col>
                     <Col sm={4} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='First' onChange={(e) => { this.setState({customerFirstName: e.target.value}) }} style={innerTextCellStyle} />
+                      <FormControl type='text' placeholder='First' onChange={(e) => { dispatch(actions.updateCustomerInfo('customerFirstName', e.target.value)) }} style={innerTextCellStyle} />
                     </Col>
                     <Col sm={4} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='Last' onChange={(e) => { this.setState({customerLastName: e.target.value}) }} style={innerTextCellStyle} />
+                      <FormControl type='text' placeholder='Last' onChange={(e) => { dispatch(actions.updateCustomerInfo('customerLastName', e.target.value)) }} style={innerTextCellStyle} />
                     </Col>
                   </FormGroup>
                   <FormGroup controlId='formValidationWarning1' validationState='null'>
@@ -263,7 +195,7 @@ class Estimate extends Component {
                       <ControlLabel>Address</ControlLabel>
                     </Col>
                     <Col sm={8} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='123 Main Street' onChange={(e) => { this.setState({address: e.target.value}) }} style={innerTextCellStyle} />
+                      <FormControl type='text' placeholder='123 Main Street' onChange={(e) => { dispatch(actions.updateCustomerInfo('address', e.target.value)) }} style={innerTextCellStyle} />
                     </Col>
                   </FormGroup>
                   <FormGroup controlId='formValidationWarning1' validationState='null'>
@@ -271,13 +203,13 @@ class Estimate extends Component {
                       <ControlLabel>City</ControlLabel>
                     </Col>
                     <Col sm={3} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='City' onChange={(e) => { this.setState({city: e.target.value}) }} style={innerTextCellStyle} />
+                      <FormControl type='text' placeholder='City' onChange={(e) => { dispatch(actions.updateCustomerInfo('city', e.target.value)) }} style={innerTextCellStyle} />
                     </Col>
                     <Col sm={2} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='CA' onChange={(e) => { this.setState({state: e.target.value}) }} style={innerTextCellStyle} />
+                      <FormControl type='text' placeholder='CA' onChange={(e) => { dispatch(actions.updateCustomerInfo('state', e.target.value)) }} style={innerTextCellStyle} />
                     </Col>
                     <Col sm={3} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='ZIP' onChange={(e) => { this.setState({zipcode: e.target.value}) }} style={innerTextCellStyle} />
+                      <FormControl type='text' placeholder='ZIP' onChange={(e) => { dispatch(actions.updateCustomerInfo('zipcode', e.target.value)) }} style={innerTextCellStyle} />
                     </Col>
                   </FormGroup>
 
@@ -290,7 +222,7 @@ class Estimate extends Component {
                     <Col sm={4}>
                       <ControlLabel>Email</ControlLabel>
                     </Col>
-                    <Col sm={8} style={formCellEntryStyle} onChange={(e) => { this.setState({email: e.target.value}) }}>
+                    <Col sm={8} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateCustomerInfo('email', e.target.value)) }}>
                       <FormControl type='text' placeholder='customer@email.com' style={innerTextCellStyle} />
                     </Col>
                   </FormGroup>
@@ -298,7 +230,7 @@ class Estimate extends Component {
                     <Col sm={4}>
                       <ControlLabel>Phone</ControlLabel>
                     </Col>
-                    <Col sm={8} style={formCellEntryStyle} onChange={(e) => { this.setState({phone: e.target.value}) }}>
+                    <Col sm={8} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateCustomerInfo('phone', e.target.value)) }}>
                       <FormControl type='text' placeholder='555-123-1234' style={innerTextCellStyle} />
                     </Col>
                   </FormGroup>
@@ -306,7 +238,7 @@ class Estimate extends Component {
                     <Col sm={4}>
                       <ControlLabel>Fax</ControlLabel>
                     </Col>
-                    <Col sm={8} style={formCellEntryStyle} onChange={(e) => { this.setState({fax: e.target.value}) }}>
+                    <Col sm={8} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateCustomerInfo('fax', e.target.value)) }}>
                       <FormControl type='text' placeholder='555-123-1234' style={innerTextCellStyle} />
                     </Col>
                   </FormGroup>
@@ -319,7 +251,7 @@ class Estimate extends Component {
                       <ControlLabel>Specification</ControlLabel>
                     </Col>
                     <Col sm={10} style={formCellEntryStyle}>
-                      <FormControl componentClass='textarea' placeholder='Specification' rows='3' onChange={(e) => { this.setState({specification: e.target.value}) }} style={innerTextCellStyle} />
+                      <FormControl componentClass='textarea' placeholder='Specification' rows='3' onChange={(e) => { dispatch(actions.updateCustomerInfo('specification', e.target.value)) }} style={innerTextCellStyle} />
                     </Col>
                   </FormGroup>
                 </Row>
@@ -435,7 +367,7 @@ class Estimate extends Component {
               </Col>
               <Col sm={4}>
                 <Panel>
-                  <h5>Grand Total with Tax : ${parseFloat(this.state.total).toFixed(2)}</h5>
+                  <h5>Grand Total with Tax : ${parseFloat(total).toFixed(2)}</h5>
                 </Panel>
               </Col>
             </Row>
@@ -450,5 +382,10 @@ class Estimate extends Component {
 }
 
 export default connect(
-  state => state
+  (state) => {
+    return {
+      shoppingCart: state.shoppingCart,
+      customerInformation: state.customerInformation
+    }
+  }
 )(Estimate)

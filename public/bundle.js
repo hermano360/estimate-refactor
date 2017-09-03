@@ -58,7 +58,7 @@
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
-	var _reactTapEventPlugin = __webpack_require__(573);
+	var _reactTapEventPlugin = __webpack_require__(527);
 	
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 	
@@ -68,7 +68,7 @@
 	    Provider = _require.Provider;
 	
 	var actions = __webpack_require__(444);
-	var store = __webpack_require__(579).configure();
+	var store = __webpack_require__(533).configure();
 	
 	(0, _reactTapEventPlugin2.default)();
 	
@@ -22226,15 +22226,15 @@
 	
 	var _StartPage2 = _interopRequireDefault(_StartPage);
 	
-	var _Products = __webpack_require__(536);
+	var _Products = __webpack_require__(490);
 	
 	var _Products2 = _interopRequireDefault(_Products);
 	
-	var _PhoneList = __webpack_require__(539);
+	var _PhoneList = __webpack_require__(493);
 	
 	var _PhoneList2 = _interopRequireDefault(_PhoneList);
 	
-	var _Estimate = __webpack_require__(540);
+	var _Estimate = __webpack_require__(494);
 	
 	var _Estimate2 = _interopRequireDefault(_Estimate);
 	
@@ -42353,10 +42353,33 @@
 	  };
 	};
 	
-	var recalculateTotal = exports.recalculateTotal = function recalculateTotal(shoppingCart) {
+	var changeCartItemQuantity = exports.changeCartItemQuantity = function changeCartItemQuantity(keyCode, template, quantity) {
 	  return {
-	    type: 'RECALCULATE_TOTAL',
-	    shoppingCart: shoppingCart
+	    type: 'CHANGE_CART_ITEM_QUANTITY',
+	    keyCode: keyCode,
+	    template: template,
+	    quantity: quantity
+	  };
+	};
+	
+	var updateCustomerInfo = exports.updateCustomerInfo = function updateCustomerInfo(attribute, value) {
+	  return {
+	    type: 'UPDATE_CUSTOMER_INFO',
+	    attribute: attribute,
+	    value: value
+	  };
+	};
+	
+	var resetCustomerInfo = exports.resetCustomerInfo = function resetCustomerInfo() {
+	  return {
+	    type: 'RESET_CUSTOMER_INFO'
+	  };
+	};
+	
+	var selectTemplate = exports.selectTemplate = function selectTemplate(template) {
+	  return {
+	    type: 'SELECT_TEMPLATE',
+	    template: template
 	  };
 	};
 
@@ -46592,53 +46615,7 @@
 	}
 
 /***/ }),
-/* 490 */,
-/* 491 */,
-/* 492 */,
-/* 493 */,
-/* 494 */,
-/* 495 */,
-/* 496 */,
-/* 497 */,
-/* 498 */,
-/* 499 */,
-/* 500 */,
-/* 501 */,
-/* 502 */,
-/* 503 */,
-/* 504 */,
-/* 505 */,
-/* 506 */,
-/* 507 */,
-/* 508 */,
-/* 509 */,
-/* 510 */,
-/* 511 */,
-/* 512 */,
-/* 513 */,
-/* 514 */,
-/* 515 */,
-/* 516 */,
-/* 517 */,
-/* 518 */,
-/* 519 */,
-/* 520 */,
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */,
-/* 525 */,
-/* 526 */,
-/* 527 */,
-/* 528 */,
-/* 529 */,
-/* 530 */,
-/* 531 */,
-/* 532 */,
-/* 533 */,
-/* 534 */,
-/* 535 */,
-/* 536 */
+/* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46655,11 +46632,11 @@
 	
 	var _reactBootstrap = __webpack_require__(186);
 	
-	var _productDetails = __webpack_require__(537);
+	var _productDetails = __webpack_require__(491);
 	
 	var _productDetails2 = _interopRequireDefault(_productDetails);
 	
-	var _productKeyCodes = __webpack_require__(538);
+	var _productKeyCodes = __webpack_require__(492);
 	
 	var _productKeyCodes2 = _interopRequireDefault(_productKeyCodes);
 	
@@ -47114,7 +47091,7 @@
 	})(Products);
 
 /***/ }),
-/* 537 */
+/* 491 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -47244,7 +47221,7 @@
 	};
 
 /***/ }),
-/* 538 */
+/* 492 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -47262,7 +47239,7 @@
 	};
 
 /***/ }),
-/* 539 */
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47691,7 +47668,7 @@
 	})(PhoneList);
 
 /***/ }),
-/* 540 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47710,29 +47687,19 @@
 	
 	var _reactBootstrap = __webpack_require__(186);
 	
-	var _ShoppingCartItem = __webpack_require__(541);
+	var _ShoppingCartItem = __webpack_require__(495);
 	
 	var _ShoppingCartItem2 = _interopRequireDefault(_ShoppingCartItem);
 	
-	var _EstimatePDF = __webpack_require__(542);
+	var _EstimatePDF = __webpack_require__(496);
 	
 	var _EstimatePDF2 = _interopRequireDefault(_EstimatePDF);
 	
-	var _ProductPreview = __webpack_require__(572);
+	var _ProductPreview = __webpack_require__(526);
 	
 	var _ProductPreview2 = _interopRequireDefault(_ProductPreview);
 	
-	var _productDetails = __webpack_require__(537);
-	
-	var _productDetails2 = _interopRequireDefault(_productDetails);
-	
-	var _productKeyCodes = __webpack_require__(538);
-	
-	var _productKeyCodes2 = _interopRequireDefault(_productKeyCodes);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -47759,122 +47726,25 @@
 	    var _this = _possibleConstructorReturn(this, (Estimate.__proto__ || Object.getPrototypeOf(Estimate)).call(this));
 	
 	    _this.state = {
-	      salesman: '',
-	      customerFirstName: '',
-	      customerLastName: '',
-	      email: '',
 	      quoteNumber: Math.floor(Math.random() * 200),
-	      projectDescription: '',
-	      address: '',
-	      city: '',
-	      state: '',
-	      zipcode: '',
-	      specification: '',
-	      phone: '',
-	      fax: '',
 	      date: todaysDate(),
 	      estimateStatus: 'main',
-	      total: 0,
 	      modal: false,
 	      count: 0
 	    };
 	    _this.handleTemplateSelect = _this.handleTemplateSelect.bind(_this);
-	    _this.handleItemDelete = _this.handleItemDelete.bind(_this);
-	    _this.handleQuantityChange = _this.handleQuantityChange.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(Estimate, [{
-	    key: 'handleQuantityChange',
-	    value: function handleQuantityChange(keyCode, template, quantity) {
-	      var _props = this.props,
-	          shoppingCart = _props.shoppingCart,
-	          dispatch = _props.dispatch;
-	
-	      var currentShoppingCart = shoppingCart;
-	      var updatedShoppingCart = currentShoppingCart.map(function (cartItem) {
-	        if (cartItem.keyCode === keyCode && cartItem.template === template) {
-	          var newCartItem = {};
-	          for (var prop in cartItem) {
-	            newCartItem[prop] = cartItem[prop];
-	          }
-	          if (isNaN(quantity)) {
-	            quantity = 0;
-	          }
-	          newCartItem.quantity = quantity;
-	          return newCartItem;
-	        } else {
-	          return cartItem;
-	        }
-	      });
-	      dispatch(actions.updateShoppingCart(updatedShoppingCart));
-	      dispatch(actions.recalculateTotal(updatedShoppingCart));
-	    }
-	  }, {
-	    key: 'handleItemDelete',
-	    value: function handleItemDelete(keyCode, template) {
-	      var _props2 = this.props,
-	          shoppingCart = _props2.shoppingCart,
-	          dispatch = _props2.dispatch;
-	
-	      var currentShoppingCart = shoppingCart;
-	      var updatedShoppingCart = currentShoppingCart.filter(function (cartItem) {
-	        if (cartItem.keyCode === keyCode && cartItem.template === template) {
-	          return false;
-	        } else {
-	          return true;
-	        }
-	      });
-	      console.log(this.props);
-	      // dispatch(actions.updateShoppingCart(updatedShoppingCart))
-	      dispatch(actions.deleteShoppingCartItem(keyCode, template));
-	      this.setState({
-	        total: this.recalculateTotal(updatedShoppingCart)
-	      });
-	    }
-	  }, {
 	    key: 'handleTemplateSelect',
 	    value: function handleTemplateSelect(template) {
-	      var _props3 = this.props,
-	          dispatch = _props3.dispatch,
-	          shoppingCart = _props3.shoppingCart;
+	      console.log(template);
+	      var dispatch = this.props.dispatch;
 	      // if the template selected isnt the default option
 	
 	      if (template !== 'select') {
-	        // obtain all of the keyCodes for a given template
-	        var keyCodes = _productKeyCodes2.default[template];
-	        // get the item details for all of the keycodes from a given template
-	        var templateItems = _productDetails2.default.getBatchProducts(keyCodes);
-	        // get the current shopping cart for comparisions
-	        var currentShoppingCart = shoppingCart;
-	        // used to put in new items after validation
-	        var newShoppingCart = [];
-	        // go through each template item to see if it should be added to cart
-	        templateItems.forEach(function (newItem) {
-	          // assume item will be added at first
-	          var addToCart = true;
-	          // start going through the current shopping cart
-	          currentShoppingCart.forEach(function (cartItem) {
-	            // as long as there the keycode and template arent both present, item is considered valid
-	            // the reason is that you can add items a la cart, without template
-	            if (newItem.keyCode === cartItem.keyCode && template === cartItem.template) {
-	              addToCart = false;
-	            }
-	          });
-	          // adding item to cart if it is indeed valid
-	          if (addToCart) {
-	            var itemToAdd = {};
-	            for (var prop in newItem) {
-	              itemToAdd[prop] = newItem[prop];
-	            }
-	            itemToAdd.quantity = 0;
-	            itemToAdd.template = template;
-	            newShoppingCart.push(itemToAdd);
-	          }
-	        });
-	
-	        dispatch(actions.updateShoppingCart([].concat(_toConsumableArray(currentShoppingCart), newShoppingCart)));
-	        dispatch(actions.recalculateTotal([].concat(_toConsumableArray(currentShoppingCart), newShoppingCart)));
+	        dispatch(actions.selectTemplate(template));
 	      }
 	    }
 	  }, {
@@ -47882,9 +47752,15 @@
 	    value: function render() {
 	      var _this2 = this;
 	
-	      var _props4 = this.props,
-	          dispatch = _props4.dispatch,
-	          shoppingCart = _props4.shoppingCart;
+	      var _props = this.props,
+	          dispatch = _props.dispatch,
+	          shoppingCart = _props.shoppingCart,
+	          customerInformation = _props.customerInformation;
+	
+	      var total = 0;
+	      shoppingCart.forEach(function (item) {
+	        total += (item.Labor + item.Material) * item.quantity;
+	      });
 	
 	      var formCellEntryStyle = {
 	        paddingLeft: 0,
@@ -47896,7 +47772,7 @@
 	      };
 	      var shoppingCartFunction = function shoppingCartFunction() {
 	        return shoppingCart.map(function (shoppingCartItem) {
-	          return _react2.default.createElement(_ShoppingCartItem2.default, _extends({ key: shoppingCartItem.keyCode + shoppingCartItem.template }, shoppingCartItem, { onQuantityChange: _this2.handleQuantityChange, onItemDelete: _this2.handleItemDelete }));
+	          return _react2.default.createElement(_ShoppingCartItem2.default, _extends({ key: shoppingCartItem.keyCode + shoppingCartItem.template }, shoppingCartItem));
 	        });
 	      };
 	      var defaultState = {
@@ -47913,15 +47789,42 @@
 	        phone: '',
 	        fax: '',
 	        date: todaysDate(),
-	        estimateStatus: 'main',
-	        total: 0
+	        estimateStatus: 'main'
 	      };
 	      var bottomButtonStyle = {
 	        marginLeft: '5px',
 	        marginRight: '5px',
 	        verticalAlign: 'middle'
 	      };
-	      var innerTextCellStyle = { padding: '0', color: 'black' };
+	      var innerTextCellStyle = { padding: '0', color: 'black'
+	
+	        // possible form item generator for later. seems to be too many one-off cases
+	      };var formFieldGenerator = function formFieldGenerator(labelSize, labelName, fields) {
+	        var fieldsGenerator = function fieldsGenerator(itemFields) {
+	          return itemFields.map(function (formItem) {
+	            return _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { sm: formItem.size, style: formItem.cellStyle },
+	              _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: formItem.placeholder, onChange: formItem.onChangeFunction, style: formItem.innerStyle })
+	            );
+	          });
+	        };
+	        return _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          { controlId: 'formValidationWarning1', validationState: 'null' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: labelSize },
+	            _react2.default.createElement(
+	              _reactBootstrap.ControlLabel,
+	              null,
+	              labelName
+	            )
+	          ),
+	          fieldsGenerator(fields)
+	        );
+	      };
+	
 	      switch (this.state.estimateStatus) {
 	        case 'pdf':
 	          return _react2.default.createElement(_EstimatePDF2.default, _extends({}, this.state, { handleEstimateStartOver: function handleEstimateStartOver() {
@@ -47989,7 +47892,7 @@
 	                      _react2.default.createElement(
 	                        _reactBootstrap.FormControl,
 	                        { componentClass: 'select', placeholder: 'select', onChange: function onChange(e) {
-	                            _this2.setState({ salesman: e.target.value });
+	                            return dispatch(actions.updateCustomerInfo('salesman', e.target.value));
 	                          }, style: innerTextCellStyle },
 	                        _react2.default.createElement(
 	                          'option',
@@ -48055,15 +47958,13 @@
 	                      _reactBootstrap.Col,
 	                      { sm: 8 },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', defaultValue: todaysDate(), onChange: function onChange(e) {
-	                          _this2.setState({ date: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('date', e.target.value));
 	                        }, style: innerTextCellStyle })
 	                    )
 	                  ),
 	                  _react2.default.createElement(
 	                    _reactBootstrap.FormGroup,
-	                    { controlId: 'formValidationWarning1', validationState: 'null', onChange: function onChange(e) {
-	                        _this2.setState({ projectDescription: e.target.value });
-	                      } },
+	                    { controlId: 'formValidationWarning1', validationState: 'null' },
 	                    _react2.default.createElement(_reactBootstrap.Clearfix, { visibleSmBlock: true }),
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Col,
@@ -48078,7 +47979,7 @@
 	                      _reactBootstrap.Col,
 	                      { sm: 8 },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Description', onChange: function onChange(e) {
-	                          _this2.setState({ projectDescription: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('projectDescription', e.target.value));
 	                        }, style: innerTextCellStyle })
 	                    )
 	                  ),
@@ -48105,8 +48006,10 @@
 	                          }, style: innerTextCellStyle },
 	                        _react2.default.createElement(
 	                          'option',
-	                          { value: 'select' },
-	                          'select'
+	                          { value: 'select', onClick: function onClick() {
+	                              console.log('Selected select');
+	                            } },
+	                          'Select'
 	                        ),
 	                        _react2.default.createElement(
 	                          'option',
@@ -48145,14 +48048,14 @@
 	                      _reactBootstrap.Col,
 	                      { sm: 4, style: formCellEntryStyle },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'First', onChange: function onChange(e) {
-	                          _this2.setState({ customerFirstName: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('customerFirstName', e.target.value));
 	                        }, style: innerTextCellStyle })
 	                    ),
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Col,
 	                      { sm: 4, style: formCellEntryStyle },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Last', onChange: function onChange(e) {
-	                          _this2.setState({ customerLastName: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('customerLastName', e.target.value));
 	                        }, style: innerTextCellStyle })
 	                    )
 	                  ),
@@ -48172,7 +48075,7 @@
 	                      _reactBootstrap.Col,
 	                      { sm: 8, style: formCellEntryStyle },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '123 Main Street', onChange: function onChange(e) {
-	                          _this2.setState({ address: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('address', e.target.value));
 	                        }, style: innerTextCellStyle })
 	                    )
 	                  ),
@@ -48192,21 +48095,21 @@
 	                      _reactBootstrap.Col,
 	                      { sm: 3, style: formCellEntryStyle },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'City', onChange: function onChange(e) {
-	                          _this2.setState({ city: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('city', e.target.value));
 	                        }, style: innerTextCellStyle })
 	                    ),
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Col,
 	                      { sm: 2, style: formCellEntryStyle },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'CA', onChange: function onChange(e) {
-	                          _this2.setState({ state: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('state', e.target.value));
 	                        }, style: innerTextCellStyle })
 	                    ),
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Col,
 	                      { sm: 3, style: formCellEntryStyle },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'ZIP', onChange: function onChange(e) {
-	                          _this2.setState({ zipcode: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('zipcode', e.target.value));
 	                        }, style: innerTextCellStyle })
 	                    )
 	                  )
@@ -48233,7 +48136,7 @@
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Col,
 	                      { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                          _this2.setState({ email: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('email', e.target.value));
 	                        } },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'customer@email.com', style: innerTextCellStyle })
 	                    )
@@ -48253,7 +48156,7 @@
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Col,
 	                      { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                          _this2.setState({ phone: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('phone', e.target.value));
 	                        } },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234', style: innerTextCellStyle })
 	                    )
@@ -48273,7 +48176,7 @@
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Col,
 	                      { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                          _this2.setState({ fax: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('fax', e.target.value));
 	                        } },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234', style: innerTextCellStyle })
 	                    )
@@ -48302,7 +48205,7 @@
 	                      _reactBootstrap.Col,
 	                      { sm: 10, style: formCellEntryStyle },
 	                      _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '3', onChange: function onChange(e) {
-	                          _this2.setState({ specification: e.target.value });
+	                          dispatch(actions.updateCustomerInfo('specification', e.target.value));
 	                        }, style: innerTextCellStyle })
 	                    )
 	                  )
@@ -48674,7 +48577,7 @@
 	                    'h5',
 	                    null,
 	                    'Grand Total with Tax : $',
-	                    parseFloat(this.state.total).toFixed(2)
+	                    parseFloat(total).toFixed(2)
 	                  )
 	                )
 	              )
@@ -48692,11 +48595,14 @@
 	}(_react.Component);
 	
 	exports.default = connect(function (state) {
-	  return state;
+	  return {
+	    shoppingCart: state.shoppingCart,
+	    customerInformation: state.customerInformation
+	  };
 	})(Estimate);
 
 /***/ }),
-/* 541 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48732,22 +48638,18 @@
 	  function ShoppingCartItem() {
 	    _classCallCheck(this, ShoppingCartItem);
 	
-	    var _this = _possibleConstructorReturn(this, (ShoppingCartItem.__proto__ || Object.getPrototypeOf(ShoppingCartItem)).call(this));
-	
-	    _this.onQuantityChange = _this.onQuantityChange.bind(_this);
-	    return _this;
+	    return _possibleConstructorReturn(this, (ShoppingCartItem.__proto__ || Object.getPrototypeOf(ShoppingCartItem)).apply(this, arguments));
 	  }
 	
 	  _createClass(ShoppingCartItem, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      console.log(this.props);
-	    }
-	  }, {
 	    key: 'onQuantityChange',
-	    value: function onQuantityChange(keycode, template, quantity) {
-	      if (typeof parseFloat(quantity) === 'number') {
-	        this.props.onQuantityChange(keycode, template, parseFloat(quantity));
+	    value: function onQuantityChange(keyCode, template, quantity) {
+	      var dispatch = this.props.dispatch;
+	
+	      if (/^[0-9\.]*$/.test(quantity)) {
+	        dispatch(actions.changeCartItemQuantity(keyCode, template, quantity));
+	      } else {
+	        dispatch(actions.changeCartItemQuantity(keyCode, template, 0));
 	      }
 	    }
 	  }, {
@@ -48762,7 +48664,9 @@
 	          Description = _props.Description,
 	          keyCode = _props.keyCode,
 	          quantity = _props.quantity,
-	          template = _props.template;
+	          template = _props.template,
+	          dispatch = _props.dispatch;
+	
 	
 	      return _react2.default.createElement(
 	        'tr',
@@ -48808,8 +48712,8 @@
 	        ),
 	        _react2.default.createElement(
 	          'td',
-	          { onClick: function onClick(e) {
-	              _this2.props.onItemDelete(keyCode, template);
+	          { onClick: function onClick() {
+	              dispatch(actions.deleteShoppingCartItem(keyCode, template));
 	            } },
 	          _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
 	        )
@@ -48820,14 +48724,10 @@
 	  return ShoppingCartItem;
 	}(_react.Component);
 	
-	exports.default = connect(function (state) {
-	  return {
-	    shoppingCart: state.shoppingCart
-	  };
-	})(ShoppingCartItem);
+	exports.default = connect()(ShoppingCartItem);
 
 /***/ }),
-/* 542 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48844,15 +48744,15 @@
 	
 	var _reactBootstrap = __webpack_require__(186);
 	
-	var _CustomerInfo = __webpack_require__(543);
+	var _CustomerInfo = __webpack_require__(497);
 	
 	var _CustomerInfo2 = _interopRequireDefault(_CustomerInfo);
 	
-	var _QuoteSummary = __webpack_require__(544);
+	var _QuoteSummary = __webpack_require__(498);
 	
 	var _QuoteSummary2 = _interopRequireDefault(_QuoteSummary);
 	
-	var _Specifications = __webpack_require__(545);
+	var _Specifications = __webpack_require__(499);
 	
 	var _Specifications2 = _interopRequireDefault(_Specifications);
 	
@@ -48864,7 +48764,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var axios = __webpack_require__(546);
+	var axios = __webpack_require__(500);
 	
 	var EstimatePDF = function (_Component) {
 	  _inherits(EstimatePDF, _Component);
@@ -49016,7 +48916,7 @@
 	exports.default = EstimatePDF;
 
 /***/ }),
-/* 543 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49144,7 +49044,7 @@
 	exports.default = CustomerInfo;
 
 /***/ }),
-/* 544 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49243,7 +49143,7 @@
 	exports.default = QuoteSummary;
 
 /***/ }),
-/* 545 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49424,21 +49324,21 @@
 	exports.default = Specifications;
 
 /***/ }),
-/* 546 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(547);
+	module.exports = __webpack_require__(501);
 
 /***/ }),
-/* 547 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(548);
-	var bind = __webpack_require__(549);
-	var Axios = __webpack_require__(551);
-	var defaults = __webpack_require__(552);
+	var utils = __webpack_require__(502);
+	var bind = __webpack_require__(503);
+	var Axios = __webpack_require__(505);
+	var defaults = __webpack_require__(506);
 	
 	/**
 	 * Create an instance of Axios
@@ -49471,15 +49371,15 @@
 	};
 	
 	// Expose Cancel & CancelToken
-	axios.Cancel = __webpack_require__(569);
-	axios.CancelToken = __webpack_require__(570);
-	axios.isCancel = __webpack_require__(566);
+	axios.Cancel = __webpack_require__(523);
+	axios.CancelToken = __webpack_require__(524);
+	axios.isCancel = __webpack_require__(520);
 	
 	// Expose all/spread
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(571);
+	axios.spread = __webpack_require__(525);
 	
 	module.exports = axios;
 	
@@ -49488,13 +49388,13 @@
 
 
 /***/ }),
-/* 548 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var bind = __webpack_require__(549);
-	var isBuffer = __webpack_require__(550);
+	var bind = __webpack_require__(503);
+	var isBuffer = __webpack_require__(504);
 	
 	/*global toString:true*/
 	
@@ -49797,7 +49697,7 @@
 
 
 /***/ }),
-/* 549 */
+/* 503 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -49814,7 +49714,7 @@
 
 
 /***/ }),
-/* 550 */
+/* 504 */
 /***/ (function(module, exports) {
 
 	/*!
@@ -49841,17 +49741,17 @@
 
 
 /***/ }),
-/* 551 */
+/* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var defaults = __webpack_require__(552);
-	var utils = __webpack_require__(548);
-	var InterceptorManager = __webpack_require__(563);
-	var dispatchRequest = __webpack_require__(564);
-	var isAbsoluteURL = __webpack_require__(567);
-	var combineURLs = __webpack_require__(568);
+	var defaults = __webpack_require__(506);
+	var utils = __webpack_require__(502);
+	var InterceptorManager = __webpack_require__(517);
+	var dispatchRequest = __webpack_require__(518);
+	var isAbsoluteURL = __webpack_require__(521);
+	var combineURLs = __webpack_require__(522);
 	
 	/**
 	 * Create a new instance of Axios
@@ -49933,13 +49833,13 @@
 
 
 /***/ }),
-/* 552 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(548);
-	var normalizeHeaderName = __webpack_require__(553);
+	var utils = __webpack_require__(502);
+	var normalizeHeaderName = __webpack_require__(507);
 	
 	var DEFAULT_CONTENT_TYPE = {
 	  'Content-Type': 'application/x-www-form-urlencoded'
@@ -49955,10 +49855,10 @@
 	  var adapter;
 	  if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(554);
+	    adapter = __webpack_require__(508);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(554);
+	    adapter = __webpack_require__(508);
 	  }
 	  return adapter;
 	}
@@ -50032,12 +49932,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 553 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(548);
+	var utils = __webpack_require__(502);
 	
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -50050,18 +49950,18 @@
 
 
 /***/ }),
-/* 554 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(548);
-	var settle = __webpack_require__(555);
-	var buildURL = __webpack_require__(558);
-	var parseHeaders = __webpack_require__(559);
-	var isURLSameOrigin = __webpack_require__(560);
-	var createError = __webpack_require__(556);
-	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(561);
+	var utils = __webpack_require__(502);
+	var settle = __webpack_require__(509);
+	var buildURL = __webpack_require__(512);
+	var parseHeaders = __webpack_require__(513);
+	var isURLSameOrigin = __webpack_require__(514);
+	var createError = __webpack_require__(510);
+	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(515);
 	
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -50158,7 +50058,7 @@
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(562);
+	      var cookies = __webpack_require__(516);
 	
 	      // Add xsrf header
 	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -50237,12 +50137,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 555 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var createError = __webpack_require__(556);
+	var createError = __webpack_require__(510);
 	
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -50269,12 +50169,12 @@
 
 
 /***/ }),
-/* 556 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var enhanceError = __webpack_require__(557);
+	var enhanceError = __webpack_require__(511);
 	
 	/**
 	 * Create an Error with the specified message, config, error code, request and response.
@@ -50293,7 +50193,7 @@
 
 
 /***/ }),
-/* 557 */
+/* 511 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -50320,12 +50220,12 @@
 
 
 /***/ }),
-/* 558 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(548);
+	var utils = __webpack_require__(502);
 	
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -50394,12 +50294,12 @@
 
 
 /***/ }),
-/* 559 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(548);
+	var utils = __webpack_require__(502);
 	
 	/**
 	 * Parse headers into an object
@@ -50437,12 +50337,12 @@
 
 
 /***/ }),
-/* 560 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(548);
+	var utils = __webpack_require__(502);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -50511,7 +50411,7 @@
 
 
 /***/ }),
-/* 561 */
+/* 515 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -50553,12 +50453,12 @@
 
 
 /***/ }),
-/* 562 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(548);
+	var utils = __webpack_require__(502);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -50612,12 +50512,12 @@
 
 
 /***/ }),
-/* 563 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(548);
+	var utils = __webpack_require__(502);
 	
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -50670,15 +50570,15 @@
 
 
 /***/ }),
-/* 564 */
+/* 518 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(548);
-	var transformData = __webpack_require__(565);
-	var isCancel = __webpack_require__(566);
-	var defaults = __webpack_require__(552);
+	var utils = __webpack_require__(502);
+	var transformData = __webpack_require__(519);
+	var isCancel = __webpack_require__(520);
+	var defaults = __webpack_require__(506);
 	
 	/**
 	 * Throws a `Cancel` if cancellation has been requested.
@@ -50755,12 +50655,12 @@
 
 
 /***/ }),
-/* 565 */
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(548);
+	var utils = __webpack_require__(502);
 	
 	/**
 	 * Transform the data for a request or a response
@@ -50781,7 +50681,7 @@
 
 
 /***/ }),
-/* 566 */
+/* 520 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -50792,7 +50692,7 @@
 
 
 /***/ }),
-/* 567 */
+/* 521 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -50812,7 +50712,7 @@
 
 
 /***/ }),
-/* 568 */
+/* 522 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -50832,7 +50732,7 @@
 
 
 /***/ }),
-/* 569 */
+/* 523 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -50857,12 +50757,12 @@
 
 
 /***/ }),
-/* 570 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var Cancel = __webpack_require__(569);
+	var Cancel = __webpack_require__(523);
 	
 	/**
 	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -50920,7 +50820,7 @@
 
 
 /***/ }),
-/* 571 */
+/* 525 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -50953,7 +50853,7 @@
 
 
 /***/ }),
-/* 572 */
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51212,11 +51112,11 @@
 	exports.default = ProductPreview;
 
 /***/ }),
-/* 573 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(12);
-	var defaultClickRejectionStrategy = __webpack_require__(574);
+	var defaultClickRejectionStrategy = __webpack_require__(528);
 	
 	var alreadyInjected = false;
 	
@@ -51238,14 +51138,14 @@
 	  alreadyInjected = true;
 	
 	  __webpack_require__(47).injection.injectEventPluginsByName({
-	    'TapEventPlugin':       __webpack_require__(575)(shouldRejectClick)
+	    'TapEventPlugin':       __webpack_require__(529)(shouldRejectClick)
 	  });
 	};
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 574 */
+/* 528 */
 /***/ (function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -51256,7 +51156,7 @@
 
 
 /***/ }),
-/* 575 */
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -51280,14 +51180,14 @@
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(576);
+	var EventConstants = __webpack_require__(530);
 	var EventPluginUtils = __webpack_require__(49);
 	var EventPropagators = __webpack_require__(46);
 	var SyntheticUIEvent = __webpack_require__(81);
-	var TouchEventUtils = __webpack_require__(577);
+	var TouchEventUtils = __webpack_require__(531);
 	var ViewportMetrics = __webpack_require__(82);
 	
-	var keyOf = __webpack_require__(578);
+	var keyOf = __webpack_require__(532);
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
 	var isStartish = EventPluginUtils.isStartish;
@@ -51433,7 +51333,7 @@
 
 
 /***/ }),
-/* 576 */
+/* 530 */
 /***/ (function(module, exports) {
 
 	/**
@@ -51529,7 +51429,7 @@
 	module.exports = EventConstants;
 
 /***/ }),
-/* 577 */
+/* 531 */
 /***/ (function(module, exports) {
 
 	/**
@@ -51577,7 +51477,7 @@
 
 
 /***/ }),
-/* 578 */
+/* 532 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -51616,7 +51516,7 @@
 	module.exports = keyOf;
 
 /***/ }),
-/* 579 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51625,12 +51525,12 @@
 	  value: true
 	});
 	var redux = __webpack_require__(463);
-	var thunk = __webpack_require__(580).default;
+	var thunk = __webpack_require__(534).default;
 	
-	var _require = __webpack_require__(581),
+	var _require = __webpack_require__(535),
 	    PageReducer = _require.PageReducer,
 	    ShoppingCartReducer = _require.ShoppingCartReducer,
-	    TotalCostReducer = _require.TotalCostReducer;
+	    CustomerReducer = _require.CustomerReducer;
 	
 	var configure = exports.configure = function configure() {
 	  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -51638,12 +51538,27 @@
 	  var reducer = redux.combineReducers({
 	    page: PageReducer,
 	    shoppingCart: ShoppingCartReducer,
-	    total: TotalCostReducer
+	    customerInformation: CustomerReducer
 	  });
 	  initialState = {
 	    page: 'StartPage',
 	    shoppingCart: [],
-	    total: 0
+	    customerInformation: {
+	      salesman: '',
+	      customerFirstName: '',
+	      customerLastName: '',
+	      email: '',
+	      // quoteNumber: 0,
+	      projectDescription: '',
+	      address: '',
+	      city: '',
+	      state: '',
+	      zipcode: '',
+	      specification: '',
+	      phone: '',
+	      fax: ''
+	      // date: todaysDate()
+	    }
 	  };
 	  var store = redux.createStore(reducer, initialState, redux.compose(redux.applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	    return f;
@@ -51652,7 +51567,7 @@
 	};
 
 /***/ }),
-/* 580 */
+/* 534 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -51680,14 +51595,32 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 581 */
-/***/ (function(module, exports) {
+/* 535 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.CustomerReducer = exports.ShoppingCartReducer = exports.EstimateReducer = exports.PageReducer = undefined;
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _productDetails = __webpack_require__(491);
+	
+	var _productDetails2 = _interopRequireDefault(_productDetails);
+	
+	var _productKeyCodes = __webpack_require__(492);
+	
+	var _productKeyCodes2 = _interopRequireDefault(_productKeyCodes);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
 	var PageReducer = exports.PageReducer = function PageReducer() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 	  var action = arguments[1];
@@ -51723,23 +51656,76 @@
 	      return state.filter(function (cartItem) {
 	        return !(cartItem.keyCode === action.keyCode && cartItem.template === action.template);
 	      });
+	    case 'CHANGE_CART_ITEM_QUANTITY':
+	      return state.map(function (cartItem) {
+	        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
+	          var quantity = action.quantity;
+	          if (action.quantity = '') {
+	            quantity = 0;
+	          }
+	          return _extends({}, cartItem, {
+	            quantity: quantity
+	          });
+	        }
+	        return cartItem;
+	      });
+	    case 'SELECT_TEMPLATE':
+	
+	      var keyCodes = _productKeyCodes2.default[action.template];
+	      var templateItems = _productDetails2.default.getBatchProducts(keyCodes);
+	      var newItems = templateItems.filter(function (templateItem) {
+	        var result = true;
+	        state.forEach(function (currentItem) {
+	          if (currentItem.keyCode === templateItem.keyCode && currentItem.template === action.template) {
+	            result = false;
+	          }
+	        });
+	        return result;
+	      });
+	      var newItemsWithProperties = newItems.map(function (item) {
+	        return _extends({}, item, {
+	          quantity: 0,
+	          template: action.template
+	        });
+	      });
+	      var completedUnorderedShoppingCart = [].concat(_toConsumableArray(state), _toConsumableArray(newItemsWithProperties));
+	      // ordering non-template, template, then user-added empty template
+	      return [].concat(_toConsumableArray(completedUnorderedShoppingCart.filter(function (item) {
+	        return item.template !== action.template && item.template !== '';
+	      })), _toConsumableArray(completedUnorderedShoppingCart.filter(function (item) {
+	        return item.template === action.template;
+	      })), _toConsumableArray(completedUnorderedShoppingCart.filter(function (item) {
+	        return item.template === '';
+	      })));
 	    default:
 	      return state;
 	  }
 	};
 	
-	var TotalCostReducer = exports.TotalCostReducer = function TotalCostReducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+	var CustomerReducer = exports.CustomerReducer = function CustomerReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  var action = arguments[1];
 	
 	  switch (action.type) {
-	    case 'RECALCULATE_TOTAL':
-	      var total = 0;
-	      action.shoppingCart.forEach(function (item) {
-	        total += (item.Labor + item.Material) * item.quantity;
-	      });
-	      return total;
-	
+	    case 'UPDATE_CUSTOMER_INFO':
+	      return _extends({}, state, _defineProperty({}, action.attribute, action.value));
+	    case 'RESET_CUSTOMER_INFO':
+	      return {
+	        salesman: '',
+	        customerFirstName: '',
+	        customerLastName: '',
+	        email: '',
+	        // quoteNumber: 0,
+	        projectDescription: '',
+	        address: '',
+	        city: '',
+	        state: '',
+	        zipcode: '',
+	        specification: '',
+	        phone: '',
+	        fax: ''
+	        // date: todaysDate()
+	      };
 	    default:
 	      return state;
 	  }

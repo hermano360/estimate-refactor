@@ -1,18 +1,32 @@
 var redux = require('redux')
 var thunk = require('redux-thunk').default
-
-var {PageReducer, ShoppingCartReducer, TotalCostReducer} = require('../reducers/reducers.js')
+var {PageReducer, ShoppingCartReducer, CustomerReducer} = require('../reducers/reducers.js')
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
     page: PageReducer,
     shoppingCart: ShoppingCartReducer,
-    total: TotalCostReducer
+    customerInformation : CustomerReducer
   })
   initialState = {
     page: 'StartPage',
     shoppingCart: [],
-    total: 0
+    customerInformation : {
+      salesman: '',
+      customerFirstName: '',
+      customerLastName: '',
+      email: '',
+      // quoteNumber: 0,
+      projectDescription: '',
+      address: '',
+      city: '',
+      state: '',
+      zipcode: '',
+      specification: '',
+      phone: '',
+      fax: '',
+      // date: todaysDate()
+    }
   }
   var store = redux.createStore(reducer, initialState, redux.compose(
     redux.applyMiddleware(thunk),
