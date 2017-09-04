@@ -12,7 +12,15 @@ store.subscribe(() => {
   let state = store.getState()
 })
 
+store.dispatch(actions.updateCustomerInfo('date', new Date()));
+// largest number available on the database
+store.dispatch(actions.retrieveNewQuote())
+
+store.dispatch(actions.retrieveAvailableQuoteNumbers())
+
 ReactDOM.render(
   <Provider store={store}>
     <Main />
-  </Provider>, document.getElementById('app'))
+  </Provider>,
+  document.getElementById('app')
+)

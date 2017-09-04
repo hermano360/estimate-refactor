@@ -1,4 +1,5 @@
-var superagent = require('superagent')
+var axios = require('axios')
+var databaseSimulation = require('../../api/quoteDatabase')
 
 export var changePage = (page) => {
   return {
@@ -29,14 +30,7 @@ export var deleteShoppingCartItem = (keyCode, template) => {
   }
 }
 
-export var changeCartItemQuantity = (keyCode, template, quantity) => {
-  return {
-    type: 'CHANGE_CART_ITEM_QUANTITY',
-    keyCode,
-    template,
-    quantity
-  }
-}
+
 
 export var updateCustomerInfo = (attribute, value) => {
   return {
@@ -52,9 +46,90 @@ export var resetCustomerInfo = () => {
   }
 }
 
-export var selectTemplate = (template) => {
+export const retrieveNewQuote = () => {
+  return (dispatch, getState) => {
+    let nextQuoteNumber = databaseSimulation.getNewQuoteNumber()
+    dispatch(setInitialQuote(nextQuoteNumber))
+    dispatch(setQuote(nextQuoteNumber))
+    dispatch(addEmptyQuote(nextQuoteNumber, new Date()))
+  }
+}
+
+export const setQuote = (quoteNumber) => {
+  return {
+    type: 'SET_QUOTE',
+    quoteNumber
+  }
+}
+
+export const setInitialQuote = (quoteNumber) => {
+  return {
+    type: 'SET_INITIAL_QUOTE',
+    quoteNumber
+  }
+}
+
+export const addEmptyQuote = (quoteNumber, date) => {
+  return {
+    type: 'ADD_EMPTY_QUOTE',
+    quoteNumber,
+    date
+  }
+}
+
+export const addQuoteToCache = (quote) => {
+  return {
+    type: 'ADD_QUOTE_TO_CACHE',
+    quote
+  }
+}
+
+export var updateQuoteInfo = (quoteNumber, attribute, value) => {
+  return {
+    type: 'UPDATE_QUOTE_INFO',
+    attribute,
+    value,
+    quoteNumber
+  }
+}
+
+export var selectTemplate = (quoteNumber, template) => {
   return {
     type: 'SELECT_TEMPLATE',
-    template
+    template,
+    quoteNumber
+  }
+}
+
+export var changeCartItemQuantity = (quoteNumber, keyCode, template, quantity) => {
+  return {
+    type: 'CHANGE_CART_ITEM_QUANTITY',
+    keyCode,
+    template,
+    quantity,
+    quoteNumber
+  }
+}
+
+export const retrievePreviousQuote = (currentQuoteNumber) => {
+  return (dispatch, getState) => {
+    let previousQuoteNumber = databaseSimulation.getPreviousQuoteNumber(currentQuoteNumber)
+    dispatch(setQuote(previousQuoteNumber))
+  }
+}
+
+
+export const retrieveAvailableQuoteNumbers = () => {
+  return (dispatch, getState) => {
+    let availableQuoteNumbers = databaseSimulation.retrieveAvailableQuoteNumbers()
+    console.log(availableQuoteNumbers)
+    dispatch(setAvailableQuoteNumbers(availableQuoteNumbers))
+  }
+}
+
+export const setAvailableQuoteNumbers = (availableQuoteNumbers) => {
+  return {
+    type: 'SET_AVAILABLE_QUOTE_NUMBERS',
+    availableQuoteNumbers
   }
 }

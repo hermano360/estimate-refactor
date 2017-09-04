@@ -5,11 +5,11 @@ var {connect} = require('react-redux')
 
 class ShoppingCartItem extends Component {
   onQuantityChange (keyCode, template, quantity) {
-    const {dispatch} = this.props
-    if (/^[0-9.]*$/.test(quantity)) {
-      dispatch(actions.changeCartItemQuantity(keyCode, template, quantity))
+    const {dispatch, quoteNumber} = this.props
+    if (/^[0-9]+[.]*[0-9]*$/.test(quantity)) {
+      dispatch(actions.changeCartItemQuantity(quoteNumber, keyCode, template, quantity))
     } else {
-      dispatch(actions.changeCartItemQuantity(keyCode, template, 0))
+      dispatch(actions.changeCartItemQuantity(quoteNumber, keyCode, template, 0))
     }
   }
 
@@ -33,4 +33,10 @@ class ShoppingCartItem extends Component {
   }
 }
 
-export default connect()(ShoppingCartItem)
+export default connect(
+  (state) => {
+    return {
+      quoteNumber: state.quoteNumber
+    }
+  }
+)(ShoppingCartItem)

@@ -3,9 +3,11 @@ import {Button, Row, Col, Grid, FormControl, ControlLabel, FormGroup, Clearfix, 
 import ShoppingCartItem from './ShoppingCartItem'
 import EstimatePDF from './EstimatePDF'
 import ProductPreview from './ProductPreview'
+import EstimateForms from './EstimateForms'
 
 var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
+const databaseSimulation = require('../../../api/quoteDatabase.js')
 
 class Estimate extends Component {
   constructor () {
@@ -15,26 +17,34 @@ class Estimate extends Component {
     }
     super()
     this.state = {
-      quoteNumber: Math.floor(Math.random() * 200),
-      date: todaysDate(),
       estimateStatus: 'main',
-      modal: false,
-      count: 0
+      modal: false
     }
-    this.handleTemplateSelect = this.handleTemplateSelect.bind(this)
   }
 
-  handleTemplateSelect (template) {
-    console.log(template)
-    let {dispatch} = this.props
-    // if the template selected isnt the default option
-    if (template !== 'select') {
-      dispatch(actions.selectTemplate(template))
+  findPreviousQuoteNumber(currentQuote, listOfOtherQuoteNumbers) {
+    for (let i = listOfOtherQuoteNumbers.length - 1; i >= 0; i--) {
+      if (listOfOtherQuoteNumbers[i] < currentQuote){
+        return listOfOtherQuoteNumbers[i]
+      }
     }
+    return currentQuote
+  }
+  findNextQuoteNumber(currentQuote, listOfOtherQuoteNumbers, InitialQuoteNumber) {
+    let allAvailableQuoteNumbers = [...listOfOtherQuoteNumbers, InitialQuoteNumber]
+
+    for (let i = 0; i < allAvailableQuoteNumbers.length; i++) {
+      if (allAvailableQuoteNumbers[i] > currentQuote){
+        return allAvailableQuoteNumbers[i]
+      }
+    }
+    return currentQuote
   }
 
   render () {
-    const {dispatch, shoppingCart, customerInformation} = this.props
+    const {dispatch, cachedQuotes, quoteNumber, InitialQuoteNumber, availableQuoteNumbers} = this.props
+
+    let shoppingCart = cachedQuotes[quoteNumber].shoppingCart;
     let total = 0
     shoppingCart.forEach((item) => {
       total += (item.Labor + item.Material) * item.quantity
@@ -115,147 +125,7 @@ class Estimate extends Component {
               </Col>
             </Row>
             <Row>
-              <Col sm={4}>
-                <Row>
-                  <FormGroup controlId='formValidationWarning1' validationState='null'>
-                    <Col sm={4}>
-                      <ControlLabel>Quote No</ControlLabel>
-                    </Col>
-                    <Col sm={8}>
-                      <FormControl type='text' defaultValue={this.state.quoteNumber} style={innerTextCellStyle} />
-                    </Col>
-                  </FormGroup>
-                  <FormGroup controlId='formControlsSelect'>
-                    <Col sm={4}>
-                      <ControlLabel>Salesperson</ControlLabel>
-                    </Col>
-                    <Col sm={8}>
-                      <FormControl componentClass='select' placeholder='select' onChange={(e) => dispatch(actions.updateCustomerInfo('salesman', e.target.value))} style={innerTextCellStyle} >
-                        <option value='select'>Salesperson</option>
-                        <option value='Gary Banks'>Banks, Gary</option>
-                        <option value='John Chavez'>Chavez, John</option>
-                        <option value='Arnold Corona'>Corona, Arnold</option>
-                        <option value='John Gutierrez'>Gutierrez, John</option>
-                        <option value='Bob Leon'>Leon, Bob</option>
-                        <option value='Ricardo Rivera'>Rivera, Ricardo</option>
-                        <option value='Mike Rogers'>Rogers, Mike</option>
-                        <option value='Cameron Sterling'>Sterling, Cameron</option>
-                      </FormControl>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup controlId='formValidationWarning1' validationState='null'>
-                    <Col sm={4}>
-                      <ControlLabel>Start Date</ControlLabel>
-                    </Col>
-                    <Col sm={8}>
-                      <FormControl type='text' defaultValue={todaysDate()} onChange={(e) => { dispatch(actions.updateCustomerInfo('date', e.target.value)) }} style={innerTextCellStyle} />
-                    </Col>
-                  </FormGroup>
-                  <FormGroup controlId='formValidationWarning1' validationState='null'>
-                    <Clearfix visibleSmBlock />
-                    <Col sm={4}>
-                      <ControlLabel>Project Desc.</ControlLabel>
-                    </Col>
-                    <Col sm={8}>
-                      <FormControl type='text' placeholder='Description' onChange={(e) => { dispatch(actions.updateCustomerInfo('projectDescription', e.target.value)) }} style={innerTextCellStyle} />
-                    </Col>
-                  </FormGroup>
-
-                  <FormGroup controlId='formControlsSelect'>
-                    <Clearfix visibleSmBlock />
-                    <Col sm={4}>
-                      <ControlLabel>Template</ControlLabel>
-                    </Col>
-                    <Col sm={8}>
-                      <FormControl componentClass='select' onChange={(e) => { this.handleTemplateSelect(e.target.value) }} style={innerTextCellStyle}>
-                        <option value='select' onClick={() => { console.log('Selected select') }}>Select</option>
-                        <option value='Demolition'>Demolition</option>
-                        <option value='Foundation/Footings'>Foundation/Footings</option>
-                      </FormControl>
-                    </Col>
-                  </FormGroup>
-                </Row>
-              </Col>
-
-              <Col sm={4}>
-                <Row>
-                  <FormGroup controlId='formValidationWarning1' validationState='null'>
-                    <Col sm={4}>
-                      <ControlLabel>Name</ControlLabel>
-                    </Col>
-                    <Col sm={4} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='First' onChange={(e) => { dispatch(actions.updateCustomerInfo('customerFirstName', e.target.value)) }} style={innerTextCellStyle} />
-                    </Col>
-                    <Col sm={4} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='Last' onChange={(e) => { dispatch(actions.updateCustomerInfo('customerLastName', e.target.value)) }} style={innerTextCellStyle} />
-                    </Col>
-                  </FormGroup>
-                  <FormGroup controlId='formValidationWarning1' validationState='null'>
-                    <Col sm={4}>
-                      <ControlLabel>Address</ControlLabel>
-                    </Col>
-                    <Col sm={8} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='123 Main Street' onChange={(e) => { dispatch(actions.updateCustomerInfo('address', e.target.value)) }} style={innerTextCellStyle} />
-                    </Col>
-                  </FormGroup>
-                  <FormGroup controlId='formValidationWarning1' validationState='null'>
-                    <Col sm={4}>
-                      <ControlLabel>City</ControlLabel>
-                    </Col>
-                    <Col sm={3} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='City' onChange={(e) => { dispatch(actions.updateCustomerInfo('city', e.target.value)) }} style={innerTextCellStyle} />
-                    </Col>
-                    <Col sm={2} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='CA' onChange={(e) => { dispatch(actions.updateCustomerInfo('state', e.target.value)) }} style={innerTextCellStyle} />
-                    </Col>
-                    <Col sm={3} style={formCellEntryStyle}>
-                      <FormControl type='text' placeholder='ZIP' onChange={(e) => { dispatch(actions.updateCustomerInfo('zipcode', e.target.value)) }} style={innerTextCellStyle} />
-                    </Col>
-                  </FormGroup>
-
-                </Row>
-
-              </Col>
-              <Col sm={4}>
-                <Row>
-                  <FormGroup controlId='formValidationWarning1' validationState='null'>
-                    <Col sm={4}>
-                      <ControlLabel>Email</ControlLabel>
-                    </Col>
-                    <Col sm={8} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateCustomerInfo('email', e.target.value)) }}>
-                      <FormControl type='text' placeholder='customer@email.com' style={innerTextCellStyle} />
-                    </Col>
-                  </FormGroup>
-                  <FormGroup controlId='formValidationWarning1' validationState='null'>
-                    <Col sm={4}>
-                      <ControlLabel>Phone</ControlLabel>
-                    </Col>
-                    <Col sm={8} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateCustomerInfo('phone', e.target.value)) }}>
-                      <FormControl type='text' placeholder='555-123-1234' style={innerTextCellStyle} />
-                    </Col>
-                  </FormGroup>
-                  <FormGroup controlId='formValidationWarning1' validationState='null'>
-                    <Col sm={4}>
-                      <ControlLabel>Fax</ControlLabel>
-                    </Col>
-                    <Col sm={8} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateCustomerInfo('fax', e.target.value)) }}>
-                      <FormControl type='text' placeholder='555-123-1234' style={innerTextCellStyle} />
-                    </Col>
-                  </FormGroup>
-                </Row>
-              </Col>
-              <Col sm={8}>
-                <Row>
-                  <FormGroup controlId='formControlsTextarea'>
-                    <Col sm={2}>
-                      <ControlLabel>Specification</ControlLabel>
-                    </Col>
-                    <Col sm={10} style={formCellEntryStyle}>
-                      <FormControl componentClass='textarea' placeholder='Specification' rows='3' onChange={(e) => { dispatch(actions.updateCustomerInfo('specification', e.target.value)) }} style={innerTextCellStyle} />
-                    </Col>
-                  </FormGroup>
-                </Row>
-              </Col>
+              <EstimateForms />
               <Col sm={12}>
                 <div style={{height: '40vh', overflow: 'scroll'}}>
                   <Table striped bordered condensed hover>
@@ -357,11 +227,38 @@ class Estimate extends Component {
                     </Modal>
                   </Col>
                   <Col sm={12} style={{textAlign: 'center', marginTop: '5px'}}>
-                    <Button onClick={() => { this.setState({count: 0}) }}>{'|<'}</Button>
-                    <Button onClick={() => { if (this.state.count > 0) { this.setState({count: this.state.count - 1}) } }}> {'<'}</Button>
-                    <Button> {this.state.count + 1} </Button>
-                    <Button onClick={() => { if (this.state.count < 100) { this.setState({count: this.state.count + 1}) } }}>{'>'}</Button>
-                    <Button onClick={() => { this.setState({count: 100 - 1}) }} > {'>|'}</Button>
+                    <Button onClick={() => { dispatch(actions.setQuote(InitialQuoteNumber)) }}>Current</Button>
+                    <Button onClick={() => {
+                      let nextQuoteNumber = this.findNextQuoteNumber(quoteNumber, availableQuoteNumbers, InitialQuoteNumber);
+                      if (nextQuoteNumber in cachedQuotes) {
+                        dispatch(actions.setQuote(nextQuoteNumber))
+                      } else {
+                        let nextQuote = databaseSimulation.retrieveQuote(nextQuoteNumber)
+                        dispatch(actions.addQuoteToCache(nextQuote))
+                        dispatch(actions.setQuote(nextQuoteNumber))
+                      }
+                    }}>{`<`}</Button>
+                    <Button> Quote </Button>
+                    <Button onClick={() => {
+                      let previousQuoteNumber = this.findPreviousQuoteNumber(quoteNumber, availableQuoteNumbers);
+                      if (previousQuoteNumber in cachedQuotes) {
+                        dispatch(actions.setQuote(previousQuoteNumber))
+                      } else {
+                        let previousQuote = databaseSimulation.retrieveQuote(previousQuoteNumber)
+                        dispatch(actions.addQuoteToCache(previousQuote))
+                        dispatch(actions.setQuote(previousQuoteNumber))
+                      }
+                    }}>></Button>
+                    <Button onClick={() => {
+                      let firstQuoteNumber = availableQuoteNumbers[0]
+                      if (firstQuoteNumber in cachedQuotes) {
+                        dispatch(actions.setQuote(firstQuoteNumber))
+                      } else {
+                        let firstQuote = databaseSimulation.retrieveQuote(firstQuoteNumber)
+                        dispatch(actions.addQuoteToCache(firstQuote))
+                        dispatch(actions.setQuote(firstQuoteNumber))
+                      }
+                    }}>{'>|'}</Button>
                   </Col>
                 </Row>
               </Col>
@@ -384,8 +281,10 @@ class Estimate extends Component {
 export default connect(
   (state) => {
     return {
-      shoppingCart: state.shoppingCart,
-      customerInformation: state.customerInformation
+      cachedQuotes: state.cachedQuotes,
+      quoteNumber: state.quoteNumber,
+      InitialQuoteNumber: state.InitialQuoteNumber,
+      availableQuoteNumbers: state.availableQuoteNumbers
     }
   }
 )(Estimate)
