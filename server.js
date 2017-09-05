@@ -51,12 +51,9 @@ app.post('/generateDocument', function (req, res) {
 });
 
 app.get('/downloadWordDocument', function (req, res) {
-  res.download(__dirname + '/api/output.docx','outfile.docx')
+  res.download(__dirname + '/api/ProBuildersEstimate.docx','ProBuildersEstimate.docx')
 });
 
-app.get('/file', function (req, res) {
-  res.download(__dirname + '/api/output.docx', 'output.docx');
-});
 
 
 

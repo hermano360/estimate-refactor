@@ -93,7 +93,7 @@ module.exports = {
 
 
     // buf is a nodejs buffer, you can either write it to a file or do anything else with it.
-    fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
+    fs.writeFileSync(path.resolve(__dirname, 'ProBuildersEstimate.docx'), buf);
     cb('success')
     console.log("file was written...");
   }
