@@ -72,10 +72,6 @@
 	
 	(0, _reactTapEventPlugin2.default)();
 	
-	store.subscribe(function () {
-	  var state = store.getState();
-	});
-	
 	store.dispatch(actions.updateCustomerInfo('date', new Date()));
 	// largest number available on the database
 	store.dispatch(actions.retrieveNewQuote());
@@ -42328,7 +42324,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var axios = __webpack_require__(445);
 	var databaseSimulation = __webpack_require__(471);
 	
 	var changePage = exports.changePage = function changePage(page) {
@@ -44016,32 +44011,32 @@
 	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
-	    SKU: "idk",
-	    UOM: "sqft",
-	    keyCode: "DMCSLB4",
-	    picture: "http://via.placeholder.com/350x150",
-	    productGroup: "Demolition",
-	    template: "Demolition",
-	    supplier: "Home Depot",
+	    SKU: 'idk',
+	    UOM: 'sqft',
+	    keyCode: 'DMCSLB4',
+	    picture: 'http://via.placeholder.com/350x150',
+	    productGroup: 'Demolition',
+	    template: 'Demolition',
+	    supplier: 'Home Depot',
 	    updated: 1501563875457,
-	    url: "http://www.google.com",
+	    url: 'http://www.google.com',
 	    quantity: 500
 	  }, {
-	    keyCode: "DMDRW",
+	    keyCode: 'DMDRW',
 	    productGroup: 'Demolition',
 	    supplier: 'Harbor Freight',
 	    UOM: 'sqft',
 	    Description: 'Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris',
 	    Material: 0,
-	    Labor: .65,
+	    Labor: 0.65,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
 	    url: 'http://www.google.com',
-	    template: "Demolition",
+	    template: 'Demolition',
 	    quantity: 5
 	  }, {
-	    keyCode: "DMSTCO",
+	    keyCode: 'DMSTCO',
 	    productGroup: 'Demolition',
 	    supplier: 'Furguson',
 	    UOM: 'sqft',
@@ -44052,7 +44047,7 @@
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
 	    url: 'http://www.google.com',
-	    template: "Demolition",
+	    template: 'Demolition',
 	    quantity: 5
 	  }, {
 	    keyCode: 'foot24x12',
@@ -44089,29 +44084,29 @@
 	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
-	    SKU: "idk",
-	    UOM: "sqft",
-	    keyCode: "DMCSLB4",
-	    picture: "http://via.placeholder.com/350x150",
-	    productGroup: "Demolition",
-	    template: "Demolition",
-	    supplier: "Home Depot",
+	    SKU: 'idk',
+	    UOM: 'sqft',
+	    keyCode: 'DMCSLB4',
+	    picture: 'http://via.placeholder.com/350x150',
+	    productGroup: 'Demolition',
+	    template: 'Demolition',
+	    supplier: 'Home Depot',
 	    updated: 1501563875457,
-	    url: "http://www.google.com",
+	    url: 'http://www.google.com',
 	    quantity: 562
 	  }, {
-	    keyCode: "DMDRW",
+	    keyCode: 'DMDRW',
 	    productGroup: 'Demolition',
 	    supplier: 'Harbor Freight',
 	    UOM: 'sqft',
 	    Description: 'Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris',
 	    Material: 0,
-	    Labor: .65,
+	    Labor: 0.65,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
 	    url: 'http://www.google.com',
-	    template: "Demolition",
+	    template: 'Demolition',
 	    quantity: 23
 	  }],
 	  quoteNumber: 2,
@@ -44134,29 +44129,29 @@
 	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
-	    SKU: "idk",
-	    UOM: "sqft",
-	    keyCode: "DMCSLB4",
-	    picture: "http://via.placeholder.com/350x150",
-	    productGroup: "Demolition",
-	    template: "Demolition",
-	    supplier: "Home Depot",
+	    SKU: 'idk',
+	    UOM: 'sqft',
+	    keyCode: 'DMCSLB4',
+	    picture: 'http://via.placeholder.com/350x150',
+	    productGroup: 'Demolition',
+	    template: 'Demolition',
+	    supplier: 'Home Depot',
 	    updated: 1501563875457,
-	    url: "http://www.google.com",
+	    url: 'http://www.google.com',
 	    quantity: 5
 	  }, {
 	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
-	    SKU: "idk",
-	    UOM: "sqft",
-	    keyCode: "DMCSLB4",
-	    picture: "http://via.placeholder.com/350x150",
-	    productGroup: "Demolition",
-	    template: "Foundation/Footings",
-	    supplier: "Home Depot",
+	    SKU: 'idk',
+	    UOM: 'sqft',
+	    keyCode: 'DMCSLB4',
+	    picture: 'http://via.placeholder.com/350x150',
+	    productGroup: 'Demolition',
+	    template: 'Foundation/Footings',
+	    supplier: 'Home Depot',
 	    updated: 1501563875457,
-	    url: "http://www.google.com",
+	    url: 'http://www.google.com',
 	    quantity: 5
 	  }],
 	  quoteNumber: 3,
@@ -44179,29 +44174,29 @@
 	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
-	    SKU: "idk",
-	    UOM: "sqft",
-	    keyCode: "DMCSLB4",
-	    picture: "http://via.placeholder.com/350x150",
-	    productGroup: "Demolition",
-	    template: "Demolition",
-	    supplier: "Home Depot",
+	    SKU: 'idk',
+	    UOM: 'sqft',
+	    keyCode: 'DMCSLB4',
+	    picture: 'http://via.placeholder.com/350x150',
+	    productGroup: 'Demolition',
+	    template: 'Demolition',
+	    supplier: 'Home Depot',
 	    updated: 1501563875457,
-	    url: "http://www.google.com",
+	    url: 'http://www.google.com',
 	    quantity: 5
 	  }, {
 	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
-	    SKU: "idk",
-	    UOM: "sqft",
-	    keyCode: "DMCSLB4",
-	    picture: "http://via.placeholder.com/350x150",
-	    productGroup: "Demolition",
-	    template: "Foundation/Footings",
-	    supplier: "Home Depot",
+	    SKU: 'idk',
+	    UOM: 'sqft',
+	    keyCode: 'DMCSLB4',
+	    picture: 'http://via.placeholder.com/350x150',
+	    productGroup: 'Demolition',
+	    template: 'Foundation/Footings',
+	    supplier: 'Home Depot',
 	    updated: 1501563875457,
-	    url: "http://www.google.com",
+	    url: 'http://www.google.com',
 	    quantity: 5
 	  }],
 	  quoteNumber: 4,
@@ -44224,15 +44219,15 @@
 	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
-	    SKU: "idk",
-	    UOM: "sqft",
-	    keyCode: "DMCSLB4",
-	    picture: "http://via.placeholder.com/350x150",
-	    productGroup: "Demolition",
-	    template: "Demolition",
-	    supplier: "Home Depot",
+	    SKU: 'idk',
+	    UOM: 'sqft',
+	    keyCode: 'DMCSLB4',
+	    picture: 'http://via.placeholder.com/350x150',
+	    productGroup: 'Demolition',
+	    template: 'Demolition',
+	    supplier: 'Home Depot',
 	    updated: 1501563875457,
-	    url: "http://www.google.com",
+	    url: 'http://www.google.com',
 	    quantity: 5
 	  }],
 	  quoteNumber: 5,
@@ -44270,7 +44265,6 @@
 	  },
 	  // Todo, return the highest number before the given quote number, or return itself
 	  getPreviousQuote: function getPreviousQuote(currentQuote) {
-	    var availableQuoteNumber = void 0;
 	    // first query, decending, with availability in database
 	    for (var i = quotes.length - 1; i >= 0; i--) {
 	      if (quotes[i].quoteNumber < currentQuote.quoteNumber) {
@@ -46962,7 +46956,7 @@
 	                  _this2.setState({ count: 0 });
 	                } },
 	              ' ',
-	              "|<"
+	              '|<'
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
@@ -46972,7 +46966,7 @@
 	                  }
 	                } },
 	              ' ',
-	              "<"
+	              '<'
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
@@ -46988,12 +46982,12 @@
 	                    _this2.setState({ count: _this2.state.count + 1 });
 	                  }
 	                } },
-	              ">"
+	              '>'
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
 	              null,
-	              ">|"
+	              '>|'
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -47023,15 +47017,15 @@
 /* 510 */
 /***/ (function(module, exports) {
 
-	"use strict";
+	'use strict';
 	
 	var productDetails = {
-	  "DMCSLB4": {
-	    keyCode: "DMCSLB4",
+	  'DMCSLB4': {
+	    keyCode: 'DMCSLB4',
 	    productGroup: 'Demolition',
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
-	    Description: "Demolition of Non-Reinforced Concrete Slab Up to 4\" Thick and Dumping of Debris",
+	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Material: 0,
 	    Labor: 1.75,
 	    SKU: 'idk',
@@ -47039,25 +47033,25 @@
 	    picture: 'http://via.placeholder.com/350x150',
 	    url: 'http://www.google.com'
 	  },
-	  "DMDRW": {
-	    keyCode: "DMDRW",
+	  'DMDRW': {
+	    keyCode: 'DMDRW',
 	    productGroup: 'Demolition',
 	    supplier: 'Harbor Freight',
 	    UOM: 'sqft',
-	    Description: "Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris",
+	    Description: 'Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris',
 	    Material: 0,
-	    Labor: .65,
+	    Labor: 0.65,
 	    SKU: 'idk',
 	    updated: 1501563875457,
 	    picture: 'http://via.placeholder.com/350x150',
 	    url: 'http://www.google.com'
 	  },
-	  "DMSTCO": {
-	    keyCode: "DMSTCO",
+	  'DMSTCO': {
+	    keyCode: 'DMSTCO',
 	    productGroup: 'Demolition',
 	    supplier: 'Furguson',
 	    UOM: 'sqft',
-	    Description: "Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris",
+	    Description: 'Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris',
 	    Material: 0,
 	    Labor: 1.1,
 	    SKU: 'idk',
@@ -47065,12 +47059,12 @@
 	    picture: 'http://via.placeholder.com/350x150',
 	    url: 'http://www.google.com'
 	  },
-	  "dmwdwalla": {
-	    keyCode: "dmwdwalla",
+	  'dmwdwalla': {
+	    keyCode: 'dmwdwalla',
 	    productGroup: 'Demolition',
 	    supplier: 'Harbor Freight',
 	    UOM: 'sqft',
-	    Description: "Demolition of Existing Wood Gramed Wall Assembly, Removal of Existing Electrical Romex Wire, Stud Walls, Sill Plate Cut All Foundation Bolts As Necessay Demolition of existing kitchen ceiling",
+	    Description: 'Demolition of Existing Wood Gramed Wall Assembly, Removal of Existing Electrical Romex Wire, Stud Walls, Sill Plate Cut All Foundation Bolts As Necessay Demolition of existing kitchen ceiling',
 	    Material: 0,
 	    Labor: 2,
 	    SKU: 'idk',
@@ -47083,7 +47077,7 @@
 	    productGroup: 'Foundation/Footings',
 	    supplier: 'N/A',
 	    UOM: 'ft',
-	    Description: "Excavate and Finish a 24\" x 12\" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade \"Contractor Not Responsible For Removal of Excavated Dirt from Job Site.\" Includes upgrade 12\" footing to 24\" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. \"Contractor Not Responsible For Removal of Excavated Dirt from Job Site.\"",
+	    Description: 'Excavate and Finish a 24" x 12" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade "Contractor Not Responsible For Removal of Excavated Dirt from Job Site." Includes upgrade 12" footing to 24" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
 	    Material: 5.14,
 	    Labor: 6.3,
 	    SKU: 'idk',
@@ -47096,7 +47090,7 @@
 	    productGroup: 'Foundation/Footings',
 	    supplier: 'Harbor Freight',
 	    UOM: 'pump',
-	    Description: "Supply Labor and Equipment For A Concrete Pump To Remote Location for Pumping Of Concrete as Required",
+	    Description: 'Supply Labor and Equipment For A Concrete Pump To Remote Location for Pumping Of Concrete as Required',
 	    Material: 0,
 	    Labor: 165,
 	    SKU: 'idk',
@@ -47109,7 +47103,7 @@
 	    productGroup: 'Foundation/Footings',
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
-	    Description: "Pour A 3\" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, and Forms. \"Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process\" \"Contractor Not Responsible For Removal of Excavated Dirt from Job Site.\"",
+	    Description: 'Pour A 3" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, and Forms. "Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process" "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
 	    Material: 3.5,
 	    Labor: 1,
 	    SKU: 'idk',
@@ -47122,7 +47116,7 @@
 	    productGroup: 'Foundation/Footings',
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
-	    Description: "Pour A 5 1/2\" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, Wire Mesh, Forms, and Vapor Barrier. \"Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process\" \"Contractor Not Responsible For Removal of Excavated Dirt from Job Site.\"",
+	    Description: 'Pour A 5 1/2" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, Wire Mesh, Forms, and Vapor Barrier. "Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process" "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
 	    Material: 5,
 	    Labor: 1,
 	    SKU: 'idk',
@@ -47153,18 +47147,18 @@
 /* 511 */
 /***/ (function(module, exports) {
 
-	"use strict";
+	'use strict';
 	
-	var allItems = ["DMCSLB4", "DMDRW", "DMSTCO", "dmwdwalla", 'foot24x12', 'pump', 'slab3', 'slab51/2'];
+	var allItems = ['DMCSLB4', 'DMDRW', 'DMSTCO', 'dmwdwalla', 'foot24x12', 'pump', 'slab3', 'slab51/2'];
 	
 	module.exports = {
-		Demolition: ["DMCSLB4", "DMDRW", "DMSTCO", "dmwdwalla"],
-		"Foundation/Footings": ['foot24x12', 'pump', 'slab3', 'slab51/2'],
+	  Demolition: ['DMCSLB4', 'DMDRW', 'DMSTCO', 'dmwdwalla'],
+	  'Foundation/Footings': ['foot24x12', 'pump', 'slab3', 'slab51/2'],
 	
-		all: allItems,
-		getSample: function getSample(index) {
-			return allItems.slice(index, index + 10);
-		}
+	  all: allItems,
+	  getSample: function getSample(index) {
+	    return allItems.slice(index, index + 10);
+	  }
 	};
 
 /***/ }),
@@ -47648,11 +47642,6 @@
 	  function Estimate() {
 	    _classCallCheck(this, Estimate);
 	
-	    var todaysDate = function todaysDate() {
-	      var today = new Date();
-	      return today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear();
-	    };
-	
 	    var _this = _possibleConstructorReturn(this, (Estimate.__proto__ || Object.getPrototypeOf(Estimate)).call(this));
 	
 	    _this.state = {
@@ -47730,14 +47719,6 @@
 	      });
 	      total = parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,');
 	
-	      var formCellEntryStyle = {
-	        paddingLeft: 0,
-	        color: 'black'
-	      };
-	      var todaysDate = function todaysDate() {
-	        var today = new Date();
-	        return today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear();
-	      };
 	      var downloadLink = function downloadLink(totalDough) {
 	        if (_this3.state.animal === 'giraffes') {
 	          return _react2.default.createElement(
@@ -47768,57 +47749,15 @@
 	          return _react2.default.createElement(_ShoppingCartItem2.default, _extends({ key: shoppingCartItem.keyCode + shoppingCartItem.template }, shoppingCartItem));
 	        });
 	      };
-	      var defaultState = {
-	        salesman: '',
-	        customerFirstName: '',
-	        customerLastName: '',
-	        email: '',
-	        projectDescription: '',
-	        address: '',
-	        city: '',
-	        state: '',
-	        zipcode: '',
-	        specification: '',
-	        phone: '',
-	        fax: '',
-	        date: todaysDate(),
-	        estimateStatus: 'main'
-	      };
+	
 	      var bottomButtonStyle = {
 	        marginLeft: '5px',
 	        marginRight: '5px',
 	        verticalAlign: 'middle'
-	      };
-	      var innerTextCellStyle = { padding: '0', color: 'black'
 	
 	        // possible form item generator for later. seems to be too many one-off cases
-	      };var formFieldGenerator = function formFieldGenerator(labelSize, labelName, fields) {
-	        var fieldsGenerator = function fieldsGenerator(itemFields) {
-	          return itemFields.map(function (formItem) {
-	            return _react2.default.createElement(
-	              _reactBootstrap.Col,
-	              { sm: formItem.size, style: formItem.cellStyle },
-	              _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: formItem.placeholder, onChange: formItem.onChangeFunction, style: formItem.innerStyle })
-	            );
-	          });
-	        };
-	        return _react2.default.createElement(
-	          _reactBootstrap.FormGroup,
-	          { controlId: 'formValidationWarning1', validationState: 'null' },
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: labelSize },
-	            _react2.default.createElement(
-	              _reactBootstrap.ControlLabel,
-	              null,
-	              labelName
-	            )
-	          ),
-	          fieldsGenerator(fields)
-	        );
-	      };
 	
-	      return _react2.default.createElement(
+	      };return _react2.default.createElement(
 	        _reactBootstrap.Grid,
 	        { fluid: true },
 	        _react2.default.createElement(
@@ -48380,8 +48319,6 @@
 	var _require = __webpack_require__(472),
 	    connect = _require.connect;
 	
-	var databaseSimulation = __webpack_require__(471);
-	
 	var EstimateForms = function (_Component) {
 	  _inherits(EstimateForms, _Component);
 	
@@ -48418,11 +48355,11 @@
 	    value: function handleQuoteQuery(quoteNumber) {
 	      var dispatch = this.props.dispatch;
 	      // if the template selected isnt the default option
-	
-	      var quoteInformation = databaseSimulation.retrieveQuote(quoteNumber);
+	      // let quoteInformation = databaseSimulation.retrieveQuote(quoteNumber);
 	      // console.log('the new quote is', quote)
-	      if (/^\d+$/.test(quote)) {
-	        dispatch(actions.setQuote(quote));
+	
+	      if (/^\d+$/.test(quoteNumber)) {
+	        dispatch(actions.setQuote(quoteNumber));
 	      }
 	    }
 	  }, {
@@ -49313,10 +49250,6 @@
 	var _productKeyCodes = __webpack_require__(511);
 	
 	var _productKeyCodes2 = _interopRequireDefault(_productKeyCodes);
-	
-	var _quoteDatabase = __webpack_require__(471);
-	
-	var _quoteDatabase2 = _interopRequireDefault(_quoteDatabase);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	

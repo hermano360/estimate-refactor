@@ -1,6 +1,5 @@
 import productDetails from '../../api/productDetails'
 import productKeyCodes from '../../api/productKeyCodes'
-import quoteDatabase from '../../api/quoteDatabase'
 
 export const PageReducer = (state = '', action) => {
   switch (action.type) {
@@ -126,34 +125,34 @@ export const CachedQuotesReducer = (state = {}, action) => {
       // ordering non-template, template, then user-added empty template
       return {
         ...state,
-        [action.quoteNumber]:{
+        [action.quoteNumber]: {
           ...state[action.quoteNumber],
           shoppingCart: [
-        ...completedUnorderedShoppingCart.filter((item) => {
-          return (item.template !== action.template && item.template !== '')
-        }),
-        ...completedUnorderedShoppingCart.filter((item) => {
-          return (item.template === action.template)
-        }),
-        ...completedUnorderedShoppingCart.filter((item) => {
-          return (item.template === '')
-        })
-      ]}
-    }
+            ...completedUnorderedShoppingCart.filter((item) => {
+              return (item.template !== action.template && item.template !== '')
+            }),
+            ...completedUnorderedShoppingCart.filter((item) => {
+              return (item.template === action.template)
+            }),
+            ...completedUnorderedShoppingCart.filter((item) => {
+              return (item.template === '')
+            })
+          ]}
+      }
     case 'CHANGE_CART_ITEM_QUANTITY':
       let shoppingCartWithAdjustedQuantity = state[action.quoteNumber].shoppingCart.map((cartItem) => {
-       if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
-         let quantity = action.quantity
-         if (action.quantity === '') {
-           quantity = 0
-         }
-         return {
-           ...cartItem,
-           quantity
-         }
-       }
-       return cartItem
-     })
+        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
+          let quantity = action.quantity
+          if (action.quantity === '') {
+            quantity = 0
+          }
+          return {
+            ...cartItem,
+            quantity
+          }
+        }
+        return cartItem
+      })
       return {
         ...state,
         [action.quoteNumber]: {
@@ -162,7 +161,7 @@ export const CachedQuotesReducer = (state = {}, action) => {
         }
       }
     case 'DELETE_SHOPPING_CART_ITEM':
-      const updatedShoppingCart =  state[action.quoteNumber].shoppingCart.filter((cartItem) => {
+      const updatedShoppingCart = state[action.quoteNumber].shoppingCart.filter((cartItem) => {
         return !(cartItem.keyCode === action.keyCode && cartItem.template === action.template)
       })
       return {

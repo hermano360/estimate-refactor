@@ -1,33 +1,32 @@
-const JSZip = require('jszip');
-const Docxtemplater = require('docxtemplater');
+const JSZip = require('jszip')
+const Docxtemplater = require('docxtemplater')
 
-const fs = require('fs');
-const path = require('path');
-//Load the docx file as a binary
-
+const fs = require('fs')
+const path = require('path')
+// Load the docx file as a binary
 
 const convertShoppingCart = (shoppingCart) => {
   let formattedShoppingCart = []
-  let itemCount = 1;
+  let itemCount = 1
 
   shoppingCart.forEach((cartItem) => {
     if (formattedShoppingCart.indexOf(cartItem.template) === -1) {
       formattedShoppingCart.push(cartItem.template)
     }
-    if (Number(cartItem.quantity) !== 0 ) {
+    if (Number(cartItem.quantity) !== 0) {
       formattedShoppingCart.push({
-        "order": itemCount++,
-        "description": cartItem.Description,
-        "quantity": `${parseInt(cartItem.quantity,10)} ${cartItem.UOM}`
+        'order': itemCount++,
+        'description': cartItem.Description,
+        'quantity': `${parseInt(cartItem.quantity, 10)} ${cartItem.UOM}`
       })
     }
   })
   return formattedShoppingCart.map((item) => {
     if (typeof item === 'string') {
       return {
-        "order": '',
-        "description": item,
-        "quantity": ''
+        'order': '',
+        'description': item,
+        'quantity': ''
       }
     } else {
       return item
@@ -42,59 +41,56 @@ let dateString = `${nowDate.getDate()}-${monthRef[nowDate.getMonth()]}-${nowDate
 module.exports = {
   generateWord: (total, quoteInfo, cb) => {
     var content = fs
-        .readFileSync(path.resolve(__dirname, 'input.docx'), 'binary');
+        .readFileSync(path.resolve(__dirname, 'input.docx'), 'binary')
 
-    var zip = new JSZip(content);
+    var zip = new JSZip(content)
 
-    var doc = new Docxtemplater();
-    doc.loadZip(zip);
-    //set the templateVariables
+    var doc = new Docxtemplater()
+    doc.loadZip(zip)
+    // set the templateVariables
     doc.setData({
-      grandTotal:total,
-      first_name:quoteInfo.customerFirstName,
-      last_name:quoteInfo.customerLastName,
-      customerStreetAddress:quoteInfo.address,
-      scopeOfWork:quoteInfo.specification,
-      city:quoteInfo.city,
-      state:quoteInfo.state,
-      zipcode:quoteInfo.zipcode,
+      grandTotal: total,
+      first_name: quoteInfo.customerFirstName,
+      last_name: quoteInfo.customerLastName,
+      customerStreetAddress: quoteInfo.address,
+      scopeOfWork: quoteInfo.specification,
+      city: quoteInfo.city,
+      state: quoteInfo.state,
+      zipcode: quoteInfo.zipcode,
       quoteNumber: quoteInfo.quoteNumber,
       dateOfQuote: quoteInfo.date,
       salesperson: quoteInfo.salesman,
       description: quoteInfo.projectDescription,
-      Company: "Pro Builders Express",
-      StreetAddress: "1840 W Whittier Blvd, La Habra, CA 90631",
+      Company: 'Pro Builders Express',
+      StreetAddress: '1840 W Whittier Blvd, La Habra, CA 90631',
       phone: '866-360-1526',
       fax: '866-360-1526',
       cell: '866-360-1526',
       Date: dateString,
       cart: convertShoppingCart(quoteInfo.shoppingCart)
-    });
+    })
 
     try {
         // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
-        doc.render()
-    }
-    catch (error) {
-        var e = {
-            message: error.message,
-            name: error.name,
-            stack: error.stack,
-            properties: error.properties,
-        }
-        console.log(JSON.stringify({error: e}));
+      doc.render()
+    } catch (error) {
+      var e = {
+        message: error.message,
+        name: error.name,
+        stack: error.stack,
+        properties: error.properties
+      }
+      console.log(JSON.stringify({error: e}))
         // The error thrown here contains additional information when logged with JSON.stringify (it contains a property object).
-        throw error;
+      throw error
     }
 
     var buf = doc.getZip()
-                 .generate({type: 'nodebuffer'});
-
-
+                 .generate({type: 'nodebuffer'})
 
     // buf is a nodejs buffer, you can either write it to a file or do anything else with it.
-    fs.writeFileSync(path.resolve(__dirname, 'ProBuildersEstimate.docx'), buf);
+    fs.writeFileSync(path.resolve(__dirname, 'ProBuildersEstimate.docx'), buf)
     cb('success')
-    console.log("file was written...");
+    console.log('file was written...')
   }
 }

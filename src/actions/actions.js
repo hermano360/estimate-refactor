@@ -1,4 +1,3 @@
-var axios = require('axios')
 var databaseSimulation = require('../../api/quoteDatabase')
 
 export var changePage = (page) => {
@@ -21,9 +20,6 @@ export var updateShoppingCart = (shoppingCart) => {
     shoppingCart
   }
 }
-
-
-
 
 export var updateCustomerInfo = (attribute, value) => {
   return {
@@ -122,7 +118,6 @@ export const retrievePreviousQuote = (currentQuoteNumber) => {
     dispatch(setQuote(previousQuoteNumber))
   }
 }
-
 
 export const retrieveAvailableQuoteNumbers = () => {
   return (dispatch, getState) => {

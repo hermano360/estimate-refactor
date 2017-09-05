@@ -12,8 +12,8 @@ export var configure = (initialState = {}) => {
   })
   initialState = {
     page: 'StartPage',
-    cachedQuotes:{},
-    quoteNumber:'',
+    cachedQuotes: {},
+    quoteNumber: '',
     InitialQuoteNumber: '',
     availableQuoteNumbers: []
 

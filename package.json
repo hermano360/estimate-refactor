@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "standard",
+    "test": "standard --fix && standard ",
     "start": "node server.js"
   },
   "keywords": [],

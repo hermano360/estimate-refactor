@@ -8,11 +8,7 @@ const store = require('./store/configureStore.js').configure()
 
 injectTapEventPlugin()
 
-store.subscribe(() => {
-  let state = store.getState()
-})
-
-store.dispatch(actions.updateCustomerInfo('date', new Date()));
+store.dispatch(actions.updateCustomerInfo('date', new Date()))
 // largest number available on the database
 store.dispatch(actions.retrieveNewQuote())
 

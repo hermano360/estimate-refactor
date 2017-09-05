@@ -1,5 +1,4 @@
 
-
 let quotes = [
   {
     salesman: 'John Chavez',
@@ -14,65 +13,65 @@ let quotes = [
     specification: 'This is the slightly longer scope of work for the project',
     phone: '310-111-5555',
     fax: '213-111-5555',
-    shoppingCart:[
+    shoppingCart: [
       {
         Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
-        SKU:"idk",
-        UOM:"sqft",
-        keyCode:"DMCSLB4",
-        picture:"http://via.placeholder.com/350x150",
-        productGroup:"Demolition",
-        template:"Demolition",
-        supplier:"Home Depot",
-        updated:1501563875457,
-        url:"http://www.google.com",
-        quantity:500
+        SKU: 'idk',
+        UOM: 'sqft',
+        keyCode: 'DMCSLB4',
+        picture: 'http://via.placeholder.com/350x150',
+        productGroup: 'Demolition',
+        template: 'Demolition',
+        supplier: 'Home Depot',
+        updated: 1501563875457,
+        url: 'http://www.google.com',
+        quantity: 500
       },
       {
-        keyCode:"DMDRW",
-        productGroup:'Demolition',
-        supplier:'Harbor Freight',
-        UOM:'sqft',
-        Description:`Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris`,
-        Material:0,
-        Labor:.65,
-        SKU:'idk',
-        updated:1501563875457,
-        picture:'http://via.placeholder.com/350x150',
-        url:'http://www.google.com',
-        template:"Demolition",
-        quantity:5
+        keyCode: 'DMDRW',
+        productGroup: 'Demolition',
+        supplier: 'Harbor Freight',
+        UOM: 'sqft',
+        Description: `Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris`,
+        Material: 0,
+        Labor: 0.65,
+        SKU: 'idk',
+        updated: 1501563875457,
+        picture: 'http://via.placeholder.com/350x150',
+        url: 'http://www.google.com',
+        template: 'Demolition',
+        quantity: 5
       },
       {
-        keyCode:"DMSTCO",
-        productGroup:'Demolition',
-        supplier:'Furguson',
-        UOM:'sqft',
-        Description:`Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris`,
-        Material:0,
-        Labor:1.1,
-        SKU:'idk',
-        updated:1501563875457,
-        picture:'http://via.placeholder.com/350x150',
-        url:'http://www.google.com',
-        template:"Demolition",
-        quantity:5
+        keyCode: 'DMSTCO',
+        productGroup: 'Demolition',
+        supplier: 'Furguson',
+        UOM: 'sqft',
+        Description: `Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris`,
+        Material: 0,
+        Labor: 1.1,
+        SKU: 'idk',
+        updated: 1501563875457,
+        picture: 'http://via.placeholder.com/350x150',
+        url: 'http://www.google.com',
+        template: 'Demolition',
+        quantity: 5
       },
       {
-        keyCode:'foot24x12',
-        productGroup:'Foundation/Footings',
-        supplier:'N/A',
-        UOM:'ft',
-        Description:`Excavate and Finish a 24" x 12" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade "Contractor Not Responsible For Removal of Excavated Dirt from Job Site." Includes upgrade 12" footing to 24" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."`,
-        Material:5.14,
-        Labor:6.3,
-        SKU:'idk',
-        updated:1501563875457,
-        picture:'http://via.placeholder.com/350x150',
-        url:'http://www.google.com',
-        quantity:5,
+        keyCode: 'foot24x12',
+        productGroup: 'Foundation/Footings',
+        supplier: 'N/A',
+        UOM: 'ft',
+        Description: `Excavate and Finish a 24" x 12" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade "Contractor Not Responsible For Removal of Excavated Dirt from Job Site." Includes upgrade 12" footing to 24" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."`,
+        Material: 5.14,
+        Labor: 6.3,
+        SKU: 'idk',
+        updated: 1501563875457,
+        picture: 'http://via.placeholder.com/350x150',
+        url: 'http://www.google.com',
+        quantity: 5,
         template: 'Foundation/Footings'
       }
     ],
@@ -93,36 +92,36 @@ let quotes = [
     specification: 'This is the slightly longer scope of work for the project',
     phone: '310-111-5555',
     fax: '213-111-5555',
-    shoppingCart:[
+    shoppingCart: [
       {
         Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
-        SKU:"idk",
-        UOM:"sqft",
-        keyCode:"DMCSLB4",
-        picture:"http://via.placeholder.com/350x150",
-        productGroup:"Demolition",
-        template:"Demolition",
-        supplier:"Home Depot",
-        updated:1501563875457,
-        url:"http://www.google.com",
-        quantity:562
+        SKU: 'idk',
+        UOM: 'sqft',
+        keyCode: 'DMCSLB4',
+        picture: 'http://via.placeholder.com/350x150',
+        productGroup: 'Demolition',
+        template: 'Demolition',
+        supplier: 'Home Depot',
+        updated: 1501563875457,
+        url: 'http://www.google.com',
+        quantity: 562
       },
       {
-        keyCode:"DMDRW",
-        productGroup:'Demolition',
-        supplier:'Harbor Freight',
-        UOM:'sqft',
-        Description:`Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris`,
-        Material:0,
-        Labor:.65,
-        SKU:'idk',
-        updated:1501563875457,
-        picture:'http://via.placeholder.com/350x150',
-        url:'http://www.google.com',
-        template:"Demolition",
-        quantity:23
+        keyCode: 'DMDRW',
+        productGroup: 'Demolition',
+        supplier: 'Harbor Freight',
+        UOM: 'sqft',
+        Description: `Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris`,
+        Material: 0,
+        Labor: 0.65,
+        SKU: 'idk',
+        updated: 1501563875457,
+        picture: 'http://via.placeholder.com/350x150',
+        url: 'http://www.google.com',
+        template: 'Demolition',
+        quantity: 23
       }
     ],
     quoteNumber: 2,
@@ -142,36 +141,36 @@ let quotes = [
     specification: 'This is the slightly longer scope of work for the project',
     phone: '310-111-5555',
     fax: '213-111-5555',
-    shoppingCart:[
+    shoppingCart: [
       {
         Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
-        SKU:"idk",
-        UOM:"sqft",
-        keyCode:"DMCSLB4",
-        picture:"http://via.placeholder.com/350x150",
-        productGroup:"Demolition",
-        template:"Demolition",
-        supplier:"Home Depot",
-        updated:1501563875457,
-        url:"http://www.google.com",
-        quantity:5
+        SKU: 'idk',
+        UOM: 'sqft',
+        keyCode: 'DMCSLB4',
+        picture: 'http://via.placeholder.com/350x150',
+        productGroup: 'Demolition',
+        template: 'Demolition',
+        supplier: 'Home Depot',
+        updated: 1501563875457,
+        url: 'http://www.google.com',
+        quantity: 5
       },
       {
         Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
-        SKU:"idk",
-        UOM:"sqft",
-        keyCode:"DMCSLB4",
-        picture:"http://via.placeholder.com/350x150",
-        productGroup:"Demolition",
-        template:"Foundation/Footings",
-        supplier:"Home Depot",
-        updated:1501563875457,
-        url:"http://www.google.com",
-        quantity:5
+        SKU: 'idk',
+        UOM: 'sqft',
+        keyCode: 'DMCSLB4',
+        picture: 'http://via.placeholder.com/350x150',
+        productGroup: 'Demolition',
+        template: 'Foundation/Footings',
+        supplier: 'Home Depot',
+        updated: 1501563875457,
+        url: 'http://www.google.com',
+        quantity: 5
       }
     ],
     quoteNumber: 3,
@@ -191,36 +190,36 @@ let quotes = [
     specification: 'This is the slightly longer scope of work for the project',
     phone: '310-111-5555',
     fax: '213-111-5555',
-    shoppingCart:[
+    shoppingCart: [
       {
         Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
-        SKU:"idk",
-        UOM:"sqft",
-        keyCode:"DMCSLB4",
-        picture:"http://via.placeholder.com/350x150",
-        productGroup:"Demolition",
-        template:"Demolition",
-        supplier:"Home Depot",
-        updated:1501563875457,
-        url:"http://www.google.com",
-        quantity:5
+        SKU: 'idk',
+        UOM: 'sqft',
+        keyCode: 'DMCSLB4',
+        picture: 'http://via.placeholder.com/350x150',
+        productGroup: 'Demolition',
+        template: 'Demolition',
+        supplier: 'Home Depot',
+        updated: 1501563875457,
+        url: 'http://www.google.com',
+        quantity: 5
       },
       {
         Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
-        SKU:"idk",
-        UOM:"sqft",
-        keyCode:"DMCSLB4",
-        picture:"http://via.placeholder.com/350x150",
-        productGroup:"Demolition",
-        template:"Foundation/Footings",
-        supplier:"Home Depot",
-        updated:1501563875457,
-        url:"http://www.google.com",
-        quantity:5
+        SKU: 'idk',
+        UOM: 'sqft',
+        keyCode: 'DMCSLB4',
+        picture: 'http://via.placeholder.com/350x150',
+        productGroup: 'Demolition',
+        template: 'Foundation/Footings',
+        supplier: 'Home Depot',
+        updated: 1501563875457,
+        url: 'http://www.google.com',
+        quantity: 5
       }
     ],
     quoteNumber: 4,
@@ -240,21 +239,21 @@ let quotes = [
     specification: 'This is the slightly longer scope of work for the project',
     phone: '310-111-5555',
     fax: '213-111-5555',
-    shoppingCart:[
+    shoppingCart: [
       {
         Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
-        SKU:"idk",
-        UOM:"sqft",
-        keyCode:"DMCSLB4",
-        picture:"http://via.placeholder.com/350x150",
-        productGroup:"Demolition",
-        template:"Demolition",
-        supplier:"Home Depot",
-        updated:1501563875457,
-        url:"http://www.google.com",
-        quantity:5
+        SKU: 'idk',
+        UOM: 'sqft',
+        keyCode: 'DMCSLB4',
+        picture: 'http://via.placeholder.com/350x150',
+        productGroup: 'Demolition',
+        template: 'Demolition',
+        supplier: 'Home Depot',
+        updated: 1501563875457,
+        url: 'http://www.google.com',
+        quantity: 5
       }
     ],
     quoteNumber: 5,
@@ -286,13 +285,12 @@ let emptyQuote = {
   isAvailableOnDatabase: false
 }
 
-module.exports ={
-  getNewQuoteNumber: ()=>{
+module.exports = {
+  getNewQuoteNumber: () => {
     return listOfAvailableQuotes[listOfAvailableQuotes.length - 1] + 1
   },
   // Todo, return the highest number before the given quote number, or return itself
-  getPreviousQuote: (currentQuote)=>{
-    let availableQuoteNumber;
+  getPreviousQuote: (currentQuote) => {
     // first query, decending, with availability in database
     for (let i = quotes.length - 1; i >= 0; i--) {
       if (quotes[i].quoteNumber < currentQuote.quoteNumber) {
@@ -300,12 +298,11 @@ module.exports ={
       }
       return currentQuote
     }
-
   },
   retrieveQuote: (quoteNumber) => {
     let quoteToReturn = emptyQuote
     quotes.forEach((quote) => {
-      if (quote.quoteNumber === quoteNumber && quote.isAvailableOnDatabase){
+      if (quote.quoteNumber === quoteNumber && quote.isAvailableOnDatabase) {
         quoteToReturn = quote
       }
     })
@@ -316,7 +313,7 @@ module.exports ={
     return quotes.filter((quote) => {
       return quote.isAvailableOnDatabase
     }).map((quote) => {
-        return quote.quoteNumber
+      return quote.quoteNumber
     })
   }
 }
