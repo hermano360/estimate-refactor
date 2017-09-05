@@ -22,13 +22,6 @@ export var updateShoppingCart = (shoppingCart) => {
   }
 }
 
-export var deleteShoppingCartItem = (keyCode, template) => {
-  return {
-    type: 'DELETE_SHOPPING_CART_ITEM',
-    keyCode,
-    template
-  }
-}
 
 
 
@@ -49,9 +42,12 @@ export var resetCustomerInfo = () => {
 export const retrieveNewQuote = () => {
   return (dispatch, getState) => {
     let nextQuoteNumber = databaseSimulation.getNewQuoteNumber()
+    let nowDate = new Date()
+    let monthRef = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    let dateString = `${nowDate.getDate()}-${monthRef[nowDate.getMonth()]}-${nowDate.getFullYear().toString().slice(-2)}`
     dispatch(setInitialQuote(nextQuoteNumber))
     dispatch(setQuote(nextQuoteNumber))
-    dispatch(addEmptyQuote(nextQuoteNumber, new Date()))
+    dispatch(addEmptyQuote(nextQuoteNumber, dateString))
   }
 }
 
@@ -107,6 +103,15 @@ export var changeCartItemQuantity = (quoteNumber, keyCode, template, quantity) =
     keyCode,
     template,
     quantity,
+    quoteNumber
+  }
+}
+
+export var deleteShoppingCartItem = (quoteNumber, keyCode, template) => {
+  return {
+    type: 'DELETE_SHOPPING_CART_ITEM',
+    keyCode,
+    template,
     quoteNumber
   }
 }

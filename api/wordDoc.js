@@ -6,9 +6,41 @@ const path = require('path');
 //Load the docx file as a binary
 
 
+const convertShoppingCart = (shoppingCart) => {
+  let formattedShoppingCart = []
+  let itemCount = 1;
+
+  shoppingCart.forEach((cartItem) => {
+    if (formattedShoppingCart.indexOf(cartItem.template) === -1) {
+      formattedShoppingCart.push(cartItem.template)
+    }
+    if (Number(cartItem.quantity) !== 0 ) {
+      formattedShoppingCart.push({
+        "order": itemCount++,
+        "description": cartItem.Description,
+        "quantity": `${parseInt(cartItem.quantity,10)} ${cartItem.UOM}`
+      })
+    }
+  })
+  return formattedShoppingCart.map((item) => {
+    if (typeof item === 'string') {
+      return {
+        "order": '',
+        "description": item,
+        "quantity": ''
+      }
+    } else {
+      return item
+    }
+  })
+}
+
+let nowDate = new Date()
+let monthRef = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+let dateString = `${nowDate.getDate()}-${monthRef[nowDate.getMonth()]}-${nowDate.getFullYear().toString().slice(-2)}`
+
 module.exports = {
   generateWord: (total, quoteInfo, cb) => {
-    console.log(total)
     var content = fs
         .readFileSync(path.resolve(__dirname, 'input.docx'), 'binary');
 
@@ -27,7 +59,7 @@ module.exports = {
       state:quoteInfo.state,
       zipcode:quoteInfo.zipcode,
       quoteNumber: quoteInfo.quoteNumber,
-      dateOfQuote: '8-Aug-2017',
+      dateOfQuote: quoteInfo.date,
       salesperson: quoteInfo.salesman,
       description: quoteInfo.projectDescription,
       Company: "Pro Builders Express",
@@ -35,59 +67,8 @@ module.exports = {
       phone: '866-360-1526',
       fax: '866-360-1526',
       cell: '866-360-1526',
-      Date: '8-Aug-2017',
-      "users" : [
-        {
-          "order": "",
-          "description": "DEMOLITION",
-          "quantity":""
-        },
-        {
-          "order": "1",
-          "description": 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
-          "quantity":"3 sqft"
-        },
-        {
-          "order": "2",
-          "description": "Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris",
-          "quantity":"5 sqft"
-        },
-        {
-          "order": "3",
-          "description": "Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris",
-          "quantity":"3 sqft"
-        },
-        {
-          "order": "4",
-          "description": "Demolition of Existing Wood Gramed Wall Assembly, Removal of Existing Electrical Romex Wire, Stud Walls, Sill Plate Cut All Foundation Bolts As Necessay Demolition of existing kitchen ceiling",
-          "quantity":"8 sqft"
-        },
-        {
-          "order": "",
-          "description": 'Foundation/Footings',
-          "quantity":""
-        },
-        {
-          "order": "5",
-          "description": 'Excavate and Finish a 24" x 12" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade "Contractor Not Responsible For Removal of Excavated Dirt from Job Site." Includes upgrade 12" footing to 24" footing. Footing With Reinforcing Steel Tied and Finished at Grade. "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
-          "quantity":"10 ft"
-        },
-        {
-          "order": "6",
-          "description": 'Supply Labor and Equipment For A Concrete Pump To Remote Location for Pumping Of Concrete as Required',
-          "quantity":"2 pump"
-        },
-        {
-          order: "8",
-          description: 'Pour A 3" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, and Forms. "Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process" "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
-          quantity:"5 sqft"
-        },
-        {
-          "order": "9",
-          "description": 'Pour A 5 1/2" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, Wire Mesh, Forms, and Vapor Barrier. "Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process" "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
-          "quantity":"4 sqft"
-        }
-      ]
+      Date: dateString,
+      cart: convertShoppingCart(quoteInfo.shoppingCart)
     });
 
     try {
@@ -114,7 +95,6 @@ module.exports = {
     // buf is a nodejs buffer, you can either write it to a file or do anything else with it.
     fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
     cb('success')
-
     console.log("file was written...");
   }
 }

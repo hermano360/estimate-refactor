@@ -15,10 +15,7 @@ class EstimateForms extends Component {
   handleQuoteChange (quote) {
     let {dispatch} = this.props
     // if the template selected isnt the default option
-    console.log('the new quote is', quote)
-    console.log('passes the regex', /^\d+$/.test(quote))
     if (/^\d+$/.test(quote)) {
-      console.log('successful quote')
       dispatch(actions.setQuote(quote))
     }
   }
@@ -27,9 +24,7 @@ class EstimateForms extends Component {
     // if the template selected isnt the default option
     let quoteInformation = databaseSimulation.retrieveQuote(quoteNumber);
     // console.log('the new quote is', quote)
-    console.log('passes the regex', /^\d+$/.test(quote))
     if (/^\d+$/.test(quote)) {
-      console.log('successful quote')
       dispatch(actions.setQuote(quote))
     }
   }
@@ -59,7 +54,7 @@ class EstimateForms extends Component {
                 </Col>
                 <Col sm={8}>
                   <FormControl componentClass='select' value={cachedQuotes[quoteNumber].salesman} onChange={(e) => dispatch(actions.updateQuoteInfo(quoteNumber, 'salesman', e.target.value))} style={innerTextCellStyle} >
-                    <option value=''>Salesperson</option>
+                    <option value=''>Select</option>
                     <option value='Gary Banks'>Banks, Gary</option>
                     <option value='John Chavez'>Chavez, John</option>
                     <option value='Arnold Corona'>Corona, Arnold</option>
@@ -148,24 +143,24 @@ class EstimateForms extends Component {
                 <Col sm={4}>
                   <ControlLabel>Email</ControlLabel>
                 </Col>
-                <Col sm={8} style={formCellEntryStyle} value={cachedQuotes[quoteNumber].email} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'email', e.target.value)) }}>
-                  <FormControl type='text' placeholder='customer@email.com' style={innerTextCellStyle} />
+                <Col sm={8} style={formCellEntryStyle}  onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'email', e.target.value)) }}>
+                  <FormControl type='text' placeholder='customer@email.com' style={innerTextCellStyle} value={cachedQuotes[quoteNumber].email}/>
                 </Col>
               </FormGroup>
               <FormGroup controlId='formValidationWarning1' validationState={null}>
                 <Col sm={4}>
                   <ControlLabel>Phone</ControlLabel>
                 </Col>
-                <Col sm={8} style={formCellEntryStyle} value={cachedQuotes[quoteNumber].phone} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value)) }}>
-                  <FormControl type='text' placeholder='555-123-1234' style={innerTextCellStyle} />
+                <Col sm={8} style={formCellEntryStyle}  onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value)) }}>
+                  <FormControl type='text' placeholder='555-123-1234' style={innerTextCellStyle} value={cachedQuotes[quoteNumber].phone}/>
                 </Col>
               </FormGroup>
               <FormGroup controlId='formValidationWarning1' validationState={null}>
                 <Col sm={4}>
                   <ControlLabel>Fax</ControlLabel>
                 </Col>
-                <Col sm={8} style={formCellEntryStyle} value={cachedQuotes[quoteNumber].fax} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'fax', e.target.value)) }}>
-                  <FormControl type='text' placeholder='555-123-1234' style={innerTextCellStyle} />
+                <Col sm={8} style={formCellEntryStyle}  onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'fax', e.target.value)) }}>
+                  <FormControl type='text' placeholder='555-123-1234' style={innerTextCellStyle} value={cachedQuotes[quoteNumber].fax}/>
                 </Col>
               </FormGroup>
             </Row>

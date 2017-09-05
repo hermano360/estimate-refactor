@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import {Button, Row, Col, Grid, FormControl, ControlLabel, FormGroup, Clearfix, Table, Glyphicon, Panel, Modal} from 'react-bootstrap'
 import ShoppingCartItem from './ShoppingCartItem'
-import EstimatePDF from './EstimatePDF'
-import ProductPreview from './ProductPreview'
 import EstimateForms from './EstimateForms'
 
 var actions = require('../../actions/actions.js')
@@ -43,9 +41,7 @@ class Estimate extends Component {
     return currentQuote
   }
   generateEstimate(total){
-    console.log(total);
     let {cachedQuotes, quoteNumber} = this.props
-    console.log('this function generates the estimate')
     axios({
       method: 'post',
       url: '/generateDocument',
@@ -55,7 +51,6 @@ class Estimate extends Component {
       }
 
     }).then((response)=>{
-      console.log(response)
       this.setState({
         animal:'giraffes'
       })
@@ -73,6 +68,7 @@ class Estimate extends Component {
     shoppingCart.forEach((item) => {
       total += (item.Labor + item.Material) * item.quantity
     })
+    total = parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,')
 
     let formCellEntryStyle = {
       paddingLeft: 0,
@@ -83,21 +79,19 @@ class Estimate extends Component {
       return `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`
     }
     let downloadLink = (totalDough) => {
-      console.log(totalDough)
       if(this.state.animal==='giraffes'){
         return (
           <a href="/downloadWordDocument" onClick={()=>{
             this.setState({
               animal:'elephants'
             })
-          }}><Button style={bottomButtonStyle}>Ready To Download</Button></a>
+          }}><Button style={bottomButtonStyle}>Click To Download</Button></a>
         )
       } else {
         return (
           <Button onClick={()=>{
-            console.log(totalDough)
             this.generateEstimate(totalDough)
-          }} style={bottomButtonStyle}>Generate Download</Button>
+          }} style={bottomButtonStyle}>Generate Estimate</Button>
         )
       }
     }
@@ -152,12 +146,6 @@ class Estimate extends Component {
       )
     }
 
-    switch (this.state.estimateStatus) {
-      case 'pdf':
-        return (
-          <EstimatePDF {...this.state} handleEstimateStartOver={() => { this.setState(defaultState) }} />
-        )
-      case 'main':
         return (
           <Grid fluid>
             <Row>
@@ -205,10 +193,9 @@ class Estimate extends Component {
                   <Col sm={12} style={{textAlign: 'center'}}>
                     <Button onClick={() => { dispatch(actions.changePage('StartPage')) }} style={bottomButtonStyle}>Back</Button>
                     {downloadLink(total)}
-                    {/* <Button onClick={() => { this.generateEstimate() }} style={bottomButtonStyle}>Generate Estimate</Button> */}
-                    <Button onClick={() => { if (this.props.shoppingCart.length > 0) { this.setState({estimateStatus: 'productPreview'}) } }} style={bottomButtonStyle}>Products</Button>
-                    <Button onClick={() => { console.log('Shopping List') }} style={bottomButtonStyle}>Shopping List</Button>
-                    <Button onClick={() => { this.setState({modal: true}) }} style={bottomButtonStyle}>Cost</Button>
+                    {/* <Button onClick={() => { if (this.props.shoppingCart.length > 0) { this.setState({estimateStatus: 'productPreview'}) } }} style={bottomButtonStyle}>Products</Button>
+                      <Button onClick={() => { console.log('Shopping List') }} style={bottomButtonStyle}>Shopping List</Button> */}
+                    <Button onClick={() => { this.setState({modal: true}) }} style={bottomButtonStyle}>Cost Preview</Button>
                     <Modal show={this.state.modal} onHide={() => { this.setState({modal: false}) }}>
                       <Modal.Header closeButton>
                         <Modal.Title style={{textAlign: 'center'}} >Cost Preview</Modal.Title>
@@ -282,7 +269,7 @@ class Estimate extends Component {
                         dispatch(actions.setQuote(nextQuoteNumber))
                       }
                     }}>{`<`}</Button>
-                    <Button> Quote </Button>
+                    <Button> Quote {quoteNumber}</Button>
                     <Button onClick={() => {
                       let previousQuoteNumber = this.findPreviousQuoteNumber(quoteNumber, availableQuoteNumbers);
                       if (previousQuoteNumber in cachedQuotes) {
@@ -308,17 +295,12 @@ class Estimate extends Component {
               </Col>
               <Col sm={4}>
                 <Panel>
-                  <h5>Grand Total with Tax : ${parseFloat(total).toFixed(2)}</h5>
+                  <h5>Grand Total with Tax : ${total}</h5>
                 </Panel>
               </Col>
             </Row>
           </Grid>
         )
-      case 'productPreview':
-        return (
-          <ProductPreview quoteNumber={this.state.quoteNumber} handleEstimateStartOver={() => { this.setState({estimateStatus: 'main'}) }} />
-        )
-    }
   }
 }
 

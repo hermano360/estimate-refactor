@@ -24,10 +24,10 @@ export const ShoppingCartReducer = (state = [], action) => {
   switch (action.type) {
     case 'UPDATE_SHOPPING_CART':
       return action.shoppingCart
-    case 'DELETE_SHOPPING_CART_ITEM':
-      return state.filter((cartItem) => {
-        return !(cartItem.keyCode === action.keyCode && cartItem.template === action.template)
-      })
+    // case 'DELETE_SHOPPING_CART_ITEM':
+    //   return state.filter((cartItem) => {
+    //     return !(cartItem.keyCode === action.keyCode && cartItem.template === action.template)
+    //   })
     default:
       return state
   }
@@ -103,7 +103,6 @@ export const CachedQuotesReducer = (state = {}, action) => {
     case 'SELECT_TEMPLATE':
       let keyCodes = productKeyCodes[action.template]
       let templateItems = productDetails.getBatchProducts(keyCodes)
-      console.log(templateItems)
       let newItems = templateItems.filter((templateItem) => {
         let result = true
         state[action.quoteNumber].shoppingCart.forEach((currentItem) => {
@@ -155,13 +154,22 @@ export const CachedQuotesReducer = (state = {}, action) => {
        }
        return cartItem
      })
-     console.log(shoppingCartWithAdjustedQuantity)
-
       return {
         ...state,
-        [action.quoteNumber]:{
+        [action.quoteNumber]: {
           ...state[action.quoteNumber],
           shoppingCart: shoppingCartWithAdjustedQuantity
+        }
+      }
+    case 'DELETE_SHOPPING_CART_ITEM':
+      const updatedShoppingCart =  state[action.quoteNumber].shoppingCart.filter((cartItem) => {
+        return !(cartItem.keyCode === action.keyCode && cartItem.template === action.template)
+      })
+      return {
+        ...state,
+        [action.quoteNumber]: {
+          ...state[action.quoteNumber],
+          shoppingCart: updatedShoppingCart
         }
       }
     default:

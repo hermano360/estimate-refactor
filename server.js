@@ -45,7 +45,6 @@ app.post('/modelNos', (req, res, next) => {
 })
 
 app.post('/generateDocument', function (req, res) {
-  console.log(req.body.total)
   wordDoc.generateWord(req.body.total, req.body.quoteInformation, (response)=>{
     res.send(response)
   })

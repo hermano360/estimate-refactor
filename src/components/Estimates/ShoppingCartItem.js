@@ -14,7 +14,7 @@ class ShoppingCartItem extends Component {
   }
 
   render () {
-    let {Labor, Material, UOM, Description, keyCode, quantity, template, dispatch} = this.props
+    let {Labor, Material, UOM, Description, keyCode, quantity, template, dispatch, quoteNumber} = this.props
 
     return (
       <tr>
@@ -27,7 +27,7 @@ class ShoppingCartItem extends Component {
         <td>${(Material * quantity).toFixed(2)}</td>
         <td>${(Labor * quantity).toFixed(2)}</td>
         <td><Glyphicon glyph='pencil' /></td>
-        <td onClick={() => { dispatch(actions.deleteShoppingCartItem(keyCode, template)) }}><Glyphicon glyph='remove' /></td>
+        <td onClick={() => { dispatch(actions.deleteShoppingCartItem(quoteNumber,keyCode, template)) }}><Glyphicon glyph='remove' /></td>
       </tr>
     )
   }
