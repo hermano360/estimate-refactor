@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import { Button, Row, Col, Grid, FormControl, ControlLabel, FormGroup, Form, Image, Clearfix} from 'react-bootstrap';
 import productDetails from '../../../api/productDetails'
 import productKeyCodes from '../../../api/productKeyCodes'
+var actions = require('../../actions/actions.js')
+var {connect} = require('react-redux')
 
 class Products extends Component {
 
@@ -18,7 +20,7 @@ class Products extends Component {
     this.setState({productList: newProductList})
   }
   render(){
-
+    const {dispatch} = this.props
     const updateProductSheet = () =>{
       let {count, productList} = this.state;
       let specifiedProduct = productList[count];
@@ -176,7 +178,7 @@ class Products extends Component {
             <Button>{">|"}</Button>
           </Col>
           <Col sm={12} style={{textAlign:'center', verticalAlign:'middle'}}>
-              <Button onClick={this.props.backToMainPage}>Back</Button>
+              <Button onClick={() => { dispatch(actions.changePage('StartPage')) }}>Back</Button>
           </Col>
         </Row>
       </Grid>
@@ -184,4 +186,6 @@ class Products extends Component {
   }
 }
 
-export default Products
+export default connect(
+  state => state
+)(Products)
