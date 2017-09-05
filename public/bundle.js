@@ -42449,7 +42449,6 @@
 	var retrieveAvailableQuoteNumbers = exports.retrieveAvailableQuoteNumbers = function retrieveAvailableQuoteNumbers() {
 	  return function (dispatch, getState) {
 	    var availableQuoteNumbers = databaseSimulation.retrieveAvailableQuoteNumbers();
-	    console.log(availableQuoteNumbers);
 	    dispatch(setAvailableQuoteNumbers(availableQuoteNumbers));
 	  };
 	};
@@ -47501,6 +47500,7 @@
 	    connect = _require.connect;
 	
 	var databaseSimulation = __webpack_require__(471);
+	var axios = __webpack_require__(445);
 	
 	var Estimate = function (_Component) {
 	  _inherits(Estimate, _Component);
@@ -47517,7 +47517,8 @@
 	
 	    _this.state = {
 	      estimateStatus: 'main',
-	      modal: false
+	      modal: false,
+	      animal: 'elephants'
 	    };
 	    return _this;
 	  }
@@ -47545,16 +47546,44 @@
 	      return currentQuote;
 	    }
 	  }, {
-	    key: 'render',
-	    value: function render() {
+	    key: 'generateEstimate',
+	    value: function generateEstimate(total) {
 	      var _this2 = this;
 	
+	      console.log(total);
 	      var _props = this.props,
-	          dispatch = _props.dispatch,
 	          cachedQuotes = _props.cachedQuotes,
-	          quoteNumber = _props.quoteNumber,
-	          InitialQuoteNumber = _props.InitialQuoteNumber,
-	          availableQuoteNumbers = _props.availableQuoteNumbers;
+	          quoteNumber = _props.quoteNumber;
+	
+	      console.log('this function generates the estimate');
+	      axios({
+	        method: 'post',
+	        url: '/generateDocument',
+	        data: {
+	          quoteInformation: cachedQuotes[quoteNumber],
+	          total: total
+	        }
+	
+	      }).then(function (response) {
+	        console.log(response);
+	        _this2.setState({
+	          animal: 'giraffes'
+	        });
+	      }).catch(function (error) {
+	        console.log(error);
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this3 = this;
+	
+	      var _props2 = this.props,
+	          dispatch = _props2.dispatch,
+	          cachedQuotes = _props2.cachedQuotes,
+	          quoteNumber = _props2.quoteNumber,
+	          InitialQuoteNumber = _props2.InitialQuoteNumber,
+	          availableQuoteNumbers = _props2.availableQuoteNumbers;
 	
 	
 	      var shoppingCart = cachedQuotes[quoteNumber].shoppingCart;
@@ -47570,6 +47599,33 @@
 	      var todaysDate = function todaysDate() {
 	        var today = new Date();
 	        return today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear();
+	      };
+	      var downloadLink = function downloadLink(totalDough) {
+	        console.log(totalDough);
+	        if (_this3.state.animal === 'giraffes') {
+	          return _react2.default.createElement(
+	            'a',
+	            { href: '/downloadWordDocument', onClick: function onClick() {
+	                _this3.setState({
+	                  animal: 'elephants'
+	                });
+	              } },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { style: bottomButtonStyle },
+	              'Ready To Download'
+	            )
+	          );
+	        } else {
+	          return _react2.default.createElement(
+	            _reactBootstrap.Button,
+	            { onClick: function onClick() {
+	                console.log(totalDough);
+	                _this3.generateEstimate(totalDough);
+	              }, style: bottomButtonStyle },
+	            'Generate Download'
+	          );
+	        }
 	      };
 	      var shoppingCartFunction = function shoppingCartFunction() {
 	        return shoppingCart.map(function (shoppingCartItem) {
@@ -47629,7 +47685,7 @@
 	      switch (this.state.estimateStatus) {
 	        case 'pdf':
 	          return _react2.default.createElement(_EstimatePDF2.default, _extends({}, this.state, { handleEstimateStartOver: function handleEstimateStartOver() {
-	              _this2.setState(defaultState);
+	              _this3.setState(defaultState);
 	            } }));
 	        case 'main':
 	          return _react2.default.createElement(
@@ -47756,18 +47812,12 @@
 	                        }, style: bottomButtonStyle },
 	                      'Back'
 	                    ),
+	                    downloadLink(total),
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Button,
 	                      { onClick: function onClick() {
-	                          _this2.setState({ estimateStatus: 'pdf' });
-	                        }, style: bottomButtonStyle },
-	                      'Generate Estimate'
-	                    ),
-	                    _react2.default.createElement(
-	                      _reactBootstrap.Button,
-	                      { onClick: function onClick() {
-	                          if (_this2.props.shoppingCart.length > 0) {
-	                            _this2.setState({ estimateStatus: 'productPreview' });
+	                          if (_this3.props.shoppingCart.length > 0) {
+	                            _this3.setState({ estimateStatus: 'productPreview' });
 	                          }
 	                        }, style: bottomButtonStyle },
 	                      'Products'
@@ -47782,14 +47832,14 @@
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Button,
 	                      { onClick: function onClick() {
-	                          _this2.setState({ modal: true });
+	                          _this3.setState({ modal: true });
 	                        }, style: bottomButtonStyle },
 	                      'Cost'
 	                    ),
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Modal,
 	                      { show: this.state.modal, onHide: function onHide() {
-	                          _this2.setState({ modal: false });
+	                          _this3.setState({ modal: false });
 	                        } },
 	                      _react2.default.createElement(
 	                        _reactBootstrap.Modal.Header,
@@ -47954,7 +48004,7 @@
 	                        _react2.default.createElement(
 	                          _reactBootstrap.Button,
 	                          { onClick: function onClick() {
-	                              _this2.setState({ modal: false });
+	                              _this3.setState({ modal: false });
 	                            } },
 	                          'Close'
 	                        )
@@ -47974,7 +48024,7 @@
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Button,
 	                      { onClick: function onClick() {
-	                          var nextQuoteNumber = _this2.findNextQuoteNumber(quoteNumber, availableQuoteNumbers, InitialQuoteNumber);
+	                          var nextQuoteNumber = _this3.findNextQuoteNumber(quoteNumber, availableQuoteNumbers, InitialQuoteNumber);
 	                          if (nextQuoteNumber in cachedQuotes) {
 	                            dispatch(actions.setQuote(nextQuoteNumber));
 	                          } else {
@@ -47993,7 +48043,7 @@
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Button,
 	                      { onClick: function onClick() {
-	                          var previousQuoteNumber = _this2.findPreviousQuoteNumber(quoteNumber, availableQuoteNumbers);
+	                          var previousQuoteNumber = _this3.findPreviousQuoteNumber(quoteNumber, availableQuoteNumbers);
 	                          if (previousQuoteNumber in cachedQuotes) {
 	                            dispatch(actions.setQuote(previousQuoteNumber));
 	                          } else {
@@ -48039,7 +48089,7 @@
 	          );
 	        case 'productPreview':
 	          return _react2.default.createElement(_ProductPreview2.default, { quoteNumber: this.state.quoteNumber, handleEstimateStartOver: function handleEstimateStartOver() {
-	              _this2.setState({ estimateStatus: 'main' });
+	              _this3.setState({ estimateStatus: 'main' });
 	            } });
 	      }
 	    }

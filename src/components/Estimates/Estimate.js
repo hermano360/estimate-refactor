@@ -8,6 +8,7 @@ import EstimateForms from './EstimateForms'
 var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
 const databaseSimulation = require('../../../api/quoteDatabase.js')
+const axios = require('axios')
 
 class Estimate extends Component {
   constructor () {
@@ -18,7 +19,8 @@ class Estimate extends Component {
     super()
     this.state = {
       estimateStatus: 'main',
-      modal: false
+      modal: false,
+      animal: 'elephants'
     }
   }
 
@@ -40,6 +42,28 @@ class Estimate extends Component {
     }
     return currentQuote
   }
+  generateEstimate(total){
+    console.log(total);
+    let {cachedQuotes, quoteNumber} = this.props
+    console.log('this function generates the estimate')
+    axios({
+      method: 'post',
+      url: '/generateDocument',
+      data: {
+        quoteInformation: cachedQuotes[quoteNumber],
+        total
+      }
+
+    }).then((response)=>{
+      console.log(response)
+      this.setState({
+        animal:'giraffes'
+      })
+    })
+  .catch(function (error) {
+    console.log(error);
+  });
+  }
 
   render () {
     const {dispatch, cachedQuotes, quoteNumber, InitialQuoteNumber, availableQuoteNumbers} = this.props
@@ -57,6 +81,25 @@ class Estimate extends Component {
     let todaysDate = () => {
       let today = new Date()
       return `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`
+    }
+    let downloadLink = (totalDough) => {
+      console.log(totalDough)
+      if(this.state.animal==='giraffes'){
+        return (
+          <a href="/downloadWordDocument" onClick={()=>{
+            this.setState({
+              animal:'elephants'
+            })
+          }}><Button style={bottomButtonStyle}>Ready To Download</Button></a>
+        )
+      } else {
+        return (
+          <Button onClick={()=>{
+            console.log(totalDough)
+            this.generateEstimate(totalDough)
+          }} style={bottomButtonStyle}>Generate Download</Button>
+        )
+      }
     }
     let shoppingCartFunction = () => {
       return shoppingCart.map((shoppingCartItem) => {
@@ -161,7 +204,8 @@ class Estimate extends Component {
                 <Row>
                   <Col sm={12} style={{textAlign: 'center'}}>
                     <Button onClick={() => { dispatch(actions.changePage('StartPage')) }} style={bottomButtonStyle}>Back</Button>
-                    <Button onClick={() => { this.setState({estimateStatus: 'pdf'}) }} style={bottomButtonStyle}>Generate Estimate</Button>
+                    {downloadLink(total)}
+                    {/* <Button onClick={() => { this.generateEstimate() }} style={bottomButtonStyle}>Generate Estimate</Button> */}
                     <Button onClick={() => { if (this.props.shoppingCart.length > 0) { this.setState({estimateStatus: 'productPreview'}) } }} style={bottomButtonStyle}>Products</Button>
                     <Button onClick={() => { console.log('Shopping List') }} style={bottomButtonStyle}>Shopping List</Button>
                     <Button onClick={() => { this.setState({modal: true}) }} style={bottomButtonStyle}>Cost</Button>

@@ -7,7 +7,8 @@ const path = require('path');
 
 
 module.exports = {
-  generateWord: function(wordObject){
+  generateWord: (total, quoteInfo, cb) => {
+    console.log(total)
     var content = fs
         .readFileSync(path.resolve(__dirname, 'input.docx'), 'binary');
 
@@ -17,25 +18,24 @@ module.exports = {
     doc.loadZip(zip);
     //set the templateVariables
     doc.setData({
-      grandTotal:'389.00',
-      first_name:'Juan',
-      last_name:"Gomez",
-      customerStreetAddress:'1629 Second Street',
-      scopeOfWork:'The world moves on another, all I think about is more karma. I got smarter in the knick of time.',
-      city:'Duarte',
-      state:'CA',
-      zipcode:'91010',
-      quoteNumber: '100',
+      grandTotal:total,
+      first_name:quoteInfo.customerFirstName,
+      last_name:quoteInfo.customerLastName,
+      customerStreetAddress:quoteInfo.address,
+      scopeOfWork:quoteInfo.specification,
+      city:quoteInfo.city,
+      state:quoteInfo.state,
+      zipcode:quoteInfo.zipcode,
+      quoteNumber: quoteInfo.quoteNumber,
       dateOfQuote: '8-Aug-2017',
-      salesperson: "Juan Chavez",
-      description: "The world moves on another, all I think about is more karma. I got smarter in the knick of time.",
+      salesperson: quoteInfo.salesman,
+      description: quoteInfo.projectDescription,
       Company: "Pro Builders Express",
       StreetAddress: "1840 W Whittier Blvd, La Habra, CA 90631",
       phone: '866-360-1526',
       fax: '866-360-1526',
       cell: '866-360-1526',
       Date: '8-Aug-2017',
-      Page: '1 of 2',
       "users" : [
         {
           "order": "",
@@ -109,8 +109,11 @@ module.exports = {
     var buf = doc.getZip()
                  .generate({type: 'nodebuffer'});
 
+
+
     // buf is a nodejs buffer, you can either write it to a file or do anything else with it.
     fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
+    cb('success')
 
     console.log("file was written...");
   }

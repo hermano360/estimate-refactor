@@ -44,15 +44,25 @@ app.post('/modelNos', (req, res, next) => {
   })
 })
 
-app.post('/wordTest', (req, res, next) => {
-  console.log('generate word.')
-  wordDoc.generateWord()
-  res.json('server response')
-})
+app.post('/generateDocument', function (req, res) {
+  console.log(req.body.total)
+  wordDoc.generateWord(req.body.total, req.body.quoteInformation, (response)=>{
+    res.send(response)
+  })
+});
+
+app.get('/downloadWordDocument', function (req, res) {
+  res.download(__dirname + '/api/output.docx','outfile.docx')
+});
+
+app.get('/file', function (req, res) {
+  res.download(__dirname + '/api/output.docx', 'output.docx');
+});
+
+
 
 app.post('/pdfEmail', (req, res, next) => {
   sendMail.sendEmail(req.body.dirPath, req.body.name, req.body.email, (message) => res.json(message))
 })
-app.use(express.static('public'))
 
 app.listen(PORT, () => console.log('Express server is listening on ' + PORT))

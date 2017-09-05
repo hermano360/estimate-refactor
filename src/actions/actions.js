@@ -122,7 +122,6 @@ export const retrievePreviousQuote = (currentQuoteNumber) => {
 export const retrieveAvailableQuoteNumbers = () => {
   return (dispatch, getState) => {
     let availableQuoteNumbers = databaseSimulation.retrieveAvailableQuoteNumbers()
-    console.log(availableQuoteNumbers)
     dispatch(setAvailableQuoteNumbers(availableQuoteNumbers))
   }
 }
