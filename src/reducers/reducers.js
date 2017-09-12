@@ -160,6 +160,48 @@ export const CachedQuotesReducer = (state = {}, action) => {
           shoppingCart: shoppingCartWithAdjustedQuantity
         }
       }
+    case 'CHANGE_CART_ITEM_LABOR':
+      let shoppingCartWithAdjustedLabor = state[action.quoteNumber].shoppingCart.map((cartItem) => {
+        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
+          let {Labor} = action
+          if (Labor === '') {
+            Labor = 0
+          }
+          return {
+            ...cartItem,
+            Labor
+          }
+        }
+        return cartItem
+      })
+      return {
+        ...state,
+        [action.quoteNumber]: {
+          ...state[action.quoteNumber],
+          shoppingCart: shoppingCartWithAdjustedLabor
+        }
+      }
+    case 'CHANGE_CART_ITEM_MATERIAL':
+      let shoppingCartWithAdjustedMaterial = state[action.quoteNumber].shoppingCart.map((cartItem) => {
+        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
+          let {Material} = action.Material
+          if (Material === '') {
+            Material = 0
+          }
+          return {
+            ...cartItem,
+            Material
+          }
+        }
+        return cartItem
+      })
+      return {
+        ...state,
+        [action.quoteNumber]: {
+          ...state[action.quoteNumber],
+          shoppingCart: shoppingCartWithAdjustedMaterial
+        }
+      }
     case 'DELETE_SHOPPING_CART_ITEM':
       const updatedShoppingCart = state[action.quoteNumber].shoppingCart.filter((cartItem) => {
         return !(cartItem.keyCode === action.keyCode && cartItem.template === action.template)

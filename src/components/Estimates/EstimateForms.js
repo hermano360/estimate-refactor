@@ -4,6 +4,10 @@ var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
 
 class EstimateForms extends Component {
+  constructor(){
+    super()
+    this.cake = "money"
+  }
   handleTemplateSelect (template) {
     let {dispatch, quoteNumber} = this.props
     // if the template selected isnt the default option
@@ -93,6 +97,7 @@ class EstimateForms extends Component {
                   <option value='select' onClick={() => { console.log('Selected select') }}>Select</option>
                   <option value='Demolition'>Demolition</option>
                   <option value='Foundation/Footings'>Foundation/Footings</option>
+                  <option value='Bathroom'>Bathroom</option>
                 </FormControl>
               </Col>
             </FormGroup>

@@ -103,6 +103,26 @@ export var changeCartItemQuantity = (quoteNumber, keyCode, template, quantity) =
   }
 }
 
+export var changeCartItemMaterial = (quoteNumber, keyCode, template, Material) => {
+  return {
+    type: 'CHANGE_CART_ITEM_MATERIAL',
+    keyCode,
+    template,
+    Material,
+    quoteNumber
+  }
+}
+
+export var changeCartItemLabor = (quoteNumber, keyCode, template, Labor) => {
+  return {
+    type: 'CHANGE_CART_ITEM_LABOR',
+    keyCode,
+    template,
+    Labor,
+    quoteNumber
+  }
+}
+
 export var deleteShoppingCartItem = (quoteNumber, keyCode, template) => {
   return {
     type: 'DELETE_SHOPPING_CART_ITEM',

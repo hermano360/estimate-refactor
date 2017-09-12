@@ -14,7 +14,10 @@ class Estimate extends Component {
     this.state = {
       estimateStatus: 'main',
       modal: false,
-      animal: 'elephants'
+      animal: 'elephants',
+      tax: 10,
+      costAdjustment: 30
+
     }
   }
 
@@ -24,6 +27,7 @@ class Estimate extends Component {
         return listOfOtherQuoteNumbers[i]
       }
     }
+    console.log(EstimateForms.cake);
     return currentQuote
   }
   findNextQuoteNumber (currentQuote, listOfOtherQuoteNumbers, InitialQuoteNumber) {
@@ -58,12 +62,13 @@ class Estimate extends Component {
 
   render () {
     const {dispatch, cachedQuotes, quoteNumber, InitialQuoteNumber, availableQuoteNumbers} = this.props
-
+    const {tax, costAdjustment} = this.state
     let shoppingCart = cachedQuotes[quoteNumber].shoppingCart
     let total = 0
     shoppingCart.forEach((item) => {
       total += (item.Labor + item.Material) * item.quantity
     })
+    total *= (1 + tax/100) * (1 + costAdjustment/100)
     total = parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,')
 
     let downloadLink = (totalDough) => {
@@ -121,7 +126,6 @@ class Estimate extends Component {
                     <th>Description</th>
                     <th>Material</th>
                     <th>Labor</th>
-                    <th><Glyphicon glyph='pencil' /></th>
                     <th><Glyphicon glyph='remove' /></th>
                   </tr>
                 </thead>

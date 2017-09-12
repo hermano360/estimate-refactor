@@ -26,7 +26,6 @@ class ShoppingCartItem extends Component {
         <td>{Description}</td>
         <td>${(Material * quantity).toFixed(2)}</td>
         <td>${(Labor * quantity).toFixed(2)}</td>
-        <td><Glyphicon glyph='pencil' /></td>
         <td onClick={() => { dispatch(actions.deleteShoppingCartItem(quoteNumber, keyCode, template)) }}><Glyphicon glyph='remove' /></td>
       </tr>
     )

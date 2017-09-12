@@ -14,7 +14,7 @@ class Products extends Component {
     }
   }
   componentWillMount () {
-    let newKeyCodes = productKeyCodes.getSample(0)
+    let newKeyCodes = productKeyCodes.all()
     let newProductList = productDetails.getBatchProducts(newKeyCodes)
     this.setState({productList: newProductList})
   }
@@ -36,6 +36,7 @@ class Products extends Component {
                     <option value='select'>select</option>
                     <option value='Foundation/Footings'>Foundation/Footings</option>
                     <option value='Demolition'>Demolition</option>
+                    <option value='Bathroom'>Bathroom</option>
                   </FormControl>
                 </Col>
               </FormGroup>
@@ -173,7 +174,7 @@ class Products extends Component {
             <Button onClick={() => { this.setState({count: 0}) }}> {'|<'}</Button>
             <Button onClick={() => { if (this.state.count > 0) { this.setState({count: this.state.count - 1}) } }}> {'<'}</Button>
             <Button> {this.state.count + 1} </Button>
-            <Button onClick={() => { if (this.state.count < 8) { this.setState({count: this.state.count + 1}) } }}>{'>'}</Button>
+            <Button onClick={() => { if (this.state.count < 11) { this.setState({count: this.state.count + 1}) } }}>{'>'}</Button>
             <Button>{'>|'}</Button>
           </Col>
           <Col sm={12} style={{textAlign: 'center', verticalAlign: 'middle'}}>
