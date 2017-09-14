@@ -6,7 +6,14 @@ var {connect} = require('react-redux')
 class StartPage extends Component {
   render () {
     const {dispatch} = this.props
-    let imageStyles = {width: '200px', height: '200px', 'marginTop': '50px'}
+    let logoStyles = {
+      width: '100%',
+      height: 'auto',
+      'marginTop': '50px',
+      backgroundColor: 'white',
+      borderRadius: '5px',
+      padding: '5px'
+    }
     let buttonContainerStyles = {height: '200px', 'marginTop': '50px'}
     let marginTopCustom = (margintop) => {
       return {
@@ -19,7 +26,6 @@ class StartPage extends Component {
       maxWidth: '300px',
       minWidth: '220px',
       width: '70%',
-      border: '1px solid white',
       textAlign: 'center',
       verticalAlign: 'middle'
     }
@@ -30,31 +36,31 @@ class StartPage extends Component {
       margin: '40px'
     }
 
+    let startButtons = {
+      color: 'white',
+      fontWeight: '800',
+      fontSize: '20px',
+      width: '115px'
+    }
+
     return (
-      <Grid fluid style={{textAlign: 'center', minHeight: '100vh', backgroundColor: 'black'}}>
+      <Grid fluid style={{textAlign: 'center', minHeight: '100vh'}}>
         <Row>
-          <Col sm={12} className='center-block' style={menuTitle}>
-            Pro Builders Express Menu
-          </Col>
-        </Row>
-        <Row style={marginTopCustom(10)}>
-          <Col xs={12} sm={6} className='center-block'>
-            <div style={borderBoxes} className='center-block'>
-              <img src='http://cdn.homeadvisor.com/files/eid/8700000/8707399/2395760.jpg?modifyDateTime=1391029484000' style={imageStyles} />
-            </div>
-          </Col>
           <Col xs={12} sm={6}>
             <Row>
               <div style={borderBoxes} className='center-block'>
                 <div style={buttonContainerStyles}>
+                  <Col xs={12} className='center-block'>
+                    <img src='/ezestimator_logo.png' style={logoStyles} />
+                  </Col>
                   <Col xs={12} className='center-block' style={marginTopCustom(10)}>
-                    <Button bsStyle='primary' onClick={() => { dispatch(actions.changePage('PhoneList')) }}>Phone list</Button>
+                    <Button bsStyle='primary' onClick={() => { dispatch(actions.changePage('PhoneList')) }} style={startButtons}>Phone list</Button>
                   </Col>
-                  <Col xs={6} className='center-block' style={marginTopCustom(10)}>
-                    <Button bsStyle='primary' onClick={() => { dispatch(actions.changePage('Products')) }}>Products</Button>
+                  <Col xs={6} className='center-block' style={{marginTop:'10%', textAlign:'center'}}>
+                    <Button bsStyle='primary' onClick={() => { dispatch(actions.changePage('Products')) }}  style={startButtons}>Products</Button>
                   </Col>
-                  <Col xs={6} className='center-block' style={marginTopCustom(10)}>
-                    <Button bsStyle='primary' onClick={() => { dispatch(actions.changePage('Estimate')) }}>Estimates</Button>
+                  <Col xs={6} className='center-block' style={{marginTop:'10%', textAlign:'center'}}>
+                    <Button bsStyle='primary' onClick={() => { dispatch(actions.changePage('Estimate')) }}  style={startButtons}>Estimates</Button>
                   </Col>
                 </div>
               </div>

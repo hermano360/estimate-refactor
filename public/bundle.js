@@ -22334,7 +22334,14 @@
 	    value: function render() {
 	      var dispatch = this.props.dispatch;
 	
-	      var imageStyles = { width: '200px', height: '200px', 'marginTop': '50px' };
+	      var logoStyles = {
+	        width: '100%',
+	        height: 'auto',
+	        'marginTop': '50px',
+	        backgroundColor: 'white',
+	        borderRadius: '5px',
+	        padding: '5px'
+	      };
 	      var buttonContainerStyles = { height: '200px', 'marginTop': '50px' };
 	      var marginTopCustom = function marginTopCustom(margintop) {
 	        return {
@@ -22347,7 +22354,6 @@
 	        maxWidth: '300px',
 	        minWidth: '220px',
 	        width: '70%',
-	        border: '1px solid white',
 	        textAlign: 'center',
 	        verticalAlign: 'middle'
 	      };
@@ -22358,30 +22364,19 @@
 	        margin: '40px'
 	      };
 	
+	      var startButtons = {
+	        color: 'white',
+	        fontWeight: '800',
+	        fontSize: '20px',
+	        width: '115px'
+	      };
+	
 	      return _react2.default.createElement(
 	        _reactBootstrap.Grid,
-	        { fluid: true, style: { textAlign: 'center', minHeight: '100vh', backgroundColor: 'black' } },
+	        { fluid: true, style: { textAlign: 'center', minHeight: '100vh' } },
 	        _react2.default.createElement(
 	          _reactBootstrap.Row,
 	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 12, className: 'center-block', style: menuTitle },
-	            'Pro Builders Express Menu'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          { style: marginTopCustom(10) },
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { xs: 12, sm: 6, className: 'center-block' },
-	            _react2.default.createElement(
-	              'div',
-	              { style: borderBoxes, className: 'center-block' },
-	              _react2.default.createElement('img', { src: 'http://cdn.homeadvisor.com/files/eid/8700000/8707399/2395760.jpg?modifyDateTime=1391029484000', style: imageStyles })
-	            )
-	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
 	            { xs: 12, sm: 6 },
@@ -22396,34 +22391,39 @@
 	                  { style: buttonContainerStyles },
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
+	                    { xs: 12, className: 'center-block' },
+	                    _react2.default.createElement('img', { src: '/ezestimator_logo.png', style: logoStyles })
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
 	                    { xs: 12, className: 'center-block', style: marginTopCustom(10) },
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Button,
 	                      { bsStyle: 'primary', onClick: function onClick() {
 	                          dispatch(actions.changePage('PhoneList'));
-	                        } },
+	                        }, style: startButtons },
 	                      'Phone list'
 	                    )
 	                  ),
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
-	                    { xs: 6, className: 'center-block', style: marginTopCustom(10) },
+	                    { xs: 6, className: 'center-block', style: { marginTop: '10%', textAlign: 'center' } },
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Button,
 	                      { bsStyle: 'primary', onClick: function onClick() {
 	                          dispatch(actions.changePage('Products'));
-	                        } },
+	                        }, style: startButtons },
 	                      'Products'
 	                    )
 	                  ),
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
-	                    { xs: 6, className: 'center-block', style: marginTopCustom(10) },
+	                    { xs: 6, className: 'center-block', style: { marginTop: '10%', textAlign: 'center' } },
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Button,
 	                      { bsStyle: 'primary', onClick: function onClick() {
 	                          dispatch(actions.changePage('Estimate'));
-	                        } },
+	                        }, style: startButtons },
 	                      'Estimates'
 	                    )
 	                  )
@@ -46369,6 +46369,14 @@
 	        marginLeft: '5px',
 	        marginRight: '5px',
 	        verticalAlign: 'middle'
+	      };
+	      var logoStyles = {
+	        width: '100%',
+	        height: 'auto',
+	        'marginTop': '50px',
+	        backgroundColor: 'white',
+	        borderRadius: '5px',
+	        padding: '5px'
 	
 	        // possible form item generator for later. seems to be too many one-off cases
 	
@@ -46381,11 +46389,7 @@
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
 	            { sm: 12, style: { textAlign: 'center', margin: '10px auto 20px auto' } },
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'Pro Builders Express Estimator WorkSheet'
-	            )
+	            _react2.default.createElement('img', { src: '/ezestimator_logo.png', style: logoStyles })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -46430,7 +46434,7 @@
 	                    _react2.default.createElement(
 	                      'th',
 	                      null,
-	                      'Material'
+	                      'Mtrl'
 	                    ),
 	                    _react2.default.createElement(
 	                      'th',
@@ -46849,7 +46853,7 @@
 	          null,
 	          _react2.default.createElement('input', { type: 'text', defaultValue: quantity, onChange: function onChange(e) {
 	              _this2.onQuantityChange(keyCode, template, e.target.value);
-	            } })
+	            }, style: { maxWidth: '30px' } })
 	        ),
 	        _react2.default.createElement(
 	          'td',
@@ -46859,7 +46863,11 @@
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          Description
+	          _react2.default.createElement(
+	            'div',
+	            { style: { maxHeight: '2.5em', overflowY: 'scroll' } },
+	            Description
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'td',
@@ -46984,7 +46992,10 @@
 	        paddingLeft: 0,
 	        color: 'black'
 	      };
-	      var innerTextCellStyle = { padding: '0', color: 'black' };
+	      var formSpacing = { marginBottom: '10px' };
+	
+	      var innerTextCellStyle = { padding: '0', color: 'black',
+	        backgroundColor: '#727EEE' };
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -46995,361 +47006,255 @@
 	            _reactBootstrap.Row,
 	            null,
 	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: null },
+	              _reactBootstrap.Col,
+	              { xs: 6, style: formSpacing },
 	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Quote No'
+	                  _reactBootstrap.Col,
+	                  { xs: 12, sm: 8, style: formCellEntryStyle },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'First Name', value: cachedQuotes[quoteNumber].customerFirstName, onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'customerFirstName', e.target.value));
+	                    }, style: innerTextCellStyle })
 	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 8 },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: quoteNumber, readOnly: true, style: innerTextCellStyle })
 	              )
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formControlsSelect' },
+	              _reactBootstrap.Col,
+	              { xs: 6, style: formSpacing },
 	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Salesperson'
+	                  _reactBootstrap.Col,
+	                  { xs: 12, sm: 8, style: formCellEntryStyle },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Last Name', value: cachedQuotes[quoteNumber].customerLastName, onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'customerLastName', e.target.value));
+	                    }, style: innerTextCellStyle })
 	                )
-	              ),
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { xs: 12, style: formSpacing },
 	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 8 },
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
-	                  _reactBootstrap.FormControl,
-	                  { componentClass: 'select', value: cachedQuotes[quoteNumber].salesman, onChange: function onChange(e) {
-	                      return dispatch(actions.updateQuoteInfo(quoteNumber, 'salesman', e.target.value));
-	                    }, style: innerTextCellStyle },
+	                  _reactBootstrap.Col,
+	                  { xs: 12, sm: 8, style: formCellEntryStyle },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Street Address', value: cachedQuotes[quoteNumber].address, onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'address', e.target.value));
+	                    }, style: innerTextCellStyle })
+	                ),
+	                _react2.default.createElement(_reactBootstrap.Clearfix, { visibleXsBlock: true }),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { xs: 4, sm: 3, style: formCellEntryStyle },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'City', value: cachedQuotes[quoteNumber].city, onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'city', e.target.value));
+	                    }, style: innerTextCellStyle })
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { xs: 4, sm: 2, style: formCellEntryStyle },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'State', value: cachedQuotes[quoteNumber].state, onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'state', e.target.value));
+	                    }, style: innerTextCellStyle })
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { xs: 4, sm: 3, style: formCellEntryStyle },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'ZIP', value: cachedQuotes[quoteNumber].zipcode, onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'zipcode', e.target.value));
+	                    }, style: innerTextCellStyle })
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { xs: 6, style: formSpacing },
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formControlsSelect' },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { xs: 12, style: formCellEntryStyle },
 	                  _react2.default.createElement(
-	                    'option',
-	                    { value: '' },
-	                    'Select'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'Gary Banks' },
-	                    'Banks, Gary'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'John Chavez' },
-	                    'Chavez, John'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'Arnold Corona' },
-	                    'Corona, Arnold'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'John Gutierrez' },
-	                    'Gutierrez, John'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'Bob Leon' },
-	                    'Leon, Bob'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'Ricardo Rivera' },
-	                    'Rivera, Ricardo'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'Mike Rogers' },
-	                    'Rogers, Mike'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'Cameron Sterling' },
-	                    'Sterling, Cameron'
+	                    _reactBootstrap.FormControl,
+	                    { componentClass: 'select', value: cachedQuotes[quoteNumber].salesman, onChange: function onChange(e) {
+	                        return dispatch(actions.updateQuoteInfo(quoteNumber, 'salesman', e.target.value));
+	                      }, style: innerTextCellStyle },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '' },
+	                      'Select Estimater'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Gary Banks' },
+	                      'Banks, Gary'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'John Chavez' },
+	                      'Chavez, John'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Arnold Corona' },
+	                      'Corona, Arnold'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'John Gutierrez' },
+	                      'Gutierrez, John'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Bob Leon' },
+	                      'Leon, Bob'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Ricardo Rivera' },
+	                      'Rivera, Ricardo'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Mike Rogers' },
+	                      'Rogers, Mike'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Cameron Sterling' },
+	                      'Sterling, Cameron'
+	                    )
 	                  )
 	                )
 	              )
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: null },
+	              _reactBootstrap.Col,
+	              { xs: 6, style: formSpacing },
 	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Start Date'
+	                  _reactBootstrap.Col,
+	                  { xs: 12, style: formCellEntryStyle, onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value));
+	                    } },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Phone', style: innerTextCellStyle, value: cachedQuotes[quoteNumber].phone })
 	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 8 },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: cachedQuotes[quoteNumber].date, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'date', e.target.value));
-	                  }, style: innerTextCellStyle })
 	              )
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: null },
-	              _react2.default.createElement(_reactBootstrap.Clearfix, { visibleSmBlock: true }),
+	              _reactBootstrap.Col,
+	              { xs: 6, style: formSpacing },
 	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Project Desc.'
+	                  _reactBootstrap.Col,
+	                  { xs: 12, style: formCellEntryStyle },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: 'Quote No-' + quoteNumber, readOnly: true, style: innerTextCellStyle })
 	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 8 },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Description', value: cachedQuotes[quoteNumber].projectDescription, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'projectDescription', e.target.value));
-	                  }, style: innerTextCellStyle })
 	              )
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formControlsSelect' },
-	              _react2.default.createElement(_reactBootstrap.Clearfix, { visibleSmBlock: true }),
+	              _reactBootstrap.Col,
+	              { xs: 6, style: formSpacing },
 	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Template'
+	                  _reactBootstrap.Col,
+	                  { xs: 12, style: formCellEntryStyle },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: cachedQuotes[quoteNumber].date, onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'date', e.target.value));
+	                    }, style: innerTextCellStyle })
 	                )
-	              ),
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { xs: 12, style: formSpacing },
 	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 8 },
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formControlsTextarea', validationState: null },
 	                _react2.default.createElement(
-	                  _reactBootstrap.FormControl,
-	                  { componentClass: 'select', onChange: function onChange(e) {
-	                      _this2.handleTemplateSelect(e.target.value);
-	                    }, style: innerTextCellStyle },
+	                  _reactBootstrap.Col,
+	                  { xs: 12, style: formCellEntryStyle },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Project Description', rows: '3', value: cachedQuotes[quoteNumber].projectDescription, onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'projectDescription', e.target.value));
+	                    }, style: innerTextCellStyle })
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { xs: 12, style: formSpacing },
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formControlsTextarea', validationState: null },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { xs: 12, style: formCellEntryStyle },
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Scope Of Work', rows: '3', value: cachedQuotes[quoteNumber].specification, onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value));
+	                    }, style: innerTextCellStyle })
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { xs: 12, style: formSpacing },
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: 'formControlsSelect' },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { xs: 12, style: { paddingLeft: 0, color: 'black', textAlign: 'center' } },
 	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'select', onClick: function onClick() {
-	                        console.log('Selected select');
-	                      } },
-	                    'Select'
-	                  ),
+	                    _reactBootstrap.ControlLabel,
+	                    null,
+	                    'Select Template'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { sm: 12, style: formCellEntryStyle },
 	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'Demolition' },
-	                    'Demolition'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'Foundation/Footings' },
-	                    'Foundation/Footings'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: 'Bathroom' },
-	                    'Bathroom'
+	                    _reactBootstrap.FormControl,
+	                    { componentClass: 'select', onChange: function onChange(e) {
+	                        _this2.handleTemplateSelect(e.target.value);
+	                      }, style: innerTextCellStyle },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'select', onClick: function onClick() {
+	                          console.log('Selected select');
+	                        } },
+	                      'Select'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Demolition' },
+	                      'Demolition'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Foundation/Footings' },
+	                      'Foundation/Footings'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Bathroom' },
+	                      'Bathroom'
+	                    )
 	                  )
 	                )
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Col,
-	          { sm: 4 },
-	          _react2.default.createElement(
-	            _reactBootstrap.Row,
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: null },
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
-	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Name'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4, style: formCellEntryStyle },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'First', value: cachedQuotes[quoteNumber].customerFirstName, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'customerFirstName', e.target.value));
-	                  }, style: innerTextCellStyle })
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4, style: formCellEntryStyle },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Last', value: cachedQuotes[quoteNumber].customerLastName, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'customerLastName', e.target.value));
-	                  }, style: innerTextCellStyle })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: null },
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
-	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Address'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 8, style: formCellEntryStyle },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '123 Main Street', value: cachedQuotes[quoteNumber].address, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'address', e.target.value));
-	                  }, style: innerTextCellStyle })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: null },
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
-	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'City'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 3, style: formCellEntryStyle },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'City', value: cachedQuotes[quoteNumber].city, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'city', e.target.value));
-	                  }, style: innerTextCellStyle })
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 2, style: formCellEntryStyle },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'CA', value: cachedQuotes[quoteNumber].state, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'state', e.target.value));
-	                  }, style: innerTextCellStyle })
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 3, style: formCellEntryStyle },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'ZIP', value: cachedQuotes[quoteNumber].zipcode, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'zipcode', e.target.value));
-	                  }, style: innerTextCellStyle })
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Col,
-	          { sm: 4 },
-	          _react2.default.createElement(
-	            _reactBootstrap.Row,
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: null },
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
-	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Email'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'email', e.target.value));
-	                  } },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'customer@email.com', style: innerTextCellStyle, value: cachedQuotes[quoteNumber].email })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: null },
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
-	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Phone'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value));
-	                  } },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234', style: innerTextCellStyle, value: cachedQuotes[quoteNumber].phone })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formValidationWarning1', validationState: null },
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 4 },
-	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Fax'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 8, style: formCellEntryStyle, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'fax', e.target.value));
-	                  } },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '555-123-1234', style: innerTextCellStyle, value: cachedQuotes[quoteNumber].fax })
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Col,
-	          { sm: 8 },
-	          _react2.default.createElement(
-	            _reactBootstrap.Row,
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.FormGroup,
-	              { controlId: 'formControlsTextarea' },
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 2 },
-	                _react2.default.createElement(
-	                  _reactBootstrap.ControlLabel,
-	                  null,
-	                  'Specification'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Col,
-	                { sm: 10, style: formCellEntryStyle },
-	                _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Specification', rows: '3', value: cachedQuotes[quoteNumber].specification, onChange: function onChange(e) {
-	                    dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value));
-	                  }, style: innerTextCellStyle })
 	              )
 	            )
 	          )
@@ -49430,10 +49335,6 @@
 	  switch (action.type) {
 	    case 'UPDATE_SHOPPING_CART':
 	      return action.shoppingCart;
-	    // case 'DELETE_SHOPPING_CART_ITEM':
-	    //   return state.filter((cartItem) => {
-	    //     return !(cartItem.keyCode === action.keyCode && cartItem.template === action.template)
-	    //   })
 	    default:
 	      return state;
 	  }

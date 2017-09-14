@@ -19,11 +19,15 @@ class ShoppingCartItem extends Component {
     return (
       <tr>
         <td>{keyCode}</td>
-        <td>
-          <input type='text' defaultValue={quantity} onChange={(e) => { this.onQuantityChange(keyCode, template, e.target.value) }} />
+        <td >
+          <input type='text' defaultValue={quantity} onChange={(e) => { this.onQuantityChange(keyCode, template, e.target.value) }} style={{maxWidth:'30px'}} />
         </td>
         <td>{UOM}</td>
-        <td>{Description}</td>
+        <td>
+          <div style={{maxHeight: '2.5em', overflowY: 'scroll'}}>
+            {Description}
+          </div>
+        </td>
         <td>${(Material * quantity).toFixed(2)}</td>
         <td>${(Labor * quantity).toFixed(2)}</td>
         <td onClick={() => { dispatch(actions.deleteShoppingCartItem(quoteNumber, keyCode, template)) }}><Glyphicon glyph='remove' /></td>

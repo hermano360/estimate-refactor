@@ -23,10 +23,6 @@ export const ShoppingCartReducer = (state = [], action) => {
   switch (action.type) {
     case 'UPDATE_SHOPPING_CART':
       return action.shoppingCart
-    // case 'DELETE_SHOPPING_CART_ITEM':
-    //   return state.filter((cartItem) => {
-    //     return !(cartItem.keyCode === action.keyCode && cartItem.template === action.template)
-    //   })
     default:
       return state
   }

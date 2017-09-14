@@ -101,6 +101,14 @@ class Estimate extends Component {
       marginRight: '5px',
       verticalAlign: 'middle'
     }
+    let logoStyles = {
+      width: '100%',
+      height: 'auto',
+      'marginTop': '50px',
+      backgroundColor: 'white',
+      borderRadius: '5px',
+      padding: '5px'
+    }
 
     // possible form item generator for later. seems to be too many one-off cases
 
@@ -108,9 +116,7 @@ class Estimate extends Component {
       <Grid fluid>
         <Row>
           <Col sm={12} style={{textAlign: 'center', margin: '10px auto 20px auto'}}>
-            <h3>
-                  Pro Builders Express Estimator WorkSheet
-                </h3>
+            <img src='/ezestimator_logo.png' style={logoStyles} />
           </Col>
         </Row>
         <Row>
@@ -124,7 +130,7 @@ class Estimate extends Component {
                     <th>Amt</th>
                     <th>Unit</th>
                     <th>Description</th>
-                    <th>Material</th>
+                    <th>Mtrl</th>
                     <th>Labor</th>
                     <th><Glyphicon glyph='remove' /></th>
                   </tr>
