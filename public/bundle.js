@@ -22379,7 +22379,7 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            { xs: 12, sm: 6 },
+	            { xs: 12 },
 	            _react2.default.createElement(
 	              _reactBootstrap.Row,
 	              null,
@@ -22391,7 +22391,7 @@
 	                  { style: buttonContainerStyles },
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
-	                    { xs: 12, className: 'center-block' },
+	                    { xs: 12, className: 'center-block', style: { marginBottom: '25%' } },
 	                    _react2.default.createElement('img', { src: '/ezestimator_logo.png', style: logoStyles })
 	                  ),
 	                  _react2.default.createElement(
@@ -46388,7 +46388,7 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            { sm: 12, style: { textAlign: 'center', margin: '10px auto 20px auto' } },
+	            { xs: 12, style: { textAlign: 'center', margin: '10px auto 20px auto' } },
 	            _react2.default.createElement('img', { src: '/ezestimator_logo.png', style: logoStyles })
 	          )
 	        ),
@@ -46397,79 +46397,83 @@
 	          null,
 	          _react2.default.createElement(_EstimateForms2.default, null),
 	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { sm: 12 },
+	            'div',
+	            { style: { maxWidth: '100vw' } },
 	            _react2.default.createElement(
-	              'div',
-	              { style: { height: '40vh', overflow: 'scroll' } },
+	              _reactBootstrap.Col,
+	              { xs: 12 },
+	              _react2.default.createElement(
+	                'div',
+	                { style: { height: '40vh', overflow: 'scroll' } },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Table,
+	                  { striped: true, bordered: true, condensed: true, hover: true },
+	                  _react2.default.createElement(
+	                    'thead',
+	                    null,
+	                    _react2.default.createElement(
+	                      'tr',
+	                      null,
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Product'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Amt'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Unit'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Description'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Mtrl'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        'Labor'
+	                      ),
+	                      _react2.default.createElement(
+	                        'th',
+	                        null,
+	                        _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
+	                      )
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'tbody',
+	                    null,
+	                    shoppingCartFunction()
+	                  )
+	                )
+	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.Table,
 	                { striped: true, bordered: true, condensed: true, hover: true },
 	                _react2.default.createElement(
-	                  'thead',
+	                  'tbody',
 	                  null,
 	                  _react2.default.createElement(
 	                    'tr',
 	                    null,
 	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Product'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Amt'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Unit'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Description'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Mtrl'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      'Labor'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
-	                      _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
+	                      'td',
+	                      { colSpan: '7', onClick: function onClick() {
+	                          console.log('add custom item');
+	                        }, style: { textAlign: 'center' } },
+	                      'Add Item'
 	                    )
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'tbody',
-	                  null,
-	                  shoppingCartFunction()
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Table,
-	              { striped: true, bordered: true, condensed: true, hover: true },
-	              _react2.default.createElement(
-	                'tbody',
-	                null,
-	                _react2.default.createElement(
-	                  'tr',
-	                  null,
-	                  _react2.default.createElement(
-	                    'td',
-	                    { colSpan: '7', onClick: function onClick() {
-	                        console.log('add custom item');
-	                      }, style: { textAlign: 'center' } },
-	                    'Add Item'
 	                  )
 	                )
 	              )
@@ -46481,13 +46485,13 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            { sm: 8 },
+	            { xs: 8 },
 	            _react2.default.createElement(
 	              _reactBootstrap.Row,
 	              null,
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
-	                { sm: 12, style: { textAlign: 'center' } },
+	                { xs: 12, style: { textAlign: 'center' } },
 	                _react2.default.createElement(
 	                  _reactBootstrap.Button,
 	                  { onClick: function onClick() {
@@ -46680,7 +46684,7 @@
 	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
-	                { sm: 12, style: { textAlign: 'center', marginTop: '5px' } },
+	                { xs: 12, style: { textAlign: 'center', marginTop: '5px' } },
 	                _react2.default.createElement(
 	                  _reactBootstrap.Button,
 	                  { onClick: function onClick() {
@@ -46741,7 +46745,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Col,
-	            { sm: 4 },
+	            { xs: 4 },
 	            _react2.default.createElement(
 	              _reactBootstrap.Panel,
 	              null,
@@ -46992,7 +46996,7 @@
 	        paddingLeft: 0,
 	        color: 'black'
 	      };
-	      var formSpacing = { marginBottom: '10px' };
+	      var formSpacing = { marginBottom: '20px' };
 	
 	      var innerTextCellStyle = { padding: '0', color: 'black',
 	        backgroundColor: '#727EEE' };
@@ -47001,7 +47005,7 @@
 	        null,
 	        _react2.default.createElement(
 	          _reactBootstrap.Col,
-	          { sm: 4 },
+	          { xs: 12 },
 	          _react2.default.createElement(
 	            _reactBootstrap.Row,
 	            null,
@@ -47013,7 +47017,7 @@
 	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
-	                  { xs: 12, sm: 8, style: formCellEntryStyle },
+	                  { xs: 12, style: formCellEntryStyle },
 	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'First Name', value: cachedQuotes[quoteNumber].customerFirstName, onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'customerFirstName', e.target.value));
 	                    }, style: innerTextCellStyle })
@@ -47028,7 +47032,7 @@
 	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
-	                  { xs: 12, sm: 8, style: formCellEntryStyle },
+	                  { xs: 12, style: formCellEntryStyle },
 	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Last Name', value: cachedQuotes[quoteNumber].customerLastName, onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'customerLastName', e.target.value));
 	                    }, style: innerTextCellStyle })
@@ -47043,7 +47047,7 @@
 	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
-	                  { xs: 12, sm: 8, style: formCellEntryStyle },
+	                  { xs: 12, style: formCellEntryStyle },
 	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Street Address', value: cachedQuotes[quoteNumber].address, onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'address', e.target.value));
 	                    }, style: innerTextCellStyle })
@@ -47051,21 +47055,21 @@
 	                _react2.default.createElement(_reactBootstrap.Clearfix, { visibleXsBlock: true }),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
-	                  { xs: 4, sm: 3, style: formCellEntryStyle },
+	                  { xs: 4, style: formCellEntryStyle },
 	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'City', value: cachedQuotes[quoteNumber].city, onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'city', e.target.value));
 	                    }, style: innerTextCellStyle })
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
-	                  { xs: 4, sm: 2, style: formCellEntryStyle },
+	                  { xs: 4, style: formCellEntryStyle },
 	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'State', value: cachedQuotes[quoteNumber].state, onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'state', e.target.value));
 	                    }, style: innerTextCellStyle })
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
-	                  { xs: 4, sm: 3, style: formCellEntryStyle },
+	                  { xs: 4, style: formCellEntryStyle },
 	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'ZIP', value: cachedQuotes[quoteNumber].zipcode, onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'zipcode', e.target.value));
 	                    }, style: innerTextCellStyle })
@@ -47225,7 +47229,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
-	                  { sm: 12, style: formCellEntryStyle },
+	                  { xs: 12, style: formCellEntryStyle },
 	                  _react2.default.createElement(
 	                    _reactBootstrap.FormControl,
 	                    { componentClass: 'select', onChange: function onChange(e) {

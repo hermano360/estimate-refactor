@@ -46,11 +46,11 @@ class StartPage extends Component {
     return (
       <Grid fluid style={{textAlign: 'center', minHeight: '100vh'}}>
         <Row>
-          <Col xs={12} sm={6}>
+          <Col xs={12} >
             <Row>
               <div style={borderBoxes} className='center-block'>
                 <div style={buttonContainerStyles}>
-                  <Col xs={12} className='center-block'>
+                  <Col xs={12} className='center-block' style={{marginBottom: '25%'}}>
                     <img src='/ezestimator_logo.png' style={logoStyles} />
                   </Col>
                   <Col xs={12} className='center-block' style={marginTopCustom(10)}>

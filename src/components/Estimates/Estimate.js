@@ -115,45 +115,47 @@ class Estimate extends Component {
     return (
       <Grid fluid>
         <Row>
-          <Col sm={12} style={{textAlign: 'center', margin: '10px auto 20px auto'}}>
+          <Col xs={12} style={{textAlign: 'center', margin: '10px auto 20px auto'}}>
             <img src='/ezestimator_logo.png' style={logoStyles} />
           </Col>
         </Row>
         <Row>
           <EstimateForms />
-          <Col sm={12}>
-            <div style={{height: '40vh', overflow: 'scroll'}}>
+          <div style={{maxWidth:'100vw'}}>
+            <Col xs={12}>
+              <div style={{height: '40vh', overflow: 'scroll'}}>
+                <Table striped bordered condensed hover>
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Amt</th>
+                      <th>Unit</th>
+                      <th>Description</th>
+                      <th>Mtrl</th>
+                      <th>Labor</th>
+                      <th><Glyphicon glyph='remove' /></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {shoppingCartFunction()}
+                  </tbody>
+                </Table>
+              </div>
               <Table striped bordered condensed hover>
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Amt</th>
-                    <th>Unit</th>
-                    <th>Description</th>
-                    <th>Mtrl</th>
-                    <th>Labor</th>
-                    <th><Glyphicon glyph='remove' /></th>
-                  </tr>
-                </thead>
                 <tbody>
-                  {shoppingCartFunction()}
+                  <tr>
+                    <td colSpan='7' onClick={() => { console.log('add custom item') }} style={{textAlign: 'center'}}>Add Item</td>
+                  </tr>
                 </tbody>
-              </Table>
-            </div>
-            <Table striped bordered condensed hover>
-              <tbody>
-                <tr>
-                  <td colSpan='7' onClick={() => { console.log('add custom item') }} style={{textAlign: 'center'}}>Add Item</td>
-                </tr>
-              </tbody>
 
-            </Table>
-          </Col>
+              </Table>
+            </Col>
+          </div>
         </Row>
         <Row>
-          <Col sm={8}>
+          <Col xs={8}>
             <Row>
-              <Col sm={12} style={{textAlign: 'center'}}>
+              <Col xs={12} style={{textAlign: 'center'}}>
                 <Button onClick={() => { dispatch(actions.changePage('StartPage')) }} style={bottomButtonStyle}>Back</Button>
                 {downloadLink(total)}
                 {/* <Button onClick={() => { if (this.props.shoppingCart.length > 0) { this.setState({estimateStatus: 'productPreview'}) } }} style={bottomButtonStyle}>Products</Button>
@@ -220,7 +222,7 @@ class Estimate extends Component {
                   </Modal.Footer>
                 </Modal>
               </Col>
-              <Col sm={12} style={{textAlign: 'center', marginTop: '5px'}}>
+              <Col xs={12} style={{textAlign: 'center', marginTop: '5px'}}>
                 <Button onClick={() => { dispatch(actions.setQuote(InitialQuoteNumber)) }}>Current</Button>
                 <Button onClick={() => {
                   let nextQuoteNumber = this.findNextQuoteNumber(quoteNumber, availableQuoteNumbers, InitialQuoteNumber)
@@ -256,7 +258,7 @@ class Estimate extends Component {
               </Col>
             </Row>
           </Col>
-          <Col sm={4}>
+          <Col xs={4}>
             <Panel>
               <h5>Grand Total with Tax : ${total}</h5>
             </Panel>
