@@ -18,6 +18,7 @@ class ShoppingCartItem extends Component {
 
     return (
       <tr>
+        <td style={{fontWeight: "bold"}}>1</td>
         <td>{keyCode}</td>
         <td >
           <input type='text' defaultValue={quantity} onChange={(e) => { this.onQuantityChange(keyCode, template, e.target.value) }} style={{maxWidth:'30px'}} />

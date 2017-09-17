@@ -8,7 +8,7 @@ var {connect} = require('react-redux')
 const databaseSimulation = require('../../../api/quoteDatabase.js')
 const axios = require('axios')
 
-class Estimate extends Component {
+export class Estimate extends Component {
   constructor () {
     super()
     this.state = {
@@ -105,7 +105,6 @@ class Estimate extends Component {
       width: '100%',
       height: 'auto',
       'marginTop': '50px',
-      backgroundColor: 'white',
       borderRadius: '5px',
       padding: '5px'
     }
@@ -124,24 +123,29 @@ class Estimate extends Component {
           <div style={{maxWidth:'100vw'}}>
             <Col xs={12}>
               <div style={{height: '40vh', overflow: 'scroll'}}>
-                <Table striped bordered condensed hover>
+                <Table bordered condensed>
                   <thead>
                     <tr>
-                      <th>Product</th>
-                      <th>Amt</th>
-                      <th>Unit</th>
-                      <th>Description</th>
-                      <th>Mtrl</th>
-                      <th>Labor</th>
-                      <th><Glyphicon glyph='remove' /></th>
+                      <th colSpan="4">Choose Template</th>
+                      <th colSpan="4">Estimate</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <tr>
+                      <td style={{fontWeight: "bold"}}>#</td>
+                      <td style={{fontWeight: "bold"}}>Code</td>
+                      <td style={{fontWeight: "bold"}}>Amt</td>
+                      <td style={{fontWeight: "bold"}}>Units</td>
+                      <td style={{fontWeight: "bold"}}>Description</td>
+                      <td style={{fontWeight: "bold"}}>Lbr</td>
+                      <td style={{fontWeight: "bold"}}>Mtrl</td>
+                      <td style={{fontWeight: "bold"}}></td>
+                    </tr>
                     {shoppingCartFunction()}
                   </tbody>
                 </Table>
               </div>
-              <Table striped bordered condensed hover>
+              <Table bordered condensed>
                 <tbody>
                   <tr>
                     <td colSpan='7' onClick={() => { console.log('add custom item') }} style={{textAlign: 'center'}}>Add Item</td>

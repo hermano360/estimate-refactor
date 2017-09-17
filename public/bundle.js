@@ -46207,6 +46207,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.Estimate = undefined;
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
@@ -46244,7 +46245,7 @@
 	var databaseSimulation = __webpack_require__(445);
 	var axios = __webpack_require__(490);
 	
-	var Estimate = function (_Component) {
+	var Estimate = exports.Estimate = function (_Component) {
 	  _inherits(Estimate, _Component);
 	
 	  function Estimate() {
@@ -46374,7 +46375,6 @@
 	        width: '100%',
 	        height: 'auto',
 	        'marginTop': '50px',
-	        backgroundColor: 'white',
 	        borderRadius: '5px',
 	        padding: '5px'
 	
@@ -46407,7 +46407,7 @@
 	                { style: { height: '40vh', overflow: 'scroll' } },
 	                _react2.default.createElement(
 	                  _reactBootstrap.Table,
-	                  { striped: true, bordered: true, condensed: true, hover: true },
+	                  { bordered: true, condensed: true },
 	                  _react2.default.createElement(
 	                    'thead',
 	                    null,
@@ -46416,51 +46416,66 @@
 	                      null,
 	                      _react2.default.createElement(
 	                        'th',
-	                        null,
-	                        'Product'
+	                        { colSpan: '4' },
+	                        'Choose Template'
 	                      ),
 	                      _react2.default.createElement(
 	                        'th',
-	                        null,
-	                        'Amt'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'Unit'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'Description'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'Mtrl'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        'Labor'
-	                      ),
-	                      _react2.default.createElement(
-	                        'th',
-	                        null,
-	                        _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
+	                        { colSpan: '4' },
+	                        'Estimate'
 	                      )
 	                    )
 	                  ),
 	                  _react2.default.createElement(
 	                    'tbody',
 	                    null,
+	                    _react2.default.createElement(
+	                      'tr',
+	                      null,
+	                      _react2.default.createElement(
+	                        'td',
+	                        { style: { fontWeight: "bold" } },
+	                        '#'
+	                      ),
+	                      _react2.default.createElement(
+	                        'td',
+	                        { style: { fontWeight: "bold" } },
+	                        'Code'
+	                      ),
+	                      _react2.default.createElement(
+	                        'td',
+	                        { style: { fontWeight: "bold" } },
+	                        'Amt'
+	                      ),
+	                      _react2.default.createElement(
+	                        'td',
+	                        { style: { fontWeight: "bold" } },
+	                        'Units'
+	                      ),
+	                      _react2.default.createElement(
+	                        'td',
+	                        { style: { fontWeight: "bold" } },
+	                        'Description'
+	                      ),
+	                      _react2.default.createElement(
+	                        'td',
+	                        { style: { fontWeight: "bold" } },
+	                        'Lbr'
+	                      ),
+	                      _react2.default.createElement(
+	                        'td',
+	                        { style: { fontWeight: "bold" } },
+	                        'Mtrl'
+	                      ),
+	                      _react2.default.createElement('td', { style: { fontWeight: "bold" } })
+	                    ),
 	                    shoppingCartFunction()
 	                  )
 	                )
 	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.Table,
-	                { striped: true, bordered: true, condensed: true, hover: true },
+	                { bordered: true, condensed: true },
 	                _react2.default.createElement(
 	                  'tbody',
 	                  null,
@@ -46849,6 +46864,11 @@
 	        null,
 	        _react2.default.createElement(
 	          'td',
+	          { style: { fontWeight: "bold" } },
+	          '1'
+	        ),
+	        _react2.default.createElement(
+	          'td',
 	          null,
 	          keyCode
 	        ),
@@ -46998,8 +47018,7 @@
 	      };
 	      var formSpacing = { marginBottom: '20px' };
 	
-	      var innerTextCellStyle = { padding: '0', color: 'black',
-	        backgroundColor: '#727EEE' };
+	      var innerTextCellStyle = { padding: '0', color: 'black' };
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -47178,36 +47197,6 @@
 	                  { xs: 12, style: formCellEntryStyle },
 	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: cachedQuotes[quoteNumber].date, onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'date', e.target.value));
-	                    }, style: innerTextCellStyle })
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Col,
-	              { xs: 12, style: formSpacing },
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formControlsTextarea', validationState: null },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { xs: 12, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Project Description', rows: '3', value: cachedQuotes[quoteNumber].projectDescription, onChange: function onChange(e) {
-	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'projectDescription', e.target.value));
-	                    }, style: innerTextCellStyle })
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Col,
-	              { xs: 12, style: formSpacing },
-	              _react2.default.createElement(
-	                _reactBootstrap.FormGroup,
-	                { controlId: 'formControlsTextarea', validationState: null },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { xs: 12, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Scope Of Work', rows: '3', value: cachedQuotes[quoteNumber].specification, onChange: function onChange(e) {
-	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value));
 	                    }, style: innerTextCellStyle })
 	                )
 	              )

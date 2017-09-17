@@ -1,5 +1,5 @@
 body {
-	background-color: #8AA6CF
+	background-color: #F2E1B2;
 }
 
 .tableEntry {
@@ -62,34 +62,7 @@ input {
 	color: black;
 }
 
-input::-webkit-input-placeholder {
-color: white !important;
-}
-
-input:-moz-placeholder { /* Firefox 18- */
-color: white !important;
-}
-
-input::-moz-placeholder {  /* Firefox 19+ */
-color: white !important;
-}
-
-input:-ms-input-placeholder {
-color: white !important;
-}
-
-textarea::-webkit-input-placeholder {
-color: white !important;
-}
-
-textarea:-moz-placeholder { /* Firefox 18- */
-color: white !important;
-}
-
-textarea::-moz-placeholder {  /* Firefox 19+ */
-color: white !important;  
-}
-
-textarea:-ms-input-placeholder {
-color: white !important;
+table, .table {
+	background-color: white;
+	color: black;
 }

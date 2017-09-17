@@ -40,8 +40,7 @@ class EstimateForms extends Component {
     }
     let formSpacing = {marginBottom: '20px'}
 
-    let innerTextCellStyle = {padding: '0', color: 'black',
-    backgroundColor:'#727EEE'}
+    let innerTextCellStyle = {padding: '0', color: 'black'}
     return (
       <div>
         <Col xs={12}>
@@ -115,7 +114,7 @@ class EstimateForms extends Component {
                 </Col>
               </FormGroup>
             </Col>
-            <Col xs={12} style={formSpacing}>
+            {/* <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formControlsTextarea' validationState={null}>
                <Col xs={12} style={formCellEntryStyle}>
                  <FormControl componentClass='textarea' placeholder='Project Description' rows='3' value={cachedQuotes[quoteNumber].projectDescription} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'projectDescription', e.target.value)) }} style={innerTextCellStyle} />
@@ -128,7 +127,7 @@ class EstimateForms extends Component {
                     <FormControl componentClass='textarea' placeholder='Scope Of Work' rows='3' value={cachedQuotes[quoteNumber].specification} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value)) }} style={innerTextCellStyle} />
                   </Col>
                 </FormGroup>
-            </Col>
+            </Col> */}
             <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formControlsSelect'>
                 <Col xs={12} style={{paddingLeft: 0, color: 'black', textAlign:'center'}} >
