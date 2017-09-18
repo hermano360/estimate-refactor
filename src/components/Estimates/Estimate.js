@@ -287,7 +287,7 @@ export class Estimate extends Component {
                         <Select
                           options={codeOptions}
                           onChange={(e) => { dispatch(actions.addShoppingCartItem(e.value, quoteNumber)) }}
-                          placeholder='Code'
+                          placeholder='Add Item With Code'
                           autoBlur={true}
                           noResultsText='N/A'
                         />

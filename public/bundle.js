@@ -46655,7 +46655,7 @@
 	                        onChange: function onChange(e) {
 	                          dispatch(actions.addShoppingCartItem(e.value, quoteNumber));
 	                        },
-	                        placeholder: 'Code',
+	                        placeholder: 'Add Item With Code',
 	                        autoBlur: true,
 	                        noResultsText: 'N/A'
 	                      })
