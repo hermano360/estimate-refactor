@@ -21,6 +21,14 @@ export var updateShoppingCart = (shoppingCart) => {
   }
 }
 
+export var addShoppingCartItem = (shoppingCartItem, quoteNumber) => {
+  return {
+    type: 'ADD_SHOPPING_CART_ITEM',
+    shoppingCartItem,
+    quoteNumber
+  }
+}
+
 export var updateCustomerInfo = (attribute, value) => {
   return {
     type: 'UPDATE_CUSTOMER_INFO',

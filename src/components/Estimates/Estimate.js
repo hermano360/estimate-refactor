@@ -22,6 +22,14 @@ export class Estimate extends Component {
     }
   }
 
+  handleTemplateSelect (template) {
+    let {dispatch, quoteNumber} = this.props
+    // if the template selected isnt the default option
+    if (template !== 'select') {
+      dispatch(actions.selectTemplate(quoteNumber, template))
+    }
+  }
+
 
 
   findPreviousQuoteNumber (currentQuote, listOfOtherQuoteNumbers) {
@@ -66,19 +74,30 @@ export class Estimate extends Component {
   render () {
     const {dispatch, cachedQuotes, quoteNumber, InitialQuoteNumber, availableQuoteNumbers} = this.props
     const {tax, costAdjustment} = this.state
-    var options = [
-    { value: 'one', label: 'One' },
-    { value: 'two', label: 'Two' },
-    { value: 'three', label: 'Three' },
-    { value: 'four', label: 'Four' },
-    { value: 'five', label: 'Five' },
-    { value: 'six', label: 'Six' },
-    { value: 'seven', label: 'Seven' },
-    { value: 'eight', label: 'Eight' }
+    var codeOptions = [
+    { value: 'faucet1', label: 'faucet1' },
+    { value: 'faucet2', label: 'faucet2' },
+    { value: 'faucet3', label: 'faucet3' },
+    { value: 'faucet4', label: 'faucet4' },
+    { value: 'light1', label: 'light1' },
+    { value: 'light2', label: 'light2' },
+    { value: 'light3', label: 'light3' },
+    { value: 'light4', label: 'light4' },
+    { value: 'fan1', label: 'fan1' },
+    { value: 'fan2', label: 'fan2' },
+    { value: 'fan3', label: 'fan3' },
+    { value: 'fan4', label: 'fan4' }
+
   ];
+  var templateOptions = [
+  { value: 'Demolition', label: 'Demolition' },
+  { value: 'Foundation/Footings', label: 'Foundation/Footings' },
+  { value: 'Bathroom', label: 'Bathroom' }
+];
   function logChange(val) {
-  console.log("Selected: " + JSON.stringify(val));
-}
+    console.log("Selected: " + JSON.stringify(val));
+  }
+
     let shoppingCart = cachedQuotes[quoteNumber].shoppingCart
     let total = 0
     shoppingCart.forEach((item) => {
@@ -94,13 +113,13 @@ export class Estimate extends Component {
             this.setState({
               animal: 'elephants'
             })
-          }}><Button style={bottomButtonStyle}>Click To Download</Button></a>
+          }}><Button style={bottomButtonStyle}>Download</Button></a>
         )
       } else {
         return (
           <Button onClick={() => {
             this.generateEstimate(totalDough)
-          }} style={bottomButtonStyle}>Generate Estimate</Button>
+          }} style={bottomButtonStyle}>Estimate</Button>
         )
       }
     }
@@ -113,9 +132,56 @@ export class Estimate extends Component {
     }
 
     let bottomButtonStyle = {
-      marginLeft: '5px',
-      marginRight: '5px',
-      verticalAlign: 'middle'
+      color: 'black',
+      fontWeight: '500',
+      fontSize: '10px',
+      width: '17vw',
+      height:'auto',
+      marginLeft:'1.5vw',
+      marginRight:'1.5vw',
+      backgroundColor:'#B4E41C',
+      borderRadius: '5px',
+      textAlign:'center',
+      overflowY: 'visible',
+      whiteSpace: 'normal',
+      wordWrap: 'break-word',
+      padding: '1px'
+    }
+    let totalButtonStyle = {
+      position: 'fixed',
+      bottom: '15px',
+      right: '1.5vw',
+      color: 'black',
+      fontWeight: '500',
+      fontSize: '10px',
+      minWidth: '17vw',
+      height:'auto',
+      backgroundColor:'#F6CE2E',
+      borderRadius: '5px',
+      textAlign:'center',
+      overflowY: 'visible',
+      whiteSpace: 'normal',
+      wordWrap: 'break-word',
+      padding: '1px',
+      zIndex: '1'
+    }
+    let backButtonStyle = {
+      position: 'fixed',
+      bottom: '15px',
+      left: '1.5vw',
+      color: 'black',
+      fontWeight: '500',
+      fontSize: '10px',
+      minWidth: '17vw',
+      height:'auto',
+      backgroundColor:'#F6CE2E',
+      borderRadius: '5px',
+      textAlign:'center',
+      overflowY: 'visible',
+      whiteSpace: 'normal',
+      wordWrap: 'break-word',
+      padding: '1px',
+      zIndex: '1'
     }
     let logoStyles = {
       width: '50%',
@@ -132,7 +198,18 @@ export class Estimate extends Component {
 
     return (
       <div>
-      <Grid fluid>
+        <Button style={totalButtonStyle}>
+          <div>
+            Total
+           </div>
+          <div>
+            ${total}
+          </div>
+        </Button>
+        <Button style={backButtonStyle} onClick={() => { dispatch(actions.changePage('StartPage')) }} >
+          Back
+        </Button>
+      <Grid fluid style={{height:'95vh', top:'0'}}>
         <Row>
           <Col xs={12} style={{textAlign: 'right', marginTop:'15px'}}>
             <img src='/left-arrow.png' style={arrowStyles} onClick={() => {
@@ -167,27 +244,28 @@ export class Estimate extends Component {
         </Row>
         <Row>
           <EstimateForms />
-          <div style={{maxWidth:'100vw'}}>
-            <Col xs={12}>
+          <div style={{width:'100vw', left:'0px'}}>
+              <Table bordered condensed>
+                <thead>
+                  <tr>
+                    <th style={{backgroundColor:"black", color:'white', width:'50vw'}}>
+                      <Select
+                        style={{backgroundColor:"black", color:'white', borderColor:'black'}}
+                        options={templateOptions}
+                        onChange={(e) => { this.handleTemplateSelect(e.value) }}
+                        placeholder='Choose Template'
+                        noResultsText='N/A'
+                        clearable={false}
+                        className='harold'
+                      />
+                    </th>
+                    <th style={{textAlign:'center', verticalAlign:'middle'}}>Estimator Worksheet</th>
+                  </tr>
+                </thead>
+              </Table>
                 <div style={{maxHeight: '40vh', overflow: 'scroll'}}>
                 <Table bordered condensed>
-                  <thead>
-                    <tr>
-                      <th colSpan="4" style={{backgroundColor:"black", color:'white'}}>
-                        <Select
-                          style={{backgroundColor:"black", color:'white', borderColor:'black'}}
-                          options={options}
-                          onChange={(e)=>{console.log(e.value)}}
-                          placeholder='Choose Template'
-                          noResultsText='N/A'
-                          clearable={false}
-                          className='harold'
-                        />
-                      </th>
-                      <th colSpan="4" style={{textAlign:'center', verticalAlign:'middle'}}>Estimator Worksheet</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                  <tbody style={{fontSize:'10px'}}>
                     <tr>
                       <td style={{fontWeight: "bold", padding: "0"}}>#</td>
                       <td style={{fontWeight: "bold", padding: "0"}}>Code</td>
@@ -203,101 +281,94 @@ export class Estimate extends Component {
                 </Table>
                 </div>
                 <Table bordered condensed>
-                  <thead>
+                  <tbody>
                     <tr>
-                      <th>
+                      <td>
                         <Select
-                          options={options}
-                          onChange={(e)=>{console.log(e.value)}}
+                          options={codeOptions}
+                          onChange={(e) => { dispatch(actions.addShoppingCartItem(e.value, quoteNumber)) }}
                           placeholder='Code'
                           autoBlur={true}
                           noResultsText='N/A'
                         />
-                      </th>
+                      </td>
                     </tr>
-                  </thead>
+                  </tbody>
                 </Table>
-
-            </Col>
           </div>
         </Row>
         <Row>
-          <Col xs={8}>
-            <Row>
-              <Col xs={12} style={{textAlign: 'center'}}>
-                <Button onClick={() => { dispatch(actions.changePage('StartPage')) }} style={bottomButtonStyle}>Back</Button>
-                {downloadLink(total)}
-                {/* <Button onClick={() => { if (this.props.shoppingCart.length > 0) { this.setState({estimateStatus: 'productPreview'}) } }} style={bottomButtonStyle}>Products</Button>
-                      <Button onClick={() => { console.log('Shopping List') }} style={bottomButtonStyle}>Shopping List</Button> */}
-                <Button onClick={() => { this.setState({modal: true}) }} style={bottomButtonStyle}>Cost Preview</Button>
-                <Modal show={this.state.modal} onHide={() => { this.setState({modal: false}) }}>
-                  <Modal.Header closeButton>
-                    <Modal.Title style={{textAlign: 'center'}} >Cost Preview</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <div style={{height: '40%', overflow: 'scroll'}}>
-                      <Table striped bordered condensed hover>
-                        <thead>
-                          <tr>
-                            <th />
-                            <th>Material</th>
-                            <th>Labor</th>
-                            <th>Days</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Subtotal</td>
-                            <td>$6,541.01</td>
-                            <td>$8,113.80</td>
-                            <td>38.72496</td>
-                          </tr>
-                          <tr>
-                            <td />
-                            <td>$327.05</td>
-                            <td>$8,925.18</td>
-                            <td />
-                          </tr>
-                          <tr>
-                            <td />
-                            <td>$6,868.06</td>
-                            <td>$17,038.98</td>
-                            <td />
-                          </tr>
-                          <tr>
-                            <td>Tax</td>
-                            <td>$566.62</td>
-                            <td />
-                            <td />
-                          </tr>
-                          <tr>
-                            <td>Total</td>
-                            <td>$7,434.68</td>
-                            <td>$17,038.98</td>
-                            <td />
-                          </tr>
-                          <tr>
-                            <td>Grand Total</td>
-                            <td>$24,473.66</td>
-                            <td />
-                            <td />
-                          </tr>
-                        </tbody>
-                      </Table>
-                    </div>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button onClick={() => { this.setState({modal: false}) }}>Close</Button>
-                  </Modal.Footer>
-                </Modal>
-              </Col>
-            </Row>
-          </Col>
-          <Col xs={4}>
-            <Panel>
-              <h5>Grand Total with Tax : ${total}</h5>
-            </Panel>
-          </Col>
+          <div style={{textAlign: 'left', marginBottom:'47px', width:'100vw', left:'0'}}>
+            {downloadLink(total)}
+            <Button onClick={() => { console.log('Duplicate') }} style={bottomButtonStyle}>Duplicate</Button>
+            <Button onClick={() => { console.log('Work Order') }} style={bottomButtonStyle}>Work Order</Button>
+            <Button onClick={() => { console.log('Shopping List') }} style={bottomButtonStyle}>Shopping List</Button>
+            <Button onClick={() => { console.log('Convert Code') }} style={bottomButtonStyle}>Convert Code</Button>
+            <Button onClick={() => { console.log('Email Bid') }} style={bottomButtonStyle}>Email Bid</Button>
+            <Button onClick={() => { console.log('Email Vendor') }} style={bottomButtonStyle}>Email Vendor</Button>
+            <Button onClick={() => { console.log('Credit Card') }} style={bottomButtonStyle}>Credit Card</Button>
+            {/* <Button onClick={() => { this.setState({modal: true}) }} style={bottomButtonStyle}>Cost Preview</Button> */}
+            <Modal show={this.state.modal} onHide={() => { this.setState({modal: false}) }}>
+              <Modal.Header closeButton>
+                <Modal.Title style={{textAlign: 'center'}} >Cost Preview</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div style={{height: '40%', overflow: 'scroll'}}>
+                  <Table striped bordered condensed hover>
+                    <thead>
+                      <tr>
+                        <th />
+                        <th>Material</th>
+                        <th>Labor</th>
+                        <th>Days</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Subtotal</td>
+                        <td>$6,541.01</td>
+                        <td>$8,113.80</td>
+                        <td>38.72496</td>
+                      </tr>
+                      <tr>
+                        <td />
+                        <td>$327.05</td>
+                        <td>$8,925.18</td>
+                        <td />
+                      </tr>
+                      <tr>
+                        <td />
+                        <td>$6,868.06</td>
+                        <td>$17,038.98</td>
+                        <td />
+                      </tr>
+                      <tr>
+                        <td>Tax</td>
+                        <td>$566.62</td>
+                        <td />
+                        <td />
+                      </tr>
+                      <tr>
+                        <td>Total</td>
+                        <td>$7,434.68</td>
+                        <td>$17,038.98</td>
+                        <td />
+                      </tr>
+                      <tr>
+                        <td>Grand Total</td>
+                        <td>$24,473.66</td>
+                        <td />
+                        <td />
+                      </tr>
+                    </tbody>
+                  </Table>
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button onClick={() => { this.setState({modal: false}) }}>Close</Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
         </Row>
       </Grid>
       </div>

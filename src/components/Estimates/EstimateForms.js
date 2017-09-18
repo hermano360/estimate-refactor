@@ -35,10 +35,11 @@ class EstimateForms extends Component {
   render () {
     let {dispatch, quoteNumber, cachedQuotes} = this.props
     let formCellEntryStyle = {
-      paddingLeft: 0,
+      paddingLeft: '0px',
+      paddingRight: '5px',
       color: 'black'
     }
-    let formSpacing = {marginBottom: '20px'}
+    let formSpacing = {marginBottom: '5px'}
 
     let innerTextCellStyle = {padding: '0', color: 'black'}
     return (
@@ -85,34 +86,26 @@ class EstimateForms extends Component {
               </FormGroup>
             </Col>
 
-            {/* Phone */}
+            {/* Phone Email*/}
 
-            <Col xs={6} style={formSpacing}>
+            <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formValidationWarning1' validationState={null}>
-                <Col xs={12} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value)) }}>
+                <Col xs={6} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value)) }}>
                   <FormControl type='text' placeholder='Phone' style={innerTextCellStyle} value={cachedQuotes[quoteNumber].phone} />
                 </Col>
-              </FormGroup>
-            </Col>
-
-            {/* Email */}
-
-
-            <Col xs={6} style={formSpacing}>
-              <FormGroup controlId='formValidationWarning1' validationState={null}>
-                <Col xs={12} style={formCellEntryStyle} >
+                <Col xs={6} style={formCellEntryStyle} >
                   <FormControl type='text' placeholder='Email' style={innerTextCellStyle} />
                 </Col>
               </FormGroup>
             </Col>
 
-            {/* Estimator */}
+            {/* Estimator and Date*/}
 
-            <Col xs={6} style={formSpacing}>
+            <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formControlsSelect'>
-              <Col xs={12}  style={formCellEntryStyle}>
+              <Col xs={6}  style={formCellEntryStyle}>
                 <FormControl componentClass='select' value={cachedQuotes[quoteNumber].salesman} onChange={(e) => dispatch(actions.updateQuoteInfo(quoteNumber, 'salesman', e.target.value))} style={innerTextCellStyle} >
-                  <option value=''>Select Estimater</option>
+                  <option value=''>Estimator</option>
                   <option value='Gary Banks'>Banks, Gary</option>
                   <option value='John Chavez'>Chavez, John</option>
                   <option value='Arnold Corona'>Corona, Arnold</option>
@@ -123,18 +116,14 @@ class EstimateForms extends Component {
                   <option value='Cameron Sterling'>Sterling, Cameron</option>
                 </FormControl>
               </Col>
+              <Col xs={6}  style={formCellEntryStyle}>
+                <FormControl type='text' value={cachedQuotes[quoteNumber].date} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'date', e.target.value)) }} style={innerTextCellStyle} />
+              </Col>
               </FormGroup>
             </Col>
 
-            {/* Date */}
 
-            <Col xs={6} style={formSpacing}>
-              <FormGroup controlId='formValidationWarning1' validationState={null}>
-                <Col xs={12}  style={formCellEntryStyle}>
-                  <FormControl type='text' value={cachedQuotes[quoteNumber].date} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'date', e.target.value)) }} style={innerTextCellStyle} />
-                </Col>
-              </FormGroup>
-            </Col>
+
 
             {/* <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formControlsTextarea' validationState={null}>
@@ -151,10 +140,10 @@ class EstimateForms extends Component {
                   </Col>
                 </FormGroup>
             </Col>
-            <Col xs={12} style={{height:"10px", width:'100vw', backgroundColor:"green"}}>
+            <Col xs={12} style={{height:"10px", width:'100vw', backgroundColor:"#2DA850"}}>
             </Col>
 
-            <Col xs={12} style={formSpacing}>
+            {/* <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formControlsSelect'>
                 <Col xs={12} style={{paddingLeft: 0, color: 'black', textAlign:'center'}} >
                   <ControlLabel>Select Template</ControlLabel>
@@ -168,7 +157,7 @@ class EstimateForms extends Component {
                   </FormControl>
                 </Col>
               </FormGroup>
-            </Col>
+            </Col> */}
           </Row>
         </Col>
 

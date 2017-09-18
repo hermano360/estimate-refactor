@@ -209,6 +209,30 @@ export const CachedQuotesReducer = (state = {}, action) => {
           shoppingCart: updatedShoppingCart
         }
       }
+    case 'ADD_SHOPPING_CART_ITEM':
+      let newShoppingCart = state[action.quoteNumber].shoppingCart
+      newShoppingCart.push({
+        keyCode: action.shoppingCartItem,
+        productGroup: '',
+        supplier: '',
+        UOM: '',
+        Description: ``,
+        Material: 0,
+        Labor: 1.75,
+        SKU: '',
+        updated: 1501563875457,
+        picture: '',
+        url: '',
+        quantity: 0,
+        template: ''
+      })
+      return {
+        ...state,
+        [action.quoteNumber]: {
+          ...state[action.quoteNumber],
+          shoppingCart: newShoppingCart
+        }
+      }
     default:
       return state
   }
