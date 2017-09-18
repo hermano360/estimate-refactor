@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Button, Row, Col, Grid, Table, Glyphicon, Panel, Modal} from 'react-bootstrap'
 import ShoppingCartItem from './ShoppingCartItem'
 import EstimateForms from './EstimateForms'
+import Select from 'react-select'
 
 var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
@@ -20,6 +21,8 @@ export class Estimate extends Component {
 
     }
   }
+
+
 
   findPreviousQuoteNumber (currentQuote, listOfOtherQuoteNumbers) {
     for (let i = listOfOtherQuoteNumbers.length - 1; i >= 0; i--) {
@@ -63,6 +66,19 @@ export class Estimate extends Component {
   render () {
     const {dispatch, cachedQuotes, quoteNumber, InitialQuoteNumber, availableQuoteNumbers} = this.props
     const {tax, costAdjustment} = this.state
+    var options = [
+    { value: 'one', label: 'One' },
+    { value: 'two', label: 'Two' },
+    { value: 'three', label: 'Three' },
+    { value: 'four', label: 'Four' },
+    { value: 'five', label: 'Five' },
+    { value: 'six', label: 'Six' },
+    { value: 'seven', label: 'Seven' },
+    { value: 'eight', label: 'Eight' }
+  ];
+  function logChange(val) {
+  console.log("Selected: " + JSON.stringify(val));
+}
     let shoppingCart = cachedQuotes[quoteNumber].shoppingCart
     let total = 0
     shoppingCart.forEach((item) => {
@@ -89,9 +105,9 @@ export class Estimate extends Component {
       }
     }
     let shoppingCartFunction = () => {
-      return shoppingCart.map((shoppingCartItem) => {
+      return shoppingCart.map((shoppingCartItem, itemNumber) => {
         return (
-          <ShoppingCartItem key={shoppingCartItem.keyCode + shoppingCartItem.template} {...shoppingCartItem} />
+          <ShoppingCartItem key={itemNumber} number={itemNumber+1} {...shoppingCartItem} />
         )
       })
     }
@@ -102,19 +118,50 @@ export class Estimate extends Component {
       verticalAlign: 'middle'
     }
     let logoStyles = {
-      width: '100%',
+      width: '50%',
       height: 'auto',
-      'marginTop': '50px',
       borderRadius: '5px',
       padding: '5px'
+    }
+    let arrowStyles= {
+      height:'35px',
+      width:'auto'
     }
 
     // possible form item generator for later. seems to be too many one-off cases
 
     return (
+      <div>
       <Grid fluid>
         <Row>
-          <Col xs={12} style={{textAlign: 'center', margin: '10px auto 20px auto'}}>
+          <Col xs={12} style={{textAlign: 'right', marginTop:'15px'}}>
+            <img src='/left-arrow.png' style={arrowStyles} onClick={() => {
+              let nextQuoteNumber = this.findNextQuoteNumber(quoteNumber, availableQuoteNumbers, InitialQuoteNumber)
+              if (nextQuoteNumber in cachedQuotes) {
+                dispatch(actions.setQuote(nextQuoteNumber))
+              } else {
+                let nextQuote = databaseSimulation.retrieveQuote(nextQuoteNumber)
+                dispatch(actions.addQuoteToCache(nextQuote))
+                dispatch(actions.setQuote(nextQuoteNumber))
+              }
+            }}/>
+            <span style={{fontWeight:'bold', fontSize:'20px', margin:'10px', color:'black'}}>{`# ${this.props.quoteNumber}`}</span>
+            <img src='/right-arrow.png' style={arrowStyles}
+            onClick={() => {
+              let previousQuoteNumber = this.findPreviousQuoteNumber(quoteNumber, availableQuoteNumbers)
+              if (previousQuoteNumber in cachedQuotes) {
+                dispatch(actions.setQuote(previousQuoteNumber))
+              } else {
+                let previousQuote = databaseSimulation.retrieveQuote(previousQuoteNumber)
+                dispatch(actions.addQuoteToCache(previousQuote))
+                dispatch(actions.setQuote(previousQuoteNumber))
+              }
+            }}/>
+            <span style={{paddingRight:'15px'}}></span>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} style={{textAlign: 'center'}}>
             <img src='/ezestimator_logo.png' style={logoStyles} />
           </Col>
         </Row>
@@ -122,37 +169,55 @@ export class Estimate extends Component {
           <EstimateForms />
           <div style={{maxWidth:'100vw'}}>
             <Col xs={12}>
-              <div style={{height: '40vh', overflow: 'scroll'}}>
+                <div style={{maxHeight: '40vh', overflow: 'scroll'}}>
                 <Table bordered condensed>
                   <thead>
                     <tr>
-                      <th colSpan="4">Choose Template</th>
-                      <th colSpan="4">Estimate</th>
+                      <th colSpan="4" style={{backgroundColor:"black", color:'white'}}>
+                        <Select
+                          style={{backgroundColor:"black", color:'white', borderColor:'black'}}
+                          options={options}
+                          onChange={(e)=>{console.log(e.value)}}
+                          placeholder='Choose Template'
+                          noResultsText='N/A'
+                          clearable={false}
+                          className='harold'
+                        />
+                      </th>
+                      <th colSpan="4" style={{textAlign:'center', verticalAlign:'middle'}}>Estimator Worksheet</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td style={{fontWeight: "bold"}}>#</td>
-                      <td style={{fontWeight: "bold"}}>Code</td>
-                      <td style={{fontWeight: "bold"}}>Amt</td>
-                      <td style={{fontWeight: "bold"}}>Units</td>
-                      <td style={{fontWeight: "bold"}}>Description</td>
-                      <td style={{fontWeight: "bold"}}>Lbr</td>
-                      <td style={{fontWeight: "bold"}}>Mtrl</td>
-                      <td style={{fontWeight: "bold"}}></td>
+                      <td style={{fontWeight: "bold", padding: "0"}}>#</td>
+                      <td style={{fontWeight: "bold", padding: "0"}}>Code</td>
+                      <td style={{fontWeight: "bold", padding: "0"}}>Amt</td>
+                      <td style={{fontWeight: "bold", padding: "0"}}>Units</td>
+                      <td style={{fontWeight: "bold", padding: "0"}}>Description</td>
+                      <td style={{fontWeight: "bold", padding: "0"}}>Lbr</td>
+                      <td style={{fontWeight: "bold", padding: "0"}}>Mtrl</td>
+                      <td style={{fontWeight: "bold", padding: "0"}}></td>
                     </tr>
                     {shoppingCartFunction()}
                   </tbody>
                 </Table>
-              </div>
-              <Table bordered condensed>
-                <tbody>
-                  <tr>
-                    <td colSpan='7' onClick={() => { console.log('add custom item') }} style={{textAlign: 'center'}}>Add Item</td>
-                  </tr>
-                </tbody>
+                </div>
+                <Table bordered condensed>
+                  <thead>
+                    <tr>
+                      <th>
+                        <Select
+                          options={options}
+                          onChange={(e)=>{console.log(e.value)}}
+                          placeholder='Code'
+                          autoBlur={true}
+                          noResultsText='N/A'
+                        />
+                      </th>
+                    </tr>
+                  </thead>
+                </Table>
 
-              </Table>
             </Col>
           </div>
         </Row>
@@ -226,40 +291,6 @@ export class Estimate extends Component {
                   </Modal.Footer>
                 </Modal>
               </Col>
-              <Col xs={12} style={{textAlign: 'center', marginTop: '5px'}}>
-                <Button onClick={() => { dispatch(actions.setQuote(InitialQuoteNumber)) }}>Current</Button>
-                <Button onClick={() => {
-                  let nextQuoteNumber = this.findNextQuoteNumber(quoteNumber, availableQuoteNumbers, InitialQuoteNumber)
-                  if (nextQuoteNumber in cachedQuotes) {
-                    dispatch(actions.setQuote(nextQuoteNumber))
-                  } else {
-                    let nextQuote = databaseSimulation.retrieveQuote(nextQuoteNumber)
-                    dispatch(actions.addQuoteToCache(nextQuote))
-                    dispatch(actions.setQuote(nextQuoteNumber))
-                  }
-                }}>{`<`}</Button>
-                <Button> Quote {quoteNumber}</Button>
-                <Button onClick={() => {
-                  let previousQuoteNumber = this.findPreviousQuoteNumber(quoteNumber, availableQuoteNumbers)
-                  if (previousQuoteNumber in cachedQuotes) {
-                    dispatch(actions.setQuote(previousQuoteNumber))
-                  } else {
-                    let previousQuote = databaseSimulation.retrieveQuote(previousQuoteNumber)
-                    dispatch(actions.addQuoteToCache(previousQuote))
-                    dispatch(actions.setQuote(previousQuoteNumber))
-                  }
-                }}>></Button>
-                <Button onClick={() => {
-                  let firstQuoteNumber = availableQuoteNumbers[0]
-                  if (firstQuoteNumber in cachedQuotes) {
-                    dispatch(actions.setQuote(firstQuoteNumber))
-                  } else {
-                    let firstQuote = databaseSimulation.retrieveQuote(firstQuoteNumber)
-                    dispatch(actions.addQuoteToCache(firstQuote))
-                    dispatch(actions.setQuote(firstQuoteNumber))
-                  }
-                }}>{'>|'}</Button>
-              </Col>
             </Row>
           </Col>
           <Col xs={4}>
@@ -269,6 +300,7 @@ export class Estimate extends Component {
           </Col>
         </Row>
       </Grid>
+      </div>
     )
   }
 }

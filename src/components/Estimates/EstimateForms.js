@@ -45,26 +45,34 @@ class EstimateForms extends Component {
       <div>
         <Col xs={12}>
           <Row>
-            <Col xs={6} style={formSpacing}>
+
+            {/* First Last Name  */}
+
+            <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formValidationWarning1' validationState={null}>
-                <Col xs={12} style={formCellEntryStyle}>
+                <Col xs={6} style={formCellEntryStyle}>
                   <FormControl type='text' placeholder='First Name' value={cachedQuotes[quoteNumber].customerFirstName} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'customerFirstName', e.target.value)) }} style={innerTextCellStyle} />
                 </Col>
-              </FormGroup>
-            </Col>
-            <Col xs={6} style={formSpacing}>
-              <FormGroup controlId='formValidationWarning1' validationState={null}>
-                <Col xs={12} style={formCellEntryStyle}>
+                <Col xs={6} style={formCellEntryStyle}>
                   <FormControl type='text' placeholder='Last Name' value={cachedQuotes[quoteNumber].customerLastName} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'customerLastName', e.target.value)) }} style={innerTextCellStyle} />
                 </Col>
               </FormGroup>
             </Col>
+
+            {/* Street Address  */}
+
             <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formValidationWarning1' validationState={null}>
                 <Col xs={12}  style={formCellEntryStyle}>
                   <FormControl type='text' placeholder='Street Address' value={cachedQuotes[quoteNumber].address} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'address', e.target.value)) }} style={innerTextCellStyle} />
                 </Col>
-                <Clearfix visibleXsBlock/>
+              </FormGroup>
+            </Col>
+
+            {/* City State Zip */}
+
+            <Col xs={12} style={formSpacing}>
+              <FormGroup controlId='formValidationWarning1' validationState={null}>
                 <Col xs={4} style={formCellEntryStyle}>
                   <FormControl type='text' placeholder='City' value={cachedQuotes[quoteNumber].city} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'city', e.target.value)) }} style={innerTextCellStyle} />
                 </Col>
@@ -76,6 +84,30 @@ class EstimateForms extends Component {
                 </Col>
               </FormGroup>
             </Col>
+
+            {/* Phone */}
+
+            <Col xs={6} style={formSpacing}>
+              <FormGroup controlId='formValidationWarning1' validationState={null}>
+                <Col xs={12} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value)) }}>
+                  <FormControl type='text' placeholder='Phone' style={innerTextCellStyle} value={cachedQuotes[quoteNumber].phone} />
+                </Col>
+              </FormGroup>
+            </Col>
+
+            {/* Email */}
+
+
+            <Col xs={6} style={formSpacing}>
+              <FormGroup controlId='formValidationWarning1' validationState={null}>
+                <Col xs={12} style={formCellEntryStyle} >
+                  <FormControl type='text' placeholder='Email' style={innerTextCellStyle} />
+                </Col>
+              </FormGroup>
+            </Col>
+
+            {/* Estimator */}
+
             <Col xs={6} style={formSpacing}>
               <FormGroup controlId='formControlsSelect'>
               <Col xs={12}  style={formCellEntryStyle}>
@@ -93,20 +125,9 @@ class EstimateForms extends Component {
               </Col>
               </FormGroup>
             </Col>
-            <Col xs={6} style={formSpacing}>
-              <FormGroup controlId='formValidationWarning1' validationState={null}>
-                <Col xs={12} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value)) }}>
-                  <FormControl type='text' placeholder='Phone' style={innerTextCellStyle} value={cachedQuotes[quoteNumber].phone} />
-                </Col>
-              </FormGroup>
-            </Col>
-            <Col xs={6} style={formSpacing}>
-              <FormGroup controlId='formValidationWarning1' validationState={null}>
-                <Col xs={12}  style={formCellEntryStyle}>
-                  <FormControl type='text' value={`Quote No-${quoteNumber}`} readOnly style={innerTextCellStyle} />
-                </Col>
-              </FormGroup>
-            </Col>
+
+            {/* Date */}
+
             <Col xs={6} style={formSpacing}>
               <FormGroup controlId='formValidationWarning1' validationState={null}>
                 <Col xs={12}  style={formCellEntryStyle}>
@@ -114,20 +135,25 @@ class EstimateForms extends Component {
                 </Col>
               </FormGroup>
             </Col>
+
             {/* <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formControlsTextarea' validationState={null}>
                <Col xs={12} style={formCellEntryStyle}>
                  <FormControl componentClass='textarea' placeholder='Project Description' rows='3' value={cachedQuotes[quoteNumber].projectDescription} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'projectDescription', e.target.value)) }} style={innerTextCellStyle} />
                </Col>
              </FormGroup>
-            </Col>
+            </Col> */}
+
             <Col xs={12} style={formSpacing}>
                 <FormGroup controlId='formControlsTextarea' validationState={null}>
                   <Col xs={12} style={formCellEntryStyle}>
                     <FormControl componentClass='textarea' placeholder='Scope Of Work' rows='3' value={cachedQuotes[quoteNumber].specification} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value)) }} style={innerTextCellStyle} />
                   </Col>
                 </FormGroup>
-            </Col> */}
+            </Col>
+            <Col xs={12} style={{height:"10px", width:'100vw', backgroundColor:"green"}}>
+            </Col>
+
             <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formControlsSelect'>
                 <Col xs={12} style={{paddingLeft: 0, color: 'black', textAlign:'center'}} >
