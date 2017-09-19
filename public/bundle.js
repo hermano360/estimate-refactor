@@ -46601,6 +46601,15 @@
 	                    null,
 	                    _react2.default.createElement(
 	                      'th',
+	                      { colSpan: '2', style: { textAlign: 'center' } },
+	                      'Estimators Worksheet'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'tr',
+	                    null,
+	                    _react2.default.createElement(
+	                      'th',
 	                      { style: { backgroundColor: "black", color: 'white', width: '50vw' } },
 	                      _react2.default.createElement(_reactSelect2.default, {
 	                        style: { backgroundColor: "black", color: 'white', borderColor: 'black' },

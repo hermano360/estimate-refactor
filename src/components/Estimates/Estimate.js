@@ -263,6 +263,11 @@ export class Estimate extends Component {
               <Table bordered condensed>
                 <thead>
                   <tr>
+                    <th colSpan='2' style={{textAlign: 'center'}}>
+                      Estimators Worksheet
+                    </th>
+                  </tr>
+                  <tr>
                     <th style={{backgroundColor:"black", color:'white', width:'50vw'}}>
                       <Select
                         style={{backgroundColor:"black", color:'white', borderColor:'black'}}
