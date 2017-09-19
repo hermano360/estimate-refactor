@@ -78,7 +78,7 @@ class Products extends Component {
                   <ControlLabel>Specification</ControlLabel>
                 </Col>
                 <Col sm={9}>
-                  <FormControl componentClass='textarea' placeholder='textarea' rows='7' value={specifiedProduct.Description} />
+                  <FormControl componentClass='textarea' placeholder='textarea' rows='7' value={specifiedProduct.description} />
                 </Col>
               </FormGroup>
               <FormGroup controlId='formControlsTextarea'>

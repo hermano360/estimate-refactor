@@ -20,7 +20,6 @@ export class Estimate extends Component {
       tax: 10,
       costAdjustment: 30,
       showTotal: true
-
     }
   }
 
@@ -199,7 +198,9 @@ export class Estimate extends Component {
 
     return (
       <div>
-        <Button style={totalButtonStyle}>
+        <Button style={totalButtonStyle}  onClick={() => {
+          this.setState({modal: true})
+        }}>
           <div>
             Total
            </div>
@@ -321,14 +322,13 @@ export class Estimate extends Component {
             <Button onClick={() => { console.log('Email Bid') }} style={bottomButtonStyle}>Email Bid</Button>
             <Button onClick={() => { console.log('Email Vendor') }} style={bottomButtonStyle}>Email Vendor</Button>
             <Button onClick={() => { console.log('Credit Card') }} style={bottomButtonStyle}>Credit Card</Button>
-            {/* <Button onClick={() => { this.setState({modal: true}) }} style={bottomButtonStyle}>Cost Preview</Button> */}
             <Modal show={this.state.modal} onHide={() => { this.setState({modal: false}) }}>
               <Modal.Header closeButton>
                 <Modal.Title style={{textAlign: 'center'}} >Cost Preview</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <div style={{height: '40%', overflow: 'scroll'}}>
-                  <Table striped bordered condensed hover>
+                  <Table bordered condensed>
                     <thead>
                       <tr>
                         <th />

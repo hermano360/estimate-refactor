@@ -15,7 +15,7 @@ let quotes = [
     fax: '213-111-5555',
     shoppingCart: [
       {
-        Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+        description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
         SKU: 'idk',
@@ -34,7 +34,7 @@ let quotes = [
         productGroup: 'Demolition',
         supplier: 'Harbor Freight',
         UOM: 'sqft',
-        Description: `Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris`,
+        description: `Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris`,
         Material: 0,
         Labor: 0.65,
         SKU: 'idk',
@@ -49,7 +49,7 @@ let quotes = [
         productGroup: 'Demolition',
         supplier: 'Furguson',
         UOM: 'sqft',
-        Description: `Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris`,
+        description: `Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris`,
         Material: 0,
         Labor: 1.1,
         SKU: 'idk',
@@ -64,7 +64,7 @@ let quotes = [
         productGroup: 'Foundation/Footings',
         supplier: 'N/A',
         UOM: 'ft',
-        Description: `Excavate and Finish a 24" x 12" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade "Contractor Not Responsible For Removal of Excavated Dirt from Job Site." Includes upgrade 12" footing to 24" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."`,
+        description: `Excavate and Finish a 24" x 12" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade "Contractor Not Responsible For Removal of Excavated Dirt from Job Site." Includes upgrade 12" footing to 24" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."`,
         Material: 5.14,
         Labor: 6.3,
         SKU: 'idk',
@@ -94,7 +94,7 @@ let quotes = [
     fax: '213-111-5555',
     shoppingCart: [
       {
-        Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+        description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
         SKU: 'idk',
@@ -113,7 +113,7 @@ let quotes = [
         productGroup: 'Demolition',
         supplier: 'Harbor Freight',
         UOM: 'sqft',
-        Description: `Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris`,
+        description: `Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris`,
         Material: 0,
         Labor: 0.65,
         SKU: 'idk',
@@ -143,7 +143,7 @@ let quotes = [
     fax: '213-111-5555',
     shoppingCart: [
       {
-        Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+        description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
         SKU: 'idk',
@@ -158,7 +158,7 @@ let quotes = [
         quantity: 5
       },
       {
-        Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+        description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
         SKU: 'idk',
@@ -192,7 +192,7 @@ let quotes = [
     fax: '213-111-5555',
     shoppingCart: [
       {
-        Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+        description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
         SKU: 'idk',
@@ -207,7 +207,7 @@ let quotes = [
         quantity: 5
       },
       {
-        Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+        description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
         SKU: 'idk',
@@ -241,7 +241,7 @@ let quotes = [
     fax: '213-111-5555',
     shoppingCart: [
       {
-        Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+        description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
         Labor: 1.75,
         Material: 0,
         SKU: 'idk',
@@ -260,7 +260,7 @@ let quotes = [
         productGroup:'Bathroom',
         supplier: 'Home Depot',
         UOM: 'each',
-        Description: `Darcy 8 in. Widespread 2-Handle High-Arc Bathroom Faucet in Spot Resist Brushed Nickel`,
+        description: `Darcy 8 in. Widespread 2-Handle High-Arc Bathroom Faucet in Spot Resist Brushed Nickel`,
         Material: 119,
         Labor: 50,
         SKU: 'WS84551SRN',
@@ -275,7 +275,7 @@ let quotes = [
         productGroup:'Bathroom',
         supplier: 'Home Depot',
         UOM: 'each',
-        Description: `5.3 ft. Acrylic Reversible Drain Oval Slipper Flatbottom Non-Whirlpool Freestanding Bathtub in White`,
+        description: `5.3 ft. Acrylic Reversible Drain Oval Slipper Flatbottom Non-Whirlpool Freestanding Bathtub in White`,
         Material: 699.30,
         Labor: 200,
         SKU: 'HD-BT0077',
@@ -290,7 +290,7 @@ let quotes = [
         productGroup:'Bathroom',
         supplier: 'Home Depot',
         UOM: 'sqft',
-        Description: `60 in. x 56-3/8 in. Framed Sliding Bathtub Door Kit in Silver with Pebbled Glass`,
+        description: `60 in. x 56-3/8 in. Framed Sliding Bathtub Door Kit in Silver with Pebbled Glass`,
         Material: 129,
         Labor: 50,
         SKU: 'SDKIT60-SIL-R',
@@ -305,7 +305,7 @@ let quotes = [
         productGroup:'Bathroom',
         supplier: 'Home Depot',
         UOM: 'each',
-        Description: `UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board`,
+        description: `UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board`,
         Material: 10.17,
         Labor: 5,
         SKU: '14113411708',

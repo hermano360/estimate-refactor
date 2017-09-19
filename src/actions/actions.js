@@ -111,6 +111,16 @@ export var changeCartItemQuantity = (quoteNumber, keyCode, template, quantity) =
   }
 }
 
+export var changeCartItemDescription = (quoteNumber, keyCode, template, description) => {
+  return {
+    type: 'CHANGE_CART_ITEM_DESCRIPTION',
+    keyCode,
+    template,
+    description,
+    quoteNumber
+  }
+}
+
 export var changeCartItemMaterial = (quoteNumber, keyCode, template, Material) => {
   return {
     type: 'CHANGE_CART_ITEM_MATERIAL',
@@ -158,5 +168,13 @@ export const setAvailableQuoteNumbers = (availableQuoteNumbers) => {
   return {
     type: 'SET_AVAILABLE_QUOTE_NUMBERS',
     availableQuoteNumbers
+  }
+}
+
+export const setShoppingCartNode = (key, node) => {
+  return {
+    type: 'SET_SHOPPING_CART_NODE',
+    key,
+    node
   }
 }

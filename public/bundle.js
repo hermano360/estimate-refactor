@@ -42446,6 +42446,16 @@
 	  };
 	};
 	
+	var changeCartItemDescription = exports.changeCartItemDescription = function changeCartItemDescription(quoteNumber, keyCode, template, description) {
+	  return {
+	    type: 'CHANGE_CART_ITEM_DESCRIPTION',
+	    keyCode: keyCode,
+	    template: template,
+	    description: description,
+	    quoteNumber: quoteNumber
+	  };
+	};
+	
 	var changeCartItemMaterial = exports.changeCartItemMaterial = function changeCartItemMaterial(quoteNumber, keyCode, template, Material) {
 	  return {
 	    type: 'CHANGE_CART_ITEM_MATERIAL',
@@ -42495,6 +42505,14 @@
 	    availableQuoteNumbers: availableQuoteNumbers
 	  };
 	};
+	
+	var setShoppingCartNode = exports.setShoppingCartNode = function setShoppingCartNode(key, node) {
+	  return {
+	    type: 'SET_SHOPPING_CART_NODE',
+	    key: key,
+	    node: node
+	  };
+	};
 
 /***/ }),
 /* 445 */
@@ -42516,7 +42534,7 @@
 	  phone: '310-111-5555',
 	  fax: '213-111-5555',
 	  shoppingCart: [{
-	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+	    description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
 	    SKU: 'idk',
@@ -42534,7 +42552,7 @@
 	    productGroup: 'Demolition',
 	    supplier: 'Harbor Freight',
 	    UOM: 'sqft',
-	    Description: 'Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris',
+	    description: 'Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris',
 	    Material: 0,
 	    Labor: 0.65,
 	    SKU: 'idk',
@@ -42548,7 +42566,7 @@
 	    productGroup: 'Demolition',
 	    supplier: 'Furguson',
 	    UOM: 'sqft',
-	    Description: 'Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris',
+	    description: 'Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris',
 	    Material: 0,
 	    Labor: 1.1,
 	    SKU: 'idk',
@@ -42562,7 +42580,7 @@
 	    productGroup: 'Foundation/Footings',
 	    supplier: 'N/A',
 	    UOM: 'ft',
-	    Description: 'Excavate and Finish a 24" x 12" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade "Contractor Not Responsible For Removal of Excavated Dirt from Job Site." Includes upgrade 12" footing to 24" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
+	    description: 'Excavate and Finish a 24" x 12" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade "Contractor Not Responsible For Removal of Excavated Dirt from Job Site." Includes upgrade 12" footing to 24" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
 	    Material: 5.14,
 	    Labor: 6.3,
 	    SKU: 'idk',
@@ -42589,7 +42607,7 @@
 	  phone: '310-111-5555',
 	  fax: '213-111-5555',
 	  shoppingCart: [{
-	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+	    description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
 	    SKU: 'idk',
@@ -42607,7 +42625,7 @@
 	    productGroup: 'Demolition',
 	    supplier: 'Harbor Freight',
 	    UOM: 'sqft',
-	    Description: 'Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris',
+	    description: 'Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris',
 	    Material: 0,
 	    Labor: 0.65,
 	    SKU: 'idk',
@@ -42634,7 +42652,7 @@
 	  phone: '310-111-5555',
 	  fax: '213-111-5555',
 	  shoppingCart: [{
-	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+	    description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
 	    SKU: 'idk',
@@ -42648,7 +42666,7 @@
 	    url: 'http://www.google.com',
 	    quantity: 5
 	  }, {
-	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+	    description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
 	    SKU: 'idk',
@@ -42679,7 +42697,7 @@
 	  phone: '310-111-5555',
 	  fax: '213-111-5555',
 	  shoppingCart: [{
-	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+	    description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
 	    SKU: 'idk',
@@ -42693,7 +42711,7 @@
 	    url: 'http://www.google.com',
 	    quantity: 5
 	  }, {
-	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+	    description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
 	    SKU: 'idk',
@@ -42724,7 +42742,7 @@
 	  phone: '310-111-5555',
 	  fax: '213-111-5555',
 	  shoppingCart: [{
-	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+	    description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Labor: 1.75,
 	    Material: 0,
 	    SKU: 'idk',
@@ -42742,7 +42760,7 @@
 	    productGroup: 'Bathroom',
 	    supplier: 'Home Depot',
 	    UOM: 'each',
-	    Description: 'Darcy 8 in. Widespread 2-Handle High-Arc Bathroom Faucet in Spot Resist Brushed Nickel',
+	    description: 'Darcy 8 in. Widespread 2-Handle High-Arc Bathroom Faucet in Spot Resist Brushed Nickel',
 	    Material: 119,
 	    Labor: 50,
 	    SKU: 'WS84551SRN',
@@ -42756,7 +42774,7 @@
 	    productGroup: 'Bathroom',
 	    supplier: 'Home Depot',
 	    UOM: 'each',
-	    Description: '5.3 ft. Acrylic Reversible Drain Oval Slipper Flatbottom Non-Whirlpool Freestanding Bathtub in White',
+	    description: '5.3 ft. Acrylic Reversible Drain Oval Slipper Flatbottom Non-Whirlpool Freestanding Bathtub in White',
 	    Material: 699.30,
 	    Labor: 200,
 	    SKU: 'HD-BT0077',
@@ -42770,7 +42788,7 @@
 	    productGroup: 'Bathroom',
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
-	    Description: '60 in. x 56-3/8 in. Framed Sliding Bathtub Door Kit in Silver with Pebbled Glass',
+	    description: '60 in. x 56-3/8 in. Framed Sliding Bathtub Door Kit in Silver with Pebbled Glass',
 	    Material: 129,
 	    Labor: 50,
 	    SKU: 'SDKIT60-SIL-R',
@@ -42784,7 +42802,7 @@
 	    productGroup: 'Bathroom',
 	    supplier: 'Home Depot',
 	    UOM: 'each',
-	    Description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	    description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
 	    Material: 10.17,
 	    Labor: 5,
 	    SKU: '14113411708',
@@ -45322,7 +45340,7 @@
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { sm: 9 },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'textarea', rows: '7', value: specifiedProduct.Description })
+	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'textarea', rows: '7', value: specifiedProduct.description })
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -45594,7 +45612,7 @@
 	    productGroup: 'Demolition',
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
-	    Description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
+	    description: 'Demolition of Non-Reinforced Concrete Slab Up to 4" Thick and Dumping of Debris',
 	    Material: 0,
 	    Labor: 1.75,
 	    SKU: 'idk',
@@ -45607,7 +45625,7 @@
 	    productGroup: 'Demolition',
 	    supplier: 'Harbor Freight',
 	    UOM: 'sqft',
-	    Description: 'Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris',
+	    description: 'Demolition of Drywall From Wood or Metal Framed Walls and Dumping of Debris',
 	    Material: 0,
 	    Labor: 0.65,
 	    SKU: 'idk',
@@ -45620,7 +45638,7 @@
 	    productGroup: 'Demolition',
 	    supplier: 'Furguson',
 	    UOM: 'sqft',
-	    Description: 'Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris',
+	    description: 'Supply Labor For Demolition of Stucco And Lath From Exterior Walls and Dumping of Debris',
 	    Material: 0,
 	    Labor: 1.1,
 	    SKU: 'idk',
@@ -45633,7 +45651,7 @@
 	    productGroup: 'Demolition',
 	    supplier: 'Harbor Freight',
 	    UOM: 'sqft',
-	    Description: 'Demolition of Existing Wood Framed Wall Assembly, Removal of Existing Electrical Romex Wire, Stud Walls, Sill Plate Cut All Foundation Bolts As Necessay Demolition of existing kitchen ceiling',
+	    description: 'Demolition of Existing Wood Framed Wall Assembly, Removal of Existing Electrical Romex Wire, Stud Walls, Sill Plate Cut All Foundation Bolts As Necessay Demolition of existing kitchen ceiling',
 	    Material: 0,
 	    Labor: 2,
 	    SKU: 'idk',
@@ -45646,7 +45664,7 @@
 	    productGroup: 'Foundation/Footings',
 	    supplier: 'N/A',
 	    UOM: 'ft',
-	    Description: 'Excavate and Finish a 24" x 12" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade "Contractor Not Responsible For Removal of Excavated Dirt from Job Site." Includes upgrade 12" footing to 24" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
+	    description: 'Excavate and Finish a 24" x 12" Reinforced Concrete Footing With Reinforcing Steel Tied and Finished at Grade "Contractor Not Responsible For Removal of Excavated Dirt from Job Site." Includes upgrade 12" footing to 24" footing.\nFooting With Reinforcing Steel Tied and Finished at Grade. "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
 	    Material: 5.14,
 	    Labor: 6.3,
 	    SKU: 'idk',
@@ -45659,7 +45677,7 @@
 	    productGroup: 'Foundation/Footings',
 	    supplier: 'Harbor Freight',
 	    UOM: 'pump',
-	    Description: 'Supply Labor and Equipment For A Concrete Pump To Remote Location for Pumping Of Concrete as Required',
+	    description: 'Supply Labor and Equipment For A Concrete Pump To Remote Location for Pumping Of Concrete as Required',
 	    Material: 0,
 	    Labor: 165,
 	    SKU: 'idk',
@@ -45672,7 +45690,7 @@
 	    productGroup: 'Foundation/Footings',
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
-	    Description: 'Pour A 3" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, and Forms. "Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process" "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
+	    description: 'Pour A 3" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, and Forms. "Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process" "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
 	    Material: 3.5,
 	    Labor: 1,
 	    SKU: 'idk',
@@ -45685,7 +45703,7 @@
 	    productGroup: 'Foundation/Footings',
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
-	    Description: 'Pour A 5 1/2" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, Wire Mesh, Forms, and Vapor Barrier. "Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process" "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
+	    description: 'Pour A 5 1/2" 2500 PSI Reinforced Concrete Slab on Grade With Typical Excavation, Slab Base, Wire Mesh, Forms, and Vapor Barrier. "Contractor Cannot Be Responsible for Minor Cracks in Concrete During the Curing Process" "Contractor Not Responsible For Removal of Excavated Dirt from Job Site."',
 	    Material: 5,
 	    Labor: 1,
 	    SKU: 'idk',
@@ -45698,7 +45716,7 @@
 	    productGroup: 'Bathroom',
 	    supplier: 'Home Depot',
 	    UOM: 'each',
-	    Description: 'Darcy 8 in. Widespread 2-Handle High-Arc Bathroom Faucet in Spot Resist Brushed Nickel',
+	    description: 'Darcy 8 in. Widespread 2-Handle High-Arc Bathroom Faucet in Spot Resist Brushed Nickel',
 	    Material: 119,
 	    Labor: 50,
 	    SKU: 'WS84551SRN',
@@ -45711,7 +45729,7 @@
 	    productGroup: 'Bathroom',
 	    supplier: 'Home Depot',
 	    UOM: 'each',
-	    Description: '5.3 ft. Acrylic Reversible Drain Oval Slipper Flatbottom Non-Whirlpool Freestanding Bathtub in White',
+	    description: '5.3 ft. Acrylic Reversible Drain Oval Slipper Flatbottom Non-Whirlpool Freestanding Bathtub in White',
 	    Material: 699.30,
 	    Labor: 200,
 	    SKU: 'HD-BT0077',
@@ -45724,7 +45742,7 @@
 	    productGroup: 'Bathroom',
 	    supplier: 'Home Depot',
 	    UOM: 'sqft',
-	    Description: '60 in. x 56-3/8 in. Framed Sliding Bathtub Door Kit in Silver with Pebbled Glass',
+	    description: '60 in. x 56-3/8 in. Framed Sliding Bathtub Door Kit in Silver with Pebbled Glass',
 	    Material: 129,
 	    Labor: 50,
 	    SKU: 'SDKIT60-SIL-R',
@@ -45737,7 +45755,7 @@
 	    productGroup: 'Bathroom',
 	    supplier: 'Home Depot',
 	    UOM: 'each',
-	    Description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	    description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
 	    Material: 10.17,
 	    Labor: 5,
 	    SKU: '14113411708',
@@ -46285,7 +46303,6 @@
 	      tax: 10,
 	      costAdjustment: 30,
 	      showTotal: true
-	
 	    };
 	    return _this;
 	  }
@@ -46482,7 +46499,9 @@
 	        null,
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
-	          { style: totalButtonStyle },
+	          { style: totalButtonStyle, onClick: function onClick() {
+	              _this3.setState({ modal: true });
+	            } },
 	          _react2.default.createElement(
 	            'div',
 	            null,
@@ -46761,7 +46780,7 @@
 	                    { style: { height: '40%', overflow: 'scroll' } },
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Table,
-	                      { striped: true, bordered: true, condensed: true, hover: true },
+	                      { bordered: true, condensed: true },
 	                      _react2.default.createElement(
 	                        'thead',
 	                        null,
@@ -46969,7 +46988,14 @@
 	  function ShoppingCartItem() {
 	    _classCallCheck(this, ShoppingCartItem);
 	
-	    return _possibleConstructorReturn(this, (ShoppingCartItem.__proto__ || Object.getPrototypeOf(ShoppingCartItem)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (ShoppingCartItem.__proto__ || Object.getPrototypeOf(ShoppingCartItem)).call(this));
+	
+	    _this.state = {
+	      descriptionStyle: {
+	        padding: '0', height: '2.5em'
+	      }
+	    };
+	    return _this;
 	  }
 	
 	  _createClass(ShoppingCartItem, [{
@@ -46994,15 +47020,18 @@
 	          Labor = _props2.Labor,
 	          Material = _props2.Material,
 	          UOM = _props2.UOM,
-	          Description = _props2.Description,
+	          description = _props2.description,
 	          keyCode = _props2.keyCode,
 	          quantity = _props2.quantity,
 	          template = _props2.template,
 	          dispatch = _props2.dispatch,
 	          quoteNumber = _props2.quoteNumber,
-	          number = _props2.number;
+	          number = _props2.number,
+	          shoppingCartDOMNodes = _props2.shoppingCartDOMNodes,
+	          totalNumberOfItems = _props2.totalNumberOfItems;
 	
 	
+	      var focusHeight = Math.ceil(parseFloat(description.length / 30) * 2);
 	      return _react2.default.createElement(
 	        'tr',
 	        null,
@@ -47019,9 +47048,27 @@
 	        _react2.default.createElement(
 	          'td',
 	          { style: { padding: "0px 0px 0px 3px" } },
-	          _react2.default.createElement('input', { type: 'text', defaultValue: quantity, onChange: function onChange(e) {
+	          _react2.default.createElement('input', { type: 'text', defaultValue: quantity,
+	            onChange: function onChange(e) {
 	              _this2.onQuantityChange(keyCode, template, e.target.value);
-	            }, style: { maxWidth: '30px' } })
+	            },
+	            style: { maxWidth: '30px' },
+	            ref: function ref(input) {
+	              if (shoppingCartDOMNodes[number.toString()] === undefined && input !== null) {
+	                dispatch(actions.setShoppingCartNode(number.toString(), input));
+	              }
+	            },
+	            onKeyPress: function onKeyPress(e) {
+	              if (e.charCode === 13) {
+	                if (number === totalNumberOfItems) {
+	                  shoppingCartDOMNodes['firstName'].focus();
+	                } else {
+	                  shoppingCartDOMNodes[(number + 1).toString()].focus();
+	                }
+	              }
+	            }
+	
+	          })
 	        ),
 	        _react2.default.createElement(
 	          'td',
@@ -47031,11 +47078,28 @@
 	        _react2.default.createElement(
 	          'td',
 	          { style: { padding: "0px 0px 0px 3px" } },
-	          _react2.default.createElement(
-	            'div',
-	            { style: { maxHeight: '2.5em', overflowY: 'scroll' } },
-	            Description
-	          )
+	          _react2.default.createElement('textarea', { value: description, style: this.state.descriptionStyle,
+	            onFocus: function onFocus() {
+	              _this2.setState({
+	                descriptionStyle: {
+	                  padding: '0',
+	                  height: focusHeight + 'em'
+	                }
+	              });
+	            },
+	            onBlur: function onBlur() {
+	              _this2.setState({
+	                descriptionStyle: {
+	                  padding: '0',
+	                  height: '2.5em'
+	                }
+	              });
+	            },
+	            onChange: function onChange(e) {
+	              dispatch(actions.changeCartItemDescription(quoteNumber, keyCode, template, e.target.value));
+	            }
+	
+	          })
 	        ),
 	        _react2.default.createElement(
 	          'td',
@@ -47065,7 +47129,9 @@
 	
 	exports.default = connect(function (state) {
 	  return {
-	    quoteNumber: state.quoteNumber
+	    quoteNumber: state.quoteNumber,
+	    shoppingCartDOMNodes: state.shoppingCartDOMNodes,
+	    totalNumberOfItems: state.cachedQuotes[state.quoteNumber].shoppingCart.length
 	  };
 	})(ShoppingCartItem);
 
@@ -47160,7 +47226,8 @@
 	      var _props2 = this.props,
 	          dispatch = _props2.dispatch,
 	          quoteNumber = _props2.quoteNumber,
-	          cachedQuotes = _props2.cachedQuotes;
+	          cachedQuotes = _props2.cachedQuotes,
+	          shoppingCartDOMNodes = _props2.shoppingCartDOMNodes;
 	
 	      var formCellEntryStyle = {
 	        paddingLeft: '0px',
@@ -47190,7 +47257,9 @@
 	                  { xs: 6, style: formCellEntryStyle },
 	                  _react2.default.createElement('input', { className: 'form-control', type: 'text', placeholder: 'First Name',
 	                    ref: function ref(input) {
-	                      elementNodes.firstName = input;
+	                      if (shoppingCartDOMNodes['firstName'] === undefined && input !== null) {
+	                        dispatch(actions.setShoppingCartNode('firstName', input));
+	                      }
 	                    },
 	                    value: cachedQuotes[quoteNumber].customerFirstName,
 	                    onChange: function onChange(e) {
@@ -47199,7 +47268,7 @@
 	                    style: innerTextCellStyle,
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
-	                        handleNodeClick('lastName');
+	                        shoppingCartDOMNodes['lastName'].focus();
 	                      }
 	                    } })
 	                ),
@@ -47208,7 +47277,9 @@
 	                  { xs: 6, style: formCellEntryStyle },
 	                  _react2.default.createElement('input', { type: 'text', placeholder: 'Last Name', className: 'form-control',
 	                    ref: function ref(input) {
-	                      elementNodes.lastName = input;
+	                      if (shoppingCartDOMNodes['lastName'] === undefined && input !== null) {
+	                        dispatch(actions.setShoppingCartNode('lastName', input));
+	                      }
 	                    },
 	                    value: cachedQuotes[quoteNumber].customerLastName,
 	                    onChange: function onChange(e) {
@@ -47217,7 +47288,7 @@
 	                    style: innerTextCellStyle,
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
-	                        handleNodeClick('streetAddress');
+	                        shoppingCartDOMNodes['streetAddress'].focus();
 	                      }
 	                    }
 	                  })
@@ -47235,7 +47306,9 @@
 	                  { xs: 12, style: formCellEntryStyle },
 	                  _react2.default.createElement('input', { type: 'text', placeholder: 'Street Address', className: 'form-control',
 	                    ref: function ref(input) {
-	                      elementNodes.streetAddress = input;
+	                      if (shoppingCartDOMNodes['streetAddress'] === undefined && input !== null) {
+	                        dispatch(actions.setShoppingCartNode('streetAddress', input));
+	                      }
 	                    },
 	                    value: cachedQuotes[quoteNumber].address,
 	                    onChange: function onChange(e) {
@@ -47244,7 +47317,7 @@
 	                    style: innerTextCellStyle,
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
-	                        handleNodeClick('city');
+	                        shoppingCartDOMNodes['city'].focus();
 	                      }
 	                    }
 	                  })
@@ -47267,11 +47340,13 @@
 	                    },
 	                    style: innerTextCellStyle,
 	                    ref: function ref(input) {
-	                      elementNodes.city = input;
+	                      if (shoppingCartDOMNodes['city'] === undefined && input !== null) {
+	                        dispatch(actions.setShoppingCartNode('city', input));
+	                      }
 	                    },
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
-	                        handleNodeClick('state');
+	                        shoppingCartDOMNodes['state'].focus();
 	                      }
 	                    }
 	                  })
@@ -47286,11 +47361,13 @@
 	                    },
 	                    style: innerTextCellStyle,
 	                    ref: function ref(input) {
-	                      elementNodes.state = input;
+	                      if (shoppingCartDOMNodes['state'] === undefined && input !== null) {
+	                        dispatch(actions.setShoppingCartNode('state', input));
+	                      }
 	                    },
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
-	                        handleNodeClick('zip');
+	                        shoppingCartDOMNodes['zip'].focus();
 	                      }
 	                    }
 	                  })
@@ -47305,11 +47382,13 @@
 	                    },
 	                    style: innerTextCellStyle,
 	                    ref: function ref(input) {
-	                      elementNodes.zip = input;
+	                      if (shoppingCartDOMNodes['zip'] === undefined && input !== null) {
+	                        dispatch(actions.setShoppingCartNode('zip', input));
+	                      }
 	                    },
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
-	                        handleNodeClick('phone');
+	                        shoppingCartDOMNodes['phone'].focus();
 	                      }
 	                    }
 	                  })
@@ -47332,11 +47411,13 @@
 	                    },
 	                    style: innerTextCellStyle,
 	                    ref: function ref(input) {
-	                      elementNodes.phone = input;
+	                      if (shoppingCartDOMNodes['phone'] === undefined && input !== null) {
+	                        dispatch(actions.setShoppingCartNode('phone', input));
+	                      }
 	                    },
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
-	                        handleNodeClick('email');
+	                        shoppingCartDOMNodes['email'].focus();
 	                      }
 	                    }
 	                  })
@@ -47351,10 +47432,12 @@
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'email', e.target.value));
 	                    }
 	                  }, _defineProperty(_React$createElement, 'style', innerTextCellStyle), _defineProperty(_React$createElement, 'ref', function ref(input) {
-	                    elementNodes.email = input;
+	                    if (shoppingCartDOMNodes['email'] === undefined && input !== null) {
+	                      dispatch(actions.setShoppingCartNode('email', input));
+	                    }
 	                  }), _defineProperty(_React$createElement, 'onKeyPress', function onKeyPress(e) {
 	                    if (e.charCode === 13) {
-	                      handleNodeClick('scopeofwork');
+	                      shoppingCartDOMNodes['scopeofwork'].focus();
 	                    }
 	                  }), _React$createElement))
 	                )
@@ -47450,11 +47533,17 @@
 	                    },
 	                    style: innerTextCellStyle,
 	                    ref: function ref(input) {
-	                      elementNodes.scopeofwork = input;
+	                      if (shoppingCartDOMNodes['scopeofwork'] === undefined && input !== null) {
+	                        dispatch(actions.setShoppingCartNode('scopeofwork', input));
+	                      }
 	                    },
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
-	                        handleNodeClick('firstName');
+	                        if (shoppingCartDOMNodes['1'] === undefined) {
+	                          shoppingCartDOMNodes['firstName'].focus();
+	                        } else {
+	                          shoppingCartDOMNodes['1'].focus();
+	                        }
 	                      }
 	                    }
 	                  })
@@ -47474,7 +47563,8 @@
 	exports.default = connect(function (state) {
 	  return {
 	    quoteNumber: state.quoteNumber,
-	    cachedQuotes: state.cachedQuotes
+	    cachedQuotes: state.cachedQuotes,
+	    shoppingCartDOMNodes: state.shoppingCartDOMNodes
 	  };
 	})(EstimateForms);
 
@@ -52632,7 +52722,8 @@
 	    CachedQuotesReducer = _require.CachedQuotesReducer,
 	    QuoteNumberReducer = _require.QuoteNumberReducer,
 	    InitialQuoteNumberReducer = _require.InitialQuoteNumberReducer,
-	    AvailableQuoteNumbersReducer = _require.AvailableQuoteNumbersReducer;
+	    AvailableQuoteNumbersReducer = _require.AvailableQuoteNumbersReducer,
+	    DOMNodesReducer = _require.DOMNodesReducer;
 	
 	var configure = exports.configure = function configure() {
 	  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -52642,14 +52733,16 @@
 	    cachedQuotes: CachedQuotesReducer,
 	    quoteNumber: QuoteNumberReducer,
 	    InitialQuoteNumber: InitialQuoteNumberReducer,
-	    availableQuoteNumbers: AvailableQuoteNumbersReducer
+	    availableQuoteNumbers: AvailableQuoteNumbersReducer,
+	    shoppingCartDOMNodes: DOMNodesReducer
 	  });
 	  initialState = {
 	    page: 'StartPage',
 	    cachedQuotes: {},
 	    quoteNumber: '',
 	    InitialQuoteNumber: '',
-	    availableQuoteNumbers: []
+	    availableQuoteNumbers: [],
+	    shoppingCartDOMNodes: {}
 	  };
 	  var store = redux.createStore(reducer, initialState, redux.compose(redux.applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	    return f;
@@ -52694,7 +52787,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.AvailableQuoteNumbersReducer = exports.InitialQuoteNumberReducer = exports.QuoteNumberReducer = exports.CachedQuotesReducer = exports.CustomerReducer = exports.ShoppingCartReducer = exports.EstimateReducer = exports.PageReducer = undefined;
+	exports.DOMNodesReducer = exports.AvailableQuoteNumbersReducer = exports.InitialQuoteNumberReducer = exports.QuoteNumberReducer = exports.CachedQuotesReducer = exports.CustomerReducer = exports.ShoppingCartReducer = exports.EstimateReducer = exports.PageReducer = undefined;
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
@@ -52847,6 +52940,21 @@
 	      return _extends({}, state, _defineProperty({}, action.quoteNumber, _extends({}, state[action.quoteNumber], {
 	        shoppingCart: shoppingCartWithAdjustedQuantity
 	      })));
+	    case 'CHANGE_CART_ITEM_DESCRIPTION':
+	      var shoppingCartWithAdjustedDescription = state[action.quoteNumber].shoppingCart.map(function (cartItem) {
+	        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
+	          var description = action.description;
+	          console.log(description);
+	          return _extends({}, cartItem, {
+	            description: description
+	          });
+	        }
+	        return cartItem;
+	      });
+	      console.log(shoppingCartWithAdjustedDescription);
+	      return _extends({}, state, _defineProperty({}, action.quoteNumber, _extends({}, state[action.quoteNumber], {
+	        shoppingCart: shoppingCartWithAdjustedDescription
+	      })));
 	    case 'CHANGE_CART_ITEM_LABOR':
 	      var shoppingCartWithAdjustedLabor = state[action.quoteNumber].shoppingCart.map(function (cartItem) {
 	        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
@@ -52895,7 +53003,7 @@
 	        productGroup: '',
 	        supplier: '',
 	        UOM: '',
-	        Description: '',
+	        description: '',
 	        Material: 0,
 	        Labor: 1.75,
 	        SKU: '',
@@ -52943,6 +53051,18 @@
 	  switch (action.type) {
 	    case 'SET_AVAILABLE_QUOTE_NUMBERS':
 	      return action.availableQuoteNumbers;
+	    default:
+	      return state;
+	  }
+	};
+	
+	var DOMNodesReducer = exports.DOMNodesReducer = function DOMNodesReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'SET_SHOPPING_CART_NODE':
+	      return _extends({}, state, _defineProperty({}, action.key, action.node));
 	    default:
 	      return state;
 	  }

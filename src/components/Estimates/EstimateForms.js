@@ -40,7 +40,7 @@ class EstimateForms extends React.Component {
     let handleNodeClick  = (a) => {
       elementNodes[a].focus();
     }
-    let {dispatch, quoteNumber, cachedQuotes} = this.props
+    let {dispatch, quoteNumber, cachedQuotes, shoppingCartDOMNodes} = this.props
     let formCellEntryStyle = {
       paddingLeft: '0px',
       paddingRight: '5px',
@@ -60,19 +60,27 @@ class EstimateForms extends React.Component {
               <FormGroup controlId='formValidationWarning1' validationState={null}>
                 <Col xs={6} style={formCellEntryStyle}>
                   <input className="form-control" type='text' placeholder='First Name'
-                    ref={(input) => { elementNodes.firstName = input }}
+                    ref={(input) => {
+                      if(shoppingCartDOMNodes['firstName'] === undefined && input !== null){
+                        dispatch(actions.setShoppingCartNode('firstName', input))
+                      }
+                    }}
                     value={cachedQuotes[quoteNumber].customerFirstName}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'customerFirstName', e.target.value)) }}
                     style={innerTextCellStyle}
-                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('lastName')}}} />
+                    onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['lastName'].focus() }}} />
                 </Col>
                 <Col xs={6} style={formCellEntryStyle}>
                   <input type="text" placeholder="Last Name" className='form-control'
-                    ref={(input) => { elementNodes.lastName = input }}
+                    ref={(input) => {
+                      if(shoppingCartDOMNodes['lastName'] === undefined && input !== null){
+                        dispatch(actions.setShoppingCartNode('lastName', input))
+                      }
+                     }}
                     value={cachedQuotes[quoteNumber].customerLastName}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'customerLastName', e.target.value)) }}
                     style={innerTextCellStyle}
-                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('streetAddress')}}}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['streetAddress'].focus()}}}
                     />
                 </Col>
               </FormGroup>
@@ -84,11 +92,15 @@ class EstimateForms extends React.Component {
               <FormGroup controlId='formValidationWarning1' validationState={null}>
                 <Col xs={12}  style={formCellEntryStyle}>
                   <input type='text' placeholder='Street Address' className="form-control"
-                    ref={(input) => { elementNodes.streetAddress = input }}
+                    ref={(input) => {
+                      if(shoppingCartDOMNodes['streetAddress'] === undefined && input !== null){
+                        dispatch(actions.setShoppingCartNode('streetAddress', input))
+                      }
+                    }}
                     value={cachedQuotes[quoteNumber].address}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'address', e.target.value)) }}
                     style={innerTextCellStyle}
-                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('city')}}}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['city'].focus()}}}
                   />
                 </Col>
               </FormGroup>
@@ -103,8 +115,12 @@ class EstimateForms extends React.Component {
                     value={cachedQuotes[quoteNumber].city}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'city', e.target.value)) }}
                     style={innerTextCellStyle}
-                    ref={(input) => { elementNodes.city = input }}
-                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('state')}}}
+                    ref={(input) => {
+                      if(shoppingCartDOMNodes['city'] === undefined && input !== null){
+                        dispatch(actions.setShoppingCartNode('city', input))
+                      }
+                    }}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['state'].focus()}}}
                   />
                 </Col>
                 <Col xs={4} style={formCellEntryStyle}>
@@ -112,8 +128,12 @@ class EstimateForms extends React.Component {
                     value={cachedQuotes[quoteNumber].state}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'state', e.target.value)) }}
                     style={innerTextCellStyle}
-                    ref={(input) => { elementNodes.state = input }}
-                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('zip')}}}
+                    ref={(input) => {
+                      if(shoppingCartDOMNodes['state'] === undefined && input !== null){
+                        dispatch(actions.setShoppingCartNode('state', input))
+                      }
+                    }}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['zip'].focus()}}}
                   />
                 </Col>
                 <Col xs={4}  style={formCellEntryStyle}>
@@ -121,8 +141,12 @@ class EstimateForms extends React.Component {
                     value={cachedQuotes[quoteNumber].zipcode}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'zipcode', e.target.value)) }}
                     style={innerTextCellStyle}
-                    ref={(input) => { elementNodes.zip = input }}
-                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('phone')}}}
+                    ref={(input) => {
+                      if(shoppingCartDOMNodes['zip'] === undefined && input !== null){
+                        dispatch(actions.setShoppingCartNode('zip', input))
+                      }
+                    }}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['phone'].focus()}}}
                   />
                 </Col>
               </FormGroup>
@@ -137,8 +161,12 @@ class EstimateForms extends React.Component {
                     value={cachedQuotes[quoteNumber].phone}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value)) }}
                     style={innerTextCellStyle}
-                    ref={(input) => { elementNodes.phone = input }}
-                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('email')}}}
+                    ref={(input) => {
+                      if(shoppingCartDOMNodes['phone'] === undefined && input !== null){
+                        dispatch(actions.setShoppingCartNode('phone', input))
+                      }
+                    }}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['email'].focus()}}}
                    />
                 </Col>
                 <Col xs={6} style={formCellEntryStyle} >
@@ -147,8 +175,12 @@ class EstimateForms extends React.Component {
                     value={cachedQuotes[quoteNumber].email}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'email', e.target.value)) }}
                     style={innerTextCellStyle}
-                    ref={(input) => { elementNodes.email = input }}
-                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('scopeofwork')}}}/>
+                    ref={(input) => {
+                      if(shoppingCartDOMNodes['email'] === undefined && input !== null){
+                        dispatch(actions.setShoppingCartNode('email', input))
+                      }
+                    }}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['scopeofwork'].focus()}}}/>
                 </Col>
               </FormGroup>
             </Col>
@@ -199,8 +231,19 @@ class EstimateForms extends React.Component {
                       value={cachedQuotes[quoteNumber].specification}
                       onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value)) }}
                       style={innerTextCellStyle}
-                      ref={(input) => { elementNodes.scopeofwork = input }}
-                      onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('firstName')}}}
+                      ref={(input) => {
+                        if(shoppingCartDOMNodes['scopeofwork'] === undefined && input !== null){
+                          dispatch(actions.setShoppingCartNode('scopeofwork', input))
+                        }
+                      }}
+                      onKeyPress={(e)=>{
+                        if(e.charCode === 13) {
+                          if(shoppingCartDOMNodes['1']=== undefined){
+                            shoppingCartDOMNodes['firstName'].focus()
+                          } else {
+                            shoppingCartDOMNodes['1'].focus()
+                          }
+                      }}}
                     />
                   </Col>
                 </FormGroup>
@@ -255,7 +298,8 @@ export default connect(
   (state) => {
     return {
       quoteNumber: state.quoteNumber,
-      cachedQuotes: state.cachedQuotes
+      cachedQuotes: state.cachedQuotes,
+      shoppingCartDOMNodes: state.shoppingCartDOMNodes
     }
   }
 )(EstimateForms)

@@ -16,7 +16,7 @@ const convertShoppingCart = (shoppingCart) => {
     if (Number(cartItem.quantity) !== 0) {
       formattedShoppingCart.push({
         'order': itemCount++,
-        'description': cartItem.Description,
+        'description': cartItem.description,
         'quantity': `${parseInt(cartItem.quantity, 10)} ${cartItem.UOM}`
       })
     }

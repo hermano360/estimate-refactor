@@ -156,27 +156,47 @@ export const CachedQuotesReducer = (state = {}, action) => {
           shoppingCart: shoppingCartWithAdjustedQuantity
         }
       }
-    case 'CHANGE_CART_ITEM_LABOR':
-      let shoppingCartWithAdjustedLabor = state[action.quoteNumber].shoppingCart.map((cartItem) => {
-        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
-          let {Labor} = action
-          if (Labor === '') {
-            Labor = 0
+      case 'CHANGE_CART_ITEM_DESCRIPTION':
+        let shoppingCartWithAdjustedDescription = state[action.quoteNumber].shoppingCart.map((cartItem) => {
+          if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
+            let description = action.description
+            console.log(description)
+            return {
+              ...cartItem,
+              description
+            }
           }
-          return {
-            ...cartItem,
-            Labor
+          return cartItem
+        })
+        console.log(shoppingCartWithAdjustedDescription)
+        return {
+          ...state,
+          [action.quoteNumber]: {
+            ...state[action.quoteNumber],
+            shoppingCart: shoppingCartWithAdjustedDescription
           }
         }
-        return cartItem
-      })
-      return {
-        ...state,
-        [action.quoteNumber]: {
-          ...state[action.quoteNumber],
-          shoppingCart: shoppingCartWithAdjustedLabor
+      case 'CHANGE_CART_ITEM_LABOR':
+        let shoppingCartWithAdjustedLabor = state[action.quoteNumber].shoppingCart.map((cartItem) => {
+          if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
+            let {Labor} = action
+            if (Labor === '') {
+              Labor = 0
+            }
+            return {
+              ...cartItem,
+              Labor
+            }
+          }
+          return cartItem
+        })
+        return {
+          ...state,
+          [action.quoteNumber]: {
+            ...state[action.quoteNumber],
+            shoppingCart: shoppingCartWithAdjustedLabor
+          }
         }
-      }
     case 'CHANGE_CART_ITEM_MATERIAL':
       let shoppingCartWithAdjustedMaterial = state[action.quoteNumber].shoppingCart.map((cartItem) => {
         if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
@@ -216,7 +236,7 @@ export const CachedQuotesReducer = (state = {}, action) => {
         productGroup: '',
         supplier: '',
         UOM: '',
-        Description: ``,
+        description: ``,
         Material: 0,
         Labor: 1.75,
         SKU: '',
@@ -259,6 +279,15 @@ export const AvailableQuoteNumbersReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_AVAILABLE_QUOTE_NUMBERS':
       return action.availableQuoteNumbers
+    default:
+      return state
+  }
+}
+
+export const DOMNodesReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'SET_SHOPPING_CART_NODE':
+      return {...state, [action.key]: action.node}
     default:
       return state
   }
