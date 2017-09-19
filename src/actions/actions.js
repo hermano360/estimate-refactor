@@ -111,6 +111,22 @@ export var changeCartItemQuantity = (quoteNumber, keyCode, template, quantity) =
   }
 }
 
+export var changeCartItemCosts = (quoteNumber, keyCode, template, newPrice, parameter) => {
+  let type
+  if(parameter === 'labor') {
+    type = 'CHANGE_CART_ITEM_LABOR'
+  } else if (parameter === 'material') {
+    type= 'CHANGE_CART_ITEM_MATERIAL'
+  }
+  return {
+    type,
+    keyCode,
+    template,
+    newPrice,
+    quoteNumber
+  }
+}
+
 export var changeCartItemDescription = (quoteNumber, keyCode, template, description) => {
   return {
     type: 'CHANGE_CART_ITEM_DESCRIPTION',

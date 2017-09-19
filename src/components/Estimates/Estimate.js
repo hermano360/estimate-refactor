@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Row, Col, Grid, Table, Glyphicon, Panel, Modal} from 'react-bootstrap'
+import {Button, Row, Col, Grid, Table, Panel, Modal} from 'react-bootstrap'
 import ShoppingCartItem from './ShoppingCartItem'
 import EstimateForms from './EstimateForms'
 import Select from 'react-select'
@@ -76,9 +76,8 @@ export class Estimate extends Component {
     const {tax, costAdjustment} = this.state
     let total = 0
     shoppingCart.forEach((item) => {
-      total += (item.Labor + item.Material) * item.quantity
+      total += (parseFloat(item.Labor) * (1 + tax/100) * (1 + costAdjustment/100) + parseFloat(item.Material)) * parseFloat(item.quantity)
     })
-    total *= (1 + tax/100) * (1 + costAdjustment/100)
     return parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,')
   }
 
@@ -300,8 +299,8 @@ export class Estimate extends Component {
                       <td style={{fontWeight: "bold", padding: "0"}}>Amt</td>
                       <td style={{fontWeight: "bold", padding: "0"}}>Units</td>
                       <td style={{fontWeight: "bold", padding: "0"}}>Description</td>
-                      <td style={{fontWeight: "bold", padding: "0"}}>Lbr</td>
                       <td style={{fontWeight: "bold", padding: "0"}}>Mtrl</td>
+                      <td style={{fontWeight: "bold", padding: "0"}}>Lbr</td>
                       <td style={{fontWeight: "bold", padding: "0"}}></td>
                     </tr>
                     {shoppingCartFunction()}

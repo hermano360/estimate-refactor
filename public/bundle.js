@@ -42446,6 +42446,22 @@
 	  };
 	};
 	
+	var changeCartItemCosts = exports.changeCartItemCosts = function changeCartItemCosts(quoteNumber, keyCode, template, newPrice, parameter) {
+	  var type = void 0;
+	  if (parameter === 'labor') {
+	    type = 'CHANGE_CART_ITEM_LABOR';
+	  } else if (parameter === 'material') {
+	    type = 'CHANGE_CART_ITEM_MATERIAL';
+	  }
+	  return {
+	    type: type,
+	    keyCode: keyCode,
+	    template: template,
+	    newPrice: newPrice,
+	    quoteNumber: quoteNumber
+	  };
+	};
+	
 	var changeCartItemDescription = exports.changeCartItemDescription = function changeCartItemDescription(quoteNumber, keyCode, template, description) {
 	  return {
 	    type: 'CHANGE_CART_ITEM_DESCRIPTION',
@@ -46524,9 +46540,8 @@
 	
 	      var total = 0;
 	      shoppingCart.forEach(function (item) {
-	        total += (item.Labor + item.Material) * item.quantity;
+	        total += (parseFloat(item.Labor) * (1 + tax / 100) * (1 + costAdjustment / 100) + parseFloat(item.Material)) * parseFloat(item.quantity);
 	      });
-	      total *= (1 + tax / 100) * (1 + costAdjustment / 100);
 	      return parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,');
 	    }
 	  }, {
@@ -46827,12 +46842,12 @@
 	                      _react2.default.createElement(
 	                        'td',
 	                        { style: { fontWeight: "bold", padding: "0" } },
-	                        'Lbr'
+	                        'Mtrl'
 	                      ),
 	                      _react2.default.createElement(
 	                        'td',
 	                        { style: { fontWeight: "bold", padding: "0" } },
-	                        'Mtrl'
+	                        'Lbr'
 	                      ),
 	                      _react2.default.createElement('td', { style: { fontWeight: "bold", padding: "0" } })
 	                    ),
@@ -47146,7 +47161,8 @@
 	    _this.state = {
 	      descriptionStyle: {
 	        padding: '0', height: '2.5em', width: '100%'
-	      }
+	      },
+	      modal: false
 	    };
 	    return _this;
 	  }
@@ -47183,15 +47199,172 @@
 	          shoppingCartDOMNodes = _props2.shoppingCartDOMNodes,
 	          totalNumberOfItems = _props2.totalNumberOfItems;
 	
+	      var quantityString = void 0,
+	          materialString = void 0,
+	          laborString = void 0;
+	      if (quantity === 0) {
+	        quantityString = "";
+	      } else {
+	        quantityString = quantity;
+	      }
+	      if (Labor === 0) {
+	        laborString = "";
+	      } else {
+	        laborString = Labor;
+	      }
+	      if (Material === 0) {
+	        materialString = "";
+	      } else {
+	        materialString = Material;
+	      }
 	
 	      var focusHeight = Math.ceil(parseFloat(description.length / 30) * 2);
+	      var priceChangeInterface = function priceChangeInterface() {
+	        return _react2.default.createElement(
+	          _reactBootstrap.Modal,
+	          { show: _this2.state.modal, onHide: function onHide() {
+	              _this2.setState({ modal: false });
+	            } },
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Header,
+	            { closeButton: true },
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Title,
+	              { style: { textAlign: 'center' } },
+	              keyCode
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { style: { height: '40%', overflow: 'scroll' } },
+	              _react2.default.createElement(
+	                _reactBootstrap.Table,
+	                { bordered: true, condensed: true },
+	                _react2.default.createElement(
+	                  'thead',
+	                  null,
+	                  _react2.default.createElement(
+	                    'tr',
+	                    null,
+	                    _react2.default.createElement('th', null),
+	                    _react2.default.createElement(
+	                      'th',
+	                      null,
+	                      '$/',
+	                      UOM
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      null,
+	                      'Qty'
+	                    ),
+	                    _react2.default.createElement(
+	                      'th',
+	                      null,
+	                      'Total'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'tbody',
+	                  null,
+	                  _react2.default.createElement(
+	                    'tr',
+	                    null,
+	                    _react2.default.createElement(
+	                      'td',
+	                      null,
+	                      'Lbr'
+	                    ),
+	                    _react2.default.createElement(
+	                      'td',
+	                      null,
+	                      _react2.default.createElement('input', { className: 'form-control', type: 'text',
+	                        value: laborString,
+	                        onChange: function onChange(e) {
+	                          dispatch(actions.changeCartItemCosts(quoteNumber, keyCode, template, e.target.value, 'labor'));
+	                        },
+	                        placeholder: '0'
+	                        // onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['lastName'].focus() }}}
+	                      })
+	                    ),
+	                    _react2.default.createElement(
+	                      'td',
+	                      null,
+	                      _react2.default.createElement('input', { className: 'form-control', type: 'text',
+	                        value: quantityString,
+	                        onChange: function onChange(e) {
+	                          _this2.onQuantityChange(keyCode, template, e.target.value);
+	                        },
+	                        placeholder: '0'
+	                        // style={innerTextCellStyle}
+	                        // onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['lastName'].focus() }}}
+	                      })
+	                    ),
+	                    _react2.default.createElement(
+	                      'td',
+	                      null,
+	                      '$',
+	                      (Labor * quantity).toFixed(2)
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'tr',
+	                    null,
+	                    _react2.default.createElement(
+	                      'td',
+	                      null,
+	                      'Mtrl'
+	                    ),
+	                    _react2.default.createElement(
+	                      'td',
+	                      null,
+	                      _react2.default.createElement('input', { className: 'form-control', type: 'text',
+	                        value: materialString,
+	                        onChange: function onChange(e) {
+	                          dispatch(actions.changeCartItemCosts(quoteNumber, keyCode, template, e.target.value, 'material'));
+	                        },
+	                        placeholder: '0'
+	                        // style={innerTextCellStyle}
+	                        // onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['lastName'].focus() }}}
+	                      })
+	                    ),
+	                    _react2.default.createElement('td', null),
+	                    _react2.default.createElement(
+	                      'td',
+	                      null,
+	                      '$',
+	                      (Material * quantity).toFixed(2)
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Footer,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.setState({ modal: false });
+	                } },
+	              'Close'
+	            )
+	          )
+	        );
+	      };
 	      return _react2.default.createElement(
 	        'tr',
 	        null,
 	        _react2.default.createElement(
 	          'td',
 	          { style: { fontWeight: "bold", padding: "0px 0px 0px 3px" } },
-	          number
+	          number,
+	          priceChangeInterface()
 	        ),
 	        _react2.default.createElement(
 	          'td',
@@ -47201,7 +47374,7 @@
 	        _react2.default.createElement(
 	          'td',
 	          { style: { padding: "0px 0px 0px 3px" } },
-	          _react2.default.createElement('input', { type: 'text', defaultValue: quantity,
+	          _react2.default.createElement('input', { type: 'text', value: quantity,
 	            onChange: function onChange(e) {
 	              _this2.onQuantityChange(keyCode, template, e.target.value);
 	            },
@@ -47258,13 +47431,18 @@
 	        ),
 	        _react2.default.createElement(
 	          'td',
-	          { style: { padding: "0px 0px 0px 3px" } },
+	          { style: { padding: "0px 0px 0px 3px" }, onClick: function onClick() {
+	
+	              _this2.setState({ modal: true });
+	            } },
 	          '$',
 	          (Material * quantity).toFixed(2)
 	        ),
 	        _react2.default.createElement(
 	          'td',
-	          { style: { padding: "0px 0px 0px 3px" } },
+	          { style: { padding: "0px 0px 0px 3px" }, onClick: function onClick() {
+	              _this2.setState({ modal: true });
+	            } },
 	          '$',
 	          (Labor * quantity).toFixed(2)
 	        ),
@@ -53091,27 +53269,11 @@
 	      return _extends({}, state, _defineProperty({}, action.quoteNumber, _extends({}, state[action.quoteNumber], {
 	        shoppingCart: shoppingCartWithAdjustedQuantity
 	      })));
-	    case 'CHANGE_CART_ITEM_DESCRIPTION':
-	      var shoppingCartWithAdjustedDescription = state[action.quoteNumber].shoppingCart.map(function (cartItem) {
-	        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
-	          var description = action.description;
-	          console.log(description);
-	          return _extends({}, cartItem, {
-	            description: description
-	          });
-	        }
-	        return cartItem;
-	      });
-	      console.log(shoppingCartWithAdjustedDescription);
-	      return _extends({}, state, _defineProperty({}, action.quoteNumber, _extends({}, state[action.quoteNumber], {
-	        shoppingCart: shoppingCartWithAdjustedDescription
-	      })));
 	    case 'CHANGE_CART_ITEM_LABOR':
 	      var shoppingCartWithAdjustedLabor = state[action.quoteNumber].shoppingCart.map(function (cartItem) {
 	        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
-	          var Labor = action.Labor;
-	
-	          if (Labor === '') {
+	          var Labor = action.newPrice;
+	          if (action.newPrice === '') {
 	            Labor = 0;
 	          }
 	          return _extends({}, cartItem, {
@@ -53126,9 +53288,8 @@
 	    case 'CHANGE_CART_ITEM_MATERIAL':
 	      var shoppingCartWithAdjustedMaterial = state[action.quoteNumber].shoppingCart.map(function (cartItem) {
 	        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
-	          var Material = action.Material.Material;
-	
-	          if (Material === '') {
+	          var Material = action.newPrice;
+	          if (action.newPrice === '') {
 	            Material = 0;
 	          }
 	          return _extends({}, cartItem, {
@@ -53139,6 +53300,21 @@
 	      });
 	      return _extends({}, state, _defineProperty({}, action.quoteNumber, _extends({}, state[action.quoteNumber], {
 	        shoppingCart: shoppingCartWithAdjustedMaterial
+	      })));
+	    case 'CHANGE_CART_ITEM_DESCRIPTION':
+	      var shoppingCartWithAdjustedDescription = state[action.quoteNumber].shoppingCart.map(function (cartItem) {
+	        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
+	          var description = action.description;
+	          console.log(description);
+	          return _extends({}, cartItem, {
+	            description: description
+	          });
+	        }
+	        return cartItem;
+	      });
+	      console.log(shoppingCartWithAdjustedDescription);
+	      return _extends({}, state, _defineProperty({}, action.quoteNumber, _extends({}, state[action.quoteNumber], {
+	        shoppingCart: shoppingCartWithAdjustedDescription
 	      })));
 	    case 'DELETE_SHOPPING_CART_ITEM':
 	      var updatedShoppingCart = state[action.quoteNumber].shoppingCart.filter(function (cartItem) {
