@@ -46617,7 +46617,15 @@
 	                    _react2.default.createElement(
 	                      'th',
 	                      { style: { textAlign: 'center', verticalAlign: 'middle' } },
-	                      'Estimator Worksheet'
+	                      _react2.default.createElement(_reactSelect2.default, {
+	                        options: codeOptions,
+	                        onChange: function onChange(e) {
+	                          dispatch(actions.addShoppingCartItem(e.value, quoteNumber));
+	                        },
+	                        placeholder: 'Choose Code',
+	                        autoBlur: true,
+	                        noResultsText: 'N/A'
+	                      })
 	                    )
 	                  )
 	                )
@@ -46684,19 +46692,7 @@
 	                  _react2.default.createElement(
 	                    'tr',
 	                    null,
-	                    _react2.default.createElement(
-	                      'td',
-	                      null,
-	                      _react2.default.createElement(_reactSelect2.default, {
-	                        options: codeOptions,
-	                        onChange: function onChange(e) {
-	                          dispatch(actions.addShoppingCartItem(e.value, quoteNumber));
-	                        },
-	                        placeholder: 'Add Item With Code',
-	                        autoBlur: true,
-	                        noResultsText: 'N/A'
-	                      })
-	                    )
+	                    _react2.default.createElement('td', null)
 	                  )
 	                )
 	              )
@@ -46992,7 +46988,7 @@
 	
 	    _this.state = {
 	      descriptionStyle: {
-	        padding: '0', height: '2.5em'
+	        padding: '0', height: '2.5em', width: '100%'
 	      }
 	    };
 	    return _this;
@@ -47083,7 +47079,8 @@
 	              _this2.setState({
 	                descriptionStyle: {
 	                  padding: '0',
-	                  height: focusHeight + 'em'
+	                  height: focusHeight + 'em',
+	                  width: '100%'
 	                }
 	              });
 	            },
@@ -47091,7 +47088,8 @@
 	              _this2.setState({
 	                descriptionStyle: {
 	                  padding: '0',
-	                  height: '2.5em'
+	                  height: '2.5em',
+	                  width: '100%'
 	                }
 	              });
 	            },

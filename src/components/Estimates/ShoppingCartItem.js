@@ -8,7 +8,7 @@ class ShoppingCartItem extends Component {
     super()
     this.state = {
       descriptionStyle : {
-        padding: '0', height: '2.5em'
+        padding: '0', height: '2.5em', width: '100%'
       }
     }
   }
@@ -57,7 +57,8 @@ class ShoppingCartItem extends Component {
               this.setState({
                 descriptionStyle: {
                   padding: '0',
-                  height: `${focusHeight}em`
+                  height: `${focusHeight}em`,
+                  width: '100%'
                 }
               })
             }}
@@ -65,7 +66,8 @@ class ShoppingCartItem extends Component {
               this.setState({
                 descriptionStyle: {
                   padding: '0',
-                  height: `2.5em`
+                  height: `2.5em`,
+                  width: '100%'
                 }
               })
             }}

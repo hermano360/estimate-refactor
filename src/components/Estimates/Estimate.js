@@ -274,7 +274,15 @@ export class Estimate extends Component {
                         className='harold'
                       />
                     </th>
-                    <th style={{textAlign:'center', verticalAlign:'middle'}}>Estimator Worksheet</th>
+                    <th style={{textAlign:'center', verticalAlign:'middle'}}>
+                      <Select
+                        options={codeOptions}
+                        onChange={(e) => { dispatch(actions.addShoppingCartItem(e.value, quoteNumber)) }}
+                        placeholder='Choose Code'
+                        autoBlur={true}
+                        noResultsText='N/A'
+                      />
+                    </th>
                   </tr>
                 </thead>
               </Table>
@@ -299,13 +307,6 @@ export class Estimate extends Component {
                   <tbody>
                     <tr>
                       <td>
-                        <Select
-                          options={codeOptions}
-                          onChange={(e) => { dispatch(actions.addShoppingCartItem(e.value, quoteNumber)) }}
-                          placeholder='Add Item With Code'
-                          autoBlur={true}
-                          noResultsText='N/A'
-                        />
                       </td>
                     </tr>
                   </tbody>
