@@ -36,10 +36,6 @@ class EstimateForms extends React.Component {
 
 
   render () {
-    let elementNodes = {};
-    let handleNodeClick  = (a) => {
-      elementNodes[a].focus();
-    }
     let {dispatch, quoteNumber, cachedQuotes, shoppingCartDOMNodes} = this.props
     let formCellEntryStyle = {
       paddingLeft: '0px',
@@ -241,7 +237,7 @@ class EstimateForms extends React.Component {
                           if(shoppingCartDOMNodes['1']=== undefined){
                             shoppingCartDOMNodes['firstName'].focus()
                           } else {
-                            shoppingCartDOMNodes['1'].focus()
+                            shoppingCartDOMNodes['1'].select()
                           }
                       }}}
                     />

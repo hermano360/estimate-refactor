@@ -43,7 +43,7 @@ class ShoppingCartItem extends Component {
                 if(number===totalNumberOfItems){
                   shoppingCartDOMNodes['firstName'].focus()
                 } else {
-                  shoppingCartDOMNodes[(number + 1).toString()].focus()
+                  shoppingCartDOMNodes[(number + 1).toString()].select()
                 }
               }
             }}

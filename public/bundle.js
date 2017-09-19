@@ -47068,7 +47068,7 @@
 	                if (number === totalNumberOfItems) {
 	                  shoppingCartDOMNodes['firstName'].focus();
 	                } else {
-	                  shoppingCartDOMNodes[(number + 1).toString()].focus();
+	                  shoppingCartDOMNodes[(number + 1).toString()].select();
 	                }
 	              }
 	            }
@@ -47226,10 +47226,6 @@
 	    value: function render() {
 	      var _React$createElement;
 	
-	      var elementNodes = {};
-	      var handleNodeClick = function handleNodeClick(a) {
-	        elementNodes[a].focus();
-	      };
 	      var _props2 = this.props,
 	          dispatch = _props2.dispatch,
 	          quoteNumber = _props2.quoteNumber,
@@ -47549,7 +47545,7 @@
 	                        if (shoppingCartDOMNodes['1'] === undefined) {
 	                          shoppingCartDOMNodes['firstName'].focus();
 	                        } else {
-	                          shoppingCartDOMNodes['1'].focus();
+	                          shoppingCartDOMNodes['1'].select();
 	                        }
 	                      }
 	                    }
