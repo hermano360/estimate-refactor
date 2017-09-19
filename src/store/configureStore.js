@@ -16,7 +16,6 @@ export var configure = (initialState = {}) => {
     quoteNumber: '',
     InitialQuoteNumber: '',
     availableQuoteNumbers: []
-
   }
   var store = redux.createStore(reducer, initialState, redux.compose(
     redux.applyMiddleware(thunk),

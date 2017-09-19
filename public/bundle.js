@@ -58,7 +58,7 @@
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
-	var _reactTapEventPlugin = __webpack_require__(529);
+	var _reactTapEventPlugin = __webpack_require__(533);
 	
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 	
@@ -68,7 +68,7 @@
 	    Provider = _require.Provider;
 	
 	var actions = __webpack_require__(444);
-	var store = __webpack_require__(535).configure();
+	var store = __webpack_require__(539).configure();
 	
 	(0, _reactTapEventPlugin2.default)();
 	
@@ -22340,7 +22340,7 @@
 	        borderRadius: '5px',
 	        padding: '5px'
 	      };
-	      var buttonContainerStyles = { height: '200px', 'marginTop': '50px' };
+	      var buttonContainerStyles = { height: '200px', 'marginTop': '50px', textAlign: 'center' };
 	      var marginTopCustom = function marginTopCustom(margintop) {
 	        return {
 	          marginTop: margintop + '%'
@@ -22365,15 +22365,18 @@
 	      var startButtons = {
 	        color: 'black',
 	        fontWeight: '800',
-	        fontSize: '20px',
-	        width: '115px',
+	        fontSize: '15px',
+	        width: '30vw',
 	        backgroundColor: '#B4E41C',
-	        borderRadius: '15px'
+	        borderRadius: '15px',
+	        marginLeft: '5px',
+	        marginRight: '5px',
+	        marginTop: '15px'
 	      };
 	
 	      return _react2.default.createElement(
 	        _reactBootstrap.Grid,
-	        { fluid: true, style: { textAlign: 'center', minHeight: '100vh' } },
+	        { fluid: true, style: { textAlign: 'center' } },
 	        _react2.default.createElement(
 	          _reactBootstrap.Row,
 	          null,
@@ -22410,7 +22413,7 @@
 	                  ),
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
-	                    { xs: 12, className: 'center-block', style: { marginTop: '10%', textAlign: 'center' } },
+	                    { xs: 12, className: 'center-block', style: { marginTop: '10%' } },
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Button,
 	                      { onClick: function onClick() {
@@ -22420,26 +22423,18 @@
 	                    )
 	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 6, className: 'center-block', style: { marginTop: '10%', textAlign: 'center' } },
-	                    _react2.default.createElement(
-	                      _reactBootstrap.Button,
-	                      { onClick: function onClick() {
-	                          dispatch(actions.changePage('Products'));
-	                        }, style: startButtons },
-	                      'Products'
-	                    )
+	                    _reactBootstrap.Button,
+	                    { onClick: function onClick() {
+	                        dispatch(actions.changePage('Products'));
+	                      }, style: startButtons },
+	                    'Products'
 	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 6, className: 'center-block', style: marginTopCustom(10) },
-	                    _react2.default.createElement(
-	                      _reactBootstrap.Button,
-	                      { onClick: function onClick() {
-	                          dispatch(actions.changePage('PhoneList'));
-	                        }, style: startButtons },
-	                      'Phone'
-	                    )
+	                    _reactBootstrap.Button,
+	                    { onClick: function onClick() {
+	                        dispatch(actions.changePage('PhoneList'));
+	                      }, style: startButtons },
+	                    'Phone'
 	                  )
 	                )
 	              )
@@ -46253,6 +46248,10 @@
 	
 	var _reactSelect2 = _interopRequireDefault(_reactSelect);
 	
+	var _reactToggle = __webpack_require__(503);
+	
+	var _reactToggle2 = _interopRequireDefault(_reactToggle);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -46269,7 +46268,7 @@
 	    connect = _require.connect;
 	
 	var databaseSimulation = __webpack_require__(445);
-	var axios = __webpack_require__(503);
+	var axios = __webpack_require__(507);
 	
 	var Estimate = exports.Estimate = function (_Component) {
 	  _inherits(Estimate, _Component);
@@ -46284,7 +46283,8 @@
 	      modal: false,
 	      animal: 'elephants',
 	      tax: 10,
-	      costAdjustment: 30
+	      costAdjustment: 30,
+	      showTotal: true
 	
 	    };
 	    return _this;
@@ -46351,6 +46351,20 @@
 	      });
 	    }
 	  }, {
+	    key: 'calculateTotal',
+	    value: function calculateTotal(shoppingCart) {
+	      var _state = this.state,
+	          tax = _state.tax,
+	          costAdjustment = _state.costAdjustment;
+	
+	      var total = 0;
+	      shoppingCart.forEach(function (item) {
+	        total += (item.Labor + item.Material) * item.quantity;
+	      });
+	      total *= (1 + tax / 100) * (1 + costAdjustment / 100);
+	      return parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,');
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this3 = this;
@@ -46361,24 +46375,13 @@
 	          quoteNumber = _props3.quoteNumber,
 	          InitialQuoteNumber = _props3.InitialQuoteNumber,
 	          availableQuoteNumbers = _props3.availableQuoteNumbers;
-	      var _state = this.state,
-	          tax = _state.tax,
-	          costAdjustment = _state.costAdjustment;
+	
 	
 	      var codeOptions = [{ value: 'faucet1', label: 'faucet1' }, { value: 'faucet2', label: 'faucet2' }, { value: 'faucet3', label: 'faucet3' }, { value: 'faucet4', label: 'faucet4' }, { value: 'light1', label: 'light1' }, { value: 'light2', label: 'light2' }, { value: 'light3', label: 'light3' }, { value: 'light4', label: 'light4' }, { value: 'fan1', label: 'fan1' }, { value: 'fan2', label: 'fan2' }, { value: 'fan3', label: 'fan3' }, { value: 'fan4', label: 'fan4' }];
 	      var templateOptions = [{ value: 'Demolition', label: 'Demolition' }, { value: 'Foundation/Footings', label: 'Foundation/Footings' }, { value: 'Bathroom', label: 'Bathroom' }];
-	      function logChange(val) {
-	        console.log("Selected: " + JSON.stringify(val));
-	      }
 	
 	      var shoppingCart = cachedQuotes[quoteNumber].shoppingCart;
-	      var total = 0;
-	      shoppingCart.forEach(function (item) {
-	        total += (item.Labor + item.Material) * item.quantity;
-	      });
-	      total *= (1 + tax / 100) * (1 + costAdjustment / 100);
-	      total = parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,');
-	
+	      var total = this.calculateTotal(shoppingCart);
 	      var downloadLink = function downloadLink(totalDough) {
 	        if (_this3.state.animal === 'giraffes') {
 	          return _react2.default.createElement(
@@ -46442,7 +46445,8 @@
 	        whiteSpace: 'normal',
 	        wordWrap: 'break-word',
 	        padding: '1px',
-	        zIndex: '1'
+	        zIndex: '1',
+	        visibility: this.state.showTotal ? 'visible' : 'hidden'
 	      };
 	      var backButtonStyle = {
 	        position: 'fixed',
@@ -46471,10 +46475,9 @@
 	      var arrowStyles = {
 	        height: '35px',
 	        width: 'auto'
+	      };
 	
-	        // possible form item generator for later. seems to be too many one-off cases
-	
-	      };return _react2.default.createElement(
+	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(
@@ -46507,7 +46510,7 @@
 	            null,
 	            _react2.default.createElement(
 	              _reactBootstrap.Col,
-	              { xs: 12, style: { textAlign: 'right', marginTop: '15px' } },
+	              { xs: 12, style: { textAlign: 'right', marginTop: '15px', position: 'absolute', zIndex: '1' } },
 	              _react2.default.createElement('img', { src: '/left-arrow.png', style: arrowStyles, onClick: function onClick() {
 	                  var nextQuoteNumber = _this3.findNextQuoteNumber(quoteNumber, availableQuoteNumbers, InitialQuoteNumber);
 	                  if (nextQuoteNumber in cachedQuotes) {
@@ -46534,6 +46537,21 @@
 	                    dispatch(actions.setQuote(previousQuoteNumber));
 	                  }
 	                } }),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(_reactToggle2.default, {
+	                  checked: this.state.showTotal,
+	                  icons: {
+	                    checked: null,
+	                    unchecked: null
+	                  },
+	                  onChange: function onChange() {
+	                    _this3.setState({
+	                      showTotal: !_this3.state.showTotal
+	                    });
+	                  } })
+	              ),
 	              _react2.default.createElement('span', { style: { paddingRight: '15px' } })
 	            )
 	          ),
@@ -46542,7 +46560,7 @@
 	            null,
 	            _react2.default.createElement(
 	              _reactBootstrap.Col,
-	              { xs: 12, style: { textAlign: 'center' } },
+	              { xs: 12, style: { textAlign: 'center', marginTop: '50px' } },
 	              _react2.default.createElement('img', { src: '/ezestimator_logo.png', style: logoStyles })
 	            )
 	          ),
@@ -47071,6 +47089,8 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -47082,8 +47102,8 @@
 	var _require = __webpack_require__(446),
 	    connect = _require.connect;
 	
-	var EstimateForms = function (_Component) {
-	  _inherits(EstimateForms, _Component);
+	var EstimateForms = function (_React$Component) {
+	  _inherits(EstimateForms, _React$Component);
 	
 	  function EstimateForms() {
 	    _classCallCheck(this, EstimateForms);
@@ -47131,6 +47151,12 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _React$createElement;
+	
+	      var elementNodes = {};
+	      var handleNodeClick = function handleNodeClick(a) {
+	        elementNodes[a].focus();
+	      };
 	      var _props2 = this.props,
 	          dispatch = _props2.dispatch,
 	          quoteNumber = _props2.quoteNumber,
@@ -47162,16 +47188,39 @@
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { xs: 6, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'First Name', value: cachedQuotes[quoteNumber].customerFirstName, onChange: function onChange(e) {
+	                  _react2.default.createElement('input', { className: 'form-control', type: 'text', placeholder: 'First Name',
+	                    ref: function ref(input) {
+	                      elementNodes.firstName = input;
+	                    },
+	                    value: cachedQuotes[quoteNumber].customerFirstName,
+	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'customerFirstName', e.target.value));
-	                    }, style: innerTextCellStyle })
+	                    },
+	                    style: innerTextCellStyle,
+	                    onKeyPress: function onKeyPress(e) {
+	                      if (e.charCode === 13) {
+	                        handleNodeClick('lastName');
+	                      }
+	                    } })
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { xs: 6, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Last Name', value: cachedQuotes[quoteNumber].customerLastName, onChange: function onChange(e) {
+	                  _react2.default.createElement('input', { type: 'text', placeholder: 'Last Name', className: 'form-control',
+	                    ref: function ref(input) {
+	                      elementNodes.lastName = input;
+	                    },
+	                    value: cachedQuotes[quoteNumber].customerLastName,
+	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'customerLastName', e.target.value));
-	                    }, style: innerTextCellStyle })
+	                    },
+	                    style: innerTextCellStyle,
+	                    onKeyPress: function onKeyPress(e) {
+	                      if (e.charCode === 13) {
+	                        handleNodeClick('streetAddress');
+	                      }
+	                    }
+	                  })
 	                )
 	              )
 	            ),
@@ -47184,9 +47233,21 @@
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { xs: 12, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Street Address', value: cachedQuotes[quoteNumber].address, onChange: function onChange(e) {
+	                  _react2.default.createElement('input', { type: 'text', placeholder: 'Street Address', className: 'form-control',
+	                    ref: function ref(input) {
+	                      elementNodes.streetAddress = input;
+	                    },
+	                    value: cachedQuotes[quoteNumber].address,
+	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'address', e.target.value));
-	                    }, style: innerTextCellStyle })
+	                    },
+	                    style: innerTextCellStyle,
+	                    onKeyPress: function onKeyPress(e) {
+	                      if (e.charCode === 13) {
+	                        handleNodeClick('city');
+	                      }
+	                    }
+	                  })
 	                )
 	              )
 	            ),
@@ -47199,23 +47260,59 @@
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { xs: 4, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'City', value: cachedQuotes[quoteNumber].city, onChange: function onChange(e) {
+	                  _react2.default.createElement('input', { type: 'text', placeholder: 'City', className: 'form-control',
+	                    value: cachedQuotes[quoteNumber].city,
+	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'city', e.target.value));
-	                    }, style: innerTextCellStyle })
+	                    },
+	                    style: innerTextCellStyle,
+	                    ref: function ref(input) {
+	                      elementNodes.city = input;
+	                    },
+	                    onKeyPress: function onKeyPress(e) {
+	                      if (e.charCode === 13) {
+	                        handleNodeClick('state');
+	                      }
+	                    }
+	                  })
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { xs: 4, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'State', value: cachedQuotes[quoteNumber].state, onChange: function onChange(e) {
+	                  _react2.default.createElement('input', { type: 'text', placeholder: 'State', className: 'form-control',
+	                    value: cachedQuotes[quoteNumber].state,
+	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'state', e.target.value));
-	                    }, style: innerTextCellStyle })
+	                    },
+	                    style: innerTextCellStyle,
+	                    ref: function ref(input) {
+	                      elementNodes.state = input;
+	                    },
+	                    onKeyPress: function onKeyPress(e) {
+	                      if (e.charCode === 13) {
+	                        handleNodeClick('zip');
+	                      }
+	                    }
+	                  })
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { xs: 4, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'ZIP', value: cachedQuotes[quoteNumber].zipcode, onChange: function onChange(e) {
+	                  _react2.default.createElement('input', { type: 'text', placeholder: 'ZIP', className: 'form-control',
+	                    value: cachedQuotes[quoteNumber].zipcode,
+	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'zipcode', e.target.value));
-	                    }, style: innerTextCellStyle })
+	                    },
+	                    style: innerTextCellStyle,
+	                    ref: function ref(input) {
+	                      elementNodes.zip = input;
+	                    },
+	                    onKeyPress: function onKeyPress(e) {
+	                      if (e.charCode === 13) {
+	                        handleNodeClick('phone');
+	                      }
+	                    }
+	                  })
 	                )
 	              )
 	            ),
@@ -47227,15 +47324,39 @@
 	                { controlId: 'formValidationWarning1', validationState: null },
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
-	                  { xs: 6, style: formCellEntryStyle, onChange: function onChange(e) {
+	                  { xs: 6, style: formCellEntryStyle },
+	                  _react2.default.createElement('input', { type: 'text', placeholder: 'Phone', className: 'form-control',
+	                    value: cachedQuotes[quoteNumber].phone,
+	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value));
-	                    } },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Phone', style: innerTextCellStyle, value: cachedQuotes[quoteNumber].phone })
+	                    },
+	                    style: innerTextCellStyle,
+	                    ref: function ref(input) {
+	                      elementNodes.phone = input;
+	                    },
+	                    onKeyPress: function onKeyPress(e) {
+	                      if (e.charCode === 13) {
+	                        handleNodeClick('email');
+	                      }
+	                    }
+	                  })
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { xs: 6, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: 'Email', style: innerTextCellStyle })
+	                  _react2.default.createElement('input', (_React$createElement = { type: 'text', placeholder: 'Email', className: 'form-control',
+	                    style: innerTextCellStyle,
+	                    value: cachedQuotes[quoteNumber].email,
+	                    onChange: function onChange(e) {
+	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'email', e.target.value));
+	                    }
+	                  }, _defineProperty(_React$createElement, 'style', innerTextCellStyle), _defineProperty(_React$createElement, 'ref', function ref(input) {
+	                    elementNodes.email = input;
+	                  }), _defineProperty(_React$createElement, 'onKeyPress', function onKeyPress(e) {
+	                    if (e.charCode === 13) {
+	                      handleNodeClick('scopeofwork');
+	                    }
+	                  }), _React$createElement))
 	                )
 	              )
 	            ),
@@ -47303,9 +47424,13 @@
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { xs: 6, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', value: cachedQuotes[quoteNumber].date, onChange: function onChange(e) {
+	                  _react2.default.createElement('input', { type: 'text', className: 'form-control',
+	                    value: cachedQuotes[quoteNumber].date,
+	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'date', e.target.value));
-	                    }, style: innerTextCellStyle })
+	                    },
+	                    style: innerTextCellStyle
+	                  })
 	                )
 	              )
 	            ),
@@ -47318,9 +47443,21 @@
 	                _react2.default.createElement(
 	                  _reactBootstrap.Col,
 	                  { xs: 12, style: formCellEntryStyle },
-	                  _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea', placeholder: 'Scope Of Work', rows: '3', value: cachedQuotes[quoteNumber].specification, onChange: function onChange(e) {
+	                  _react2.default.createElement('textarea', { placeholder: 'Scope Of Work', className: 'form-control', rows: '3',
+	                    value: cachedQuotes[quoteNumber].specification,
+	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value));
-	                    }, style: innerTextCellStyle })
+	                    },
+	                    style: innerTextCellStyle,
+	                    ref: function ref(input) {
+	                      elementNodes.scopeofwork = input;
+	                    },
+	                    onKeyPress: function onKeyPress(e) {
+	                      if (e.charCode === 13) {
+	                        handleNodeClick('firstName');
+	                      }
+	                    }
+	                  })
 	                )
 	              )
 	            ),
@@ -47332,7 +47469,7 @@
 	  }]);
 	
 	  return EstimateForms;
-	}(_react.Component);
+	}(_react2.default.Component);
 	
 	exports.default = connect(function (state) {
 	  return {
@@ -50200,7 +50337,261 @@
 /* 503 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(504);
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(273);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _propTypes = __webpack_require__(274);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _check = __webpack_require__(504);
+	
+	var _check2 = _interopRequireDefault(_check);
+	
+	var _x = __webpack_require__(505);
+	
+	var _x2 = _interopRequireDefault(_x);
+	
+	var _util = __webpack_require__(506);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Toggle = function (_PureComponent) {
+	  _inherits(Toggle, _PureComponent);
+	
+	  function Toggle(props) {
+	    _classCallCheck(this, Toggle);
+	
+	    var _this = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
+	
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    _this.handleTouchStart = _this.handleTouchStart.bind(_this);
+	    _this.handleTouchMove = _this.handleTouchMove.bind(_this);
+	    _this.handleTouchEnd = _this.handleTouchEnd.bind(_this);
+	    _this.handleFocus = _this.handleFocus.bind(_this);
+	    _this.handleBlur = _this.handleBlur.bind(_this);
+	    _this.previouslyChecked = !!(props.checked || props.defaultChecked);
+	    _this.state = {
+	      checked: !!(props.checked || props.defaultChecked),
+	      hasFocus: false
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(Toggle, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      if ('checked' in nextProps) {
+	        this.setState({ checked: !!nextProps.checked });
+	      }
+	    }
+	  }, {
+	    key: 'handleClick',
+	    value: function handleClick(event) {
+	      var checkbox = this.input;
+	      if (event.target !== checkbox && !this.moved) {
+	        this.previouslyChecked = checkbox.checked;
+	        event.preventDefault();
+	        checkbox.focus();
+	        checkbox.click();
+	        return;
+	      }
+	
+	      this.setState({ checked: checkbox.checked });
+	    }
+	  }, {
+	    key: 'handleTouchStart',
+	    value: function handleTouchStart(event) {
+	      this.startX = (0, _util.pointerCoord)(event).x;
+	      this.activated = true;
+	    }
+	  }, {
+	    key: 'handleTouchMove',
+	    value: function handleTouchMove(event) {
+	      if (!this.activated) return;
+	      this.moved = true;
+	
+	      if (this.startX) {
+	        var currentX = (0, _util.pointerCoord)(event).x;
+	        if (this.state.checked && currentX + 15 < this.startX) {
+	          this.setState({ checked: false });
+	          this.startX = currentX;
+	          this.activated = true;
+	        } else if (currentX - 15 > this.startX) {
+	          this.setState({ checked: true });
+	          this.startX = currentX;
+	          this.activated = currentX < this.startX + 5;
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'handleTouchEnd',
+	    value: function handleTouchEnd(event) {
+	      if (!this.moved) return;
+	      var checkbox = this.input;
+	      event.preventDefault();
+	
+	      if (this.startX) {
+	        var endX = (0, _util.pointerCoord)(event).x;
+	        if (this.previouslyChecked === true && this.startX + 4 > endX) {
+	          if (this.previouslyChecked !== this.state.checked) {
+	            this.setState({ checked: false });
+	            this.previouslyChecked = this.state.checked;
+	            checkbox.click();
+	          }
+	        } else if (this.startX - 4 < endX) {
+	          if (this.previouslyChecked !== this.state.checked) {
+	            this.setState({ checked: true });
+	            this.previouslyChecked = this.state.checked;
+	            checkbox.click();
+	          }
+	        }
+	
+	        this.activated = false;
+	        this.startX = null;
+	        this.moved = false;
+	      }
+	    }
+	  }, {
+	    key: 'handleFocus',
+	    value: function handleFocus(event) {
+	      var onFocus = this.props.onFocus;
+	
+	
+	      if (onFocus) {
+	        onFocus(event);
+	      }
+	
+	      this.setState({ hasFocus: true });
+	    }
+	  }, {
+	    key: 'handleBlur',
+	    value: function handleBlur(event) {
+	      var onBlur = this.props.onBlur;
+	
+	
+	      if (onBlur) {
+	        onBlur(event);
+	      }
+	
+	      this.setState({ hasFocus: false });
+	    }
+	  }, {
+	    key: 'getIcon',
+	    value: function getIcon(type) {
+	      var icons = this.props.icons;
+	
+	      if (!icons) {
+	        return null;
+	      }
+	      return icons[type] === undefined ? Toggle.defaultProps.icons[type] : icons[type];
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var _props = this.props,
+	          className = _props.className,
+	          _icons = _props.icons,
+	          inputProps = _objectWithoutProperties(_props, ['className', 'icons']);
+	
+	      var classes = (0, _classnames2.default)('react-toggle', {
+	        'react-toggle--checked': this.state.checked,
+	        'react-toggle--focus': this.state.hasFocus,
+	        'react-toggle--disabled': this.props.disabled
+	      }, className);
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: classes,
+	          onClick: this.handleClick,
+	          onTouchStart: this.handleTouchStart,
+	          onTouchMove: this.handleTouchMove,
+	          onTouchEnd: this.handleTouchEnd },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'react-toggle-track' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'react-toggle-track-check' },
+	            this.getIcon('checked')
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'react-toggle-track-x' },
+	            this.getIcon('unchecked')
+	          )
+	        ),
+	        _react2.default.createElement('div', { className: 'react-toggle-thumb' }),
+	        _react2.default.createElement('input', _extends({}, inputProps, {
+	          ref: function ref(_ref) {
+	            _this2.input = _ref;
+	          },
+	          onFocus: this.handleFocus,
+	          onBlur: this.handleBlur,
+	          className: 'react-toggle-screenreader-only',
+	          type: 'checkbox' }))
+	      );
+	    }
+	  }]);
+	
+	  return Toggle;
+	}(_react.PureComponent);
+	
+	exports.default = Toggle;
+	
+	
+	Toggle.displayName = 'Toggle';
+	
+	Toggle.defaultProps = {
+	  icons: {
+	    checked: _react2.default.createElement(_check2.default, null),
+	    unchecked: _react2.default.createElement(_x2.default, null)
+	  }
+	};
+	
+	Toggle.propTypes = {
+	  checked: _propTypes2.default.bool,
+	  disabled: _propTypes2.default.bool,
+	  defaultChecked: _propTypes2.default.bool,
+	  onChange: _propTypes2.default.func,
+	  onFocus: _propTypes2.default.func,
+	  onBlur: _propTypes2.default.func,
+	  className: _propTypes2.default.string,
+	  name: _propTypes2.default.string,
+	  value: _propTypes2.default.string,
+	  id: _propTypes2.default.string,
+	  'aria-labelledby': _propTypes2.default.string,
+	  'aria-label': _propTypes2.default.string,
+	  icons: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.shape({
+	    checked: _propTypes2.default.node,
+	    unchecked: _propTypes2.default.node
+	  })])
+	};
 
 /***/ }),
 /* 504 */
@@ -50208,10 +50599,105 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(505);
-	var bind = __webpack_require__(506);
-	var Axios = __webpack_require__(508);
-	var defaults = __webpack_require__(509);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function () {
+	  return _react2.default.createElement(
+	    'svg',
+	    { width: '14', height: '11', viewBox: '0 0 14 11' },
+	    _react2.default.createElement(
+	      'title',
+	      null,
+	      'switch-check'
+	    ),
+	    _react2.default.createElement('path', { d: 'M11.264 0L5.26 6.004 2.103 2.847 0 4.95l5.26 5.26 8.108-8.107L11.264 0', fill: '#fff', fillRule: 'evenodd' })
+	  );
+	};
+
+/***/ }),
+/* 505 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function () {
+	  return _react2.default.createElement(
+	    'svg',
+	    { width: '10', height: '10', viewBox: '0 0 10 10' },
+	    _react2.default.createElement(
+	      'title',
+	      null,
+	      'switch-x'
+	    ),
+	    _react2.default.createElement('path', { d: 'M9.9 2.12L7.78 0 4.95 2.828 2.12 0 0 2.12l2.83 2.83L0 7.776 2.123 9.9 4.95 7.07 7.78 9.9 9.9 7.776 7.072 4.95 9.9 2.12', fill: '#fff', fillRule: 'evenodd' })
+	  );
+	};
+
+/***/ }),
+/* 506 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.pointerCoord = pointerCoord;
+	// Copyright 2015-present Drifty Co.
+	// http://drifty.com/
+	// from: https://github.com/driftyco/ionic/blob/master/src/util/dom.ts
+	
+	function pointerCoord(event) {
+	  // get coordinates for either a mouse click
+	  // or a touch depending on the given event
+	  if (event) {
+	    var changedTouches = event.changedTouches;
+	    if (changedTouches && changedTouches.length > 0) {
+	      var touch = changedTouches[0];
+	      return { x: touch.clientX, y: touch.clientY };
+	    }
+	    var pageX = event.pageX;
+	    if (pageX !== undefined) {
+	      return { x: pageX, y: event.pageY };
+	    }
+	  }
+	  return { x: 0, y: 0 };
+	}
+
+/***/ }),
+/* 507 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(508);
+
+/***/ }),
+/* 508 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(509);
+	var bind = __webpack_require__(510);
+	var Axios = __webpack_require__(512);
+	var defaults = __webpack_require__(513);
 	
 	/**
 	 * Create an instance of Axios
@@ -50244,15 +50730,15 @@
 	};
 	
 	// Expose Cancel & CancelToken
-	axios.Cancel = __webpack_require__(526);
-	axios.CancelToken = __webpack_require__(527);
-	axios.isCancel = __webpack_require__(523);
+	axios.Cancel = __webpack_require__(530);
+	axios.CancelToken = __webpack_require__(531);
+	axios.isCancel = __webpack_require__(527);
 	
 	// Expose all/spread
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(528);
+	axios.spread = __webpack_require__(532);
 	
 	module.exports = axios;
 	
@@ -50261,13 +50747,13 @@
 
 
 /***/ }),
-/* 505 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var bind = __webpack_require__(506);
-	var isBuffer = __webpack_require__(507);
+	var bind = __webpack_require__(510);
+	var isBuffer = __webpack_require__(511);
 	
 	/*global toString:true*/
 	
@@ -50570,7 +51056,7 @@
 
 
 /***/ }),
-/* 506 */
+/* 510 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -50587,7 +51073,7 @@
 
 
 /***/ }),
-/* 507 */
+/* 511 */
 /***/ (function(module, exports) {
 
 	/*!
@@ -50614,17 +51100,17 @@
 
 
 /***/ }),
-/* 508 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var defaults = __webpack_require__(509);
-	var utils = __webpack_require__(505);
-	var InterceptorManager = __webpack_require__(520);
-	var dispatchRequest = __webpack_require__(521);
-	var isAbsoluteURL = __webpack_require__(524);
-	var combineURLs = __webpack_require__(525);
+	var defaults = __webpack_require__(513);
+	var utils = __webpack_require__(509);
+	var InterceptorManager = __webpack_require__(524);
+	var dispatchRequest = __webpack_require__(525);
+	var isAbsoluteURL = __webpack_require__(528);
+	var combineURLs = __webpack_require__(529);
 	
 	/**
 	 * Create a new instance of Axios
@@ -50706,13 +51192,13 @@
 
 
 /***/ }),
-/* 509 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(505);
-	var normalizeHeaderName = __webpack_require__(510);
+	var utils = __webpack_require__(509);
+	var normalizeHeaderName = __webpack_require__(514);
 	
 	var DEFAULT_CONTENT_TYPE = {
 	  'Content-Type': 'application/x-www-form-urlencoded'
@@ -50728,10 +51214,10 @@
 	  var adapter;
 	  if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(511);
+	    adapter = __webpack_require__(515);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(511);
+	    adapter = __webpack_require__(515);
 	  }
 	  return adapter;
 	}
@@ -50805,12 +51291,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 510 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(505);
+	var utils = __webpack_require__(509);
 	
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -50823,18 +51309,18 @@
 
 
 /***/ }),
-/* 511 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(505);
-	var settle = __webpack_require__(512);
-	var buildURL = __webpack_require__(515);
-	var parseHeaders = __webpack_require__(516);
-	var isURLSameOrigin = __webpack_require__(517);
-	var createError = __webpack_require__(513);
-	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(518);
+	var utils = __webpack_require__(509);
+	var settle = __webpack_require__(516);
+	var buildURL = __webpack_require__(519);
+	var parseHeaders = __webpack_require__(520);
+	var isURLSameOrigin = __webpack_require__(521);
+	var createError = __webpack_require__(517);
+	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(522);
 	
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -50931,7 +51417,7 @@
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(519);
+	      var cookies = __webpack_require__(523);
 	
 	      // Add xsrf header
 	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -51010,12 +51496,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 512 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var createError = __webpack_require__(513);
+	var createError = __webpack_require__(517);
 	
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -51042,12 +51528,12 @@
 
 
 /***/ }),
-/* 513 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var enhanceError = __webpack_require__(514);
+	var enhanceError = __webpack_require__(518);
 	
 	/**
 	 * Create an Error with the specified message, config, error code, request and response.
@@ -51066,7 +51552,7 @@
 
 
 /***/ }),
-/* 514 */
+/* 518 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -51093,12 +51579,12 @@
 
 
 /***/ }),
-/* 515 */
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(505);
+	var utils = __webpack_require__(509);
 	
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -51167,12 +51653,12 @@
 
 
 /***/ }),
-/* 516 */
+/* 520 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(505);
+	var utils = __webpack_require__(509);
 	
 	/**
 	 * Parse headers into an object
@@ -51210,12 +51696,12 @@
 
 
 /***/ }),
-/* 517 */
+/* 521 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(505);
+	var utils = __webpack_require__(509);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -51284,7 +51770,7 @@
 
 
 /***/ }),
-/* 518 */
+/* 522 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -51326,12 +51812,12 @@
 
 
 /***/ }),
-/* 519 */
+/* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(505);
+	var utils = __webpack_require__(509);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -51385,12 +51871,12 @@
 
 
 /***/ }),
-/* 520 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(505);
+	var utils = __webpack_require__(509);
 	
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -51443,15 +51929,15 @@
 
 
 /***/ }),
-/* 521 */
+/* 525 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(505);
-	var transformData = __webpack_require__(522);
-	var isCancel = __webpack_require__(523);
-	var defaults = __webpack_require__(509);
+	var utils = __webpack_require__(509);
+	var transformData = __webpack_require__(526);
+	var isCancel = __webpack_require__(527);
+	var defaults = __webpack_require__(513);
 	
 	/**
 	 * Throws a `Cancel` if cancellation has been requested.
@@ -51528,12 +52014,12 @@
 
 
 /***/ }),
-/* 522 */
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(505);
+	var utils = __webpack_require__(509);
 	
 	/**
 	 * Transform the data for a request or a response
@@ -51554,7 +52040,7 @@
 
 
 /***/ }),
-/* 523 */
+/* 527 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -51565,7 +52051,7 @@
 
 
 /***/ }),
-/* 524 */
+/* 528 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -51585,7 +52071,7 @@
 
 
 /***/ }),
-/* 525 */
+/* 529 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -51605,7 +52091,7 @@
 
 
 /***/ }),
-/* 526 */
+/* 530 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -51630,12 +52116,12 @@
 
 
 /***/ }),
-/* 527 */
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var Cancel = __webpack_require__(526);
+	var Cancel = __webpack_require__(530);
 	
 	/**
 	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -51693,7 +52179,7 @@
 
 
 /***/ }),
-/* 528 */
+/* 532 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -51726,11 +52212,11 @@
 
 
 /***/ }),
-/* 529 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(12);
-	var defaultClickRejectionStrategy = __webpack_require__(530);
+	var defaultClickRejectionStrategy = __webpack_require__(534);
 	
 	var alreadyInjected = false;
 	
@@ -51752,14 +52238,14 @@
 	  alreadyInjected = true;
 	
 	  __webpack_require__(47).injection.injectEventPluginsByName({
-	    'TapEventPlugin':       __webpack_require__(531)(shouldRejectClick)
+	    'TapEventPlugin':       __webpack_require__(535)(shouldRejectClick)
 	  });
 	};
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 530 */
+/* 534 */
 /***/ (function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -51770,7 +52256,7 @@
 
 
 /***/ }),
-/* 531 */
+/* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -51794,14 +52280,14 @@
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(532);
+	var EventConstants = __webpack_require__(536);
 	var EventPluginUtils = __webpack_require__(49);
 	var EventPropagators = __webpack_require__(46);
 	var SyntheticUIEvent = __webpack_require__(81);
-	var TouchEventUtils = __webpack_require__(533);
+	var TouchEventUtils = __webpack_require__(537);
 	var ViewportMetrics = __webpack_require__(82);
 	
-	var keyOf = __webpack_require__(534);
+	var keyOf = __webpack_require__(538);
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
 	var isStartish = EventPluginUtils.isStartish;
@@ -51947,7 +52433,7 @@
 
 
 /***/ }),
-/* 532 */
+/* 536 */
 /***/ (function(module, exports) {
 
 	/**
@@ -52043,7 +52529,7 @@
 	module.exports = EventConstants;
 
 /***/ }),
-/* 533 */
+/* 537 */
 /***/ (function(module, exports) {
 
 	/**
@@ -52091,7 +52577,7 @@
 
 
 /***/ }),
-/* 534 */
+/* 538 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -52130,7 +52616,7 @@
 	module.exports = keyOf;
 
 /***/ }),
-/* 535 */
+/* 539 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52139,9 +52625,9 @@
 	  value: true
 	});
 	var redux = __webpack_require__(456);
-	var thunk = __webpack_require__(536).default;
+	var thunk = __webpack_require__(540).default;
 	
-	var _require = __webpack_require__(537),
+	var _require = __webpack_require__(541),
 	    PageReducer = _require.PageReducer,
 	    CachedQuotesReducer = _require.CachedQuotesReducer,
 	    QuoteNumberReducer = _require.QuoteNumberReducer,
@@ -52164,7 +52650,6 @@
 	    quoteNumber: '',
 	    InitialQuoteNumber: '',
 	    availableQuoteNumbers: []
-	
 	  };
 	  var store = redux.createStore(reducer, initialState, redux.compose(redux.applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	    return f;
@@ -52173,7 +52658,7 @@
 	};
 
 /***/ }),
-/* 536 */
+/* 540 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52201,7 +52686,7 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 537 */
+/* 541 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';

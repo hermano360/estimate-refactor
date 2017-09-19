@@ -3,11 +3,12 @@ import {Row, Col, FormGroup, ControlLabel, FormControl, Clearfix} from 'react-bo
 var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
 
-class EstimateForms extends Component {
+class EstimateForms extends React.Component {
   constructor(){
     super()
     this.cake = "money"
   }
+
   handleTemplateSelect (template) {
     let {dispatch, quoteNumber} = this.props
     // if the template selected isnt the default option
@@ -32,7 +33,13 @@ class EstimateForms extends Component {
     }
   }
 
+
+
   render () {
+    let elementNodes = {};
+    let handleNodeClick  = (a) => {
+      elementNodes[a].focus();
+    }
     let {dispatch, quoteNumber, cachedQuotes} = this.props
     let formCellEntryStyle = {
       paddingLeft: '0px',
@@ -52,10 +59,21 @@ class EstimateForms extends Component {
             <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formValidationWarning1' validationState={null}>
                 <Col xs={6} style={formCellEntryStyle}>
-                  <FormControl type='text' placeholder='First Name' value={cachedQuotes[quoteNumber].customerFirstName} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'customerFirstName', e.target.value)) }} style={innerTextCellStyle} />
+                  <input className="form-control" type='text' placeholder='First Name'
+                    ref={(input) => { elementNodes.firstName = input }}
+                    value={cachedQuotes[quoteNumber].customerFirstName}
+                    onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'customerFirstName', e.target.value)) }}
+                    style={innerTextCellStyle}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('lastName')}}} />
                 </Col>
                 <Col xs={6} style={formCellEntryStyle}>
-                  <FormControl type='text' placeholder='Last Name' value={cachedQuotes[quoteNumber].customerLastName} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'customerLastName', e.target.value)) }} style={innerTextCellStyle} />
+                  <input type="text" placeholder="Last Name" className='form-control'
+                    ref={(input) => { elementNodes.lastName = input }}
+                    value={cachedQuotes[quoteNumber].customerLastName}
+                    onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'customerLastName', e.target.value)) }}
+                    style={innerTextCellStyle}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('streetAddress')}}}
+                    />
                 </Col>
               </FormGroup>
             </Col>
@@ -65,7 +83,13 @@ class EstimateForms extends Component {
             <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formValidationWarning1' validationState={null}>
                 <Col xs={12}  style={formCellEntryStyle}>
-                  <FormControl type='text' placeholder='Street Address' value={cachedQuotes[quoteNumber].address} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'address', e.target.value)) }} style={innerTextCellStyle} />
+                  <input type='text' placeholder='Street Address' className="form-control"
+                    ref={(input) => { elementNodes.streetAddress = input }}
+                    value={cachedQuotes[quoteNumber].address}
+                    onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'address', e.target.value)) }}
+                    style={innerTextCellStyle}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('city')}}}
+                  />
                 </Col>
               </FormGroup>
             </Col>
@@ -75,13 +99,31 @@ class EstimateForms extends Component {
             <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formValidationWarning1' validationState={null}>
                 <Col xs={4} style={formCellEntryStyle}>
-                  <FormControl type='text' placeholder='City' value={cachedQuotes[quoteNumber].city} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'city', e.target.value)) }} style={innerTextCellStyle} />
+                  <input type='text' placeholder='City' className="form-control"
+                    value={cachedQuotes[quoteNumber].city}
+                    onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'city', e.target.value)) }}
+                    style={innerTextCellStyle}
+                    ref={(input) => { elementNodes.city = input }}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('state')}}}
+                  />
                 </Col>
                 <Col xs={4} style={formCellEntryStyle}>
-                  <FormControl type='text' placeholder='State' value={cachedQuotes[quoteNumber].state} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'state', e.target.value)) }} style={innerTextCellStyle} />
+                  <input type='text' placeholder='State' className="form-control"
+                    value={cachedQuotes[quoteNumber].state}
+                    onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'state', e.target.value)) }}
+                    style={innerTextCellStyle}
+                    ref={(input) => { elementNodes.state = input }}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('zip')}}}
+                  />
                 </Col>
                 <Col xs={4}  style={formCellEntryStyle}>
-                  <FormControl type='text' placeholder='ZIP' value={cachedQuotes[quoteNumber].zipcode} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'zipcode', e.target.value)) }} style={innerTextCellStyle} />
+                  <input type='text' placeholder='ZIP' className="form-control"
+                    value={cachedQuotes[quoteNumber].zipcode}
+                    onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'zipcode', e.target.value)) }}
+                    style={innerTextCellStyle}
+                    ref={(input) => { elementNodes.zip = input }}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('phone')}}}
+                  />
                 </Col>
               </FormGroup>
             </Col>
@@ -90,11 +132,23 @@ class EstimateForms extends Component {
 
             <Col xs={12} style={formSpacing}>
               <FormGroup controlId='formValidationWarning1' validationState={null}>
-                <Col xs={6} style={formCellEntryStyle} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value)) }}>
-                  <FormControl type='text' placeholder='Phone' style={innerTextCellStyle} value={cachedQuotes[quoteNumber].phone} />
+                <Col xs={6} style={formCellEntryStyle}>
+                  <input type='text' placeholder='Phone' className="form-control"
+                    value={cachedQuotes[quoteNumber].phone}
+                    onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value)) }}
+                    style={innerTextCellStyle}
+                    ref={(input) => { elementNodes.phone = input }}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('email')}}}
+                   />
                 </Col>
                 <Col xs={6} style={formCellEntryStyle} >
-                  <FormControl type='text' placeholder='Email' style={innerTextCellStyle} />
+                  <input type='text' placeholder='Email' className='form-control'
+                    style={innerTextCellStyle}
+                    value={cachedQuotes[quoteNumber].email}
+                    onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'email', e.target.value)) }}
+                    style={innerTextCellStyle}
+                    ref={(input) => { elementNodes.email = input }}
+                    onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('scopeofwork')}}}/>
                 </Col>
               </FormGroup>
             </Col>
@@ -116,8 +170,13 @@ class EstimateForms extends Component {
                   <option value='Cameron Sterling'>Sterling, Cameron</option>
                 </FormControl>
               </Col>
+              {/*  Date TODO convert to datepicker */}
               <Col xs={6}  style={formCellEntryStyle}>
-                <FormControl type='text' value={cachedQuotes[quoteNumber].date} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'date', e.target.value)) }} style={innerTextCellStyle} />
+                <input type='text' className="form-control"
+                  value={cachedQuotes[quoteNumber].date}
+                  onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'date', e.target.value)) }}
+                  style={innerTextCellStyle}
+                />
               </Col>
               </FormGroup>
             </Col>
@@ -136,7 +195,13 @@ class EstimateForms extends Component {
             <Col xs={12} style={formSpacing}>
                 <FormGroup controlId='formControlsTextarea' validationState={null}>
                   <Col xs={12} style={formCellEntryStyle}>
-                    <FormControl componentClass='textarea' placeholder='Scope Of Work' rows='3' value={cachedQuotes[quoteNumber].specification} onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value)) }} style={innerTextCellStyle} />
+                    <textarea placeholder='Scope Of Work' className="form-control" rows='3'
+                      value={cachedQuotes[quoteNumber].specification}
+                      onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value)) }}
+                      style={innerTextCellStyle}
+                      ref={(input) => { elementNodes.scopeofwork = input }}
+                      onKeyPress={(e)=>{if(e.charCode === 13) { handleNodeClick('firstName')}}}
+                    />
                   </Col>
                 </FormGroup>
             </Col>

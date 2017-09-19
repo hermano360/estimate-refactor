@@ -12,7 +12,7 @@ class StartPage extends Component {
       borderRadius: '5px',
       padding: '5px'
     }
-    let buttonContainerStyles = {height: '200px', 'marginTop': '50px'}
+    let buttonContainerStyles = {height: '200px', 'marginTop': '50px', textAlign: 'center'}
     let marginTopCustom = (margintop) => {
       return {
         marginTop: `${margintop}%`
@@ -37,14 +37,17 @@ class StartPage extends Component {
     let startButtons = {
       color: 'black',
       fontWeight: '800',
-      fontSize: '20px',
-      width: '115px',
+      fontSize: '15px',
+      width: '30vw',
       backgroundColor:'#B4E41C',
-      borderRadius: '15px'
+      borderRadius: '15px',
+      marginLeft:'5px',
+      marginRight: '5px',
+      marginTop:'15px'
     }
 
     return (
-      <Grid fluid style={{textAlign: 'center', minHeight: '100vh'}}>
+      <Grid fluid style={{textAlign: 'center'}}>
         <Row>
           <Col xs={12}>
                 <div style={{float:'right'}}>
@@ -59,15 +62,11 @@ class StartPage extends Component {
                   <Col xs={12} className='center-block' style={{marginBottom: '25%'}}>
                     <img src='/ezestimator_logo.png' style={logoStyles} />
                   </Col>
-                  <Col xs={12} className='center-block' style={{marginTop:'10%', textAlign:'center'}}>
+                  <Col xs={12} className='center-block' style={{marginTop:'10%'}}>
                     <Button onClick={() => { dispatch(actions.changePage('Estimate')) }}  style={startButtons}>Estimate</Button>
                   </Col>
-                  <Col xs={6} className='center-block' style={{marginTop:'10%', textAlign:'center'}}>
-                    <Button onClick={() => { dispatch(actions.changePage('Products')) }}  style={startButtons}>Products</Button>
-                  </Col>
-                  <Col xs={6} className='center-block' style={marginTopCustom(10)}>
-                    <Button onClick={() => { dispatch(actions.changePage('PhoneList')) }} style={startButtons}>Phone</Button>
-                  </Col>
+                  <Button onClick={() => { dispatch(actions.changePage('Products')) }}  style={startButtons}>Products</Button>
+                  <Button onClick={() => { dispatch(actions.changePage('PhoneList')) }} style={startButtons}>Phone</Button>
                 </div>
               </div>
             </Row>

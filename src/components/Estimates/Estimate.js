@@ -3,6 +3,7 @@ import {Button, Row, Col, Grid, Table, Glyphicon, Panel, Modal} from 'react-boot
 import ShoppingCartItem from './ShoppingCartItem'
 import EstimateForms from './EstimateForms'
 import Select from 'react-select'
+import ToggleButton from 'react-toggle'
 
 var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
@@ -17,7 +18,8 @@ export class Estimate extends Component {
       modal: false,
       animal: 'elephants',
       tax: 10,
-      costAdjustment: 30
+      costAdjustment: 30,
+      showTotal: true
 
     }
   }
@@ -71,41 +73,41 @@ export class Estimate extends Component {
   })
   }
 
-  render () {
-    const {dispatch, cachedQuotes, quoteNumber, InitialQuoteNumber, availableQuoteNumbers} = this.props
+  calculateTotal(shoppingCart){
     const {tax, costAdjustment} = this.state
-    var codeOptions = [
-    { value: 'faucet1', label: 'faucet1' },
-    { value: 'faucet2', label: 'faucet2' },
-    { value: 'faucet3', label: 'faucet3' },
-    { value: 'faucet4', label: 'faucet4' },
-    { value: 'light1', label: 'light1' },
-    { value: 'light2', label: 'light2' },
-    { value: 'light3', label: 'light3' },
-    { value: 'light4', label: 'light4' },
-    { value: 'fan1', label: 'fan1' },
-    { value: 'fan2', label: 'fan2' },
-    { value: 'fan3', label: 'fan3' },
-    { value: 'fan4', label: 'fan4' }
-
-  ];
-  var templateOptions = [
-  { value: 'Demolition', label: 'Demolition' },
-  { value: 'Foundation/Footings', label: 'Foundation/Footings' },
-  { value: 'Bathroom', label: 'Bathroom' }
-];
-  function logChange(val) {
-    console.log("Selected: " + JSON.stringify(val));
-  }
-
-    let shoppingCart = cachedQuotes[quoteNumber].shoppingCart
     let total = 0
     shoppingCart.forEach((item) => {
       total += (item.Labor + item.Material) * item.quantity
     })
     total *= (1 + tax/100) * (1 + costAdjustment/100)
-    total = parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,')
+    return parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,')
+  }
 
+  render () {
+    const {dispatch, cachedQuotes, quoteNumber, InitialQuoteNumber, availableQuoteNumbers} = this.props
+
+    var codeOptions = [
+      { value: 'faucet1', label: 'faucet1' },
+      { value: 'faucet2', label: 'faucet2' },
+      { value: 'faucet3', label: 'faucet3' },
+      { value: 'faucet4', label: 'faucet4' },
+      { value: 'light1', label: 'light1' },
+      { value: 'light2', label: 'light2' },
+      { value: 'light3', label: 'light3' },
+      { value: 'light4', label: 'light4' },
+      { value: 'fan1', label: 'fan1' },
+      { value: 'fan2', label: 'fan2' },
+      { value: 'fan3', label: 'fan3' },
+      { value: 'fan4', label: 'fan4' }
+    ]
+    var templateOptions = [
+    { value: 'Demolition', label: 'Demolition' },
+    { value: 'Foundation/Footings', label: 'Foundation/Footings' },
+    { value: 'Bathroom', label: 'Bathroom' }
+  ];
+
+    let shoppingCart = cachedQuotes[quoteNumber].shoppingCart
+    let total = this.calculateTotal(shoppingCart)
     let downloadLink = (totalDough) => {
       if (this.state.animal === 'giraffes') {
         return (
@@ -163,7 +165,8 @@ export class Estimate extends Component {
       whiteSpace: 'normal',
       wordWrap: 'break-word',
       padding: '1px',
-      zIndex: '1'
+      zIndex: '1',
+      visibility: this.state.showTotal ? 'visible': 'hidden'
     }
     let backButtonStyle = {
       position: 'fixed',
@@ -194,8 +197,6 @@ export class Estimate extends Component {
       width:'auto'
     }
 
-    // possible form item generator for later. seems to be too many one-off cases
-
     return (
       <div>
         <Button style={totalButtonStyle}>
@@ -211,7 +212,7 @@ export class Estimate extends Component {
         </Button>
       <Grid fluid style={{height:'95vh', top:'0'}}>
         <Row>
-          <Col xs={12} style={{textAlign: 'right', marginTop:'15px'}}>
+          <Col xs={12} style={{textAlign: 'right', marginTop:'15px', position: 'absolute', zIndex: '1'}}>
             <img src='/left-arrow.png' style={arrowStyles} onClick={() => {
               let nextQuoteNumber = this.findNextQuoteNumber(quoteNumber, availableQuoteNumbers, InitialQuoteNumber)
               if (nextQuoteNumber in cachedQuotes) {
@@ -234,11 +235,24 @@ export class Estimate extends Component {
                 dispatch(actions.setQuote(previousQuoteNumber))
               }
             }}/>
+            <div>
+              <ToggleButton
+                checked={ this.state.showTotal}
+                icons={{
+                  checked: null,
+                  unchecked: null,
+                }}
+                onChange={() => {
+                  this.setState({
+                    showTotal: !this.state.showTotal,
+                  })
+                }} />
+            </div>
             <span style={{paddingRight:'15px'}}></span>
           </Col>
         </Row>
         <Row>
-          <Col xs={12} style={{textAlign: 'center'}}>
+          <Col xs={12} style={{textAlign: 'center', marginTop:'50px'}}>
             <img src='/ezestimator_logo.png' style={logoStyles} />
           </Col>
         </Row>
@@ -376,13 +390,13 @@ export class Estimate extends Component {
   }
 }
 
-export default connect(
-  (state) => {
-    return {
-      cachedQuotes: state.cachedQuotes,
-      quoteNumber: state.quoteNumber,
-      InitialQuoteNumber: state.InitialQuoteNumber,
-      availableQuoteNumbers: state.availableQuoteNumbers
-    }
-  }
-)(Estimate)
+    export default connect(
+      (state) => {
+        return {
+          cachedQuotes: state.cachedQuotes,
+          quoteNumber: state.quoteNumber,
+          InitialQuoteNumber: state.InitialQuoteNumber,
+          availableQuoteNumbers: state.availableQuoteNumbers
+        }
+      }
+    )(Estimate)
