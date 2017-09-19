@@ -45606,7 +45606,11 @@
 
 	'use strict';
 	
-	var productDetails = {
+	var _productDetails;
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	var productDetails = (_productDetails = {
 	  'DMCSLB4': {
 	    keyCode: 'DMCSLB4',
 	    productGroup: 'Demolition',
@@ -45763,7 +45767,151 @@
 	    picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
 	    url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
 	  }
-	};
+	}, _defineProperty(_productDetails, 'faucet1', {
+	  keyCode: 'faucet1',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'faucet2', {
+	  keyCode: 'faucet2',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'faucet3', {
+	  keyCode: 'faucet3',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'faucet4', {
+	  keyCode: 'faucet4',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'light1', {
+	  keyCode: 'light1',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'light2', {
+	  keyCode: 'light2',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'light3', {
+	  keyCode: 'light3',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'light4', {
+	  keyCode: 'light4',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'fan1', {
+	  keyCode: 'fan1',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'fan2', {
+	  keyCode: 'fan2',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'fan3', {
+	  keyCode: 'fan3',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _defineProperty(_productDetails, 'fan4', {
+	  keyCode: 'fan4',
+	  productGroup: 'Bathroom',
+	  supplier: 'Home Depot',
+	  UOM: 'each',
+	  description: 'UltraLight 1/2 in. x 4 ft. x 8 ft. Gypsum Board',
+	  Material: 10.17,
+	  Labor: 5,
+	  SKU: '14113411708',
+	  updated: 1501563875457,
+	  picture: 'http://www.homedepot.com/catalog/productImages/1000/d4/d4906be9-f236-45fd-b7cd-8b1a44308a8e_1000.jpg',
+	  url: 'http://www.homedepot.com/p/Sheetrock-UltraLight-1-2-in-x-4-ft-x-8-ft-Gypsum-Board-14113411708/202530243'
+	}), _productDetails);
 	
 	module.exports = {
 	  getSingleProduct: function getSingleProduct(keycode) {
@@ -45789,7 +45937,7 @@
 
 	'use strict';
 	
-	var allItems = ['DMCSLB4', 'DMDRW', 'DMSTCO', 'dmwdwalla', 'foot24x12', 'pump', 'slab3', 'slab51/2', 'faucet1', 'bathtub1', 'bathdoor1', 'drywall1'];
+	var allItems = ['DMCSLB4', 'DMDRW', 'DMSTCO', 'dmwdwalla', 'foot24x12', 'pump', 'slab3', 'slab51/2', 'faucet1', 'bathtub1', 'bathdoor1', 'drywall1', 'faucet1', 'faucet2', 'faucet3', 'faucet4', 'fan1', 'fan2', 'fan3', 'fan4', 'light1', 'light2', 'light3', 'light4'];
 	
 	module.exports = {
 	  Demolition: ['DMCSLB4', 'DMDRW', 'DMSTCO', 'dmwdwalla'],
@@ -53001,24 +53149,25 @@
 	      })));
 	    case 'ADD_SHOPPING_CART_ITEM':
 	      var newShoppingCart = state[action.quoteNumber].shoppingCart;
-	      newShoppingCart.push({
-	        keyCode: action.shoppingCartItem,
-	        productGroup: '',
-	        supplier: '',
-	        UOM: '',
-	        description: '',
-	        Material: 0,
-	        Labor: 1.75,
-	        SKU: '',
-	        updated: 1501563875457,
-	        picture: '',
-	        url: '',
-	        quantity: 0,
-	        template: ''
+	      var repeatedItem = false;
+	      newShoppingCart.forEach(function (currentCartItem) {
+	        if (currentCartItem.keyCode === action.shoppingCartItem) {
+	          repeatedItem = true;
+	        }
 	      });
-	      return _extends({}, state, _defineProperty({}, action.quoteNumber, _extends({}, state[action.quoteNumber], {
-	        shoppingCart: newShoppingCart
-	      })));
+	      if (!repeatedItem) {
+	        var templateItem = _productDetails2.default.getSingleProduct(action.shoppingCartItem);
+	        newShoppingCart.push(_extends({}, templateItem, {
+	          quantity: 0,
+	          template: templateItem.productGroup
+	        }));
+	        return _extends({}, state, _defineProperty({}, action.quoteNumber, _extends({}, state[action.quoteNumber], {
+	          shoppingCart: newShoppingCart
+	        })));
+	      } else {
+	        return state;
+	      }
+	
 	    default:
 	      return state;
 	  }

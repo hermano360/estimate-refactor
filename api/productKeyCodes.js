@@ -10,7 +10,19 @@ let allItems = [
   'faucet1',
   'bathtub1',
   'bathdoor1',
-  'drywall1'
+  'drywall1',
+  'faucet1',
+  'faucet2',
+  'faucet3',
+  'faucet4',
+  'fan1',
+  'fan2',
+  'fan3',
+  'fan4',
+  'light1',
+  'light2',
+  'light3',
+  'light4'
 ]
 
 module.exports = {

@@ -231,28 +231,30 @@ export const CachedQuotesReducer = (state = {}, action) => {
       }
     case 'ADD_SHOPPING_CART_ITEM':
       let newShoppingCart = state[action.quoteNumber].shoppingCart
-      newShoppingCart.push({
-        keyCode: action.shoppingCartItem,
-        productGroup: '',
-        supplier: '',
-        UOM: '',
-        description: ``,
-        Material: 0,
-        Labor: 1.75,
-        SKU: '',
-        updated: 1501563875457,
-        picture: '',
-        url: '',
-        quantity: 0,
-        template: ''
-      })
-      return {
-        ...state,
-        [action.quoteNumber]: {
-          ...state[action.quoteNumber],
-          shoppingCart: newShoppingCart
+      let repeatedItem = false
+      newShoppingCart.forEach((currentCartItem) => {
+        if(currentCartItem.keyCode === action.shoppingCartItem){
+          repeatedItem = true
         }
+      })
+      if(!repeatedItem){
+        let templateItem = productDetails.getSingleProduct(action.shoppingCartItem)
+        newShoppingCart.push({
+          ...templateItem,
+          quantity: 0,
+          template: templateItem.productGroup
+        })
+        return {
+          ...state,
+          [action.quoteNumber]: {
+            ...state[action.quoteNumber],
+            shoppingCart: newShoppingCart
+          }
+        }
+      } else {
+        return state
       }
+
     default:
       return state
   }
