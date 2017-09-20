@@ -87,14 +87,35 @@ export const CachedQuotesReducer = (state = {}, action) => {
           ...action.quote
         }
       }
-    case 'UPDATE_QUOTE_INFO':
-      return {
-        ...state,
-        [action.quoteNumber]: {
-          ...state[action.quoteNumber],
-          [action.attribute]: action.value
+      case 'DUPLICATE_QUOTE':
+        return {
+          ...state,
+          [action.quoteNumber]: {
+            salesman: action.quote.salesman,
+            customerFirstName: action.quote.customerFirstName,
+            customerLastName: action.quote.customerLastName,
+            email: action.quote.email,
+            projectDescription: action.quote.projectDescription,
+            address: action.quote.address,
+            city: action.quote.city,
+            state: action.quote.state,
+            zipcode: action.quote.zipcode,
+            specification: action.quote.specification,
+            phone: action.quote.phone,
+            fax: action.quote.fax,
+            shoppingCart: action.quote.shoppingCart,
+            date: action.date,
+            quoteNumber: action.quoteNumber
+          }
         }
-      }
+      case 'UPDATE_QUOTE_INFO':
+        return {
+          ...state,
+          [action.quoteNumber]: {
+            ...state[action.quoteNumber],
+            [action.attribute]: action.value
+          }
+        }
     case 'SELECT_TEMPLATE':
       let keyCodes = productKeyCodes[action.template]
       let templateItems = productDetails.getBatchProducts(keyCodes)
@@ -280,7 +301,7 @@ export const InitialQuoteNumberReducer = (state = '', action) => {
 export const AvailableQuoteNumbersReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_AVAILABLE_QUOTE_NUMBERS':
-      return action.availableQuoteNumbers
+      return [...state, ...action.availableQuoteNumbers]
     default:
       return state
   }

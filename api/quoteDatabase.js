@@ -323,9 +323,7 @@ let quotes = [
 ]
 
 let listOfAvailableQuotes =
-  quotes
-  .filter((quote) => quote.isAvailableOnDatabase)
-  .map((quote) => quote.quoteNumber)
+  quotes.filter((quote) => quote.isAvailableOnDatabase).map((quote) => quote.quoteNumber)
 
 let emptyQuote = {
   salesman: '',
@@ -347,7 +345,7 @@ let emptyQuote = {
 
 module.exports = {
   getNewQuoteNumber: () => {
-    return listOfAvailableQuotes[listOfAvailableQuotes.length - 1] + 1
+    return Math.max(...listOfAvailableQuotes) + 1
   },
   // Todo, return the highest number before the given quote number, or return itself
   getPreviousQuote: (currentQuote) => {

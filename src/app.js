@@ -12,7 +12,7 @@ store.dispatch(actions.updateCustomerInfo('date', new Date()))
 // largest number available on the database
 store.dispatch(actions.retrieveNewQuote())
 
-store.dispatch(actions.retrieveAvailableQuoteNumbers())
+store.dispatch(actions.retrieveAvailableDBQuoteNumbers())
 
 ReactDOM.render(
   <Provider store={store}>

@@ -76,7 +76,7 @@
 	// largest number available on the database
 	store.dispatch(actions.retrieveNewQuote());
 	
-	store.dispatch(actions.retrieveAvailableQuoteNumbers());
+	store.dispatch(actions.retrieveAvailableDBQuoteNumbers());
 	
 	_reactDom2.default.render(_react2.default.createElement(
 	  Provider,
@@ -42387,6 +42387,7 @@
 	    dispatch(setInitialQuote(nextQuoteNumber));
 	    dispatch(setQuote(nextQuoteNumber));
 	    dispatch(addEmptyQuote(nextQuoteNumber, dateString));
+	    dispatch(setAvailableQuoteNumbers([nextQuoteNumber]));
 	  };
 	};
 	
@@ -42409,6 +42410,14 @@
 	    type: 'ADD_EMPTY_QUOTE',
 	    quoteNumber: quoteNumber,
 	    date: date
+	  };
+	};
+	var duplicateQuote = exports.duplicateQuote = function duplicateQuote(quoteNumber, date, quote) {
+	  return {
+	    type: 'DUPLICATE_QUOTE',
+	    quote: quote,
+	    date: date,
+	    quoteNumber: quoteNumber
 	  };
 	};
 	
@@ -42501,14 +42510,25 @@
 	  };
 	};
 	
-	var retrievePreviousQuote = exports.retrievePreviousQuote = function retrievePreviousQuote(currentQuoteNumber) {
+	var retrievePreviousQuote = exports.retrievePreviousQuote = function retrievePreviousQuote(currentQuoteNumber, cachedQuotes) {
 	  return function (dispatch, getState) {
-	    var previousQuoteNumber = databaseSimulation.getPreviousQuoteNumber(currentQuoteNumber);
+	    // should be cached quotes, but do need to constantly be rehydrating cache
+	    //let previousQuoteNumber = databaseSimulation.getPreviousQuoteNumber(currentQuoteNumber)
+	    var previousQuoteNumber = 0;
+	    for (var quoteNumber in cachedQuotes) {
+	      if (quoteNumber < currentQuoteNumber && quoteNumber > previousQuoteNumber) {
+	        previousQuoteNumber = quoteNumber;
+	      }
+	    }
+	    if (previousQuoteNumber === 0) {
+	      previousQuoteNumber = currentQuoteNumber;
+	    }
+	
 	    dispatch(setQuote(previousQuoteNumber));
 	  };
 	};
 	
-	var retrieveAvailableQuoteNumbers = exports.retrieveAvailableQuoteNumbers = function retrieveAvailableQuoteNumbers() {
+	var retrieveAvailableDBQuoteNumbers = exports.retrieveAvailableDBQuoteNumbers = function retrieveAvailableDBQuoteNumbers() {
 	  return function (dispatch, getState) {
 	    var availableQuoteNumbers = databaseSimulation.retrieveAvailableQuoteNumbers();
 	    dispatch(setAvailableQuoteNumbers(availableQuoteNumbers));
@@ -42535,6 +42555,8 @@
 /***/ (function(module, exports) {
 
 	'use strict';
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
 	var quotes = [{
 	  salesman: 'John Chavez',
@@ -42859,7 +42881,7 @@
 	
 	module.exports = {
 	  getNewQuoteNumber: function getNewQuoteNumber() {
-	    return listOfAvailableQuotes[listOfAvailableQuotes.length - 1] + 1;
+	    return Math.max.apply(Math, _toConsumableArray(listOfAvailableQuotes)) + 1;
 	  },
 	  // Todo, return the highest number before the given quote number, or return itself
 	  getPreviousQuote: function getPreviousQuote(currentQuote) {
@@ -46436,8 +46458,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -46484,36 +46504,92 @@
 	      }
 	    }
 	  }, {
-	    key: 'findPreviousQuoteNumber',
-	    value: function findPreviousQuoteNumber(currentQuote, listOfOtherQuoteNumbers) {
-	      for (var i = listOfOtherQuoteNumbers.length - 1; i >= 0; i--) {
-	        if (listOfOtherQuoteNumbers[i] < currentQuote) {
-	          return listOfOtherQuoteNumbers[i];
+	    key: 'duplicateQuote',
+	    value: function duplicateQuote() {
+	      var _props2 = this.props,
+	          dispatch = _props2.dispatch,
+	          quoteNumber = _props2.quoteNumber,
+	          cachedQuotes = _props2.cachedQuotes;
+	
+	      var nowDate = new Date();
+	      var monthRef = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+	      var dateString = nowDate.getDate() + '-' + monthRef[nowDate.getMonth()] + '-' + nowDate.getFullYear().toString().slice(-2);
+	      var databaseMax = databaseSimulation.getNewQuoteNumber();
+	      var globalMax = this.retrieveHighestCachedQuoteNumber(databaseMax);
+	      var newGlobalMax = globalMax + 1;
+	      dispatch(actions.duplicateQuote(newGlobalMax, dateString, cachedQuotes[quoteNumber]));
+	      dispatch(actions.setAvailableQuoteNumbers([newGlobalMax]));
+	      dispatch(actions.setQuote(newGlobalMax));
+	    }
+	  }, {
+	    key: 'generateNewQuote',
+	    value: function generateNewQuote() {
+	      var dispatch = this.props.dispatch;
+	
+	      var databaseMax = databaseSimulation.getNewQuoteNumber();
+	      var globalMax = this.retrieveHighestCachedQuoteNumber(databaseMax);
+	      var newGlobalMax = globalMax + 1;
+	      var nowDate = new Date();
+	      var monthRef = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+	      var dateString = nowDate.getDate() + '-' + monthRef[nowDate.getMonth()] + '-' + nowDate.getFullYear().toString().slice(-2);
+	      dispatch(actions.addEmptyQuote(newGlobalMax, dateString));
+	      dispatch(actions.setAvailableQuoteNumbers([newGlobalMax]));
+	      dispatch(actions.setQuote(newGlobalMax));
+	    }
+	  }, {
+	    key: 'retrieveHighestCachedQuoteNumber',
+	    value: function retrieveHighestCachedQuoteNumber(databaseMax) {
+	      var cachedQuotes = this.props.cachedQuotes;
+	
+	      var globalMax = databaseMax;
+	      for (var quotes in cachedQuotes) {
+	        if (globalMax < Number(quotes)) {
+	          globalMax = Number(quotes);
 	        }
 	      }
-	      console.log(_EstimateForms2.default.cake);
-	      return currentQuote;
+	      return globalMax;
+	    }
+	  }, {
+	    key: 'findPreviousQuoteNumber',
+	    value: function findPreviousQuoteNumber(currentQuote, cachedQuoteNumbers) {
+	      var previousQuoteNumber = 0;
+	
+	      cachedQuoteNumbers.forEach(function (quoteNumber) {
+	
+	        if (quoteNumber < currentQuote && quoteNumber > previousQuoteNumber) {
+	          previousQuoteNumber = quoteNumber;
+	          console.log(previousQuoteNumber);
+	        }
+	      });
+	      if (previousQuoteNumber === 0) {
+	        previousQuoteNumber = currentQuote;
+	      }
+	      return previousQuoteNumber;
 	    }
 	  }, {
 	    key: 'findNextQuoteNumber',
-	    value: function findNextQuoteNumber(currentQuote, listOfOtherQuoteNumbers, InitialQuoteNumber) {
-	      var allAvailableQuoteNumbers = [].concat(_toConsumableArray(listOfOtherQuoteNumbers), [InitialQuoteNumber]);
+	    value: function findNextQuoteNumber(currentQuote, cachedQuoteNumbers) {
+	      var nextQuoteNumbers = [];
 	
-	      for (var i = 0; i < allAvailableQuoteNumbers.length; i++) {
-	        if (allAvailableQuoteNumbers[i] > currentQuote) {
-	          return allAvailableQuoteNumbers[i];
+	      cachedQuoteNumbers.forEach(function (quoteNumber) {
+	        if (quoteNumber > currentQuote) {
+	          nextQuoteNumbers.push(quoteNumber);
 	        }
+	      });
+	      if (nextQuoteNumbers.length === 0) {
+	        return currentQuote;
+	      } else {
+	        return Math.min.apply(Math, nextQuoteNumbers);
 	      }
-	      return currentQuote;
 	    }
 	  }, {
 	    key: 'generateEstimate',
 	    value: function generateEstimate(total) {
 	      var _this2 = this;
 	
-	      var _props2 = this.props,
-	          cachedQuotes = _props2.cachedQuotes,
-	          quoteNumber = _props2.quoteNumber;
+	      var _props3 = this.props,
+	          cachedQuotes = _props3.cachedQuotes,
+	          quoteNumber = _props3.quoteNumber;
 	
 	      axios({
 	        method: 'post',
@@ -46549,12 +46625,12 @@
 	    value: function render() {
 	      var _this3 = this;
 	
-	      var _props3 = this.props,
-	          dispatch = _props3.dispatch,
-	          cachedQuotes = _props3.cachedQuotes,
-	          quoteNumber = _props3.quoteNumber,
-	          InitialQuoteNumber = _props3.InitialQuoteNumber,
-	          availableQuoteNumbers = _props3.availableQuoteNumbers;
+	      var _props4 = this.props,
+	          dispatch = _props4.dispatch,
+	          cachedQuotes = _props4.cachedQuotes,
+	          quoteNumber = _props4.quoteNumber,
+	          InitialQuoteNumber = _props4.InitialQuoteNumber,
+	          availableQuoteNumbers = _props4.availableQuoteNumbers;
 	
 	
 	      var codeOptions = [{ value: 'faucet1', label: 'faucet1' }, { value: 'faucet2', label: 'faucet2' }, { value: 'faucet3', label: 'faucet3' }, { value: 'faucet4', label: 'faucet4' }, { value: 'light1', label: 'light1' }, { value: 'light2', label: 'light2' }, { value: 'light3', label: 'light3' }, { value: 'light4', label: 'light4' }, { value: 'fan1', label: 'fan1' }, { value: 'fan2', label: 'fan2' }, { value: 'fan3', label: 'fan3' }, { value: 'fan4', label: 'fan4' }];
@@ -46694,7 +46770,7 @@
 	              _reactBootstrap.Col,
 	              { xs: 12, style: { textAlign: 'right', marginTop: '15px', position: 'absolute', zIndex: '1' } },
 	              _react2.default.createElement('img', { src: '/left-arrow.png', style: arrowStyles, onClick: function onClick() {
-	                  var nextQuoteNumber = _this3.findNextQuoteNumber(quoteNumber, availableQuoteNumbers, InitialQuoteNumber);
+	                  var nextQuoteNumber = _this3.findNextQuoteNumber(quoteNumber, availableQuoteNumbers);
 	                  if (nextQuoteNumber in cachedQuotes) {
 	                    dispatch(actions.setQuote(nextQuoteNumber));
 	                  } else {
@@ -46880,9 +46956,16 @@
 	              _react2.default.createElement(
 	                _reactBootstrap.Button,
 	                { onClick: function onClick() {
-	                    console.log('Duplicate');
+	                    _this3.duplicateQuote();
 	                  }, style: bottomButtonStyle },
 	                'Duplicate'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { onClick: function onClick() {
+	                    _this3.generateNewQuote();
+	                  }, style: bottomButtonStyle },
+	                'New Quote'
 	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.Button,
@@ -53223,6 +53306,24 @@
 	      }));
 	    case 'ADD_QUOTE_TO_CACHE':
 	      return _extends({}, state, _defineProperty({}, action.quote.quoteNumber, _extends({}, action.quote)));
+	    case 'DUPLICATE_QUOTE':
+	      return _extends({}, state, _defineProperty({}, action.quoteNumber, {
+	        salesman: action.quote.salesman,
+	        customerFirstName: action.quote.customerFirstName,
+	        customerLastName: action.quote.customerLastName,
+	        email: action.quote.email,
+	        projectDescription: action.quote.projectDescription,
+	        address: action.quote.address,
+	        city: action.quote.city,
+	        state: action.quote.state,
+	        zipcode: action.quote.zipcode,
+	        specification: action.quote.specification,
+	        phone: action.quote.phone,
+	        fax: action.quote.fax,
+	        shoppingCart: action.quote.shoppingCart,
+	        date: action.date,
+	        quoteNumber: action.quoteNumber
+	      }));
 	    case 'UPDATE_QUOTE_INFO':
 	      return _extends({}, state, _defineProperty({}, action.quoteNumber, _extends({}, state[action.quoteNumber], _defineProperty({}, action.attribute, action.value))));
 	    case 'SELECT_TEMPLATE':
@@ -53378,7 +53479,7 @@
 	
 	  switch (action.type) {
 	    case 'SET_AVAILABLE_QUOTE_NUMBERS':
-	      return action.availableQuoteNumbers;
+	      return [].concat(_toConsumableArray(state), _toConsumableArray(action.availableQuoteNumbers));
 	    default:
 	      return state;
 	  }

@@ -31,26 +31,75 @@ export class Estimate extends Component {
     }
   }
 
-
-
-  findPreviousQuoteNumber (currentQuote, listOfOtherQuoteNumbers) {
-    for (let i = listOfOtherQuoteNumbers.length - 1; i >= 0; i--) {
-      if (listOfOtherQuoteNumbers[i] < currentQuote) {
-        return listOfOtherQuoteNumbers[i]
-      }
-    }
-    console.log(EstimateForms.cake);
-    return currentQuote
+  duplicateQuote () {
+    let {dispatch, quoteNumber, cachedQuotes} = this.props
+    let nowDate = new Date()
+    let monthRef = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    let dateString = `${nowDate.getDate()}-${monthRef[nowDate.getMonth()]}-${nowDate.getFullYear().toString().slice(-2)}`
+    let databaseMax = databaseSimulation.getNewQuoteNumber();
+    let globalMax = this.retrieveHighestCachedQuoteNumber(databaseMax)
+    let newGlobalMax = globalMax + 1
+    dispatch(actions.duplicateQuote(newGlobalMax, dateString, cachedQuotes[quoteNumber]))
+    dispatch(actions.setAvailableQuoteNumbers([newGlobalMax]))
+    dispatch(actions.setQuote(newGlobalMax))
   }
-  findNextQuoteNumber (currentQuote, listOfOtherQuoteNumbers, InitialQuoteNumber) {
-    let allAvailableQuoteNumbers = [...listOfOtherQuoteNumbers, InitialQuoteNumber]
+  generateNewQuote () {
+    let {dispatch} = this.props
+    let databaseMax = databaseSimulation.getNewQuoteNumber();
+    let globalMax = this.retrieveHighestCachedQuoteNumber(databaseMax)
+    let newGlobalMax = globalMax + 1
+    let nowDate = new Date()
+    let monthRef = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    let dateString = `${nowDate.getDate()}-${monthRef[nowDate.getMonth()]}-${nowDate.getFullYear().toString().slice(-2)}`
+    dispatch(actions.addEmptyQuote(newGlobalMax, dateString))
+    dispatch(actions.setAvailableQuoteNumbers([newGlobalMax]))
+    dispatch(actions.setQuote(newGlobalMax))
+  }
 
-    for (let i = 0; i < allAvailableQuoteNumbers.length; i++) {
-      if (allAvailableQuoteNumbers[i] > currentQuote) {
-        return allAvailableQuoteNumbers[i]
+  retrieveHighestCachedQuoteNumber( databaseMax){
+    let {cachedQuotes} = this.props
+    let globalMax = databaseMax
+    for (let quotes in cachedQuotes) {
+      if(globalMax < Number(quotes)){
+        globalMax = Number(quotes)
       }
     }
-    return currentQuote
+    return globalMax
+  }
+
+
+
+  findPreviousQuoteNumber (currentQuote, cachedQuoteNumbers) {
+    let previousQuoteNumber = 0
+
+     cachedQuoteNumbers.forEach((quoteNumber) => {
+
+    if( quoteNumber < currentQuote && quoteNumber > previousQuoteNumber) {
+       previousQuoteNumber = quoteNumber
+       console.log(previousQuoteNumber)
+     }
+   })
+   if(previousQuoteNumber === 0) {
+     previousQuoteNumber = currentQuote
+   }
+   return previousQuoteNumber
+
+  }
+
+  findNextQuoteNumber (currentQuote, cachedQuoteNumbers) {
+    let nextQuoteNumbers = []
+
+    cachedQuoteNumbers.forEach((quoteNumber) =>{
+      if(quoteNumber > currentQuote) {
+        nextQuoteNumbers.push(quoteNumber)
+      }
+    })
+    if(nextQuoteNumbers.length === 0){
+      return currentQuote
+    } else {
+      return Math.min(...nextQuoteNumbers)
+    }
+
   }
   generateEstimate (total) {
     let {cachedQuotes, quoteNumber} = this.props
@@ -214,7 +263,7 @@ export class Estimate extends Component {
         <Row>
           <Col xs={12} style={{textAlign: 'right', marginTop:'15px', position: 'absolute', zIndex: '1'}}>
             <img src='/left-arrow.png' style={arrowStyles} onClick={() => {
-              let nextQuoteNumber = this.findNextQuoteNumber(quoteNumber, availableQuoteNumbers, InitialQuoteNumber)
+              let nextQuoteNumber = this.findNextQuoteNumber(quoteNumber, availableQuoteNumbers)
               if (nextQuoteNumber in cachedQuotes) {
                 dispatch(actions.setQuote(nextQuoteNumber))
               } else {
@@ -320,7 +369,8 @@ export class Estimate extends Component {
         <Row>
           <div style={{textAlign: 'left', marginBottom:'47px', width:'100vw', left:'0'}}>
             {downloadLink(total)}
-            <Button onClick={() => { console.log('Duplicate') }} style={bottomButtonStyle}>Duplicate</Button>
+            <Button onClick={() => { this.duplicateQuote() }} style={bottomButtonStyle}>Duplicate</Button>
+            <Button onClick={() => { this.generateNewQuote() }} style={bottomButtonStyle}>New Quote</Button>
             <Button onClick={() => { console.log('Work Order') }} style={bottomButtonStyle}>Work Order</Button>
             <Button onClick={() => { console.log('Shopping List') }} style={bottomButtonStyle}>Shopping List</Button>
             <Button onClick={() => { console.log('Convert Code') }} style={bottomButtonStyle}>Convert Code</Button>

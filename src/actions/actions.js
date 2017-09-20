@@ -52,6 +52,7 @@ export const retrieveNewQuote = () => {
     dispatch(setInitialQuote(nextQuoteNumber))
     dispatch(setQuote(nextQuoteNumber))
     dispatch(addEmptyQuote(nextQuoteNumber, dateString))
+    dispatch(setAvailableQuoteNumbers([nextQuoteNumber]))
   }
 }
 
@@ -74,6 +75,14 @@ export const addEmptyQuote = (quoteNumber, date) => {
     type: 'ADD_EMPTY_QUOTE',
     quoteNumber,
     date
+  }
+}
+export const duplicateQuote = (quoteNumber, date, quote) => {
+  return {
+    type: 'DUPLICATE_QUOTE',
+    quote,
+    date,
+    quoteNumber
   }
 }
 
@@ -166,14 +175,25 @@ export var deleteShoppingCartItem = (quoteNumber, keyCode, template) => {
   }
 }
 
-export const retrievePreviousQuote = (currentQuoteNumber) => {
+export const retrievePreviousQuote = (currentQuoteNumber, cachedQuotes) => {
   return (dispatch, getState) => {
-    let previousQuoteNumber = databaseSimulation.getPreviousQuoteNumber(currentQuoteNumber)
+    // should be cached quotes, but do need to constantly be rehydrating cache
+    //let previousQuoteNumber = databaseSimulation.getPreviousQuoteNumber(currentQuoteNumber)
+    let previousQuoteNumber = 0
+    for( let quoteNumber in cachedQuotes) {
+      if( quoteNumber < currentQuoteNumber && quoteNumber > previousQuoteNumber) {
+        previousQuoteNumber = quoteNumber
+      }
+    }
+    if(previousQuoteNumber === 0) {
+      previousQuoteNumber = currentQuoteNumber
+    }
+
     dispatch(setQuote(previousQuoteNumber))
   }
 }
 
-export const retrieveAvailableQuoteNumbers = () => {
+export const retrieveAvailableDBQuoteNumbers = () => {
   return (dispatch, getState) => {
     let availableQuoteNumbers = databaseSimulation.retrieveAvailableQuoteNumbers()
     dispatch(setAvailableQuoteNumbers(availableQuoteNumbers))
