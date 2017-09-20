@@ -214,3 +214,9 @@ export const setShoppingCartNode = (key, node) => {
     node
   }
 }
+
+export const clearShoppingCartNode = () => {
+  return {
+    type: 'CLEAR_SHOPPING_CART_NODE'
+  }
+}

@@ -117,7 +117,9 @@ class ShoppingCartItem extends Component {
             onChange={(e) => { this.onQuantityChange(keyCode, template, e.target.value) }}
             style={{maxWidth:'30px'}}
             ref={(input) => {
+              console.log(input)
               if(shoppingCartDOMNodes[number.toString()] === undefined && input !== null){
+                console.log(input)
                 dispatch(actions.setShoppingCartNode(number.toString(), input))
               }
             }}

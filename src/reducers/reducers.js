@@ -103,7 +103,7 @@ export const CachedQuotesReducer = (state = {}, action) => {
             specification: action.quote.specification,
             phone: action.quote.phone,
             fax: action.quote.fax,
-            shoppingCart: action.quote.shoppingCart,
+            shoppingCart: [...action.quote.shoppingCart],
             date: action.date,
             quoteNumber: action.quoteNumber
           }
@@ -311,6 +311,8 @@ export const DOMNodesReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_SHOPPING_CART_NODE':
       return {...state, [action.key]: action.node}
+    case 'CLEAR_SHOPPING_CART_NODE':
+      return {}
     default:
       return state
   }

@@ -41,7 +41,9 @@ export class Estimate extends Component {
     let newGlobalMax = globalMax + 1
     dispatch(actions.duplicateQuote(newGlobalMax, dateString, cachedQuotes[quoteNumber]))
     dispatch(actions.setAvailableQuoteNumbers([newGlobalMax]))
+    dispatch(actions.clearShoppingCartNode())
     dispatch(actions.setQuote(newGlobalMax))
+
   }
   generateNewQuote () {
     let {dispatch} = this.props
@@ -53,7 +55,9 @@ export class Estimate extends Component {
     let dateString = `${nowDate.getDate()}-${monthRef[nowDate.getMonth()]}-${nowDate.getFullYear().toString().slice(-2)}`
     dispatch(actions.addEmptyQuote(newGlobalMax, dateString))
     dispatch(actions.setAvailableQuoteNumbers([newGlobalMax]))
+    dispatch(actions.clearShoppingCartNode())
     dispatch(actions.setQuote(newGlobalMax))
+
   }
 
   retrieveHighestCachedQuoteNumber( databaseMax){
@@ -265,11 +269,15 @@ export class Estimate extends Component {
             <img src='/left-arrow.png' style={arrowStyles} onClick={() => {
               let nextQuoteNumber = this.findNextQuoteNumber(quoteNumber, availableQuoteNumbers)
               if (nextQuoteNumber in cachedQuotes) {
+                dispatch(actions.clearShoppingCartNode())
                 dispatch(actions.setQuote(nextQuoteNumber))
+
               } else {
                 let nextQuote = databaseSimulation.retrieveQuote(nextQuoteNumber)
                 dispatch(actions.addQuoteToCache(nextQuote))
+                dispatch(actions.clearShoppingCartNode())
                 dispatch(actions.setQuote(nextQuoteNumber))
+
               }
             }}/>
             <span style={{fontWeight:'bold', fontSize:'20px', margin:'10px', color:'black'}}>{`# ${this.props.quoteNumber}`}</span>
@@ -277,11 +285,15 @@ export class Estimate extends Component {
             onClick={() => {
               let previousQuoteNumber = this.findPreviousQuoteNumber(quoteNumber, availableQuoteNumbers)
               if (previousQuoteNumber in cachedQuotes) {
+                dispatch(actions.clearShoppingCartNode())
                 dispatch(actions.setQuote(previousQuoteNumber))
+
               } else {
                 let previousQuote = databaseSimulation.retrieveQuote(previousQuoteNumber)
                 dispatch(actions.addQuoteToCache(previousQuote))
+                dispatch(actions.clearShoppingCartNode())
                 dispatch(actions.setQuote(previousQuoteNumber))
+                
               }
             }}/>
             <div>

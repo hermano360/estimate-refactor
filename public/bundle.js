@@ -42549,6 +42549,12 @@
 	    node: node
 	  };
 	};
+	
+	var clearShoppingCartNode = exports.clearShoppingCartNode = function clearShoppingCartNode() {
+	  return {
+	    type: 'CLEAR_SHOPPING_CART_NODE'
+	  };
+	};
 
 /***/ }),
 /* 445 */
@@ -46519,6 +46525,7 @@
 	      var newGlobalMax = globalMax + 1;
 	      dispatch(actions.duplicateQuote(newGlobalMax, dateString, cachedQuotes[quoteNumber]));
 	      dispatch(actions.setAvailableQuoteNumbers([newGlobalMax]));
+	      dispatch(actions.clearShoppingCartNode());
 	      dispatch(actions.setQuote(newGlobalMax));
 	    }
 	  }, {
@@ -46534,6 +46541,7 @@
 	      var dateString = nowDate.getDate() + '-' + monthRef[nowDate.getMonth()] + '-' + nowDate.getFullYear().toString().slice(-2);
 	      dispatch(actions.addEmptyQuote(newGlobalMax, dateString));
 	      dispatch(actions.setAvailableQuoteNumbers([newGlobalMax]));
+	      dispatch(actions.clearShoppingCartNode());
 	      dispatch(actions.setQuote(newGlobalMax));
 	    }
 	  }, {
@@ -46772,10 +46780,12 @@
 	              _react2.default.createElement('img', { src: '/left-arrow.png', style: arrowStyles, onClick: function onClick() {
 	                  var nextQuoteNumber = _this3.findNextQuoteNumber(quoteNumber, availableQuoteNumbers);
 	                  if (nextQuoteNumber in cachedQuotes) {
+	                    dispatch(actions.clearShoppingCartNode());
 	                    dispatch(actions.setQuote(nextQuoteNumber));
 	                  } else {
 	                    var nextQuote = databaseSimulation.retrieveQuote(nextQuoteNumber);
 	                    dispatch(actions.addQuoteToCache(nextQuote));
+	                    dispatch(actions.clearShoppingCartNode());
 	                    dispatch(actions.setQuote(nextQuoteNumber));
 	                  }
 	                } }),
@@ -46788,10 +46798,12 @@
 	                onClick: function onClick() {
 	                  var previousQuoteNumber = _this3.findPreviousQuoteNumber(quoteNumber, availableQuoteNumbers);
 	                  if (previousQuoteNumber in cachedQuotes) {
+	                    dispatch(actions.clearShoppingCartNode());
 	                    dispatch(actions.setQuote(previousQuoteNumber));
 	                  } else {
 	                    var previousQuote = databaseSimulation.retrieveQuote(previousQuoteNumber);
 	                    dispatch(actions.addQuoteToCache(previousQuote));
+	                    dispatch(actions.clearShoppingCartNode());
 	                    dispatch(actions.setQuote(previousQuoteNumber));
 	                  }
 	                } }),
@@ -47463,7 +47475,9 @@
 	            },
 	            style: { maxWidth: '30px' },
 	            ref: function ref(input) {
+	              console.log(input);
 	              if (shoppingCartDOMNodes[number.toString()] === undefined && input !== null) {
+	                console.log(input);
 	                dispatch(actions.setShoppingCartNode(number.toString(), input));
 	              }
 	            },
@@ -53320,7 +53334,7 @@
 	        specification: action.quote.specification,
 	        phone: action.quote.phone,
 	        fax: action.quote.fax,
-	        shoppingCart: action.quote.shoppingCart,
+	        shoppingCart: [].concat(_toConsumableArray(action.quote.shoppingCart)),
 	        date: action.date,
 	        quoteNumber: action.quoteNumber
 	      }));
@@ -53492,6 +53506,8 @@
 	  switch (action.type) {
 	    case 'SET_SHOPPING_CART_NODE':
 	      return _extends({}, state, _defineProperty({}, action.key, action.node));
+	    case 'CLEAR_SHOPPING_CART_NODE':
+	      return {};
 	    default:
 	      return state;
 	  }
