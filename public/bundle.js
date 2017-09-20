@@ -47354,11 +47354,6 @@
 	                    _react2.default.createElement(
 	                      'th',
 	                      null,
-	                      'Qty'
-	                    ),
-	                    _react2.default.createElement(
-	                      'th',
-	                      null,
 	                      'Total'
 	                    )
 	                  )
@@ -47389,50 +47384,8 @@
 	                    _react2.default.createElement(
 	                      'td',
 	                      null,
-	                      _react2.default.createElement('input', { className: 'form-control', type: 'text',
-	                        value: quantityString,
-	                        onChange: function onChange(e) {
-	                          _this2.onQuantityChange(keyCode, template, e.target.value);
-	                        },
-	                        placeholder: '0'
-	                        // style={innerTextCellStyle}
-	                        // onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['lastName'].focus() }}}
-	                      })
-	                    ),
-	                    _react2.default.createElement(
-	                      'td',
-	                      null,
 	                      '$',
 	                      (Labor * quantity).toFixed(2)
-	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    'tr',
-	                    null,
-	                    _react2.default.createElement(
-	                      'td',
-	                      null,
-	                      'Mtrl'
-	                    ),
-	                    _react2.default.createElement(
-	                      'td',
-	                      null,
-	                      _react2.default.createElement('input', { className: 'form-control', type: 'text',
-	                        value: materialString,
-	                        onChange: function onChange(e) {
-	                          dispatch(actions.changeCartItemCosts(quoteNumber, keyCode, template, e.target.value, 'material'));
-	                        },
-	                        placeholder: '0'
-	                        // style={innerTextCellStyle}
-	                        // onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['lastName'].focus() }}}
-	                      })
-	                    ),
-	                    _react2.default.createElement('td', null),
-	                    _react2.default.createElement(
-	                      'td',
-	                      null,
-	                      '$',
-	                      (Material * quantity).toFixed(2)
 	                    )
 	                  )
 	                )

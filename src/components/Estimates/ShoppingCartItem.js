@@ -55,7 +55,6 @@ class ShoppingCartItem extends Component {
                 <tr>
                   <th />
                   <th>$/{UOM}</th>
-                  <th>Qty</th>
                   <th>Total</th>
                 </tr>
               </thead>
@@ -70,31 +69,7 @@ class ShoppingCartItem extends Component {
                       // onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['lastName'].focus() }}}
                     />
                   </td>
-                  <td>
-                    <input className="form-control" type='text'
-                      value={quantityString}
-                      onChange={(e) => { this.onQuantityChange(keyCode, template, e.target.value) }}
-                      placeholder="0"
-                      // style={innerTextCellStyle}
-                      // onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['lastName'].focus() }}}
-                    />
-                  </td>
                   <td>${(Labor * quantity).toFixed(2)}</td>
-                </tr>
-                <tr>
-                  <td>Mtrl</td>
-                  <td>
-                    <input className="form-control" type='text'
-                      value={materialString}
-                      onChange={(e) => { dispatch(actions.changeCartItemCosts(quoteNumber, keyCode, template, e.target.value, 'material')) }}
-                      placeholder="0"
-                      // style={innerTextCellStyle}
-                      // onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['lastName'].focus() }}}
-                    />
-                  </td>
-                  <td>
-                  </td>
-                  <td>${(Material * quantity).toFixed(2)}</td>
                 </tr>
               </tbody>
             </Table>
