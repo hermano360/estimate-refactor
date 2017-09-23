@@ -160,9 +160,6 @@ export const CachedQuotesReducer = (state = {}, action) => {
       let shoppingCartWithAdjustedQuantity = state[action.quoteNumber].shoppingCart.map((cartItem) => {
         if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
           let quantity = action.quantity
-          if (action.quantity === '') {
-            quantity = 0
-          }
           return {
             ...cartItem,
             quantity

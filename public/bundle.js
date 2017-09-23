@@ -22372,6 +22372,7 @@
 	        marginLeft: '5px',
 	        marginRight: '5px',
 	        marginTop: '15px'
+	
 	      };
 	
 	      return _react2.default.createElement(
@@ -46624,7 +46625,9 @@
 	
 	      var total = 0;
 	      shoppingCart.forEach(function (item) {
-	        total += (parseFloat(item.Labor) * (1 + tax / 100) * (1 + costAdjustment / 100) + parseFloat(item.Material)) * parseFloat(item.quantity);
+	        var quantity = item.quantity;
+	
+	        total += (parseFloat(item.Labor) * (1 + tax / 100) * (1 + costAdjustment / 100) + parseFloat(item.Material)) * parseFloat(quantity);
 	      });
 	      return parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,');
 	    }
@@ -46820,7 +46823,12 @@
 	                    _this3.setState({
 	                      showTotal: !_this3.state.showTotal
 	                    });
-	                  } })
+	                  } }),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'v1'
+	                )
 	              ),
 	              _react2.default.createElement('span', { style: { paddingRight: '15px' } })
 	            )
@@ -46904,40 +46912,40 @@
 	                      null,
 	                      _react2.default.createElement(
 	                        'td',
-	                        { style: { fontWeight: "bold", padding: "0" } },
+	                        { style: { fontWeight: "bold", padding: "0", textAlign: 'center' } },
 	                        '#'
 	                      ),
 	                      _react2.default.createElement(
 	                        'td',
-	                        { style: { fontWeight: "bold", padding: "0" } },
+	                        { style: { fontWeight: "bold", padding: "0", textAlign: 'center' } },
 	                        'Code'
 	                      ),
 	                      _react2.default.createElement(
 	                        'td',
-	                        { style: { fontWeight: "bold", padding: "0" } },
+	                        { style: { fontWeight: "bold", padding: "0", textAlign: 'center' } },
 	                        'Amt'
 	                      ),
 	                      _react2.default.createElement(
 	                        'td',
-	                        { style: { fontWeight: "bold", padding: "0" } },
+	                        { style: { fontWeight: "bold", padding: "0", textAlign: 'center' } },
 	                        'Units'
 	                      ),
 	                      _react2.default.createElement(
 	                        'td',
-	                        { style: { fontWeight: "bold", padding: "0" } },
+	                        { style: { fontWeight: "bold", padding: "0", textAlign: 'center' } },
 	                        'Description'
 	                      ),
 	                      _react2.default.createElement(
 	                        'td',
-	                        { style: { fontWeight: "bold", padding: "0" } },
+	                        { style: { fontWeight: "bold", padding: "0", textAlign: 'center' } },
 	                        'Mtrl'
 	                      ),
 	                      _react2.default.createElement(
 	                        'td',
-	                        { style: { fontWeight: "bold", padding: "0" } },
+	                        { style: { fontWeight: "bold", padding: "0", textAlign: 'center' } },
 	                        'Lbr'
 	                      ),
-	                      _react2.default.createElement('td', { style: { fontWeight: "bold", padding: "0" } })
+	                      _react2.default.createElement('td', { style: { fontWeight: "bold", padding: "0", textAlign: 'center' } })
 	                    ),
 	                    shoppingCartFunction()
 	                  )
@@ -47269,7 +47277,8 @@
 	          dispatch = _props.dispatch,
 	          quoteNumber = _props.quoteNumber;
 	
-	      if (/^[0-9]+[.]*[0-9]*$/.test(quantity)) {
+	      console.log(/^[0-9]*[.]*[0-9]*$/.test(quantity));
+	      if (/^[0-9]*[.]*[0-9]*$/.test(quantity)) {
 	        dispatch(actions.changeCartItemQuantity(quoteNumber, keyCode, template, quantity));
 	      } else {
 	        dispatch(actions.changeCartItemQuantity(quoteNumber, keyCode, template, 0));
@@ -53325,9 +53334,6 @@
 	      var shoppingCartWithAdjustedQuantity = state[action.quoteNumber].shoppingCart.map(function (cartItem) {
 	        if (cartItem.keyCode === action.keyCode && cartItem.template === action.template) {
 	          var quantity = action.quantity;
-	          if (action.quantity === '') {
-	            quantity = 0;
-	          }
 	          return _extends({}, cartItem, {
 	            quantity: quantity
 	          });

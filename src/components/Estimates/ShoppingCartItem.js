@@ -15,7 +15,8 @@ class ShoppingCartItem extends Component {
   }
   onQuantityChange (keyCode, template, quantity) {
     const {dispatch, quoteNumber} = this.props
-    if (/^[0-9]+[.]*[0-9]*$/.test(quantity)) {
+    console.log(/^[0-9]*[.]*[0-9]*$/.test(quantity))
+    if (/^[0-9]*[.]*[0-9]*$/.test(quantity)) {
       dispatch(actions.changeCartItemQuantity(quoteNumber, keyCode, template, quantity))
     } else {
       dispatch(actions.changeCartItemQuantity(quoteNumber, keyCode, template, 0))

@@ -43,7 +43,8 @@ class StartPage extends Component {
       borderRadius: '15px',
       marginLeft:'5px',
       marginRight: '5px',
-      marginTop:'15px'
+      marginTop:'15px',
+
     }
 
     return (

@@ -129,7 +129,8 @@ export class Estimate extends Component {
     const {tax, costAdjustment} = this.state
     let total = 0
     shoppingCart.forEach((item) => {
-      total += (parseFloat(item.Labor) * (1 + tax/100) * (1 + costAdjustment/100) + parseFloat(item.Material)) * parseFloat(item.quantity)
+      let {quantity} = item
+      total += (parseFloat(item.Labor) * (1 + tax/100) * (1 + costAdjustment/100) + parseFloat(item.Material)) * parseFloat(quantity)
     })
     return parseFloat(total).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\.\d{2})?$)/g, '$1,')
   }
@@ -293,7 +294,7 @@ export class Estimate extends Component {
                 dispatch(actions.addQuoteToCache(previousQuote))
                 dispatch(actions.clearShoppingCartNode())
                 dispatch(actions.setQuote(previousQuoteNumber))
-                
+
               }
             }}/>
             <div>
@@ -308,6 +309,7 @@ export class Estimate extends Component {
                     showTotal: !this.state.showTotal,
                   })
                 }} />
+              <div>v1</div>
             </div>
             <span style={{paddingRight:'15px'}}></span>
           </Col>
@@ -355,14 +357,14 @@ export class Estimate extends Component {
                 <Table bordered condensed>
                   <tbody style={{fontSize:'10px'}}>
                     <tr>
-                      <td style={{fontWeight: "bold", padding: "0"}}>#</td>
-                      <td style={{fontWeight: "bold", padding: "0"}}>Code</td>
-                      <td style={{fontWeight: "bold", padding: "0"}}>Amt</td>
-                      <td style={{fontWeight: "bold", padding: "0"}}>Units</td>
-                      <td style={{fontWeight: "bold", padding: "0"}}>Description</td>
-                      <td style={{fontWeight: "bold", padding: "0"}}>Mtrl</td>
-                      <td style={{fontWeight: "bold", padding: "0"}}>Lbr</td>
-                      <td style={{fontWeight: "bold", padding: "0"}}></td>
+                      <td style={{fontWeight: "bold", padding: "0", textAlign:'center'}}>#</td>
+                      <td style={{fontWeight: "bold", padding: "0", textAlign:'center'}}>Code</td>
+                      <td style={{fontWeight: "bold", padding: "0", textAlign:'center'}}>Amt</td>
+                      <td style={{fontWeight: "bold", padding: "0", textAlign:'center'}}>Units</td>
+                      <td style={{fontWeight: "bold", padding: "0", textAlign:'center'}}>Description</td>
+                      <td style={{fontWeight: "bold", padding: "0", textAlign:'center'}}>Mtrl</td>
+                      <td style={{fontWeight: "bold", padding: "0", textAlign:'center'}}>Lbr</td>
+                      <td style={{fontWeight: "bold", padding: "0", textAlign:'center'}}></td>
                     </tr>
                     {shoppingCartFunction()}
                   </tbody>
