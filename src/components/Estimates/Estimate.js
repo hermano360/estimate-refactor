@@ -242,7 +242,8 @@ export class Estimate extends Component {
       width: '50%',
       height: 'auto',
       borderRadius: '5px',
-      padding: '5px'
+      padding: '5px',
+      maxWidth:'300px'
     }
     let arrowStyles= {
       height:'35px',

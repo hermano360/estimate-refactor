@@ -46975,7 +46975,8 @@
 	        width: '50%',
 	        height: 'auto',
 	        borderRadius: '5px',
-	        padding: '5px'
+	        padding: '5px',
+	        maxWidth: '300px'
 	      };
 	      var arrowStyles = {
 	        height: '35px',
