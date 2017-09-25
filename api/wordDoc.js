@@ -6,6 +6,7 @@ const path = require('path')
 // Load the docx file as a binary
 
 const convertShoppingCart = (shoppingCart) => {
+  console.log(shoppingCart)
   let formattedShoppingCart = []
   let itemCount = 1
 
@@ -25,11 +26,17 @@ const convertShoppingCart = (shoppingCart) => {
     if (typeof item === 'string') {
       return {
         'order': '',
-        'description': item,
-        'quantity': ''
+        'description': '',
+        'quantity': '',
+        'template': item.toUpperCase()
       }
     } else {
-      return item
+      return {
+        'order': item.order,
+        'description': item.description,
+        'quantity': item.quantity,
+        'template': ''
+      }
     }
   })
 }

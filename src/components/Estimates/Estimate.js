@@ -4,7 +4,8 @@ import ShoppingCartItem from './ShoppingCartItem'
 import EstimateForms from './EstimateForms'
 import Select from 'react-select'
 import ToggleButton from 'react-toggle'
-import Sidebar from 'react-sidebar';
+import Sidebar from 'react-sidebar'
+import SignatureCanvas from 'react-signature-canvas'
 
 var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
@@ -17,7 +18,7 @@ export class Estimate extends Component {
     this.state = {
       estimateStatus: 'main',
       modal: false,
-      estimateReady: 'false',
+      estimateReady: false,
       tax: 10,
       costAdjustment: 30,
       showTotal: true,
@@ -163,19 +164,20 @@ export class Estimate extends Component {
     let shoppingCart = cachedQuotes[quoteNumber].shoppingCart
     let total = this.calculateTotal(shoppingCart)
     let downloadLink = (totalDough) => {
-      if (this.state.estimateReady === false) {
+      if (this.state.estimateReady === true) {
         return (
           <a href='/downloadWordDocument' onClick={() => {
             this.setState({
-              estimateReady: true
+              estimateReady: false
             })
-          }}><Button style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Download</Button></a>
+          }}><Button style={{...bottomButtonStyle, width:'60%', fontSize:'16px', marginTop:'20px'}}>Download</Button></a>
         )
       } else {
+        console.log(this.state)
         return (
           <Button onClick={() => {
             this.generateEstimate(totalDough)
-          }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Estimate</Button>
+          }} style={{...bottomButtonStyle, width:'60%', fontSize:'16px', marginTop:'20px'}}>Estimate</Button>
         )
       }
     }
@@ -272,11 +274,11 @@ export class Estimate extends Component {
             <div style={{color:'black', fontSize:'30px'}}>Options</div>
             <div style={{marginTop:'30px'}}>
               {downloadLink(total)}
-              <Button onClick={() => { this.duplicateQuote() }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Duplicate</Button>
-              <Button onClick={() => { this.generateNewQuote() }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>New Quote</Button>
-              <Button onClick={() => { console.log('Work Order') }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Work Order</Button>
-              <Button onClick={() => { console.log('Shopping List') }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Shopping List</Button>
-              <Button onClick={() => { console.log('Email Bid') }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Email Bid</Button>
+              <Button onClick={() => { this.duplicateQuote() }} style={{...bottomButtonStyle, width:'60%', fontSize:'16px', marginTop:'20px'}}>Duplicate</Button>
+              <Button onClick={() => { this.generateNewQuote() }} style={{...bottomButtonStyle, width:'60%', fontSize:'16px', marginTop:'20px'}}>New Quote</Button>
+              <Button onClick={() => { console.log('Work Order') }} style={{...bottomButtonStyle, width:'60%', fontSize:'16px', marginTop:'20px'}}>Work Order</Button>
+              <Button onClick={() => { console.log('Shopping List') }} style={{...bottomButtonStyle, width:'60%', fontSize:'16px', marginTop:'20px'}}>Shopping List</Button>
+              <Button onClick={() => { console.log('Email Bid') }} style={{...bottomButtonStyle, width:'60%', fontSize:'16px', marginTop:'20px'}}>Email Bid</Button>
             </div>
           </div>
         }
@@ -295,10 +297,17 @@ export class Estimate extends Component {
         }
         }
          open={this.state.sidebar}
-         onSetOpen={(open)=>{this.setState({sidebar:open})}}>
+         onSetOpen={(open)=>{
+           if(open){
+             this.setState({sidebar:open})
+           } else {
+             this.setState({sidebar:open, estimateReady:false})
+           }
+
+         }}>
          <Button style={{...bottomButtonStyle, position:'fixed', top:'20px', left:'20px', zIndex:'2'}} onClick={()=>{this.setState({sidebar:true})}}><Glyphicon glyph='menu-hamburger'/></Button>
       </Sidebar>
-      <Grid fluid style={{height:'95vh', top:'0'}}>
+      <Grid fluid style={{top:'0'}}>
         <Row>
           <Col xs={12} style={{textAlign: 'right', marginTop:'15px', position: 'absolute', zIndex: '1'}}>
             <img src='/left-arrow.png' style={arrowStyles} onClick={() => {
@@ -415,7 +424,9 @@ export class Estimate extends Component {
           </div>
         </Row>
         <Row>
-          <div style={{textAlign: 'left', marginBottom:'47px', width:'100vw', left:'0'}}>
+          <div>
+            {/* <SignatureCanvas style={{backgroundColor:'white'}} penColor='green'
+              canvasProps={{width: 500, height: 200, className: 'sigCanvas'}} /> */}
             {/* {downloadLink(total)}
             <Button onClick={() => { this.duplicateQuote() }} style={bottomButtonStyle}>Duplicate</Button>
             <Button onClick={() => { this.generateNewQuote() }} style={bottomButtonStyle}>New Quote</Button>
