@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import {Button, Row, Col, Grid, Table, Panel, Modal} from 'react-bootstrap'
+import {Button, Row, Col, Grid, Table, Panel, Modal, Nav, NavItem, Glyphicon} from 'react-bootstrap'
 import ShoppingCartItem from './ShoppingCartItem'
 import EstimateForms from './EstimateForms'
 import Select from 'react-select'
 import ToggleButton from 'react-toggle'
+import Sidebar from 'react-sidebar';
 
 var actions = require('../../actions/actions.js')
 var {connect} = require('react-redux')
@@ -16,10 +17,11 @@ export class Estimate extends Component {
     this.state = {
       estimateStatus: 'main',
       modal: false,
-      animal: 'elephants',
+      estimateReady: 'false',
       tax: 10,
       costAdjustment: 30,
-      showTotal: true
+      showTotal: true,
+      sidebar: false
     }
   }
 
@@ -117,7 +119,7 @@ export class Estimate extends Component {
 
     }).then((response) => {
       this.setState({
-        animal: 'giraffes'
+        estimateReady: true
       })
     })
   .catch(function (error) {
@@ -161,19 +163,19 @@ export class Estimate extends Component {
     let shoppingCart = cachedQuotes[quoteNumber].shoppingCart
     let total = this.calculateTotal(shoppingCart)
     let downloadLink = (totalDough) => {
-      if (this.state.animal === 'giraffes') {
+      if (this.state.estimateReady === false) {
         return (
           <a href='/downloadWordDocument' onClick={() => {
             this.setState({
-              animal: 'elephants'
+              estimateReady: true
             })
-          }}><Button style={bottomButtonStyle}>Download</Button></a>
+          }}><Button style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Download</Button></a>
         )
       } else {
         return (
           <Button onClick={() => {
             this.generateEstimate(totalDough)
-          }} style={bottomButtonStyle}>Estimate</Button>
+          }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Estimate</Button>
         )
       }
     }
@@ -265,6 +267,37 @@ export class Estimate extends Component {
         <Button style={backButtonStyle} onClick={() => { dispatch(actions.changePage('StartPage')) }} >
           Back
         </Button>
+        <Sidebar sidebar={
+          <div style={{textAlign:'center'}}>
+            <div style={{color:'black', fontSize:'30px'}}>Options</div>
+            <div style={{marginTop:'30px'}}>
+              {downloadLink(total)}
+              <Button onClick={() => { this.duplicateQuote() }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Duplicate</Button>
+              <Button onClick={() => { this.generateNewQuote() }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>New Quote</Button>
+              <Button onClick={() => { console.log('Work Order') }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Work Order</Button>
+              <Button onClick={() => { console.log('Shopping List') }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Shopping List</Button>
+              <Button onClick={() => { console.log('Email Bid') }} style={{...bottomButtonStyle, width:'50%', fontSize:'16px', marginTop:'20px'}}>Email Bid</Button>
+            </div>
+          </div>
+        }
+        styles={
+          {
+            sidebar:
+            {
+              backgroundColor: '#F2E1B2',
+              width: '40vw',
+              zIndex:3
+            },
+            overlay: {
+              zIndex:2
+            }
+
+        }
+        }
+         open={this.state.sidebar}
+         onSetOpen={(open)=>{this.setState({sidebar:open})}}>
+         <Button style={{...bottomButtonStyle, position:'fixed', top:'20px', left:'20px', zIndex:'2'}} onClick={()=>{this.setState({sidebar:true})}}><Glyphicon glyph='menu-hamburger'/></Button>
+      </Sidebar>
       <Grid fluid style={{height:'95vh', top:'0'}}>
         <Row>
           <Col xs={12} style={{textAlign: 'right', marginTop:'15px', position: 'absolute', zIndex: '1'}}>
@@ -310,7 +343,7 @@ export class Estimate extends Component {
                     showTotal: !this.state.showTotal,
                   })
                 }} />
-              <div>v2</div>
+              <div>v3</div>
             </div>
             <span style={{paddingRight:'15px'}}></span>
           </Col>
@@ -383,7 +416,7 @@ export class Estimate extends Component {
         </Row>
         <Row>
           <div style={{textAlign: 'left', marginBottom:'47px', width:'100vw', left:'0'}}>
-            {downloadLink(total)}
+            {/* {downloadLink(total)}
             <Button onClick={() => { this.duplicateQuote() }} style={bottomButtonStyle}>Duplicate</Button>
             <Button onClick={() => { this.generateNewQuote() }} style={bottomButtonStyle}>New Quote</Button>
             <Button onClick={() => { console.log('Work Order') }} style={bottomButtonStyle}>Work Order</Button>
@@ -391,7 +424,7 @@ export class Estimate extends Component {
             <Button onClick={() => { console.log('Convert Code') }} style={bottomButtonStyle}>Convert Code</Button>
             <Button onClick={() => { console.log('Email Bid') }} style={bottomButtonStyle}>Email Bid</Button>
             <Button onClick={() => { console.log('Email Vendor') }} style={bottomButtonStyle}>Email Vendor</Button>
-            <Button onClick={() => { console.log('Credit Card') }} style={bottomButtonStyle}>Credit Card</Button>
+            <Button onClick={() => { console.log('Credit Card') }} style={bottomButtonStyle}>Credit Card</Button> */}
             <Modal show={this.state.modal} onHide={() => { this.setState({modal: false}) }}>
               <Modal.Header closeButton>
                 <Modal.Title style={{textAlign: 'center'}} >Cost Preview</Modal.Title>

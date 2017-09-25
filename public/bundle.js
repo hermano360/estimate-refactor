@@ -58,7 +58,7 @@
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
-	var _reactTapEventPlugin = __webpack_require__(533);
+	var _reactTapEventPlugin = __webpack_require__(535);
 	
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 	
@@ -68,7 +68,7 @@
 	    Provider = _require.Provider;
 	
 	var actions = __webpack_require__(444);
-	var store = __webpack_require__(539).configure();
+	var store = __webpack_require__(541).configure();
 	
 	(0, _reactTapEventPlugin2.default)();
 	
@@ -46699,6 +46699,10 @@
 	
 	var _reactToggle2 = _interopRequireDefault(_reactToggle);
 	
+	var _reactSidebar = __webpack_require__(507);
+	
+	var _reactSidebar2 = _interopRequireDefault(_reactSidebar);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46713,7 +46717,7 @@
 	    connect = _require.connect;
 	
 	var databaseSimulation = __webpack_require__(445);
-	var axios = __webpack_require__(507);
+	var axios = __webpack_require__(509);
 	
 	var Estimate = exports.Estimate = function (_Component) {
 	  _inherits(Estimate, _Component);
@@ -46726,10 +46730,11 @@
 	    _this.state = {
 	      estimateStatus: 'main',
 	      modal: false,
-	      animal: 'elephants',
+	      estimateReady: 'false',
 	      tax: 10,
 	      costAdjustment: 30,
-	      showTotal: true
+	      showTotal: true,
+	      sidebar: false
 	    };
 	    return _this;
 	  }
@@ -46848,7 +46853,7 @@
 	
 	      }).then(function (response) {
 	        _this2.setState({
-	          animal: 'giraffes'
+	          estimateReady: true
 	        });
 	      }).catch(function (error) {
 	        console.log(error);
@@ -46888,17 +46893,17 @@
 	      var shoppingCart = cachedQuotes[quoteNumber].shoppingCart;
 	      var total = this.calculateTotal(shoppingCart);
 	      var downloadLink = function downloadLink(totalDough) {
-	        if (_this3.state.animal === 'giraffes') {
+	        if (_this3.state.estimateReady === false) {
 	          return _react2.default.createElement(
 	            'a',
 	            { href: '/downloadWordDocument', onClick: function onClick() {
 	                _this3.setState({
-	                  animal: 'elephants'
+	                  estimateReady: true
 	                });
 	              } },
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
-	              { style: bottomButtonStyle },
+	              { style: _extends({}, bottomButtonStyle, { width: '50%', fontSize: '16px', marginTop: '20px' }) },
 	              'Download'
 	            )
 	          );
@@ -46907,7 +46912,7 @@
 	            _reactBootstrap.Button,
 	            { onClick: function onClick() {
 	                _this3.generateEstimate(totalDough);
-	              }, style: bottomButtonStyle },
+	              }, style: _extends({}, bottomButtonStyle, { width: '50%', fontSize: '16px', marginTop: '20px' }) },
 	            'Estimate'
 	          );
 	        }
@@ -47011,6 +47016,80 @@
 	          'Back'
 	        ),
 	        _react2.default.createElement(
+	          _reactSidebar2.default,
+	          { sidebar: _react2.default.createElement(
+	              'div',
+	              { style: { textAlign: 'center' } },
+	              _react2.default.createElement(
+	                'div',
+	                { style: { color: 'black', fontSize: '30px' } },
+	                'Options'
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { style: { marginTop: '30px' } },
+	                downloadLink(total),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: function onClick() {
+	                      _this3.duplicateQuote();
+	                    }, style: _extends({}, bottomButtonStyle, { width: '50%', fontSize: '16px', marginTop: '20px' }) },
+	                  'Duplicate'
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: function onClick() {
+	                      _this3.generateNewQuote();
+	                    }, style: _extends({}, bottomButtonStyle, { width: '50%', fontSize: '16px', marginTop: '20px' }) },
+	                  'New Quote'
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: function onClick() {
+	                      console.log('Work Order');
+	                    }, style: _extends({}, bottomButtonStyle, { width: '50%', fontSize: '16px', marginTop: '20px' }) },
+	                  'Work Order'
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: function onClick() {
+	                      console.log('Shopping List');
+	                    }, style: _extends({}, bottomButtonStyle, { width: '50%', fontSize: '16px', marginTop: '20px' }) },
+	                  'Shopping List'
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: function onClick() {
+	                      console.log('Email Bid');
+	                    }, style: _extends({}, bottomButtonStyle, { width: '50%', fontSize: '16px', marginTop: '20px' }) },
+	                  'Email Bid'
+	                )
+	              )
+	            ),
+	            styles: {
+	              sidebar: {
+	                backgroundColor: '#F2E1B2',
+	                width: '40vw',
+	                zIndex: 3
+	              },
+	              overlay: {
+	                zIndex: 2
+	              }
+	
+	            },
+	            open: this.state.sidebar,
+	            onSetOpen: function onSetOpen(open) {
+	              _this3.setState({ sidebar: open });
+	            } },
+	          _react2.default.createElement(
+	            _reactBootstrap.Button,
+	            { style: _extends({}, bottomButtonStyle, { position: 'fixed', top: '20px', left: '20px', zIndex: '2' }), onClick: function onClick() {
+	                _this3.setState({ sidebar: true });
+	              } },
+	            _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'menu-hamburger' })
+	          )
+	        ),
+	        _react2.default.createElement(
 	          _reactBootstrap.Grid,
 	          { fluid: true, style: { height: '95vh', top: '0' } },
 	          _react2.default.createElement(
@@ -47066,7 +47145,7 @@
 	                _react2.default.createElement(
 	                  'div',
 	                  null,
-	                  'v2'
+	                  'v3'
 	                )
 	              ),
 	              _react2.default.createElement('span', { style: { paddingRight: '15px' } })
@@ -47211,63 +47290,6 @@
 	            _react2.default.createElement(
 	              'div',
 	              { style: { textAlign: 'left', marginBottom: '47px', width: '100vw', left: '0' } },
-	              downloadLink(total),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    _this3.duplicateQuote();
-	                  }, style: bottomButtonStyle },
-	                'Duplicate'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    _this3.generateNewQuote();
-	                  }, style: bottomButtonStyle },
-	                'New Quote'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    console.log('Work Order');
-	                  }, style: bottomButtonStyle },
-	                'Work Order'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    console.log('Shopping List');
-	                  }, style: bottomButtonStyle },
-	                'Shopping List'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    console.log('Convert Code');
-	                  }, style: bottomButtonStyle },
-	                'Convert Code'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    console.log('Email Bid');
-	                  }, style: bottomButtonStyle },
-	                'Email Bid'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    console.log('Email Vendor');
-	                  }, style: bottomButtonStyle },
-	                'Email Vendor'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    console.log('Credit Card');
-	                  }, style: bottomButtonStyle },
-	                'Credit Card'
-	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.Modal,
 	                { show: this.state.modal, onHide: function onHide() {
@@ -51468,7 +51490,19 @@
 /* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(508);
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _sidebar = __webpack_require__(508);
+	
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _sidebar2.default;
 
 /***/ }),
 /* 508 */
@@ -51476,10 +51510,487 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(509);
-	var bind = __webpack_require__(510);
-	var Axios = __webpack_require__(512);
-	var defaults = __webpack_require__(513);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(274);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CANCEL_DISTANCE_ON_SCROLL = 20;
+	
+	var defaultStyles = {
+	  root: {
+	    position: 'absolute',
+	    top: 0,
+	    left: 0,
+	    right: 0,
+	    bottom: 0,
+	    overflow: 'hidden'
+	  },
+	  sidebar: {
+	    zIndex: 2,
+	    position: 'absolute',
+	    top: 0,
+	    bottom: 0,
+	    transition: 'transform .3s ease-out',
+	    WebkitTransition: '-webkit-transform .3s ease-out',
+	    willChange: 'transform',
+	    overflowY: 'auto'
+	  },
+	  content: {
+	    position: 'absolute',
+	    top: 0,
+	    left: 0,
+	    right: 0,
+	    bottom: 0,
+	    overflowY: 'scroll',
+	    WebkitOverflowScrolling: 'touch',
+	    transition: 'left .3s ease-out, right .3s ease-out'
+	  },
+	  overlay: {
+	    zIndex: 1,
+	    position: 'fixed',
+	    top: 0,
+	    left: 0,
+	    right: 0,
+	    bottom: 0,
+	    opacity: 0,
+	    visibility: 'hidden',
+	    transition: 'opacity .3s ease-out, visibility .3s ease-out',
+	    backgroundColor: 'rgba(0,0,0,.3)'
+	  },
+	  dragHandle: {
+	    zIndex: 1,
+	    position: 'fixed',
+	    top: 0,
+	    bottom: 0
+	  }
+	};
+	
+	var Sidebar = function (_Component) {
+	  _inherits(Sidebar, _Component);
+	
+	  function Sidebar(props) {
+	    _classCallCheck(this, Sidebar);
+	
+	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
+	
+	    _this.state = {
+	      // the detected width of the sidebar in pixels
+	      sidebarWidth: props.defaultSidebarWidth,
+	
+	      // keep track of touching params
+	      touchIdentifier: null,
+	      touchStartX: null,
+	      touchStartY: null,
+	      touchCurrentX: null,
+	      touchCurrentY: null,
+	
+	      // if touch is supported by the browser
+	      dragSupported: false
+	    };
+	
+	    _this.overlayClicked = _this.overlayClicked.bind(_this);
+	    _this.onTouchStart = _this.onTouchStart.bind(_this);
+	    _this.onTouchMove = _this.onTouchMove.bind(_this);
+	    _this.onTouchEnd = _this.onTouchEnd.bind(_this);
+	    _this.onScroll = _this.onScroll.bind(_this);
+	    _this.saveSidebarRef = _this.saveSidebarRef.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(Sidebar, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.setState({
+	        dragSupported: (typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object' && 'ontouchstart' in window
+	      });
+	      this.saveSidebarWidth();
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      // filter out the updates when we're touching
+	      if (!this.isTouching()) {
+	        this.saveSidebarWidth();
+	      }
+	    }
+	  }, {
+	    key: 'onTouchStart',
+	    value: function onTouchStart(ev) {
+	      // filter out if a user starts swiping with a second finger
+	      if (!this.isTouching()) {
+	        var touch = ev.targetTouches[0];
+	        this.setState({
+	          touchIdentifier: touch.identifier,
+	          touchStartX: touch.clientX,
+	          touchStartY: touch.clientY,
+	          touchCurrentX: touch.clientX,
+	          touchCurrentY: touch.clientY
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'onTouchMove',
+	    value: function onTouchMove(ev) {
+	      if (this.isTouching()) {
+	        for (var ind = 0; ind < ev.targetTouches.length; ind++) {
+	          // we only care about the finger that we are tracking
+	          if (ev.targetTouches[ind].identifier === this.state.touchIdentifier) {
+	            this.setState({
+	              touchCurrentX: ev.targetTouches[ind].clientX,
+	              touchCurrentY: ev.targetTouches[ind].clientY
+	            });
+	            break;
+	          }
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'onTouchEnd',
+	    value: function onTouchEnd() {
+	      if (this.isTouching()) {
+	        // trigger a change to open if sidebar has been dragged beyond dragToggleDistance
+	        var touchWidth = this.touchSidebarWidth();
+	
+	        if (this.props.open && touchWidth < this.state.sidebarWidth - this.props.dragToggleDistance || !this.props.open && touchWidth > this.props.dragToggleDistance) {
+	          this.props.onSetOpen(!this.props.open);
+	        }
+	
+	        this.setState({
+	          touchIdentifier: null,
+	          touchStartX: null,
+	          touchStartY: null,
+	          touchCurrentX: null,
+	          touchCurrentY: null
+	        });
+	      }
+	    }
+	
+	    // This logic helps us prevents the user from sliding the sidebar horizontally
+	    // while scrolling the sidebar vertically. When a scroll event comes in, we're
+	    // cancelling the ongoing gesture if it did not move horizontally much.
+	
+	  }, {
+	    key: 'onScroll',
+	    value: function onScroll() {
+	      if (this.isTouching() && this.inCancelDistanceOnScroll()) {
+	        this.setState({
+	          touchIdentifier: null,
+	          touchStartX: null,
+	          touchStartY: null,
+	          touchCurrentX: null,
+	          touchCurrentY: null
+	        });
+	      }
+	    }
+	
+	    // True if the on going gesture X distance is less than the cancel distance
+	
+	  }, {
+	    key: 'inCancelDistanceOnScroll',
+	    value: function inCancelDistanceOnScroll() {
+	      var cancelDistanceOnScroll = void 0;
+	
+	      if (this.props.pullRight) {
+	        cancelDistanceOnScroll = Math.abs(this.state.touchCurrentX - this.state.touchStartX) < CANCEL_DISTANCE_ON_SCROLL;
+	      } else {
+	        cancelDistanceOnScroll = Math.abs(this.state.touchStartX - this.state.touchCurrentX) < CANCEL_DISTANCE_ON_SCROLL;
+	      }
+	      return cancelDistanceOnScroll;
+	    }
+	  }, {
+	    key: 'isTouching',
+	    value: function isTouching() {
+	      return this.state.touchIdentifier !== null;
+	    }
+	  }, {
+	    key: 'overlayClicked',
+	    value: function overlayClicked() {
+	      if (this.props.open) {
+	        this.props.onSetOpen(false);
+	      }
+	    }
+	  }, {
+	    key: 'saveSidebarWidth',
+	    value: function saveSidebarWidth() {
+	      var width = this.sidebar.offsetWidth;
+	
+	      if (width !== this.state.sidebarWidth) {
+	        this.setState({ sidebarWidth: width });
+	      }
+	    }
+	  }, {
+	    key: 'saveSidebarRef',
+	    value: function saveSidebarRef(node) {
+	      this.sidebar = node;
+	    }
+	
+	    // calculate the sidebarWidth based on current touch info
+	
+	  }, {
+	    key: 'touchSidebarWidth',
+	    value: function touchSidebarWidth() {
+	      // if the sidebar is open and start point of drag is inside the sidebar
+	      // we will only drag the distance they moved their finger
+	      // otherwise we will move the sidebar to be below the finger.
+	      if (this.props.pullRight) {
+	        if (this.props.open && window.innerWidth - this.state.touchStartX < this.state.sidebarWidth) {
+	          if (this.state.touchCurrentX > this.state.touchStartX) {
+	            return this.state.sidebarWidth + this.state.touchStartX - this.state.touchCurrentX;
+	          }
+	          return this.state.sidebarWidth;
+	        }
+	        return Math.min(window.innerWidth - this.state.touchCurrentX, this.state.sidebarWidth);
+	      }
+	
+	      if (this.props.open && this.state.touchStartX < this.state.sidebarWidth) {
+	        if (this.state.touchCurrentX > this.state.touchStartX) {
+	          return this.state.sidebarWidth;
+	        }
+	        return this.state.sidebarWidth - this.state.touchStartX + this.state.touchCurrentX;
+	      }
+	      return Math.min(this.state.touchCurrentX, this.state.sidebarWidth);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var sidebarStyle = _extends({}, defaultStyles.sidebar, this.props.styles.sidebar);
+	      var contentStyle = _extends({}, defaultStyles.content, this.props.styles.content);
+	      var overlayStyle = _extends({}, defaultStyles.overlay, this.props.styles.overlay);
+	      var useTouch = this.state.dragSupported && this.props.touch;
+	      var isTouching = this.isTouching();
+	      var rootProps = {
+	        className: this.props.rootClassName,
+	        style: _extends({}, defaultStyles.root, this.props.styles.root),
+	        role: "navigation"
+	      };
+	      var dragHandle = void 0;
+	
+	      // sidebarStyle right/left
+	      if (this.props.pullRight) {
+	        sidebarStyle.right = 0;
+	        sidebarStyle.transform = 'translateX(100%)';
+	        sidebarStyle.WebkitTransform = 'translateX(100%)';
+	        if (this.props.shadow) {
+	          sidebarStyle.boxShadow = '-2px 2px 4px rgba(0, 0, 0, 0.15)';
+	        }
+	      } else {
+	        sidebarStyle.left = 0;
+	        sidebarStyle.transform = 'translateX(-100%)';
+	        sidebarStyle.WebkitTransform = 'translateX(-100%)';
+	        if (this.props.shadow) {
+	          sidebarStyle.boxShadow = '2px 2px 4px rgba(0, 0, 0, 0.15)';
+	        }
+	      }
+	
+	      if (isTouching) {
+	        var percentage = this.touchSidebarWidth() / this.state.sidebarWidth;
+	
+	        // slide open to what we dragged
+	        if (this.props.pullRight) {
+	          sidebarStyle.transform = 'translateX(' + (1 - percentage) * 100 + '%)';
+	          sidebarStyle.WebkitTransform = 'translateX(' + (1 - percentage) * 100 + '%)';
+	        } else {
+	          sidebarStyle.transform = 'translateX(-' + (1 - percentage) * 100 + '%)';
+	          sidebarStyle.WebkitTransform = 'translateX(-' + (1 - percentage) * 100 + '%)';
+	        }
+	
+	        // fade overlay to match distance of drag
+	        overlayStyle.opacity = percentage;
+	        overlayStyle.visibility = 'visible';
+	      } else if (this.props.docked) {
+	        // show sidebar
+	        if (this.state.sidebarWidth !== 0) {
+	          sidebarStyle.transform = 'translateX(0%)';
+	          sidebarStyle.WebkitTransform = 'translateX(0%)';
+	        }
+	
+	        // make space on the left/right side of the content for the sidebar
+	        if (this.props.pullRight) {
+	          contentStyle.right = this.state.sidebarWidth + 'px';
+	        } else {
+	          contentStyle.left = this.state.sidebarWidth + 'px';
+	        }
+	      } else if (this.props.open) {
+	        // slide open sidebar
+	        sidebarStyle.transform = 'translateX(0%)';
+	        sidebarStyle.WebkitTransform = 'translateX(0%)';
+	
+	        // show overlay
+	        overlayStyle.opacity = 1;
+	        overlayStyle.visibility = 'visible';
+	      }
+	
+	      if (isTouching || !this.props.transitions) {
+	        sidebarStyle.transition = 'none';
+	        sidebarStyle.WebkitTransition = 'none';
+	        contentStyle.transition = 'none';
+	        overlayStyle.transition = 'none';
+	      }
+	
+	      if (useTouch) {
+	        if (this.props.open) {
+	          rootProps.onTouchStart = this.onTouchStart;
+	          rootProps.onTouchMove = this.onTouchMove;
+	          rootProps.onTouchEnd = this.onTouchEnd;
+	          rootProps.onTouchCancel = this.onTouchEnd;
+	          rootProps.onScroll = this.onScroll;
+	        } else {
+	          var dragHandleStyle = _extends({}, defaultStyles.dragHandle, this.props.styles.dragHandle);
+	          dragHandleStyle.width = this.props.touchHandleWidth;
+	
+	          // dragHandleStyle right/left
+	          if (this.props.pullRight) {
+	            dragHandleStyle.right = 0;
+	          } else {
+	            dragHandleStyle.left = 0;
+	          }
+	
+	          dragHandle = _react2.default.createElement('div', { style: dragHandleStyle,
+	            onTouchStart: this.onTouchStart, onTouchMove: this.onTouchMove,
+	            onTouchEnd: this.onTouchEnd, onTouchCancel: this.onTouchEnd });
+	        }
+	      }
+	
+	      return _react2.default.createElement(
+	        'div',
+	        rootProps,
+	        _react2.default.createElement(
+	          'div',
+	          { className: this.props.sidebarClassName, style: sidebarStyle, ref: this.saveSidebarRef },
+	          this.props.sidebar
+	        ),
+	        _react2.default.createElement('div', { className: this.props.overlayClassName,
+	          style: overlayStyle,
+	          role: 'presentation',
+	          tabIndex: '0',
+	          onClick: this.overlayClicked
+	        }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: this.props.contentClassName, style: contentStyle },
+	          dragHandle,
+	          this.props.children
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Sidebar;
+	}(_react.Component);
+	
+	Sidebar.propTypes = {
+	  // main content to render
+	  children: _propTypes2.default.node.isRequired,
+	
+	  // styles
+	  styles: _propTypes2.default.shape({
+	    root: _propTypes2.default.object,
+	    sidebar: _propTypes2.default.object,
+	    content: _propTypes2.default.object,
+	    overlay: _propTypes2.default.object,
+	    dragHandle: _propTypes2.default.object
+	  }),
+	
+	  // root component optional class
+	  rootClassName: _propTypes2.default.string,
+	
+	  // sidebar optional class
+	  sidebarClassName: _propTypes2.default.string,
+	
+	  // content optional class
+	  contentClassName: _propTypes2.default.string,
+	
+	  // overlay optional class
+	  overlayClassName: _propTypes2.default.string,
+	
+	  // sidebar content to render
+	  sidebar: _propTypes2.default.node.isRequired,
+	
+	  // boolean if sidebar should be docked
+	  docked: _propTypes2.default.bool,
+	
+	  // boolean if sidebar should slide open
+	  open: _propTypes2.default.bool,
+	
+	  // boolean if transitions should be disabled
+	  transitions: _propTypes2.default.bool,
+	
+	  // boolean if touch gestures are enabled
+	  touch: _propTypes2.default.bool,
+	
+	  // max distance from the edge we can start touching
+	  touchHandleWidth: _propTypes2.default.number,
+	
+	  // Place the sidebar on the right
+	  pullRight: _propTypes2.default.bool,
+	
+	  // Enable/Disable sidebar shadow
+	  shadow: _propTypes2.default.bool,
+	
+	  // distance we have to drag the sidebar to toggle open state
+	  dragToggleDistance: _propTypes2.default.number,
+	
+	  // callback called when the overlay is clicked
+	  onSetOpen: _propTypes2.default.func,
+	
+	  // Intial sidebar width when page loads
+	  defaultSidebarWidth: _propTypes2.default.number
+	};
+	
+	Sidebar.defaultProps = {
+	  docked: false,
+	  open: false,
+	  transitions: true,
+	  touch: true,
+	  touchHandleWidth: 20,
+	  pullRight: false,
+	  shadow: true,
+	  dragToggleDistance: 30,
+	  onSetOpen: function onSetOpen() {},
+	  styles: {},
+	  defaultSidebarWidth: 0
+	};
+	
+	exports.default = Sidebar;
+
+/***/ }),
+/* 509 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(510);
+
+/***/ }),
+/* 510 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(511);
+	var bind = __webpack_require__(512);
+	var Axios = __webpack_require__(514);
+	var defaults = __webpack_require__(515);
 	
 	/**
 	 * Create an instance of Axios
@@ -51512,15 +52023,15 @@
 	};
 	
 	// Expose Cancel & CancelToken
-	axios.Cancel = __webpack_require__(530);
-	axios.CancelToken = __webpack_require__(531);
-	axios.isCancel = __webpack_require__(527);
+	axios.Cancel = __webpack_require__(532);
+	axios.CancelToken = __webpack_require__(533);
+	axios.isCancel = __webpack_require__(529);
 	
 	// Expose all/spread
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(532);
+	axios.spread = __webpack_require__(534);
 	
 	module.exports = axios;
 	
@@ -51529,13 +52040,13 @@
 
 
 /***/ }),
-/* 509 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var bind = __webpack_require__(510);
-	var isBuffer = __webpack_require__(511);
+	var bind = __webpack_require__(512);
+	var isBuffer = __webpack_require__(513);
 	
 	/*global toString:true*/
 	
@@ -51838,7 +52349,7 @@
 
 
 /***/ }),
-/* 510 */
+/* 512 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -51855,7 +52366,7 @@
 
 
 /***/ }),
-/* 511 */
+/* 513 */
 /***/ (function(module, exports) {
 
 	/*!
@@ -51882,17 +52393,17 @@
 
 
 /***/ }),
-/* 512 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var defaults = __webpack_require__(513);
-	var utils = __webpack_require__(509);
-	var InterceptorManager = __webpack_require__(524);
-	var dispatchRequest = __webpack_require__(525);
-	var isAbsoluteURL = __webpack_require__(528);
-	var combineURLs = __webpack_require__(529);
+	var defaults = __webpack_require__(515);
+	var utils = __webpack_require__(511);
+	var InterceptorManager = __webpack_require__(526);
+	var dispatchRequest = __webpack_require__(527);
+	var isAbsoluteURL = __webpack_require__(530);
+	var combineURLs = __webpack_require__(531);
 	
 	/**
 	 * Create a new instance of Axios
@@ -51974,13 +52485,13 @@
 
 
 /***/ }),
-/* 513 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(509);
-	var normalizeHeaderName = __webpack_require__(514);
+	var utils = __webpack_require__(511);
+	var normalizeHeaderName = __webpack_require__(516);
 	
 	var DEFAULT_CONTENT_TYPE = {
 	  'Content-Type': 'application/x-www-form-urlencoded'
@@ -51996,10 +52507,10 @@
 	  var adapter;
 	  if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(515);
+	    adapter = __webpack_require__(517);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(515);
+	    adapter = __webpack_require__(517);
 	  }
 	  return adapter;
 	}
@@ -52073,12 +52584,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 514 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(509);
+	var utils = __webpack_require__(511);
 	
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -52091,18 +52602,18 @@
 
 
 /***/ }),
-/* 515 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(509);
-	var settle = __webpack_require__(516);
-	var buildURL = __webpack_require__(519);
-	var parseHeaders = __webpack_require__(520);
-	var isURLSameOrigin = __webpack_require__(521);
-	var createError = __webpack_require__(517);
-	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(522);
+	var utils = __webpack_require__(511);
+	var settle = __webpack_require__(518);
+	var buildURL = __webpack_require__(521);
+	var parseHeaders = __webpack_require__(522);
+	var isURLSameOrigin = __webpack_require__(523);
+	var createError = __webpack_require__(519);
+	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(524);
 	
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -52199,7 +52710,7 @@
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(523);
+	      var cookies = __webpack_require__(525);
 	
 	      // Add xsrf header
 	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -52278,12 +52789,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 516 */
+/* 518 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var createError = __webpack_require__(517);
+	var createError = __webpack_require__(519);
 	
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -52310,12 +52821,12 @@
 
 
 /***/ }),
-/* 517 */
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var enhanceError = __webpack_require__(518);
+	var enhanceError = __webpack_require__(520);
 	
 	/**
 	 * Create an Error with the specified message, config, error code, request and response.
@@ -52334,7 +52845,7 @@
 
 
 /***/ }),
-/* 518 */
+/* 520 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52361,12 +52872,12 @@
 
 
 /***/ }),
-/* 519 */
+/* 521 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(509);
+	var utils = __webpack_require__(511);
 	
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -52435,12 +52946,12 @@
 
 
 /***/ }),
-/* 520 */
+/* 522 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(509);
+	var utils = __webpack_require__(511);
 	
 	/**
 	 * Parse headers into an object
@@ -52478,12 +52989,12 @@
 
 
 /***/ }),
-/* 521 */
+/* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(509);
+	var utils = __webpack_require__(511);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -52552,7 +53063,7 @@
 
 
 /***/ }),
-/* 522 */
+/* 524 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52594,12 +53105,12 @@
 
 
 /***/ }),
-/* 523 */
+/* 525 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(509);
+	var utils = __webpack_require__(511);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -52653,12 +53164,12 @@
 
 
 /***/ }),
-/* 524 */
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(509);
+	var utils = __webpack_require__(511);
 	
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -52711,15 +53222,15 @@
 
 
 /***/ }),
-/* 525 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(509);
-	var transformData = __webpack_require__(526);
-	var isCancel = __webpack_require__(527);
-	var defaults = __webpack_require__(513);
+	var utils = __webpack_require__(511);
+	var transformData = __webpack_require__(528);
+	var isCancel = __webpack_require__(529);
+	var defaults = __webpack_require__(515);
 	
 	/**
 	 * Throws a `Cancel` if cancellation has been requested.
@@ -52796,12 +53307,12 @@
 
 
 /***/ }),
-/* 526 */
+/* 528 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(509);
+	var utils = __webpack_require__(511);
 	
 	/**
 	 * Transform the data for a request or a response
@@ -52822,7 +53333,7 @@
 
 
 /***/ }),
-/* 527 */
+/* 529 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52833,7 +53344,7 @@
 
 
 /***/ }),
-/* 528 */
+/* 530 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52853,7 +53364,7 @@
 
 
 /***/ }),
-/* 529 */
+/* 531 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52873,7 +53384,7 @@
 
 
 /***/ }),
-/* 530 */
+/* 532 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52898,12 +53409,12 @@
 
 
 /***/ }),
-/* 531 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var Cancel = __webpack_require__(530);
+	var Cancel = __webpack_require__(532);
 	
 	/**
 	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -52961,7 +53472,7 @@
 
 
 /***/ }),
-/* 532 */
+/* 534 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52994,11 +53505,11 @@
 
 
 /***/ }),
-/* 533 */
+/* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(12);
-	var defaultClickRejectionStrategy = __webpack_require__(534);
+	var defaultClickRejectionStrategy = __webpack_require__(536);
 	
 	var alreadyInjected = false;
 	
@@ -53020,14 +53531,14 @@
 	  alreadyInjected = true;
 	
 	  __webpack_require__(47).injection.injectEventPluginsByName({
-	    'TapEventPlugin':       __webpack_require__(535)(shouldRejectClick)
+	    'TapEventPlugin':       __webpack_require__(537)(shouldRejectClick)
 	  });
 	};
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 534 */
+/* 536 */
 /***/ (function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -53038,7 +53549,7 @@
 
 
 /***/ }),
-/* 535 */
+/* 537 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -53062,14 +53573,14 @@
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(536);
+	var EventConstants = __webpack_require__(538);
 	var EventPluginUtils = __webpack_require__(49);
 	var EventPropagators = __webpack_require__(46);
 	var SyntheticUIEvent = __webpack_require__(81);
-	var TouchEventUtils = __webpack_require__(537);
+	var TouchEventUtils = __webpack_require__(539);
 	var ViewportMetrics = __webpack_require__(82);
 	
-	var keyOf = __webpack_require__(538);
+	var keyOf = __webpack_require__(540);
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
 	var isStartish = EventPluginUtils.isStartish;
@@ -53215,7 +53726,7 @@
 
 
 /***/ }),
-/* 536 */
+/* 538 */
 /***/ (function(module, exports) {
 
 	/**
@@ -53311,7 +53822,7 @@
 	module.exports = EventConstants;
 
 /***/ }),
-/* 537 */
+/* 539 */
 /***/ (function(module, exports) {
 
 	/**
@@ -53359,7 +53870,7 @@
 
 
 /***/ }),
-/* 538 */
+/* 540 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -53398,7 +53909,7 @@
 	module.exports = keyOf;
 
 /***/ }),
-/* 539 */
+/* 541 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53407,9 +53918,9 @@
 	  value: true
 	});
 	var redux = __webpack_require__(456);
-	var thunk = __webpack_require__(540).default;
+	var thunk = __webpack_require__(542).default;
 	
-	var _require = __webpack_require__(541),
+	var _require = __webpack_require__(543),
 	    PageReducer = _require.PageReducer,
 	    CachedQuotesReducer = _require.CachedQuotesReducer,
 	    QuoteNumberReducer = _require.QuoteNumberReducer,
@@ -53451,7 +53962,7 @@
 	};
 
 /***/ }),
-/* 540 */
+/* 542 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -53479,7 +53990,7 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 541 */
+/* 543 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
