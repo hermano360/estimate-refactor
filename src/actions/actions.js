@@ -43,7 +43,7 @@ export var resetCustomerInfo = () => {
   }
 }
 
-export const retrieveNewQuote = () => {
+export const retrieveNewQuote = (salesman) => {
   return (dispatch, getState) => {
     let nextQuoteNumber = databaseSimulation.getNewQuoteNumber()
     let nowDate = new Date()
@@ -51,7 +51,7 @@ export const retrieveNewQuote = () => {
     let dateString = `${nowDate.getDate()}-${monthRef[nowDate.getMonth()]}-${nowDate.getFullYear().toString().slice(-2)}`
     dispatch(setInitialQuote(nextQuoteNumber))
     dispatch(setQuote(nextQuoteNumber))
-    dispatch(addEmptyQuote(nextQuoteNumber, dateString))
+    dispatch(addEmptyQuote(nextQuoteNumber, dateString, salesman))
     dispatch(setAvailableQuoteNumbers([nextQuoteNumber]))
   }
 }
@@ -70,11 +70,12 @@ export const setInitialQuote = (quoteNumber) => {
   }
 }
 
-export const addEmptyQuote = (quoteNumber, date) => {
+export const addEmptyQuote = (quoteNumber, date, salesman) => {
   return {
     type: 'ADD_EMPTY_QUOTE',
     quoteNumber,
-    date
+    date,
+    salesman
   }
 }
 export const duplicateQuote = (quoteNumber, date, quote) => {
@@ -218,5 +219,13 @@ export const setShoppingCartNode = (key, node) => {
 export const clearShoppingCartNode = () => {
   return {
     type: 'CLEAR_SHOPPING_CART_NODE'
+  }
+}
+
+export const changeGlobalConfig = (config, value) => {
+  return {
+    type: 'CHANGE_GLOBAL_CONFIG',
+    config,
+    value
   }
 }

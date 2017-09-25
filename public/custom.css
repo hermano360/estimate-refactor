@@ -214,3 +214,11 @@ table, .table {
   -moz-box-shadow: 0px 0px 5px 5px #0099E0;
   box-shadow: 0px 0px 5px 5px #0099E0;
 }
+
+.modal-content {
+	background-color: #F2E1B2;
+}
+
+.close {
+	color: black;
+}

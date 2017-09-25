@@ -46,14 +46,14 @@ export class Estimate extends Component {
 
   }
   generateNewQuote () {
-    let {dispatch} = this.props
+    let {dispatch, globalConfigs} = this.props
     let databaseMax = databaseSimulation.getNewQuoteNumber();
     let globalMax = this.retrieveHighestCachedQuoteNumber(databaseMax)
     let newGlobalMax = globalMax + 1
     let nowDate = new Date()
     let monthRef = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
     let dateString = `${nowDate.getDate()}-${monthRef[nowDate.getMonth()]}-${nowDate.getFullYear().toString().slice(-2)}`
-    dispatch(actions.addEmptyQuote(newGlobalMax, dateString))
+    dispatch(actions.addEmptyQuote(newGlobalMax, dateString, globalConfigs.salesman))
     dispatch(actions.setAvailableQuoteNumbers([newGlobalMax]))
     dispatch(actions.clearShoppingCartNode())
     dispatch(actions.setQuote(newGlobalMax))
@@ -309,7 +309,7 @@ export class Estimate extends Component {
                     showTotal: !this.state.showTotal,
                   })
                 }} />
-              <div>v1</div>
+              <div>v2</div>
             </div>
             <span style={{paddingRight:'15px'}}></span>
           </Col>
@@ -465,7 +465,8 @@ export class Estimate extends Component {
           cachedQuotes: state.cachedQuotes,
           quoteNumber: state.quoteNumber,
           InitialQuoteNumber: state.InitialQuoteNumber,
-          availableQuoteNumbers: state.availableQuoteNumbers
+          availableQuoteNumbers: state.availableQuoteNumbers,
+          globalConfigs: state.globalConfigs
         }
       }
     )(Estimate)

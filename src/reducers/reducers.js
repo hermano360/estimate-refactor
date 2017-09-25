@@ -63,7 +63,7 @@ export const CachedQuotesReducer = (state = {}, action) => {
       return {
         ...state,
         [action.quoteNumber]: {
-          salesman: '',
+          salesman: action.salesman,
           customerFirstName: '',
           customerLastName: '',
           email: '',
@@ -310,6 +310,18 @@ export const DOMNodesReducer = (state = {}, action) => {
       return {...state, [action.key]: action.node}
     case 'CLEAR_SHOPPING_CART_NODE':
       return {}
+    default:
+      return state
+  }
+}
+
+export const GlobalConfigsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'CHANGE_GLOBAL_CONFIG':
+      return {
+        ...state,
+        [action.config]: action.value
+      }
     default:
       return state
   }

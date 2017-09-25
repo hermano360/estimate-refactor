@@ -1,6 +1,14 @@
 var redux = require('redux')
 var thunk = require('redux-thunk').default
-var {PageReducer, CachedQuotesReducer, QuoteNumberReducer, InitialQuoteNumberReducer, AvailableQuoteNumbersReducer, DOMNodesReducer} = require('../reducers/reducers.js')
+var {
+  PageReducer,
+  CachedQuotesReducer,
+  QuoteNumberReducer,
+  InitialQuoteNumberReducer,
+  AvailableQuoteNumbersReducer,
+  DOMNodesReducer,
+  GlobalConfigsReducer,
+} = require('../reducers/reducers.js')
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
@@ -9,7 +17,8 @@ export var configure = (initialState = {}) => {
     quoteNumber: QuoteNumberReducer,
     InitialQuoteNumber: InitialQuoteNumberReducer,
     availableQuoteNumbers: AvailableQuoteNumbersReducer,
-    shoppingCartDOMNodes: DOMNodesReducer
+    shoppingCartDOMNodes: DOMNodesReducer,
+    globalConfigs: GlobalConfigsReducer
   })
   initialState = {
     page: 'StartPage',
@@ -17,7 +26,13 @@ export var configure = (initialState = {}) => {
     quoteNumber: '',
     InitialQuoteNumber: '',
     availableQuoteNumbers: [],
-    shoppingCartDOMNodes: {}
+    shoppingCartDOMNodes: {},
+    globalConfigs:{
+      tax: '9.25',
+      laborCommission:'30',
+      salesman: '',
+      extraWorkCommision: '40'
+    }
   }
   var store = redux.createStore(reducer, initialState, redux.compose(
     redux.applyMiddleware(thunk),

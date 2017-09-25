@@ -6,7 +6,10 @@ var {connect} = require('react-redux')
 class EstimateForms extends React.Component {
   constructor(){
     super()
-    this.cake = "money"
+    this.cake = "money",
+    this.state = {
+      focused: ''
+    }
   }
 
   handleTemplateSelect (template) {
@@ -36,7 +39,7 @@ class EstimateForms extends React.Component {
 
 
   render () {
-    let {dispatch, quoteNumber, cachedQuotes, shoppingCartDOMNodes} = this.props
+    let {dispatch, quoteNumber, cachedQuotes, shoppingCartDOMNodes, globalConfigs} = this.props
     let formCellEntryStyle = {
       paddingLeft: '0px',
       paddingRight: '5px',
@@ -62,8 +65,10 @@ class EstimateForms extends React.Component {
                       }
                     }}
                     value={cachedQuotes[quoteNumber].customerFirstName}
+                    onFocus={()=>{this.setState({focused:'firstName'})}}
+                    onBlur={()=>{ if( this.state.focused === 'firstName') this.setState({focused:''})}}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'customerFirstName', e.target.value)) }}
-                    style={innerTextCellStyle}
+                    style={{...innerTextCellStyle, backgroundColor:`${this.state.focused === 'firstName' ? '#ddd': 'white'}`}}
                     onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['lastName'].focus() }}} />
                 </Col>
                 <Col xs={6} style={formCellEntryStyle}>
@@ -73,9 +78,11 @@ class EstimateForms extends React.Component {
                         dispatch(actions.setShoppingCartNode('lastName', input))
                       }
                      }}
+                     onFocus={()=>{this.setState({focused:'lastName'})}}
+                     onBlur={()=>{ if( this.state.focused === 'lastName') this.setState({focused:''})}}
                     value={cachedQuotes[quoteNumber].customerLastName}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'customerLastName', e.target.value)) }}
-                    style={innerTextCellStyle}
+                    style={{...innerTextCellStyle, backgroundColor:`${this.state.focused === 'lastName' ? '#ddd': 'white'}`}}
                     onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['streetAddress'].focus()}}}
                     />
                 </Col>
@@ -93,9 +100,11 @@ class EstimateForms extends React.Component {
                         dispatch(actions.setShoppingCartNode('streetAddress', input))
                       }
                     }}
+                    onFocus={()=>{this.setState({focused:'streetAddress'})}}
+                    onBlur={()=>{ if( this.state.focused === 'streetAddress') this.setState({focused:''})}}
+                    style={{...innerTextCellStyle, backgroundColor:`${this.state.focused === 'streetAddress' ? '#ddd': 'white'}`}}
                     value={cachedQuotes[quoteNumber].address}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'address', e.target.value)) }}
-                    style={innerTextCellStyle}
                     onKeyPress={(e)=>{if(e.charCode === 13) { shoppingCartDOMNodes['city'].focus()}}}
                   />
                 </Col>
@@ -110,7 +119,10 @@ class EstimateForms extends React.Component {
                   <input type='text' placeholder='City' className="form-control"
                     value={cachedQuotes[quoteNumber].city}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'city', e.target.value)) }}
-                    style={innerTextCellStyle}
+
+                    onFocus={()=>{this.setState({focused:'city'})}}
+                    onBlur={()=>{ if( this.state.focused === 'city') this.setState({focused:''})}}
+                    style={{...innerTextCellStyle, backgroundColor:`${this.state.focused === 'city' ? '#ddd': 'white'}`}}
                     ref={(input) => {
                       if(shoppingCartDOMNodes['city'] === undefined && input !== null){
                         dispatch(actions.setShoppingCartNode('city', input))
@@ -123,7 +135,9 @@ class EstimateForms extends React.Component {
                   <input type='text' placeholder='State' className="form-control"
                     value={cachedQuotes[quoteNumber].state}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'state', e.target.value)) }}
-                    style={innerTextCellStyle}
+                    onFocus={()=>{this.setState({focused:'state'})}}
+                    onBlur={()=>{ if( this.state.focused === 'state') this.setState({focused:''})}}
+                    style={{...innerTextCellStyle, backgroundColor:`${this.state.focused === 'state' ? '#ddd': 'white'}`}}
                     ref={(input) => {
                       if(shoppingCartDOMNodes['state'] === undefined && input !== null){
                         dispatch(actions.setShoppingCartNode('state', input))
@@ -136,7 +150,9 @@ class EstimateForms extends React.Component {
                   <input type='text' placeholder='ZIP' className="form-control"
                     value={cachedQuotes[quoteNumber].zipcode}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'zipcode', e.target.value)) }}
-                    style={innerTextCellStyle}
+                    onFocus={()=>{this.setState({focused:'zip'})}}
+                    onBlur={()=>{ if( this.state.focused === 'zip') this.setState({focused:''})}}
+                    style={{...innerTextCellStyle, backgroundColor:`${this.state.focused === 'zip' ? '#ddd': 'white'}`}}
                     ref={(input) => {
                       if(shoppingCartDOMNodes['zip'] === undefined && input !== null){
                         dispatch(actions.setShoppingCartNode('zip', input))
@@ -156,7 +172,9 @@ class EstimateForms extends React.Component {
                   <input type='text' placeholder='Phone' className="form-control"
                     value={cachedQuotes[quoteNumber].phone}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value)) }}
-                    style={innerTextCellStyle}
+                    onFocus={()=>{this.setState({focused:'phone'})}}
+                    onBlur={()=>{ if( this.state.focused === 'phone') this.setState({focused:''})}}
+                    style={{...innerTextCellStyle, backgroundColor:`${this.state.focused === 'phone' ? '#ddd': 'white'}`}}
                     ref={(input) => {
                       if(shoppingCartDOMNodes['phone'] === undefined && input !== null){
                         dispatch(actions.setShoppingCartNode('phone', input))
@@ -170,7 +188,9 @@ class EstimateForms extends React.Component {
                     style={innerTextCellStyle}
                     value={cachedQuotes[quoteNumber].email}
                     onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'email', e.target.value)) }}
-                    style={innerTextCellStyle}
+                    onFocus={()=>{this.setState({focused:'email'})}}
+                    onBlur={()=>{ if( this.state.focused === 'email') this.setState({focused:''})}}
+                    style={{...innerTextCellStyle, backgroundColor:`${this.state.focused === 'email' ? '#ddd': 'white'}`}}
                     ref={(input) => {
                       if(shoppingCartDOMNodes['email'] === undefined && input !== null){
                         dispatch(actions.setShoppingCartNode('email', input))
@@ -203,7 +223,9 @@ class EstimateForms extends React.Component {
                 <input type='text' className="form-control"
                   value={cachedQuotes[quoteNumber].date}
                   onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'date', e.target.value)) }}
-                  style={innerTextCellStyle}
+                  onFocus={()=>{this.setState({focused:'date'})}}
+                  onBlur={()=>{ if( this.state.focused === 'date') this.setState({focused:''})}}
+                  style={{...innerTextCellStyle, backgroundColor:`${this.state.focused === 'date' ? '#ddd': 'white'}`}}
                 />
               </Col>
               </FormGroup>
@@ -226,7 +248,9 @@ class EstimateForms extends React.Component {
                     <textarea placeholder='Scope Of Work' className="form-control" rows='3'
                       value={cachedQuotes[quoteNumber].specification}
                       onChange={(e) => { dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value)) }}
-                      style={innerTextCellStyle}
+                      onFocus={()=>{this.setState({focused:'scopeofwork'})}}
+                      onBlur={()=>{ if( this.state.focused === 'scopeofwork') this.setState({focused:''})}}
+                      style={{...innerTextCellStyle, backgroundColor:`${this.state.focused === 'scopeofwork' ? '#ddd': 'white'}`}}
                       ref={(input) => {
                         if(shoppingCartDOMNodes['scopeofwork'] === undefined && input !== null){
                           dispatch(actions.setShoppingCartNode('scopeofwork', input))

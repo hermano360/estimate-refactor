@@ -15,7 +15,6 @@ class ShoppingCartItem extends Component {
   }
   onQuantityChange (keyCode, template, quantity) {
     const {dispatch, quoteNumber} = this.props
-    console.log(/^[0-9]*[.]*[0-9]*$/.test(quantity))
     if (/^[0-9]*[.]*[0-9]*$/.test(quantity)) {
       dispatch(actions.changeCartItemQuantity(quoteNumber, keyCode, template, quantity))
     } else {
@@ -93,9 +92,7 @@ class ShoppingCartItem extends Component {
             onChange={(e) => { this.onQuantityChange(keyCode, template, e.target.value) }}
             style={{maxWidth:'30px'}}
             ref={(input) => {
-              console.log(input)
               if(shoppingCartDOMNodes[number.toString()] === undefined && input !== null){
-                console.log(input)
                 dispatch(actions.setShoppingCartNode(number.toString(), input))
               }
             }}

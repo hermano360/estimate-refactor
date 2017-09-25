@@ -72,12 +72,6 @@
 	
 	(0, _reactTapEventPlugin2.default)();
 	
-	store.dispatch(actions.updateCustomerInfo('date', new Date()));
-	// largest number available on the database
-	store.dispatch(actions.retrieveNewQuote());
-	
-	store.dispatch(actions.retrieveAvailableDBQuoteNumbers());
-	
 	_reactDom2.default.render(_react2.default.createElement(
 	  Provider,
 	  { store: store },
@@ -22299,6 +22293,8 @@
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(1);
@@ -22323,15 +22319,95 @@
 	var StartPage = function (_Component) {
 	  _inherits(StartPage, _Component);
 	
-	  function StartPage() {
+	  function StartPage(e) {
 	    _classCallCheck(this, StartPage);
 	
-	    return _possibleConstructorReturn(this, (StartPage.__proto__ || Object.getPrototypeOf(StartPage)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (StartPage.__proto__ || Object.getPrototypeOf(StartPage)).call(this, e));
+	
+	    _this.state = {
+	      tax: '',
+	      laborCommission: '',
+	      salesman: '',
+	      extraWorkCommision: '',
+	      modal: true
+	    };
+	    _this.submitConfigInfo = _this.submitConfigInfo.bind(_this);
+	    _this.goToEstimates = _this.goToEstimates.bind(_this);
+	    _this.defaultConfigInfo = _this.defaultConfigInfo.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(StartPage, [{
+	    key: 'submitConfigInfo',
+	    value: function submitConfigInfo() {
+	      var dispatch = this.props.dispatch;
+	      var _state = this.state,
+	          tax = _state.tax,
+	          laborCommission = _state.laborCommission,
+	          salesman = _state.salesman,
+	          extraWorkCommision = _state.extraWorkCommision;
+	
+	      localStorage.setItem('ez-estimate-globalConfig', JSON.stringify({
+	        tax: tax,
+	        laborCommission: laborCommission,
+	        salesman: salesman,
+	        extraWorkCommision: extraWorkCommision
+	      }));
+	      if (tax.length > 0) dispatch(actions.changeGlobalConfig('tax', tax));
+	      if (laborCommission.length > 0) dispatch(actions.changeGlobalConfig('laborCommission', laborCommission));
+	      if (salesman.length > 0) dispatch(actions.changeGlobalConfig('salesman', salesman));
+	      if (extraWorkCommision.length > 0) dispatch(actions.changeGlobalConfig('extraWorkCommision', extraWorkCommision));
+	      this.setState({
+	        modal: false
+	      });
+	    }
+	  }, {
+	    key: 'defaultConfigInfo',
+	    value: function defaultConfigInfo() {
+	      var dispatch = this.props.dispatch;
+	
+	      dispatch(actions.changeGlobalConfig('tax', '9.25'));
+	      dispatch(actions.changeGlobalConfig('laborCommission', '30'));
+	      dispatch(actions.changeGlobalConfig('salesman', ''));
+	      dispatch(actions.changeGlobalConfig('extraWorkCommision', '40'));
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var dispatch = this.props.dispatch;
+	
+	      var globalConfigs = JSON.parse(localStorage.getItem('ez-estimate-globalConfig'));
+	      if (globalConfigs == null) {
+	        this.setState({
+	          modal: true
+	        });
+	      } else {
+	        dispatch(actions.changeGlobalConfig('tax', globalConfigs.tax));
+	        dispatch(actions.changeGlobalConfig('laborCommission', globalConfigs.laborCommission));
+	        dispatch(actions.changeGlobalConfig('salesman', globalConfigs.salesman));
+	        dispatch(actions.changeGlobalConfig('extraWorkCommision', globalConfigs.extraWorkCommision));
+	        this.setState({
+	          modal: false
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'goToEstimates',
+	    value: function goToEstimates() {
+	      var _props = this.props,
+	          dispatch = _props.dispatch,
+	          globalConfigs = _props.globalConfigs;
+	
+	      dispatch(actions.updateCustomerInfo('date', new Date()));
+	      dispatch(actions.retrieveNewQuote(globalConfigs.salesman));
+	      dispatch(actions.retrieveAvailableDBQuoteNumbers());
+	      dispatch(actions.changePage('Estimate'));
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      var dispatch = this.props.dispatch;
 	
 	      var logoStyles = {
@@ -22375,70 +22451,219 @@
 	
 	      };
 	
+	      var innerTextCellStyle = { color: 'black', textAlign: 'center' };
+	
 	      return _react2.default.createElement(
-	        _reactBootstrap.Grid,
-	        { fluid: true, style: { textAlign: 'center' } },
+	        'div',
+	        null,
 	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
+	          _reactBootstrap.Grid,
+	          { fluid: true, style: { textAlign: 'center' } },
 	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { xs: 12 },
+	            _reactBootstrap.Row,
+	            null,
 	            _react2.default.createElement(
-	              'div',
-	              { style: { float: 'right' } },
+	              _reactBootstrap.Col,
+	              { xs: 12 },
 	              _react2.default.createElement(
 	                'div',
-	                { style: { textAlign: 'center', color: 'black', marginTop: '15px' } },
-	                _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'cog', style: { fontSize: '30px' } }),
+	                { style: { float: 'right' } },
 	                _react2.default.createElement(
 	                  'div',
-	                  { style: { fontSize: '15px' } },
-	                  'Settings'
+	                  { style: { textAlign: 'center', color: 'black', marginTop: '15px' },
+	                    onClick: function onClick() {
+	                      _this2.setState({ modal: true });
+	                    } },
+	                  _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'cog', style: { fontSize: '30px' } }),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { style: { fontSize: '15px' } },
+	                    'Settings'
+	                  )
 	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Row,
-	              null,
+	              ),
 	              _react2.default.createElement(
-	                'div',
-	                { style: borderBoxes, className: 'center-block' },
+	                _reactBootstrap.Row,
+	                null,
 	                _react2.default.createElement(
 	                  'div',
-	                  { style: buttonContainerStyles },
+	                  { style: borderBoxes, className: 'center-block' },
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 12, className: 'center-block', style: { marginBottom: '25%' } },
-	                    _react2.default.createElement('img', { src: '/ezestimator_logo.png', style: logoStyles })
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 12, className: 'center-block', style: { marginTop: '10%' } },
+	                    'div',
+	                    { style: buttonContainerStyles },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { xs: 12, className: 'center-block', style: { marginBottom: '25%' } },
+	                      _react2.default.createElement('img', { src: '/ezestimator_logo.png', style: logoStyles })
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Col,
+	                      { xs: 12, className: 'center-block', style: { marginTop: '10%' } },
+	                      _react2.default.createElement(
+	                        _reactBootstrap.Button,
+	                        { onClick: function onClick() {
+	                            _this2.goToEstimates();
+	                          }, style: startButtons },
+	                        'Estimate'
+	                      )
+	                    ),
 	                    _react2.default.createElement(
 	                      _reactBootstrap.Button,
 	                      { onClick: function onClick() {
-	                          dispatch(actions.changePage('Estimate'));
+	                          dispatch(actions.changePage('Products'));
 	                        }, style: startButtons },
-	                      'Estimate'
+	                      'Products'
+	                    ),
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Button,
+	                      { onClick: function onClick() {
+	                          dispatch(actions.changePage('PhoneList'));
+	                        }, style: startButtons },
+	                      'Phone'
 	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Button,
-	                    { onClick: function onClick() {
-	                        dispatch(actions.changePage('Products'));
-	                      }, style: startButtons },
-	                    'Products'
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Button,
-	                    { onClick: function onClick() {
-	                        dispatch(actions.changePage('PhoneList'));
-	                      }, style: startButtons },
-	                    'Phone'
 	                  )
 	                )
 	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal,
+	          { show: this.state.modal, onHide: function onHide() {
+	              _this2.setState({ modal: false });
+	            } },
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Header,
+	            { closeButton: true },
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Title,
+	              { style: { textAlign: 'center', color: 'black' } },
+	              'Settings'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { style: { height: '40%', overflow: 'scroll', textAlign: 'center' } },
+	              _react2.default.createElement(
+	                _reactBootstrap.Row,
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { xs: 12, style: _extends({}, innerTextCellStyle, { textAlign: 'center' }) },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.FormControl,
+	                    { componentClass: 'select', style: _extends({}, innerTextCellStyle, { textAlign: 'center' }),
+	                      onChange: function onChange(e) {
+	                        _this2.setState({ salesman: e.target.value });
+	                      } },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '' },
+	                      '-Select Estimator-'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Gary Banks' },
+	                      'Banks, Gary'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'John Chavez' },
+	                      'Chavez, John'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Arnold Corona' },
+	                      'Corona, Arnold'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'John Gutierrez' },
+	                      'Gutierrez, John'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Bob Leon' },
+	                      'Leon, Bob'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Ricardo Rivera' },
+	                      'Rivera, Ricardo'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Mike Rogers' },
+	                      'Rogers, Mike'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: 'Cameron Sterling' },
+	                      'Sterling, Cameron'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { xs: 12 },
+	                  _react2.default.createElement('input', { className: 'form-control', type: 'text', placeholder: 'Labor (30' + this.state.laborCommission + '%)',
+	                    style: _extends({ textAlign: 'center !important' }, innerTextCellStyle),
+	                    onChange: function onChange(e) {
+	                      _this2.setState({
+	                        laborCommission: e.target.value
+	                      });
+	                    }
+	                  })
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { xs: 12 },
+	                  _react2.default.createElement('input', { className: 'form-control', type: 'text', placeholder: 'Extra Work (40' + this.state.extraWorkCommision + '%)',
+	                    style: innerTextCellStyle,
+	                    onChange: function onChange(e) {
+	                      _this2.setState({
+	                        extraWorkCommision: e.target.value
+	                      });
+	                    }
+	                  })
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Col,
+	                  { xs: 12 },
+	                  _react2.default.createElement('input', { className: 'form-control', type: 'text', placeholder: 'Tax (9.25' + this.state.tax + '%)',
+	                    style: innerTextCellStyle,
+	                    onChange: function onChange(e) {
+	                      _this2.setState({
+	                        tax: e.target.value
+	                      });
+	                    }
+	                  })
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Footer,
+	            { style: { textAlign: 'center' } },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: this.submitConfigInfo, style: startButtons },
+	              'Submit'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.setState({ modal: false });
+	                }, style: startButtons },
+	              'Close'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: this.defaultConfigInfo, style: startButtons },
+	              'Defaults'
 	            )
 	          )
 	        )
@@ -22450,7 +22675,9 @@
 	}(_react.Component);
 	
 	exports.default = connect(function (state) {
-	  return state;
+	  return {
+	    globalConfigs: state.globalConfigs
+	  };
 	})(StartPage);
 
 /***/ }),
@@ -42379,7 +42606,7 @@
 	  };
 	};
 	
-	var retrieveNewQuote = exports.retrieveNewQuote = function retrieveNewQuote() {
+	var retrieveNewQuote = exports.retrieveNewQuote = function retrieveNewQuote(salesman) {
 	  return function (dispatch, getState) {
 	    var nextQuoteNumber = databaseSimulation.getNewQuoteNumber();
 	    var nowDate = new Date();
@@ -42387,7 +42614,7 @@
 	    var dateString = nowDate.getDate() + '-' + monthRef[nowDate.getMonth()] + '-' + nowDate.getFullYear().toString().slice(-2);
 	    dispatch(setInitialQuote(nextQuoteNumber));
 	    dispatch(setQuote(nextQuoteNumber));
-	    dispatch(addEmptyQuote(nextQuoteNumber, dateString));
+	    dispatch(addEmptyQuote(nextQuoteNumber, dateString, salesman));
 	    dispatch(setAvailableQuoteNumbers([nextQuoteNumber]));
 	  };
 	};
@@ -42406,11 +42633,12 @@
 	  };
 	};
 	
-	var addEmptyQuote = exports.addEmptyQuote = function addEmptyQuote(quoteNumber, date) {
+	var addEmptyQuote = exports.addEmptyQuote = function addEmptyQuote(quoteNumber, date, salesman) {
 	  return {
 	    type: 'ADD_EMPTY_QUOTE',
 	    quoteNumber: quoteNumber,
-	    date: date
+	    date: date,
+	    salesman: salesman
 	  };
 	};
 	var duplicateQuote = exports.duplicateQuote = function duplicateQuote(quoteNumber, date, quote) {
@@ -42554,6 +42782,14 @@
 	var clearShoppingCartNode = exports.clearShoppingCartNode = function clearShoppingCartNode() {
 	  return {
 	    type: 'CLEAR_SHOPPING_CART_NODE'
+	  };
+	};
+	
+	var changeGlobalConfig = exports.changeGlobalConfig = function changeGlobalConfig(config, value) {
+	  return {
+	    type: 'CHANGE_GLOBAL_CONFIG',
+	    config: config,
+	    value: value
 	  };
 	};
 
@@ -46532,7 +46768,9 @@
 	  }, {
 	    key: 'generateNewQuote',
 	    value: function generateNewQuote() {
-	      var dispatch = this.props.dispatch;
+	      var _props3 = this.props,
+	          dispatch = _props3.dispatch,
+	          globalConfigs = _props3.globalConfigs;
 	
 	      var databaseMax = databaseSimulation.getNewQuoteNumber();
 	      var globalMax = this.retrieveHighestCachedQuoteNumber(databaseMax);
@@ -46540,7 +46778,7 @@
 	      var nowDate = new Date();
 	      var monthRef = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 	      var dateString = nowDate.getDate() + '-' + monthRef[nowDate.getMonth()] + '-' + nowDate.getFullYear().toString().slice(-2);
-	      dispatch(actions.addEmptyQuote(newGlobalMax, dateString));
+	      dispatch(actions.addEmptyQuote(newGlobalMax, dateString, globalConfigs.salesman));
 	      dispatch(actions.setAvailableQuoteNumbers([newGlobalMax]));
 	      dispatch(actions.clearShoppingCartNode());
 	      dispatch(actions.setQuote(newGlobalMax));
@@ -46596,9 +46834,9 @@
 	    value: function generateEstimate(total) {
 	      var _this2 = this;
 	
-	      var _props3 = this.props,
-	          cachedQuotes = _props3.cachedQuotes,
-	          quoteNumber = _props3.quoteNumber;
+	      var _props4 = this.props,
+	          cachedQuotes = _props4.cachedQuotes,
+	          quoteNumber = _props4.quoteNumber;
 	
 	      axios({
 	        method: 'post',
@@ -46636,12 +46874,12 @@
 	    value: function render() {
 	      var _this3 = this;
 	
-	      var _props4 = this.props,
-	          dispatch = _props4.dispatch,
-	          cachedQuotes = _props4.cachedQuotes,
-	          quoteNumber = _props4.quoteNumber,
-	          InitialQuoteNumber = _props4.InitialQuoteNumber,
-	          availableQuoteNumbers = _props4.availableQuoteNumbers;
+	      var _props5 = this.props,
+	          dispatch = _props5.dispatch,
+	          cachedQuotes = _props5.cachedQuotes,
+	          quoteNumber = _props5.quoteNumber,
+	          InitialQuoteNumber = _props5.InitialQuoteNumber,
+	          availableQuoteNumbers = _props5.availableQuoteNumbers;
 	
 	
 	      var codeOptions = [{ value: 'faucet1', label: 'faucet1' }, { value: 'faucet2', label: 'faucet2' }, { value: 'faucet3', label: 'faucet3' }, { value: 'faucet4', label: 'faucet4' }, { value: 'light1', label: 'light1' }, { value: 'light2', label: 'light2' }, { value: 'light3', label: 'light3' }, { value: 'light4', label: 'light4' }, { value: 'fan1', label: 'fan1' }, { value: 'fan2', label: 'fan2' }, { value: 'fan3', label: 'fan3' }, { value: 'fan4', label: 'fan4' }];
@@ -46827,7 +47065,7 @@
 	                _react2.default.createElement(
 	                  'div',
 	                  null,
-	                  'v1'
+	                  'v2'
 	                )
 	              ),
 	              _react2.default.createElement('span', { style: { paddingRight: '15px' } })
@@ -47218,7 +47456,8 @@
 	    cachedQuotes: state.cachedQuotes,
 	    quoteNumber: state.quoteNumber,
 	    InitialQuoteNumber: state.InitialQuoteNumber,
-	    availableQuoteNumbers: state.availableQuoteNumbers
+	    availableQuoteNumbers: state.availableQuoteNumbers,
+	    globalConfigs: state.globalConfigs
 	  };
 	})(Estimate);
 
@@ -47277,7 +47516,6 @@
 	          dispatch = _props.dispatch,
 	          quoteNumber = _props.quoteNumber;
 	
-	      console.log(/^[0-9]*[.]*[0-9]*$/.test(quantity));
 	      if (/^[0-9]*[.]*[0-9]*$/.test(quantity)) {
 	        dispatch(actions.changeCartItemQuantity(quoteNumber, keyCode, template, quantity));
 	      } else {
@@ -47437,9 +47675,7 @@
 	            },
 	            style: { maxWidth: '30px' },
 	            ref: function ref(input) {
-	              console.log(input);
 	              if (shoppingCartDOMNodes[number.toString()] === undefined && input !== null) {
-	                console.log(input);
 	                dispatch(actions.setShoppingCartNode(number.toString(), input));
 	              }
 	            },
@@ -47537,6 +47773,8 @@
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(1);
@@ -47568,7 +47806,9 @@
 	
 	    var _this = _possibleConstructorReturn(this, (EstimateForms.__proto__ || Object.getPrototypeOf(EstimateForms)).call(this));
 	
-	    _this.cake = "money";
+	    _this.cake = "money", _this.state = {
+	      focused: ''
+	    };
 	    return _this;
 	  }
 	
@@ -47609,13 +47849,15 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _React$createElement;
+	      var _this2 = this,
+	          _React$createElement;
 	
 	      var _props2 = this.props,
 	          dispatch = _props2.dispatch,
 	          quoteNumber = _props2.quoteNumber,
 	          cachedQuotes = _props2.cachedQuotes,
-	          shoppingCartDOMNodes = _props2.shoppingCartDOMNodes;
+	          shoppingCartDOMNodes = _props2.shoppingCartDOMNodes,
+	          globalConfigs = _props2.globalConfigs;
 	
 	      var formCellEntryStyle = {
 	        paddingLeft: '0px',
@@ -47650,10 +47892,16 @@
 	                      }
 	                    },
 	                    value: cachedQuotes[quoteNumber].customerFirstName,
+	                    onFocus: function onFocus() {
+	                      _this2.setState({ focused: 'firstName' });
+	                    },
+	                    onBlur: function onBlur() {
+	                      if (_this2.state.focused === 'firstName') _this2.setState({ focused: '' });
+	                    },
 	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'customerFirstName', e.target.value));
 	                    },
-	                    style: innerTextCellStyle,
+	                    style: _extends({}, innerTextCellStyle, { backgroundColor: '' + (this.state.focused === 'firstName' ? '#ddd' : 'white') }),
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
 	                        shoppingCartDOMNodes['lastName'].focus();
@@ -47669,11 +47917,17 @@
 	                        dispatch(actions.setShoppingCartNode('lastName', input));
 	                      }
 	                    },
+	                    onFocus: function onFocus() {
+	                      _this2.setState({ focused: 'lastName' });
+	                    },
+	                    onBlur: function onBlur() {
+	                      if (_this2.state.focused === 'lastName') _this2.setState({ focused: '' });
+	                    },
 	                    value: cachedQuotes[quoteNumber].customerLastName,
 	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'customerLastName', e.target.value));
 	                    },
-	                    style: innerTextCellStyle,
+	                    style: _extends({}, innerTextCellStyle, { backgroundColor: '' + (this.state.focused === 'lastName' ? '#ddd' : 'white') }),
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
 	                        shoppingCartDOMNodes['streetAddress'].focus();
@@ -47698,11 +47952,17 @@
 	                        dispatch(actions.setShoppingCartNode('streetAddress', input));
 	                      }
 	                    },
+	                    onFocus: function onFocus() {
+	                      _this2.setState({ focused: 'streetAddress' });
+	                    },
+	                    onBlur: function onBlur() {
+	                      if (_this2.state.focused === 'streetAddress') _this2.setState({ focused: '' });
+	                    },
+	                    style: _extends({}, innerTextCellStyle, { backgroundColor: '' + (this.state.focused === 'streetAddress' ? '#ddd' : 'white') }),
 	                    value: cachedQuotes[quoteNumber].address,
 	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'address', e.target.value));
 	                    },
-	                    style: innerTextCellStyle,
 	                    onKeyPress: function onKeyPress(e) {
 	                      if (e.charCode === 13) {
 	                        shoppingCartDOMNodes['city'].focus();
@@ -47726,7 +47986,14 @@
 	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'city', e.target.value));
 	                    },
-	                    style: innerTextCellStyle,
+	
+	                    onFocus: function onFocus() {
+	                      _this2.setState({ focused: 'city' });
+	                    },
+	                    onBlur: function onBlur() {
+	                      if (_this2.state.focused === 'city') _this2.setState({ focused: '' });
+	                    },
+	                    style: _extends({}, innerTextCellStyle, { backgroundColor: '' + (this.state.focused === 'city' ? '#ddd' : 'white') }),
 	                    ref: function ref(input) {
 	                      if (shoppingCartDOMNodes['city'] === undefined && input !== null) {
 	                        dispatch(actions.setShoppingCartNode('city', input));
@@ -47747,7 +48014,13 @@
 	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'state', e.target.value));
 	                    },
-	                    style: innerTextCellStyle,
+	                    onFocus: function onFocus() {
+	                      _this2.setState({ focused: 'state' });
+	                    },
+	                    onBlur: function onBlur() {
+	                      if (_this2.state.focused === 'state') _this2.setState({ focused: '' });
+	                    },
+	                    style: _extends({}, innerTextCellStyle, { backgroundColor: '' + (this.state.focused === 'state' ? '#ddd' : 'white') }),
 	                    ref: function ref(input) {
 	                      if (shoppingCartDOMNodes['state'] === undefined && input !== null) {
 	                        dispatch(actions.setShoppingCartNode('state', input));
@@ -47768,7 +48041,13 @@
 	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'zipcode', e.target.value));
 	                    },
-	                    style: innerTextCellStyle,
+	                    onFocus: function onFocus() {
+	                      _this2.setState({ focused: 'zip' });
+	                    },
+	                    onBlur: function onBlur() {
+	                      if (_this2.state.focused === 'zip') _this2.setState({ focused: '' });
+	                    },
+	                    style: _extends({}, innerTextCellStyle, { backgroundColor: '' + (this.state.focused === 'zip' ? '#ddd' : 'white') }),
 	                    ref: function ref(input) {
 	                      if (shoppingCartDOMNodes['zip'] === undefined && input !== null) {
 	                        dispatch(actions.setShoppingCartNode('zip', input));
@@ -47797,7 +48076,13 @@
 	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'phone', e.target.value));
 	                    },
-	                    style: innerTextCellStyle,
+	                    onFocus: function onFocus() {
+	                      _this2.setState({ focused: 'phone' });
+	                    },
+	                    onBlur: function onBlur() {
+	                      if (_this2.state.focused === 'phone') _this2.setState({ focused: '' });
+	                    },
+	                    style: _extends({}, innerTextCellStyle, { backgroundColor: '' + (this.state.focused === 'phone' ? '#ddd' : 'white') }),
 	                    ref: function ref(input) {
 	                      if (shoppingCartDOMNodes['phone'] === undefined && input !== null) {
 	                        dispatch(actions.setShoppingCartNode('phone', input));
@@ -47818,8 +48103,14 @@
 	                    value: cachedQuotes[quoteNumber].email,
 	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'email', e.target.value));
+	                    },
+	                    onFocus: function onFocus() {
+	                      _this2.setState({ focused: 'email' });
+	                    },
+	                    onBlur: function onBlur() {
+	                      if (_this2.state.focused === 'email') _this2.setState({ focused: '' });
 	                    }
-	                  }, _defineProperty(_React$createElement, 'style', innerTextCellStyle), _defineProperty(_React$createElement, 'ref', function ref(input) {
+	                  }, _defineProperty(_React$createElement, 'style', _extends({}, innerTextCellStyle, { backgroundColor: '' + (this.state.focused === 'email' ? '#ddd' : 'white') })), _defineProperty(_React$createElement, 'ref', function ref(input) {
 	                    if (shoppingCartDOMNodes['email'] === undefined && input !== null) {
 	                      dispatch(actions.setShoppingCartNode('email', input));
 	                    }
@@ -47900,7 +48191,13 @@
 	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'date', e.target.value));
 	                    },
-	                    style: innerTextCellStyle
+	                    onFocus: function onFocus() {
+	                      _this2.setState({ focused: 'date' });
+	                    },
+	                    onBlur: function onBlur() {
+	                      if (_this2.state.focused === 'date') _this2.setState({ focused: '' });
+	                    },
+	                    style: _extends({}, innerTextCellStyle, { backgroundColor: '' + (this.state.focused === 'date' ? '#ddd' : 'white') })
 	                  })
 	                )
 	              )
@@ -47919,7 +48216,13 @@
 	                    onChange: function onChange(e) {
 	                      dispatch(actions.updateQuoteInfo(quoteNumber, 'specification', e.target.value));
 	                    },
-	                    style: innerTextCellStyle,
+	                    onFocus: function onFocus() {
+	                      _this2.setState({ focused: 'scopeofwork' });
+	                    },
+	                    onBlur: function onBlur() {
+	                      if (_this2.state.focused === 'scopeofwork') _this2.setState({ focused: '' });
+	                    },
+	                    style: _extends({}, innerTextCellStyle, { backgroundColor: '' + (this.state.focused === 'scopeofwork' ? '#ddd' : 'white') }),
 	                    ref: function ref(input) {
 	                      if (shoppingCartDOMNodes['scopeofwork'] === undefined && input !== null) {
 	                        dispatch(actions.setShoppingCartNode('scopeofwork', input));
@@ -53111,7 +53414,8 @@
 	    QuoteNumberReducer = _require.QuoteNumberReducer,
 	    InitialQuoteNumberReducer = _require.InitialQuoteNumberReducer,
 	    AvailableQuoteNumbersReducer = _require.AvailableQuoteNumbersReducer,
-	    DOMNodesReducer = _require.DOMNodesReducer;
+	    DOMNodesReducer = _require.DOMNodesReducer,
+	    GlobalConfigsReducer = _require.GlobalConfigsReducer;
 	
 	var configure = exports.configure = function configure() {
 	  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -53122,7 +53426,8 @@
 	    quoteNumber: QuoteNumberReducer,
 	    InitialQuoteNumber: InitialQuoteNumberReducer,
 	    availableQuoteNumbers: AvailableQuoteNumbersReducer,
-	    shoppingCartDOMNodes: DOMNodesReducer
+	    shoppingCartDOMNodes: DOMNodesReducer,
+	    globalConfigs: GlobalConfigsReducer
 	  });
 	  initialState = {
 	    page: 'StartPage',
@@ -53130,7 +53435,13 @@
 	    quoteNumber: '',
 	    InitialQuoteNumber: '',
 	    availableQuoteNumbers: [],
-	    shoppingCartDOMNodes: {}
+	    shoppingCartDOMNodes: {},
+	    globalConfigs: {
+	      tax: '9.25',
+	      laborCommission: '30',
+	      salesman: '',
+	      extraWorkCommision: '40'
+	    }
 	  };
 	  var store = redux.createStore(reducer, initialState, redux.compose(redux.applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	    return f;
@@ -53175,7 +53486,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.DOMNodesReducer = exports.AvailableQuoteNumbersReducer = exports.InitialQuoteNumberReducer = exports.QuoteNumberReducer = exports.CachedQuotesReducer = exports.CustomerReducer = exports.ShoppingCartReducer = exports.EstimateReducer = exports.PageReducer = undefined;
+	exports.GlobalConfigsReducer = exports.DOMNodesReducer = exports.AvailableQuoteNumbersReducer = exports.InitialQuoteNumberReducer = exports.QuoteNumberReducer = exports.CachedQuotesReducer = exports.CustomerReducer = exports.ShoppingCartReducer = exports.EstimateReducer = exports.PageReducer = undefined;
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
@@ -53264,7 +53575,7 @@
 	  switch (action.type) {
 	    case 'ADD_EMPTY_QUOTE':
 	      return _extends({}, state, _defineProperty({}, action.quoteNumber, {
-	        salesman: '',
+	        salesman: action.salesman,
 	        customerFirstName: '',
 	        customerLastName: '',
 	        email: '',
@@ -53467,6 +53778,18 @@
 	      return _extends({}, state, _defineProperty({}, action.key, action.node));
 	    case 'CLEAR_SHOPPING_CART_NODE':
 	      return {};
+	    default:
+	      return state;
+	  }
+	};
+	
+	var GlobalConfigsReducer = exports.GlobalConfigsReducer = function GlobalConfigsReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'CHANGE_GLOBAL_CONFIG':
+	      return _extends({}, state, _defineProperty({}, action.config, action.value));
 	    default:
 	      return state;
 	  }
